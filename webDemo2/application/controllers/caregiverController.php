@@ -18,7 +18,7 @@ class caregiverController extends CI_Controller {
             $this->load->model('Event_model');
             $results['caregiver']= $this->Event_model->getEvents();
             
-            $content = $this->parser->parse('test', $results, true);
+            $content = $this->parser->parse('content_test', $results, true);
         
             $data = array(
                 "content" => $content
@@ -27,7 +27,13 @@ class caregiverController extends CI_Controller {
         $this->parser->parse('testpage', $data);
         }
         
-        
-        
-        
+        public function insert()
+        {
+            $this->load->model('Event_model');
+            $content = $this->parser->parse('content_test', $results, true);
+            
+            
+            
+            $results['caregiver']= $this->Event_model->insertCaregiver();
+        }
 }
