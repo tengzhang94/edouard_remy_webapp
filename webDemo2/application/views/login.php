@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>GraceAge2.0 CAREGIVER</title>
-        <link rel="stylesheet" type ="text/css" href="style.css">
+        <link href="<?=base_url();?> assets/css/style.css"ref="stylesheet"type = "text/css">
         
     </head>
     <body>

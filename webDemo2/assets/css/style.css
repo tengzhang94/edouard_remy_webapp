@@ -1,0 +1,89 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-11-1, 12:42:17
+    Author     : Mandi
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+    background: #eee;
+    width: 900px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px 5px rgba(0,0,0,.2);
+}
+
+header, main, footer {
+  width: 900px;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 10px 5px rgba(0,0,0,.2);
+  margin-left: 130px;
+  margin-right: 100px;
+}
+
+header {
+  margin-top: 50px;
+  height: 50px;
+  padding: 50px;
+  background: #CF4A41;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  padding-left: 40px;
+  padding-top: 20px;
+  
+  line-height: 2em;
+}
+ 
+main {
+  padding: 50px;
+  background: white;
+ 
+  display: flex;
+  flex-direction: row;
+}
+ 
+footer {
+  padding: 15px 50px; /* top+bottom left+right*/
+  background: white;
+  border-top: 2px solid #000000;
+  text-align: center;
+}
+
+#frm{
+    border: solid gray 1px;
+    width: 80%;
+    height: 80%;
+    border-radius: 5px;
+    margin: 50px auto;
+    background: white;
+}
+#btn{
+    color: #fff;
+    background: #337ab7;
+    padding: 5px;
+    padding-left:75px;
+    padding-right:75px;
+    margin-left: 10px auto;
+    item-align: center;
+    margin-top: 10%;
+    margin-left: 35%;
+}
+
+#btn2{
+    color: #fff;
+    background: #337ab7;
+    padding: 5px;
+    margin-top: 8%;
+    margin-left: 35%;
+    margin-bottom: 10%;
+
+}
+
