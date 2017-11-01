@@ -24,7 +24,7 @@ class caregiverController extends CI_Controller {
                 "content" => $content
             );
         
-        $this->parser->parse('testpage', $data);
+            $this->parser->parse('testpage', $data);
         }
         
         

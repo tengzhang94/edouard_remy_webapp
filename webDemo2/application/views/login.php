@@ -8,13 +8,13 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>GraceAge2.0 CAREGIVER</title>
-        <link href="<?=base_url();?> assets/css/style.css"ref="stylesheet"type = "text/css">
-        
+        <link href="<?php echo base_url()."assets/css/style.css"?>" ref="stylesheet" type = "text/css">
     </head>
     <body>
         <header>
         <div id="logo">
-          <h1>GraceAge2.0 CAREGIVER</h1>
+          <h1>GraceAge2.0 CAREGIVER <?php echo base_url()."assets/css/style.css"?></h1>
+          <h2></h2>
         </div>
         </header>
         <main>
