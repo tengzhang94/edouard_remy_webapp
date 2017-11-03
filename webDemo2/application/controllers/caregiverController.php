@@ -52,11 +52,11 @@ class caregiverController extends CI_Controller {
             $this->load->view('testpage');
             if($result)
             {
-               echo "success ";
+                redirect('residentController/question');
             }
             else
             {
-               echo "failed ";
+                $this->login();
             }
         }
 }
