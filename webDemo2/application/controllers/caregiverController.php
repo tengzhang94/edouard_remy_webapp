@@ -46,7 +46,7 @@ class caregiverController extends CI_Controller {
 
 
               $this->load->model('Event_model');
-              $result=$this->Event_model->getEvents_login($username,$password);
+              $result=$this->Event_model->login($username,$password);
       
 
             $this->load->view('testpage');

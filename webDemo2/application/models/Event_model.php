@@ -10,7 +10,7 @@ class Event_model extends CI_Model {
         return $query->result();
     }
     
-    public function getEvents_login($firstName,$password) {
+    public function login($firstName,$password) {
         $query = $this->db->query("select * from Caregiver where firstName='$firstName' And  password= '$password'");
         return $query->result();
     }

@@ -24,12 +24,11 @@ and open the template in the editor.
                     <input type="text" placeholder="username" name="user"><br>
                     <input type="password" placeholder="password" name="password"><br>
                     <input type="submit" value="Login">
-                    <input type="submit" value="Forget Password? Click here!">
 		</div>
             </form>
         </div>
             <div class="jump">
-                <input type="submit" value="Not caregiver? Click here!">
+                <input type="submit" value="Not a caregiver? Click here!">
             </div>
         </main>
     </body>
