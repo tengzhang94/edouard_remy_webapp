@@ -5,8 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="<?php echo base_url('/assets/css/QuestionPage.less')?>" rel="stylesheet" type = "text/css">
-      
+        <link rel ="stylesheet/less" type="text/css" href="/QuestionPage/QuestionPage.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     </head>
     <body>
