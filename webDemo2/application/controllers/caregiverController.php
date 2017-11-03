@@ -36,4 +36,27 @@ class caregiverController extends CI_Controller {
             
             $results['caregiver']= $this->Event_model->insertCaregiver();
         }
+        
+        public function click()
+       {
+          
+            $username= $this->input->post('user');
+            $password= $this->input->post('password');
+          //Giani	Driesen
+
+
+              $this->load->model('Event_model');
+              $result=$this->Event_model->getEvents_login($username,$password);
+      
+
+            $this->load->view('testpage');
+            if($result)
+            {
+               echo "success ";
+            }
+            else
+            {
+               echo "failed ";
+            }
+        }
 }

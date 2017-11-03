@@ -13,24 +13,24 @@ and open the template in the editor.
     <body>
         <main>
         <div id ="form">
-            <form action="process.php" method="POST">
-        <div class="body"></div>
+            <form action="click" method="POST">
+                <div class="body"></div>
 		<div class="grad"></div>
 		<div class="header">
-			<div>GRACE AGE<span> Caregiver</span></div>
+                    <div>GRACE AGE<span> Caregiver</span></div>
 		</div>
 		<br>
 		<div class="login">
-				<input type="text" placeholder="username" name="user"><br>
-				<input type="password" placeholder="password" name="password"><br>
-				<input type="button" value="Login">
-                                <input type="button" value="Forget Password? Click here!">
+                    <input type="text" placeholder="username" name="user"><br>
+                    <input type="password" placeholder="password" name="password"><br>
+                    <input type="submit" value="Login">
+                    <input type="submit" value="Forget Password? Click here!">
 		</div>
-                <div class="jump">
-                    <input type="button" value="Not caregiver? Click here!">
-                </div>
             </form>
         </div>
+            <div class="jump">
+                <input type="submit" value="Not caregiver? Click here!">
+            </div>
         </main>
     </body>
 </html>
