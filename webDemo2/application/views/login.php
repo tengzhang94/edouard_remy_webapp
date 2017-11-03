@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link href="<?php echo base_url('/assets/css/style.css')?>" rel="stylesheet" type = "text/css">
+        <link href="<?php echo base_url();?>/assets/css/style.css" rel="stylesheet" type = "text/css">
     </head>
     <body>
         <main>
