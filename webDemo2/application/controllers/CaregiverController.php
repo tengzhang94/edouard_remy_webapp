@@ -52,6 +52,11 @@ class CaregiverController extends CI_Controller {
             $this->load->view('testpage');
             if($result)
             {
+                foreach($query->result_array() as $row){
+                    $this->session->set_userdata('logged_in', 'caregiver');
+                    $this->session->set_userdata('dutch', $row['dutch']);
+                    $this->session->set_userdata('name', $row['firstName']);
+                }
                 redirect('ResidentController/question');
             }
             else
