@@ -12,7 +12,7 @@
         <div id="content">
             <div class="page-header">
                 <div class="row">
-                    <h1 class="col-md-8"><font size="20"><b>Safety and Security</b></font></h1>
+                    <h1 class="col-md-8"><font size="20"><b>{topic}</b></font></h1>
                     <div class ="col-md-4">
                         <div class="btn-group">
                             <button type="button" class="btn btn-lg btn-primary">Smaller Font</button>
@@ -27,7 +27,7 @@
                 </div>
             </div>            -->
             <div id="question" class="container">
-                <p class="text-center"><font size="20">I feel my possessions are secure.</font></p>
+                <p class="text-center"><font size="20">{question}</font></p>
             </div>
             <div class="row">
                 <div class="col-md-1"></div>
