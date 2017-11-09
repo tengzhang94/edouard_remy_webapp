@@ -10,20 +10,25 @@ class ResidentController extends CI_Controller {
         $this->load->helper('url');
     }
 
-    public function question() {
+    public function question($questionNr) {
         $this->load->model('Question_model');
-        $this->session->set_userdata('topicQuestions', $this->Question_model->getQuestions($this->session->topicId));   //get all questins of current topic and store them in session
-
-        $topic = "Safety and security";        
         
-        //get the current question for the user
-        if(!empty($this->session->topicQuestions [$this->session->question])) {
-            $question = $this->session->topicQuestions[$this->session->question]->questionString;
+        if(!isset($this->session->topicQuestions)) {
+            $this->Question_model->getQuestions($this->session->topicId);
         }
-        else {
+        
+        if (!empty($this->session->topicQuestions [$questionNr])) {
+            $question = $this->session->topicQuestions[$questionNr]->questionString;
+        } else {
             //redirect to 'end of topic' page
-            $question = "Error: no question found";
+            redirect('CaregiverController/login');
+            $this->session->unset_userdata('topicQuestions');
+            $this->session->unset_userdata('topicId');
+            $this->session->unset_userdata('questionNr');
+            $this->session->unset_userdata('topicName');
         }
+        
+        $topic = $this->session->topicName;
         
         //put the question and topic title in array, then parse data
         $data = array(

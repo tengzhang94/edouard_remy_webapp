@@ -50,12 +50,12 @@ class CaregiverController extends CI_Controller {
         //$this->load->view('testpage');
         if ($result) {
             $this->session->set_userdata('logged_in', 'caregiver');
-            $this->session->set_userdata('dutch', $result->dutch);
-            $this->session->set_userdata('name', $result->firstName);
-            $this->session->set_userdata('topicId', 2); //current topic ID
-            $this->session->set_userdata('question', 5);    //question within current topic
+            $this->session->set_userdata('dutch', $result[0]->dutch);
+            $this->session->set_userdata('name', $result[0]->firstName);
+            $this->session->set_userdata('topicId', 1); //current topic ID
+            //$this->session->set_userdata('questionNr', 0);    //question within current topic
 
-            redirect('ResidentController/question');
+            redirect('ResidentController/question/0');
         } else {
             $this->login();
         }
