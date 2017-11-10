@@ -41,19 +41,19 @@
                 <?php echo form_input($hiddenQuestionNr)?>
                 <div class="col-md-1"></div>
                 <div class="col-md-2" align="center">
-                    <button id="b0" style="height:180px; width:  16.7%; border-radius: 20%;" type="submit"><img id="img0" src="http://a17-webapps04.studev.groept.be/assets/css/image/face.png" width="20"style="border-radius: 20%;"/></button>
+                    <button id="b0" style="height:180px; width:  16.7%;" type="submit"><img id="img0" src="http://a17-webapps04.studev.groept.be/assets/css/image/face.png" width="20"style="border-radius: 10%;"/></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b1" style="height:180px; width: 16.7%;border-radius: 20%; " type="submit"><img id="img1" src="http://a17-webapps04.studev.groept.be/assets/css/image/face1.png" width="20"style="border-radius: 20%; "/></button>
+                    <button id="b1" style="height:180px; width: 16.7%; " type="submit"><img id="img1" src="http://a17-webapps04.studev.groept.be/assets/css/image/face1.png" width="20"style="border-radius: 10%; "/></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b2" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img2" src="http://a17-webapps04.studev.groept.be/assets/css/image/face2.png" width="20"style="border-radius: 20%;" /></button>
+                    <button id="b2" style="height:180px; width: 16.7%;" type="submit"><img id="img2" src="http://a17-webapps04.studev.groept.be/assets/css/image/face2.png" width="20"style="border-radius: 10%;" /></button>
                 </div>            
                 <div class="col-md-2"align="center">
-                    <button id="b3" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img3" src="http://a17-webapps04.studev.groept.be/assets/css/image/face3.png" width="20"style="border-radius: 20%;" /></button>
+                    <button id="b3" style="height:180px; width: 16.7%;" type="submit"><img id="img3" src="http://a17-webapps04.studev.groept.be/assets/css/image/face3.png" width="20"style="border-radius: 10%;" /></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b4" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img4" src="http://a17-webapps04.studev.groept.be/assets/css/image/face4.png" width="20"style="border-radius: 20%; "/></button>
+                    <button id="b4" style="height:180px; width: 16.7%;" type="submit"><img id="img4" src="http://a17-webapps04.studev.groept.be/assets/css/image/face4.png" width="20"style="border-radius: 20%; "/></button>
                 </div>
                 <div class="col-md-1"></div>
             </div>
