@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://a17-webapps04.studev.groept.be/';
-$config['base_url'] = 'http://localhost/webApp_team4/webDemo2';
+$config['base_url'] = 'http://localhost/a17_webApps04/webDemo2';
 
 /*
 |--------------------------------------------------------------------------

@@ -21,19 +21,30 @@ class ResidentController extends CI_Controller {
             $question = $this->session->topicQuestions[$questionNr]->questionString;
         } else {
             //redirect to 'end of topic' page
-            redirect('CaregiverController/login');
+            //redirect('CaregiverController/login');
             $this->session->unset_userdata('topicQuestions');
-            $this->session->unset_userdata('topicId');
-            $this->session->unset_userdata('questionNr');
-            $this->session->unset_userdata('topicName');
+            //$this->session->unset_userdata('topicId');
+            //$this->session->unset_userdata('topicName');
+            $this->session->set_userdata('topicId', $this->session->topicId + 1);
+            redirect('ResidentController/question/0');
         }
         
         $topic = $this->session->topicName;
         
+        $nextQuestionNr = $questionNr + 1;
+        
+        //workaround to create new input field in view which passes value to javascript file
+        $hiddenQuestionNr = array(
+            "value" => $nextQuestionNr,
+            "id" => "hiddenQuestionNr",
+            "type" => "hidden"
+        );
+        
         //put the question and topic title in array, then parse data
         $data = array(
             "topic" => $topic,
-            "question" => $question
+            "question" => $question,
+            "hiddenQuestionNr" => $hiddenQuestionNr
         );
         $this->parser->parse('questionpage', $data);
     }

@@ -36,25 +36,29 @@
             <div id="question" class="container"style="color:2c3d51">
                 <p class="text-center" style="font-family: 'Lato', sans-serif;color:#2c3d51"><font size="20">{question}</font></p>
             </div>
+            <form action="" id='questionForm' onsubmit="return nextQuestion()">
             <div class="row">
+                <?php echo form_input($hiddenQuestionNr)?>
                 <div class="col-md-1"></div>
                 <div class="col-md-2" align="center">
-                    <button id="b0" style="height:180px; width:  16.7%; border-radius: 20%;" type="button"><img id="img0" src="../../assets/css/image/face.png" width="20"style="border-radius: 20%;"/></button>
+                    <button id="b0" style="height:180px; width:  16.7%; border-radius: 20%;" type="submit"><img id="img0" src="../../assets/css/image/face.png" width="20"style="border-radius: 20%;"/></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b1" style="height:180px; width: 16.7%;border-radius: 20%; " type="button"><img id="img1" src="../../assets/css/image/face1.png" width="20"style="border-radius: 20%; "/></button>
+                    <button id="b1" style="height:180px; width: 16.7%;border-radius: 20%; " type="submit"><img id="img1" src="../../assets/css/image/face1.png" width="20"style="border-radius: 20%; "/></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b2" style="height:180px; width: 16.7%;border-radius: 20%;" type="button"><img id="img2" src="../../assets/css/image/face2.png" width="20"style="border-radius: 20%;" /></button>
+                    <button id="b2" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img2" src="../../assets/css/image/face2.png" width="20"style="border-radius: 20%;" /></button>
                 </div>            
                 <div class="col-md-2"align="center">
-                    <button id="b3" style="height:180px; width: 16.7%;border-radius: 20%;" type="button"><img id="img3" src="../../assets/css/image/face3.png" width="20"style="border-radius: 20%;" /></button>
+                    <button id="b3" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img3" src="../../assets/css/image/face3.png" width="20"style="border-radius: 20%;" /></button>
                 </div>
                 <div class="col-md-2" align="center">
-                    <button id="b4" style="height:180px; width: 16.7%;border-radius: 20%;" type="button"><img id="img4" src="../../assets/css/image/face4.png" width="20"style="border-radius: 20%; "/></button>
+                    <button id="b4" style="height:180px; width: 16.7%;border-radius: 20%;" type="submit"><img id="img4" src="../../assets/css/image/face4.png" width="20"style="border-radius: 20%; "/></button>
                 </div>
                 <div class="col-md-1"></div>
             </div>
+            <script type="text/javascript" src ="<?php echo base_url();?>assets/javascript/questionpage.js"></script>
+            </form>
         </div>
     </body>
 </html>
