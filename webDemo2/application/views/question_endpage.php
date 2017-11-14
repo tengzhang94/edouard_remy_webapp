@@ -22,8 +22,6 @@
         <button class="btn btn-default" type="button">{yes}</button>
         <button class="btn btn-default" type="button">{no} </button>
     </p>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
