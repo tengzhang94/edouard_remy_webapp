@@ -6,10 +6,14 @@ class Question_model extends CI_Model {
     }
     
     public function getQuestions($topicId) {
-        $dutch = $this->session->dutch;        
-        $questions = $this->db->query("select questionString,idQuestions from Questions where topicId='$topicId' And  dutch= '$dutch'");
+        $dutch = $this->session->dutch;
+        $questionLang = $this->session->questionLang;
+        $topicLang = $this->session->topicLang;
+        //get the questions and store them temporarily in session
+        $questions = $this->db->query("SELECT questionOrder, $questionLang AS questionString FROM Questions WHERE topicId='$topicId'");
         $this->session->set_userdata('topicQuestions', $questions->result());   //get all questins of current topic and store them in session
-        $topicName = $this->db->query("select topicName from Topics where idTopic ='$topicId' and isDutch = '$dutch'");
+        //get the topic name and store it temporarily in session
+        $topicName = $this->db->query("SELECT $topicLang AS topicName FROM Topics WHERE idTopic ='$topicId'");
         $this->session->set_userdata('topicName', $topicName->result()[0]->topicName);
     }
 }
