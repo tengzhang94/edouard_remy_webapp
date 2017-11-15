@@ -23,10 +23,10 @@ class ResidentController extends CI_Controller {
             //redirect to 'end of topic' page
             //redirect('CaregiverController/login');
             $this->session->unset_userdata('topicQuestions');
-            //$this->session->unset_userdata('topicId');
-            //$this->session->unset_userdata('topicName');
-            $this->session->set_userdata('topicId', $this->session->topicId + 1);
-            redirect('ResidentController/question/0');
+            $this->session->unset_userdata('topicId');
+            $this->session->unset_userdata('topicName');
+            //$this->session->set_userdata('topicId', $this->session->topicId + 1);
+            redirect('ResidentController/end');
         }
         
         $topic = $this->session->topicName;
@@ -71,5 +71,9 @@ class ResidentController extends CI_Controller {
     
     public function test(){
         $this->load->view('resident_topicpage');
+    }
+    
+    public function end(){
+        $this->load->view('question_endpage');
     }
 }
