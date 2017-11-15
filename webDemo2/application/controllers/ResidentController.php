@@ -49,4 +49,27 @@ class ResidentController extends CI_Controller {
         $this->parser->parse('questionpage', $data);
     }
 
+    public function topics(){
+        $this->load->model('Question_model');
+        $topics = $this->Question_model->getTopics();
+        $topicsChunks = array_chunk($topics, 4, true); //divide the query result in chunks of 4
+        $htmlString = '';
+        foreach($topicsChunks as $topicRow){
+            $templateData = array(
+                'paragraph' => $topicRow
+            );
+            $tempString = $this->parser->parse('topicTemplate', $templateData, true);
+            $htmlString .= $tempString; 
+        }
+        
+        $data = array(
+            "topicButtons" => $htmlString
+        );
+        
+        $this->parser->parse('topicpageTest', $data);
+    }
+    
+    public function test(){
+        $this->load->view('resident_topicpage');
+    }
 }
