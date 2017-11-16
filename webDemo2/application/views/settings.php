@@ -17,7 +17,8 @@ and open the template in the editor.
       
     </head>
     <body>
-       <div><p class="text-right" id="header"><span class="float_left">Instellingen</span></p> </div>
+        {navbar_topbar}
+       <!--<div><p class="text-right" id="header"><span class="float_left">Instellingen</span></p> </div>-->
         <main>
         <!--<div class="row">
             <div class="column side">
