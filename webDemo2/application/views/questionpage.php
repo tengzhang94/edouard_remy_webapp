@@ -4,26 +4,20 @@
     <head>
         <title>GraceAge 2.0 - Resident</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">      
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url();?>/assets/css/QuestionPage.less"/>
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-<!--        <style>@font-face {  
-            /* font-properties */  
-            font-family:caviarDreams;  
-            src:url('/fonts/CaviarDreams.ttf') format('truetype'); /* IE9 */  
-            font-weight: normal; font-style: normal;
-        } </style>-->
+        
     </head>
-    
     <body>
         <div id="content">
             <div class="page-header" style="background: #2c3d51;">
                 <div class="row" style="background: #2c3d51;">
                     <h1 class="col-md-8" style="font-family: 'CaviarDreams',sans-serif;color:#e4e4e4;opacity: 20%"><font size="20"><b>{topic}</b></font></h1>
-                     
+                    
                     <div class ="col-md-4" style="display:flex; flex-direction: row">
                         <h2 type="text"style="font-family: 'Lato', sans-serif; margin-left: 20px; padding-top: 20px;
                               margin-right: 20px;font-size: 20px;color:#e4e4e4;">Letter Size:</h2>

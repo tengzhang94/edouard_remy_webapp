@@ -1,0 +1,101 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-11-16, 12:12:52
+    Author     : Teng
+*/
+
+@font_family_1: Lato, sans-serif;
+@color_1: #2c3d51;
+@color_2: #e4e4e4;
+@background_color_1: #f4f4f4;
+
+.text-right {
+    background-color: @color_1;
+    height: 60px;
+    font-family: @font_family_1;
+    color: @color_2;
+    font-size: 20px; //originally 15 but the font size doesnt change but the header moves vertically with changing this value
+    padding-right: 20px; //20
+    padding-top: 15px; //originally 15px
+    margin-bottom: 0px;
+}
+
+.container {
+    height: 1000px;
+}
+
+.wrapper {
+    margin-left: 140px;
+}
+.float_left {
+    float: left;
+    font-size: 30px;
+    font-family: @font_family_1;
+    margin-left: 20px; // 20
+    margin-top: -5px; //originally -5
+}
+
+div.relative{
+    position: relative;
+    left: 180px;
+    top:95px;
+}
+
+.btn-group .button {
+    background-color: #EEEEEE; 
+    width: 240px;
+    height: 210px;
+    border: 3px solid green;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 230%;
+    padding: 20px 0px;
+    margin: 150px 70px;
+    border-radius: 10%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    float: left;
+}
+//.btn-group .button:not(:last-child) {
+//    border-right: none; /* Prevent double borders */
+//}
+.btn-group .button:hover {
+    background-color: #4CAF50;
+}
+        
+.column {
+        float: left;
+        width: 100%; //130px
+        padding-left: 320px; //139
+        padding-top: 200px;
+        }
+                     
+.column.middle{
+        width: 20%;
+        }
+                     
+.column.side{
+        width:20% ;       
+        }
+
+
+.row:after {
+        content: "";
+        display: table;
+        clear: both;
+            }
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+ /*@media only screen and (max-width:768px) {
+      .div.relative {
+        width: 100%;
+    } 
+ }
+   */             
+ 
+           
