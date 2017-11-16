@@ -122,18 +122,15 @@
                 font-size: 10px;color:#333333;">Delete</h2>
                 
             </div>
-            
-           
-                {messages}
-                    
-                    <div class="row3" style="display:flex; flex-direction: row;width:100%">
-                <input id="cbox1" type ="checkbox" style="margin-top: 30px;margin-left: 2%"/>
-                <div id = "text1" style="margin-left: 3%">
-                    <div id = "text1_1">{messageText}</div>
-                </div>                
-            </div>
-                {/messages}
-
+                       
+            {messages}
+                <div class="row3" style="display:flex; flex-direction: row;width:100%">
+                    <input id="cbox1" type ="checkbox" style="margin-top: 30px;margin-left: 2%"/>
+                    <div id = "text1" style="margin-left: 3%">
+                        <div id = "text1_1">{messageText}</div>
+                    </div>                
+                </div>
+            {/messages}
             
             <div class="row7" style="display:flex; flex-direction: row;width:90%; margin-left:6%">
                 <div id = "text5" style="display:flex; flex-direction: column">
