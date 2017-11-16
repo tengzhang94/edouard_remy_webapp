@@ -13,6 +13,17 @@ class CaregiverController extends CI_Controller {
     public function login() {
         $this->load->view('login');
     }
+    
+    public function home() {
+        $navbar_topbar['title'] = 'Homepage';     
+        //$navbar_topbar['classActive'] = 'active'; 
+        $this->load->view('navbar_topbar', $navbar_topbar);
+        $this->load->view('dashDemo');
+    }
+    
+    public function selectTopic(){
+        $this->load->view('resident_topicpage');
+    }
 
     public function test() {
         $this->load->model('Event_model');
@@ -64,7 +75,8 @@ class CaregiverController extends CI_Controller {
             $this->session->set_userdata('topicId', 1); //current topic ID
             //$this->session->set_userdata('questionNr', 0);    //question within current topic
 
-            redirect('ResidentController/question/0');
+            //redirect('ResidentController/question/0');
+            $this->home();
         } else {
             $this->login();
         }
