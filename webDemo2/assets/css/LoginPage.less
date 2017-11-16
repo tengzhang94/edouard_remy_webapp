@@ -1,0 +1,115 @@
+@color_1: #fff;
+@color_2: #ffffff;
+@color_3: inherit;
+@color_4: #6f7a85;
+@font_family_1: Lato, sans-serif;
+@background_color_1: #2c3d51;
+
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+#wrap {
+	.col {
+		float: left;
+		a {
+			text-decoration: none;
+			.login-dark { height: 1000px;
+			background: #475d62 url(/image/o-ELDERLY-facebook.jpg);
+			background-repeat: no-repeat;
+			position: relative;
+			background-position: center;
+			background-color: @background_color_1;
+		}
+	}
+}
+.login-dark {
+	form {
+		max-width: 320px;
+		width: 90%;
+		background-color: @background_color_1;
+		padding: 40px;
+		border-radius: 4px;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: @color_1;
+		box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+		.form-control {
+			background: none;
+			border: none;
+			border-bottom: 1px solid #434a52;
+			border-radius: 0;
+			box-shadow: none;
+			outline: none;
+			color: @color_3;
+		}
+		.btn-primary {
+			background: #214a80;
+			border: none;
+			border-radius: 0px;
+			padding: 11px;
+			box-shadow: none;
+			margin-top: 26px;
+			text-shadow: none;
+			outline: none;
+			font-family: @font_family_1;
+			font-size: 18px;
+			&:hover {
+				background: #214a80;
+				outline: none;
+			}
+			&:active {
+				background: #214a80;
+				outline: none;
+				transform: translateY(1px);
+			}
+		}
+	}
+	.illustration {
+		text-align: center;
+		padding: 15px 0 20px;
+		font-size: 100px;
+		color: @color_2;
+	}
+
+            .container {
+                    margin: 0px;
+                    width: auto;
+                    height: auto;
+                    padding: 0px;
+            }
+
+            div {
+                    width: auto;
+                    height: 100vh;
+            }
+            .col-md-6 {
+                    padding: 0px;
+            }
+            .btn.btn-primary.btn.pull-right {
+                    width: 20%;
+                    height: 8%;
+                    background-color: @background_color_1;
+                    background-image: url("0px");
+                    color: @color_1;
+                    font-size: 18px;
+                    border-color: @border_color_1;
+                    min-width: 143px;
+                    border-radius: 0px;
+                    font-family: @font_family_1;
+                    margin-right: 4%;
+                    margin-top: 20px;
+            }
+            .h1 {
+                    margin: 0px;
+                    width: 100%;
+                    padding-top: 150px;
+                    color: @color_1;
+                    font-size: 100px;
+                    font-family: @font_family_1;
+            }
+}
