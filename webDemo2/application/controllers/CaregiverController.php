@@ -8,6 +8,7 @@ class CaregiverController extends CI_Controller {
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
+        $this->load->model('Menu_model');
     }
 
     public function login() {
@@ -15,10 +16,16 @@ class CaregiverController extends CI_Controller {
     }
     
     public function home() {
-        $navbar_topbar['title'] = 'Homepage';     
-        //$navbar_topbar['classActive'] = 'active'; 
-        $this->load->view('navbar_topbar', $navbar_topbar);
+        $navbar_topbar['title'] = 'Homepage';
+        $navbar_topbar['menu'] = $this->Menu_model->get_menuitems('Homepage');
+        $this->parser->parse('navbar_topbar', $navbar_topbar);
         $this->load->view('dashDemo');
+    }
+    
+    public function settings() {
+        $navbar_topbar['title'] = 'Settings';
+        $navbar_topbar['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $this->parser->parse('settings', $navbar_topbar);        
     }
     
     public function selectTopic(){
