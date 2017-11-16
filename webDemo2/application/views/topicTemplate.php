@@ -1,11 +1,8 @@
-<p class="text-center">
-    <div class="btn-group" role="group">
+<?php echo form_open('ResidentController/Question/0');?>
+    <div class="form-group">
         <?php foreach($paragraph as $par){
-            echo form_open('ResidentController/Question/0');
-            echo form_hidden('idTopic', $par['idTopic']);
-            $topicName = $par['topicName'];
-            echo '<button class="btn btn-link" type="submit" style="margin-left:10px;"><small style="font-size:20px;">' . $topicName . '</small><img src="' . base_url() . 'assets/css/image/icons8-start.png"></button>';
-            echo form_close();
+            $topicName = wordwrap($par['topicName'], 20, "<br />");
+            echo '<button class="btn btn-link" name="' . $par['idTopic'] . '" type="submit" style="margin-left:10px;"><small style="font-size:20px;">' . $topicName . '</small><img src="' . base_url() . 'assets/css/image/icons8-start.png"></button>';
         }?>
     </div>
-</p>
+<?php echo form_close();?>

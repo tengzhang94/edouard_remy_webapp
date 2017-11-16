@@ -23,7 +23,7 @@
             <button class="btn btn-default" type="submit">{yes}</button>
         <?php echo form_close();
         echo form_open('CaregiverController/home');?>
-            <button class="btn btn-default" type="submit">{no} </button>
+            <button class="btn btn-default" type="submit">{no}</button>
         <?php echo form_close();?>
     </p>
 </body>
