@@ -13,7 +13,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     </head>
 
-    <body>     
+    <body>
+        {navbar_topbar}
         <div class="row" style="display:flex; flex-direction:row;width:100%">
 
             <div class="column1" style="display:flex; flex-direction: column;margin-left: 15%;margin-top:20px">

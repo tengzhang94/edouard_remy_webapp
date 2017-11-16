@@ -18,13 +18,14 @@ class CaregiverController extends CI_Controller {
     public function home() {
         $navbar_topbar['title'] = 'Homepage';
         $navbar_topbar['menu'] = $this->Menu_model->get_menuitems('Homepage');
-        $this->parser->parse('navbar_topbar', $navbar_topbar);
-        $this->load->view('dashDemo');
+        $navbar_topbar['navbar_topbar'] = $this->parser->parse('navbar_topbar', $navbar_topbar, true);
+        $this->parser->parse('dashDemo', $navbar_topbar);
     }
     
     public function settings() {
         $navbar_topbar['title'] = 'Settings';
         $navbar_topbar['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $navbar_topbar['code'] = $this->parser->parse('navbar_topbar', $navbar_topbar, true);
         $this->parser->parse('settings', $navbar_topbar);        
     }
     
