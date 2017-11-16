@@ -10,35 +10,23 @@ class ResidentController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
-        switch($this->session->dutch){
-            case 1:
-                $this->language = 'dutch';
-                break;
-            case 0:
-                $this->language = 'english';
-                break;
-            default:
-                $this->language = 'dutch';
-                break;
-        }
-        $this->lang->load('ResidentNav_lang', $this->language);
-        $this->navLanArray = array(
-            'font_size' => lang('res_navbar_font_size'),
-            'greater' => lang('res_navbar_bigger_font'),
-            'smaller' => lang('res_navbar_smaller_font')
-        );
+        $this->load->model('Language_model');
+        $this->navLanArray = $this->Language_model->getResNavLanguage();
     }
 
     public function question($questionNr) {
         $this->load->model('Question_model');
         
-        $topicId = (int)array_keys(filter_input_array(INPUT_POST))[0];
-        //$topicId = filter_input(INPUT_POST, 'idTopic');
-        if(isset($topicId)){
-            $this->session->unset_userdata('topicQuestions');
-            $this->session->unset_userdata('topicName');
-            $this->session->set_userdata('topicId', $topicId);
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $topicId = (int)array_keys(filter_input_array(INPUT_POST))[0];
+            if(isset($topicId)){
+                $this->session->unset_userdata('topicQuestions');
+                $this->session->unset_userdata('topicName');
+                $this->session->set_userdata('topicId', $topicId);
+            }
         }
+        //$topicId = filter_input(INPUT_POST, 'idTopic');
+        
         
         if(!isset($this->session->topicQuestions)) {
             $this->Question_model->getQuestions($this->session->topicId);
@@ -72,13 +60,11 @@ class ResidentController extends CI_Controller {
         $data = array_merge(array(
             "topic" => $topic,
             "question" => $question,
-            "hiddenQuestionNr" => $hiddenQuestionNr,
-            "verybad" => lang('verybad'),
-            "bad" => lang('bad'),
-            "ok" => lang('ok'),
-            "good" => lang('good'),
-            "verygood" => lang('verygood')
-        ),$this->navLanArray);
+            "hiddenQuestionNr" => $hiddenQuestionNr
+                ),
+                $this->navLanArray,
+                $this->Language_model->getResQuestionLanguage()
+                );
         $this->parser->parse('questionpage_new', $data);
     }
 
@@ -95,9 +81,9 @@ class ResidentController extends CI_Controller {
             $htmlString .= $tempString; 
         }
         
-        $data = array(
+        $data = array_merge(array(
             "topicButtons" => $htmlString
-        );
+        ),$this->navLanArray);
         
         $this->parser->parse('topicpageTest', $data);
     }
@@ -108,11 +94,8 @@ class ResidentController extends CI_Controller {
     
     public function end(){
         $this->lang->load('ResidentQuestionEndpage_lang', $this->language);
-        $data = array_merge(array(
-            'yes' => lang('res_question_end_yes'),
-            'no' => lang('res_question_end_no'),
-            'content' => lang('res_question_end_content')
-        ),$this->navLanArray);
+        $data = array_merge($this->Language_model->getResQuestionEndLanguage(),
+        $this->navLanArray);
         $this->parser->parse('question_endpage', $data);
     }
 }

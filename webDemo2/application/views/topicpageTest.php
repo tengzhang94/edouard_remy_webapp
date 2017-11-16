@@ -13,7 +13,7 @@
 
 <body>
     <div>
-        <p class="text-right" id="header"><span class="float_left">Choose a topic</span><span class="float_right">Font size:<button class="btn btn-primary" type="button" style="margin-left:10px;">Greater </button><button class="btn btn-primary" type="button">Smaller </button></span></p>
+        <p class="text-right" id="header"><span class="float_left">{choose_topic}</span><span class="float_right">{font_size}<button class="btn btn-primary" type="button" style="margin-left:10px;">{greater}</button><button class="btn btn-primary" type="button">{smaller}</button></span></p>
         {topicButtons}
     </div>
     <script src="assets/js/jquery.min.js"></script>

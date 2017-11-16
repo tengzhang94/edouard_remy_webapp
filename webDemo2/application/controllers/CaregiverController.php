@@ -30,7 +30,7 @@ class CaregiverController extends CI_Controller {
     }
     
     public function selectTopic(){
-        $this->load->view('resident_topicpage');
+        redirect('ResidentController/Topics');
     }
 
     public function test() {
