@@ -60,6 +60,7 @@ class CaregiverController extends CI_Controller {
                 $this->session->set_userdata('topicLang', 'topicDutch');
             }
             $this->session->set_userdata('name', $result[0]->firstName);
+            $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
             $this->session->set_userdata('topicId', 1); //current topic ID
             //$this->session->set_userdata('questionNr', 0);    //question within current topic
 
