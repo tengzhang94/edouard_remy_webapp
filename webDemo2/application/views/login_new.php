@@ -15,17 +15,17 @@
     <div class="login-dark">
         <button class="btn btn-primary btn pull-right" type="submit">{goto_resident}</button>
         <h1 class="text-center">GraceAge 2.0</h1>
-        <form method="post">
+        <form method="post" action="click">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration" style="height:auto;"><img src="assets/img/icons8-lock-100 (1).png" style="margin-top:-40px;"></div>
             <div class="form-group" style="height:auto;">
-                <input class="form-control" type="email" name="email" placeholder="{username}" style="font-family:Lato, sans-serif;font-size:18px;">
+                <input class="form-control" type="text" name="user" placeholder="{username}" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
                 <input class="form-control" type="password" name="password" placeholder="{password}" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
-                <button class="btn btn-primary btn-block" type="submit" style="background-color:#f4f4f4;color:#2c3d51;" placeholder="">{login} </button>
+                <button class="btn btn-primary btn-block" type="submit" style="background-color:#f4f4f4;color:#2c3d51;">{login} </button>
             </div>
         </form>
     </div>

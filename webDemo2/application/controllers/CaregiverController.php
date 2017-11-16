@@ -12,7 +12,19 @@ class CaregiverController extends CI_Controller {
     }
 
     public function login() {
-        $this->load->view('login');
+        //unset all self-made session variables
+        $sessiondata = $this->session->all_userdata();
+        foreach($sessiondata as $key => $value){
+            if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity') {
+            $this->session->unset_userdata($key);
+            }
+        }
+        
+        $data = array(
+            'username' => 'gebruikersnaam',
+            'password' => 'wachtwoord'
+        );
+        $this->parser->parse('login_new', $data);
     }
     
     public function home() {
@@ -76,17 +88,15 @@ class CaregiverController extends CI_Controller {
             }
             else{
                 $this->session->set_userdata('questionLang', 'qEnglish');
-                $this->session->set_userdata('topicLang', 'topicDutch');
+                $this->session->set_userdata('topicLang', 'topicEnglish');
             }
             $this->session->set_userdata('name', $result[0]->firstName);
             $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
-            $this->session->set_userdata('topicId', 1); //current topic ID
-            //$this->session->set_userdata('questionNr', 0);    //question within current topic
 
             //redirect('ResidentController/question/0');
-            $this->home();
+            redirect('CaregiverController/home');
         } else {
-            $this->login();
+            redirect('CaregiverController/login');
         }
     }
 
