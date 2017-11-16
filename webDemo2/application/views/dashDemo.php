@@ -9,11 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>/assets/css/dashDemo.less""/>
+        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/dashDemo.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     </head>
 
-    <body>     
+    <body>
+        {navbar_topbar}
         <div class="row" style="display:flex; flex-direction:row;width:100%">
 
             <div class="column1" style="display:flex; flex-direction: column;margin-left: 15%;margin-top:20px">
