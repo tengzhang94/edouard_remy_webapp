@@ -55,4 +55,14 @@ class Language_model extends CI_Model {
             'content' => lang('res_question_end_content')
             );
     }
+    
+    public function getCareLoginLanguage(){
+        $this->lang->load('CaregiverLogin_lang', $this->getLanguage());
+        return array(
+            'login' => lang('login'),
+            'username' => lang('username'),
+            'password' => lang('password'),
+            'goto_resident' => lang('goto_resident')
+        );
+    }
 }

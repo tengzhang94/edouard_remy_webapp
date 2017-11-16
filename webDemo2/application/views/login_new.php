@@ -25,7 +25,7 @@
                 <input class="form-control" type="password" name="password" placeholder="{password}" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
-                <button class="btn btn-primary btn-block" type="submit" style="background-color:#f4f4f4;color:#2c3d51;">{login} </button>
+                <button class="btn btn-primary btn-block" type="submit" style="background-color:#f4f4f4;color:#2c3d51;">{login}</button>
             </div>
         </form>
     </div>

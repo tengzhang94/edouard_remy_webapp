@@ -9,6 +9,7 @@ class CaregiverController extends CI_Controller {
         $this->load->library('parser');
         $this->load->helper('url');
         $this->load->model('Menu_model');
+        $this->load->model('Language_model');
     }
 
     public function login() {
@@ -20,10 +21,7 @@ class CaregiverController extends CI_Controller {
             }
         }
         
-        $data = array(
-            'username' => 'gebruikersnaam',
-            'password' => 'wachtwoord'
-        );
+        $data = $this->Language_model->getCareLoginLanguage();
         $this->parser->parse('login_new', $data);
     }
     
