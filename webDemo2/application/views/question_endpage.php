@@ -19,8 +19,12 @@
     </p>
     <p class="text-center">{content} </p>
     <p class="text-center" style="margin-top:120px;">
-        <button class="btn btn-default" type="button">{yes}</button>
-        <button class="btn btn-default" type="button">{no} </button>
+        <?php echo form_open('ResidentController/Topics');?>
+            <button class="btn btn-default" type="submit">{yes}</button>
+        <?php echo form_close();
+        echo form_open('CaregiverController/home');?>
+            <button class="btn btn-default" type="submit">{no} </button>
+        <?php echo form_close();?>
     </p>
 </body>
 

@@ -26,13 +26,11 @@ class ResidentController extends CI_Controller {
     public function question($questionNr) {
         $this->load->model('Question_model');
         
-        if($questionNr == 0){
-            if(isset($_POST["idTopic"])){
-                $this->session->set_userdata('topicId', $_POST['idTopic']);
-            }
-            else{
-                $this->session->set_userdata('topicId', 1);
-            }
+        $topicId = filter_input(INPUT_POST, 'idTopic');
+        if(isset($topicId)){
+            $this->session->unset_userdata('topicQuestions');
+            $this->session->unset_userdata('topicName');
+            $this->session->set_userdata('topicId', $topicId);
         }
         
         if(!isset($this->session->topicQuestions)) {
