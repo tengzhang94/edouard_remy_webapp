@@ -12,7 +12,7 @@ class Menu_model extends CI_Model {
             array('name' => 'Statistics', 'img' => 'icons8-combo-chart-50.png', 'link' => '', 'className' => 'inactive'),
             array('name' => 'Message', 'img' => 'icons8-message-50.png', 'link' => '', 'className' => 'inactive'),
             array('name' => 'Settings', 'img' => 'icons8-settings-50.png', 'link' => 'settings', 'className' => 'inactive'),
-            array('name' => 'Logout', 'img' => 'icons8-exit-50.png', 'link' => '', 'className' => 'inactive')
+            array('name' => 'Logout', 'img' => 'icons8-exit-50.png', 'link' => 'login', 'className' => 'inactive')
         );
     }
      
