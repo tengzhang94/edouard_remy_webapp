@@ -38,7 +38,7 @@ div.navbar-fixed-left {
 
 
 .navbar-fixed-left .navbar-nav > li {
-    float: none;  /* Cancel default li float: left */
+    float: none;  // Cancel default li float: left 
     width: 120px;
     text-align: center;
     border-bottom: 1px solid @color_1; 
@@ -86,7 +86,7 @@ div.navbar-fixed-left {
 //end of navbar and topbar code
 
 body{
-    background-color: @background_color_4;
+    background-color: @color_2;
 }
 
 /*.text-right {
@@ -122,16 +122,16 @@ div.relative{
 }
 
 .btn-group .button {
-    background-color: #EEEEEE; 
+    background-color: @background_color_1; 
     width: 240px;
     height: 210px;
-    border: 3px solid green;
+    border: 1px solid black;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 230%;
     padding: 20px 0px;
     margin: 150px 70px;
-    border-radius: 10%;
+    border-radius: 0px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -142,7 +142,7 @@ div.relative{
 //    border-right: none; /* Prevent double borders */
 //}
 .btn-group .button:hover {
-    background-color: #4CAF50;
+    background-color: white;
 }
         
 .column {
@@ -167,11 +167,11 @@ div.relative{
         clear: both;
             }
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
- /*@media only screen and (max-width:768px) {
+ @media only screen and (max-width:768px) {
       .div.relative {
         width: 100%;
     } 
  }
-   */             
+               
  
            
