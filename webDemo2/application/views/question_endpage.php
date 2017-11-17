@@ -17,7 +17,7 @@
         <p class="text-right"><span class="float_right" style="background-color:#2c3d51;">{font_size}
                 <button class="btn btn-primary" type="button" style="margin-left:10px;">{greater}</button>
                 <button class="btn btn-primary" type="button">{smaller}</button></span></p>
-        <p class="text-center">{content}</p>
+        <p class="text-center" style ="margin-top:120px;">{content}</p>
     </div>
     <div>
         <div class="container" style=" margin-top: 100px; padding-right: 20%; padding-left: 20%;">
