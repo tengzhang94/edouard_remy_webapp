@@ -11,8 +11,10 @@ class Event_model extends CI_Model {
     }
     
     public function login($firstName,$password) {
-        $query = $this->db->query("select * from Caregiver where firstName='$firstName' And  password= '$password'");
-        return $query->result();
+        $query = $this->db->query("select * from Caregiver where firstName='$firstName'");
+        $result = $query->result();
+        if(password_verify($password, $result[0]->password)) return $result;
+        else return NULL;
     }
     
     public function insertCaregiver($firstName,$lastName,$email,$password) {
@@ -20,7 +22,7 @@ class Event_model extends CI_Model {
         'firstName' => $firstName,
         'lastName' => $lastName,
         'email' => $email,
-        'password' => $password
+        'password' => password_hash($password, PASSWORD_DEFAULT)
         );
 
         $this->db->insert('caregiver', $data); 
