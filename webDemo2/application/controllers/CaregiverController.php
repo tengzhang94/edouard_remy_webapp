@@ -43,15 +43,17 @@ class CaregiverController extends CI_Controller {
 
         $data['title'] = 'Homepage';    //Fill in title for the page
         $data['menu'] = $this->Menu_model->get_menuitems('Homepage');   //Get all the menu items and set the right one as active
-        $data['navbar_topbar'] = $this->parser->parse('navbar_topbar', $data, true);    //Fill in the title and menu items in the HTML code
-        $this->parser->parse('dashDemo', $data);    //Parse everything and display
+        //$data['navbar_topbar'] = $this->parser->parse('navbar_topbar', $data, true);    //Fill in the title and menu items in the HTML code
+        $data['content'] = $this->parser->parse('dashDemo', $data, true);
+        $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
 
     public function settings() {
-        $navbar_topbar['title'] = 'Settings';
-        $navbar_topbar['menu'] = $this->Menu_model->get_menuitems('Settings');
-        $navbar_topbar['navbar_topbar'] = $this->parser->parse('navbar_topbar', $navbar_topbar, true);
-        $this->parser->parse('settings', $navbar_topbar);
+        $data['title'] = 'Settings';
+        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
+        //$navbar_topbar['navbar_topbar'] = $this->parser->parse('navbar_topbar', $navbar_topbar, true);
+        $data['content'] = $this->parser->parse('settings', $data, true);
+        $this->parser->parse('navbar_topbar', $data);
     }
 
     public function selectTopic() {
