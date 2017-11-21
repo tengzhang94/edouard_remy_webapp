@@ -21,7 +21,7 @@
             <div class="form-group" style="height:auto;">
                 <?php echo validation_errors(); ?>
                 <?php echo $login_fail; ?>
-                <input class="form-control" type="text" name="user" placeholder="{username}" style="font-family:Lato, sans-serif;font-size:18px;">
+                <input class="form-control" type="text" name="user" placeholder="{username}" value="<?php echo set_value('user'); ?>" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
                 <input class="form-control" type="password" name="password" placeholder="{password}" style="font-family:Lato, sans-serif;font-size:18px;">
