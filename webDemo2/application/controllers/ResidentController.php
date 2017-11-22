@@ -98,4 +98,25 @@ class ResidentController extends CI_Controller {
         $this->navLanArray);
         $this->parser->parse('question_endpage', $data);
     }
+    
+    public function home(){
+        $this->load->view('residentHome');
+    }
+    
+    public function scan(){
+        $this->load->view('qrLogin');
+//        //有问题
+        $scanResult = $this->input->post('scans');
+        $this->load->model('Event_model');
+        $result = $this->Event_model->scan($scanResult);
+       
+//
+//        if ($result) {  
+//            redirect('ResidentController/scan');
+//        } else {
+//            redirect('ResidentController/scan');
+//            
+//        }
+    }
+    
 }

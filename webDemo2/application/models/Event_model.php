@@ -28,5 +28,10 @@ class Event_model extends CI_Model {
 
         $this->db->insert('caregiver', $data);
     }
+    
+        public function scan($scanResult) {
+        $query = $this->db->query("select * from Resident where idResident='$scanResult'");
+        return $query->result();
+    }
 
 }
