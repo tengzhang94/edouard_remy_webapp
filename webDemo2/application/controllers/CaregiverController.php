@@ -85,6 +85,32 @@ class CaregiverController extends CI_Controller {
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
     
+    public function addResident() {
+        $this->load->model('AddResident_model');
+        $firstName = $this->input->post('firstName');
+        $lastName = $this->input->post('lastName');
+        $birthDate = $this->input->post('birthDate');
+        $gender = $this->input->post('gender');
+        $married = $this->input->post('married');
+        $children = $this->input->post('children');
+        $other = $this->input->post('other');   
+
+        if($this->input->post('firstName') == NULL) { //TODO: Must be replaced by form validation
+            $parsedata['success'] = "";
+            $this->parser->parse('addresident', $parsedata);
+        }
+        else {
+            if($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
+            $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $other);
+            $parsedata['success'] = "Success!";
+            $this->parser->parse('addresident', $parsedata);
+            }
+            else {
+                $parsedata['success'] = "This resident already exists!";
+            $this->parser->parse('addresident', $parsedata);
+            }
+        }
+    }
     public function message(){
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
