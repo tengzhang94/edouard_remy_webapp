@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-<!--<head>
-    <title>TODO supply a title</title>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link href="<?php echo base_url(); ?>assets/css/settings.less" rel="stylesheet/less" type = "text/css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-  
-</head>-->
-
-
-
-<div class="relative">    
-    <div class="btn-group">
-        <button class="button" type="submit">Persoonlijke instellingen</button>
-        <button class="button" type="submit">Vragenlijst beheren</button>
-        <button class="button" type="submit">Groepen beheren</button>
-    </div> 
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" id="LG-MD-SMBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Persoonlijke </small><small id="settingsText">Instellingen </small></button>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" id="LG-MD-SMBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Vragenlijsten </small><small id="settingsText">Bewerken </small></button>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs" id="LG-MD-SMBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Groepen </small><small id="settingsText">Bewerken </small></button>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 hidden-sm hidden-md hidden-lg" id="XSBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Persoonlijke </small><small id="settingsText">Instellingen </small></button>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 hidden-sm hidden-md hidden-lg" id="XSBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Vragenlijsten </small><small id="settingsText">Bewerken </small></button>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 hidden-sm hidden-md hidden-lg" id="XSBtnSettings">
+        <button class="btn btn-default" id="settingsBtn" type="button"><small id="settingsText">Groepen </small><small id="settingsText">Bewerken </small></button>
+    </div>
 </div>
 
 

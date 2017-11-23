@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/navbar.less"/>
+        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Caregiver.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
     </head>
 
@@ -28,7 +28,7 @@
         <div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-1 col-md-offset-0">
+                    <div class="col-lg-1 col-lg-push-0  col-md-1 col-md-push-0 col-md-offset-0 col-sm-2  col-sm-push-0 col-xs-6 col-xs-push-3">
                         {menu}
                         <li class="item {className}">
                             <a href="{link}"> 
@@ -42,7 +42,7 @@
                         </li>
                         {/menu} 
                     </div>
-                    <div class="col-md-11">{content}</div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">{content}</div>
                 </div>
             </div>
         </div>
