@@ -9,13 +9,15 @@
     <link rel="stylesheet/less" type="text/css" href="<?php echo base_url();?>assets/css/overview.css" />
      <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
      <script src="<?php echo base_url();?>assets/javascript/bootstrap.min.js" ></script>
+     <!--
      <script src="<?php echo base_url();?>assets/javascript/bs-animation.js"></script>
+     -->
       <script src="<?php echo base_url();?>assets/javascript/jquery.min.js"></script>
 </head>
 
 <body>
     
-       <p class="text-right" id="header" style="padding-top:0px;padding-right:0px;"><span class="float_left">GraceAge 2.0 - &lt;?php echo $title; ?&gt; </span></p>
+       <p class="text-right" id="header" style="padding-top:0px;padding-right:0px;"><span class="float_left">GraceAge 2.0 - <?php echo $title; ?> </span></p>
     <div>
         <div class="container" style="height:100%;">
             <div class="row" style="height:100%;">
@@ -66,11 +68,8 @@
                         </div>
                     </div>
                     <div class="row" style="height:90%;">
-                         <?Php for($i=0;$i<4;$i++):?>
-                        
+                        {residents}
                         <div class="col-md-11" style="padding-right:0;padding-left:0;width:33%;height:33%;">
-                           
-    
                             <div style="width:100%;height:100%;">
                                 <div class="row" style="height:60%;margin-top:17px;">
                                     <div class="col-md-12" style="width:60%;height:103px;padding:0px;margin-left:10%;"><img src="<?php echo base_url();?>assets/css/image/icons8-customer-50.png" style="width:100%;height:100%;" /></div>
@@ -84,15 +83,12 @@
                                     </div>
                                 </div>
                                 <div class="row" style="height:30%;">
-                                    <div class="col-md-12" style="width:45%;padding:0px;margin:0px;margin-left:10%;height:100%;"><span style="width:100%;height:100%;font-size:18px;margin-right:0px;margin-left:30%;">{Residents Name} </span></div>
-                                    <div class="col-md-12" style="width:45%;padding:0px;height:100%;"><span style="width:100%;height:100%;font-size:18px;margin-left:30%;">{Room Number}</span></div>
+                                    <div class="col-md-12" style="width:45%;padding:0px;margin:0px;margin-left:10%;height:100%;"><span style="width:100%;height:100%;font-size:18px;margin-right:0px;margin-left:30%;">{firstName} {lastName}</span></div>
+                                    <div class="col-md-12" style="width:45%;padding:0px;height:100%;"><span style="width:100%;height:100%;font-size:18px;margin-left:30%;">room {Sectors_idSector}.{roomNr}</span></div>
                                 </div>
                             </div>
-                            
-                            
-                            
                         </div>
-                        <?Php endfor;?>
+                        {/residents}
                     </div>
                 </div>
             </div>
