@@ -1,12 +1,13 @@
-
 <html>
 
-<head>
+        <head>
+    <title>GraceAge 2.0 - Caregiver</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frame</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet/less" type="text/css" href="<?php echo base_url();?>assets/css/overview.css" />
+    <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Caregiver.less"/>
      <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
      <script src="<?php echo base_url();?>assets/javascript/bootstrap.min.js" ></script>
      <!--
@@ -14,40 +15,28 @@
      -->
       <script src="<?php echo base_url();?>assets/javascript/jquery.min.js"></script>
 </head>
-
-<body>
-    
-       <p class="text-right" id="header" style="padding-top:0px;padding-right:0px;"><span class="float_left">GraceAge 2.0 - <?php echo $title; ?> </span></p>
-    <div>
-        <div class="container" style="height:100%;">
-            <div class="row" style="height:100%;">
-                <div class="col-md-1 col-md-offset-0" style="width:8.3%;height:100%;">
-                    <li class="item active">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Homepage</span></a>
-                    </li>
-                    <li class="item inactive">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Resident</span></a>
-                    </li>
-                    <li class="item inactive">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Statistics</span></a>
-                    </li>
-                    <li class="item inactive">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Message</span></a>
-                    </li>
-                    <li class="item inactive">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Settings</span></a>
-                    </li>
-                    <li class="item inactive">
-                        <a href="{link}">
-                            <svg width="50%" height="50%"></svg><span class="category">Logout</span></a>
-                    </li>
-                </div>  
-                <div class="col-md-11" style="padding-left:0px;height:100%;padding-right:0px;">
+     
+        
+    <body>
+        <p class="text-right" id="header"><span class="float_left">GraceAge 2.0 - <?php echo $title; ?> </span></p>
+        <div>
+            <div class="container" style="height: 100%">
+                <div class="row" style="height: 100%">
+                    <div class="col-lg-1 col-lg-push-0  col-md-1 col-md-push-0 col-md-offset-0 col-sm-2  col-sm-push-0 col-xs-6 col-xs-push-3">
+                        {menu}
+                        <li class="item {className}">
+                            <a href="{link}"> 
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
+                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
+                                <path d="{img}"/>
+                                </g>
+                                </svg>
+                                <span class="category">{name}</span>
+                            </a>
+                        </li>
+                        {/menu} 
+                    </div>
+                     <div class="col-md-11" style="padding-left:0px;height:100%;padding-right:0px;">
                     <div class="row" style="height:10%;">
                         
                         <div class="col-md-12" style="width:50%;padding:0px;margin-left: 50%;">
@@ -91,9 +80,8 @@
                         {/residents}
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>

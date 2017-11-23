@@ -114,8 +114,10 @@ class CaregiverController extends CI_Controller {
     public function message(){
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
-        $data['title'] = "title";
-        $this->parser->parse('residents_overview', $data);
+         $data['title'] = 'Message';
+        $data['menu'] = $this->Menu_model->get_menuitems('Message');
+         $this->parser->parse('residents_overview', $data);
+        
     }
 
 }
