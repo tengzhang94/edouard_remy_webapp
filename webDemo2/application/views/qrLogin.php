@@ -12,7 +12,7 @@
         <section class="scans">
           <h2>Scans</h2>
           <ul v-if="scans.length === 0">
-            <li class="empty">No scans yet</li>
+            <li class="empty">{result}</li>
           </ul>
           <transition-group name="scans" tag="ul">
             <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>

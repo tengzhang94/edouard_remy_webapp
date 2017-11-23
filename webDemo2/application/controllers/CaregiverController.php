@@ -84,4 +84,10 @@ class CaregiverController extends CI_Controller {
         $content = $this->parser->parse('content_test', $results, true);
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
+    
+       public function message()
+    {
+        $this->load->view('reidents_overview');
+    }
+
 }

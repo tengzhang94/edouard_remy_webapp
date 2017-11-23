@@ -13,7 +13,7 @@ class ResidentController extends CI_Controller {
         $this->load->model('Language_model');
         $this->navLanArray = $this->Language_model->getResNavLanguage();
     }
-
+    
     public function question($questionNr) {
         $this->load->model('Question_model');
         
@@ -103,13 +103,19 @@ class ResidentController extends CI_Controller {
         $this->load->view('residentHome');
     }
     
-    public function scan(){
-        $this->load->view('qrLogin');
-//        //有问题
-        $scanResult = $this->input->post('scans');
+  public function scan(){
         $this->load->model('Event_model');
-        $result = $this->Event_model->scan($scanResult);
-       
+        $data = array();
+        if($this->input->server('REQUEST_METHOD') == 'POST'){
+            $scanResult = $this->input->post('scans');
+            $result = $this->Event_model->scan($scanResult);
+            $data['result'] = $result;
+        }
+        else{
+            $data['result'] = "no result yet";
+        }
+        
+        $this->parser->parse('qrLogin',$data);
 //
 //        if ($result) {  
 //            redirect('ResidentController/scan');
