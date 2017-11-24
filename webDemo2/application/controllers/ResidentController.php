@@ -28,7 +28,7 @@ class ResidentController extends CI_Controller {
         //$topicId = filter_input(INPUT_POST, 'idTopic');
         
         
-        if(!isset($this->session->topicQuestions)) {
+        if(!isset($this->session->topicQuestions)){
             $this->Question_model->getQuestions($this->session->topicId);
         }
         
@@ -69,6 +69,7 @@ class ResidentController extends CI_Controller {
     }
 
     public function topics(){
+        $this->Language_model->SetSessionLanguage();
         $this->load->model('Question_model');
         $topics = $this->Question_model->getTopics();
         $topicsChunks = array_chunk($topics, 4, true); //divide the query result in chunks of 4
@@ -103,26 +104,24 @@ class ResidentController extends CI_Controller {
         $this->load->view('residentHome');
     }
     
-  public function scan(){
-        $this->load->model('Event_model');
-        $data = array();
+    public function login(){
         if($this->input->server('REQUEST_METHOD') == 'POST'){
-            $scanResult = $this->input->post('scans');
-            $result = $this->Event_model->scan($scanResult);
-            $data['result'] = $result;
+            $this->load->model('Event_model');
+            $qrCode = filter_input(INPUT_POST, "qr");
+            $data['goto_caregiver']=$qrCode;
+            $result = $this->Event_model->loginResident($qrCode);
+            if($result){
+                $this->session->set_userdata('logged_in', 'resident');
+                $this->session->set_userdata('dutch', $result[0]->dutch);
+                $this->session->set_userdata('name', $result[0]->firstName);
+                $this->session->set_userdata('id', $result[0]->idResident);
+                redirect('ResidentController/topics');
+            }
         }
         else{
-            $data['result'] = "no result yet";
+            $data['goto_caregiver']= "scan your qr code";
         }
-        
-        $this->parser->parse('login_resident',$data);
-//
-//        if ($result) {  
-//            redirect('ResidentController/scan');
-//        } else {
-//            redirect('ResidentController/scan');
-//            
-//        }
+        $this->parser->parse('login_resident', $data);
     }
     
 }

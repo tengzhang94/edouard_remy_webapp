@@ -16,8 +16,8 @@
         <p class="text-right" id="header"><span class="float_left">{choose_topic}</span><span class="float_right">{font_size}<button class="btn btn-primary" type="button" style="margin-left:10px;">{greater}</button><button class="btn btn-primary" type="button">{smaller}</button></span></p>
         {topicButtons}
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/javascript/bootstrap.min.js"></script>
 </body>
 
 </html>

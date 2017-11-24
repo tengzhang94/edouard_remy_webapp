@@ -13,7 +13,7 @@ class Question_model extends CI_Model {
         $questionLang = $this->session->questionLang; //get the right columnname for the language
         $topicLang = $this->session->topicLang; //get the right columnname for the language
         //get the questions and store them temporarily in session
-        $questions = $this->db->query("SELECT questionOrder, $questionLang AS questionString FROM Questions WHERE topicId= $topicId");
+        $questions = $this->db->query("SELECT idQuestion, $questionLang AS questionString FROM Questions WHERE Topics_idTopic = $topicId");
         $this->session->set_userdata('topicQuestions', $questions->result());   //get all questins of current topic and store them in session
         //get the topic name and store it temporarily in session
         $topicName = $this->db->query("SELECT $topicLang AS topicName FROM Topics WHERE idTopic = $topicId");

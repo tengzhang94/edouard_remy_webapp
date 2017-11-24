@@ -2,8 +2,7 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
         scanner.addListener('scan', function (content) {
             console.log(content);
             var url = window.location.pathname;
-            url = url.replace(/\/[^\/]*$/, "/topics"); //change last part of url to 'topics'
-            post(url);
+            post(url, content);
         });
         Instascan.Camera.getCameras().then(function (cameras) {
             if (cameras.length > 0) {
@@ -15,17 +14,17 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),
             console.error(e);
         });
         
-function post(path, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
+function post(path, content) {
     var form = document.createElement("form");
-    form.setAttribute("method", method);
+    form.setAttribute("method", "post");
     form.setAttribute("action", path);
-    form.setAttribute("language", "dutch");
-    form.setAttribute("name", "John");
-    form.setAttribute("id", "1");
+    
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "qr");
+    hiddenField.setAttribute("value", content);
+    form.appendChild(hiddenField);
+    form.setAttribute("qr", content);
 
     document.body.appendChild(form);
     form.submit();

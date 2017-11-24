@@ -29,8 +29,13 @@ class Event_model extends CI_Model {
         $this->db->insert('caregiver', $data);
     }
     
-        public function scan($scanResult) {
+    public function scan($scanResult) {
         $query = $this->db->query("select * from Resident where idResident='$scanResult'");
+        return $query->result();
+    }
+    
+    public function loginResident($qrCode){
+        $query = $this->db->query("SELECT * FROM Resident WHERE QR = '$qrCode'");
         return $query->result();
     }
 
