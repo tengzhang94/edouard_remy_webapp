@@ -32,19 +32,19 @@
       <!--                <p class="float_right"><span class="text-right1">Naam: <input type="text" placeholder="naam" name="firstName"></span></p><br>-->
                     <label class="control-label col-sm-2" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:250px;margin-top: 5px;"name="firstname">
+                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:250px;margin-top: 5px;"name="firstName">
                     </div>
                 </div>
                 <div class="form-group" style="height:55px;">
                     <label class="control-label col-sm-2" for="lastname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Lastname:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:250px;margin-top: 5px;" name="lasttname">
+                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:250px;margin-top: 5px;" name="lastName">
                     </div>
                 </div>
                 <div class="form-group" style="height:55;">
                     <label class="control-label col-sm-2" for="birthdate" style=" font-family:  Lato, sans-serif; font-size: 20px;">Birthdate:</label>
                     <div class="col-sm-10">
-                    <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" style="width:250px;margin-top: 5px;" name="birthdate">
+                    <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" style="width:250px;margin-top: 5px;" name="birthDate">
                     </div>
                 </div>
                 <div class="form-group" style="height:55px;">
