@@ -52,10 +52,9 @@
   background:none;
   border:none;
   border-bottom:1px solid #434a52;
-  border-radius:0;
+  border-radius:0px;
   box-shadow:none;
-  outline:none;
-  color:inherit;
+  outline:none; 
 }
 
 .login-dark form .btn-primary {
@@ -124,6 +123,14 @@ div {
   color:#2c3d51;
   font-size:100px;
   font-family:Lato, sans-serif;
+}
+
+#form_error {
+    color: red;
+}
+
+#user_field {
+    color:white;
 }
 
 
