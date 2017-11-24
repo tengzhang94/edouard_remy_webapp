@@ -1,6 +1,6 @@
 .login-dark {
-  height:100vh;
-  background:url(o-ELDERLY-facebook.jpg);
+  height:calc(~"100vh");
+  background: url(image/o-ELDERLY-facebook.jpg);
   background-repeat:no-repeat;
   position:relative;
   background-position:center;
@@ -19,7 +19,7 @@
   left:50%;
   color:#fff;
   box-shadow:3px 3px 4px rgba(0,0,0,0.2);
-  width:90%;
+  width:74%;
   height:75%;
   min-height:300px;
 }

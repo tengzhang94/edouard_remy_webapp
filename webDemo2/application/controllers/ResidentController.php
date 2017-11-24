@@ -115,7 +115,7 @@ class ResidentController extends CI_Controller {
             $data['result'] = "no result yet";
         }
         
-        $this->parser->parse('qrLogin',$data);
+        $this->parser->parse('login_resident',$data);
 //
 //        if ($result) {  
 //            redirect('ResidentController/scan');
