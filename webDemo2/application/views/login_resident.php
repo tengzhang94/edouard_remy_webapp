@@ -17,8 +17,10 @@
 
     <body>
         <div class="login-dark">
-            <button class="btn btn-primary btn pull-right" type="submit">{goto_caregiver}</button>
-
+            <form method="get" action="<?php echo base_url(); ?>index.php/CaregiverController/login">
+                <button type="submit" class="btn btn-primary btn pull-right">{goto_caregiver}</button>
+            </form>
+            
             <form method="post" class="resident">
                      <video id="preview" style="height: 100%; width: 100%"></video>
             </form>

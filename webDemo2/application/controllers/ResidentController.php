@@ -108,7 +108,6 @@ class ResidentController extends CI_Controller {
         if($this->input->server('REQUEST_METHOD') == 'POST'){
             $this->load->model('Event_model');
             $qrCode = filter_input(INPUT_POST, "qr");
-            $data['goto_caregiver']=$qrCode;
             $result = $this->Event_model->loginResident($qrCode);
             if($result){
                 $this->session->set_userdata('logged_in', 'resident');
@@ -118,9 +117,7 @@ class ResidentController extends CI_Controller {
                 redirect('ResidentController/topics');
             }
         }
-        else{
-            $data['goto_caregiver']= "scan your qr code";
-        }
+        $data['goto_caregiver']="Not a resident?";
         $this->parser->parse('login_resident', $data);
     }
     
