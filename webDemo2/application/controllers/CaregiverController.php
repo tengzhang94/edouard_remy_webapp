@@ -111,11 +111,25 @@ class CaregiverController extends CI_Controller {
             }
         }
     }
-    public function message(){
+    
+    public function goToAddresident()
+    {
+        $this->load->view('AddResident');
+    }
+   // public function message(){
+     //   $this->load->model('Residentpage_model');
+       // $data['residents'] = $this->Residentpage_model->getAllResidents();
+      //   $data['title'] = 'Message';
+      //  $data['menu'] = $this->Menu_model->get_menuitems('Message');
+       //  $this->parser->parse('residents_overview', $data);
+        
+    //}
+    
+      public function resident(){
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
-         $data['title'] = 'Message';
-        $data['menu'] = $this->Menu_model->get_menuitems('Message');
+         $data['title'] = 'Resident';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
          $this->parser->parse('residents_overview', $data);
         
     }

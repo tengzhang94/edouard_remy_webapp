@@ -60,7 +60,9 @@
                 
                 <div class="form-group" style="height:auto;">
                     <button class="btn-confirm" type="submit">Submit</button>
-                    <button class="btn-confirm" type="button">Cancel</button>
+              
+                  
+                  <button class="btn-confirm" type="button" >Cancel</button> 
                 </div>
 
             </div>

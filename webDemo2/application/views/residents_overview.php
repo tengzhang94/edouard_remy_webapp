@@ -50,9 +50,12 @@
                                 <div class="col-md-12" style="width:46px;padding:0px;margin-left:5%;height:46px;">
                                     <button class="btn btn-default" type="submit" style="background-image:url(<?php echo base_url();?>assets/css/image/icons8-filter-filled-100.png);height:100%;background-position:center;background-size:cover;border-color:transparent;"></button>
                                 </div>
+                                <form method="post" action="goToAddresident">
                                 <div class="col-md-12" style="width:46px;padding:0px;margin-left:5%;height:46px;">
                                     <button class="btn btn-default" type="submit" style="background-image:url(&quot;<?php echo base_url();?>assets/css/image/icons8-plus-math-100.png&quot;);height:100%;background-position:center;background-size:cover;border-color:transparent;"></button>
+                                   
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
