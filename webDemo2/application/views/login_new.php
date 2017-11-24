@@ -19,11 +19,12 @@
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration" style="height:auto;"><img src="<?php echo base_url();?>assets/css/image/icons8-lock.png" style="margin-top:-40px;"></div>            
             <div class="form-group" style="height:auto;">
-                <?php echo validation_errors(); ?>
-                <?php echo $login_fail; ?>
+                <p style="color: red;" <?php echo form_error('user'); ?></p>
+                <?php echo $login_fail; ?></p>
                 <input class="form-control" type="text" name="user" placeholder="{username}" value="<?php echo set_value('user'); ?>" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
+                <p style="color: red;" <?php echo form_error('password'); ?></p>
                 <input class="form-control" type="password" name="password" placeholder="{password}" style="font-family:Lato, sans-serif;font-size:18px;">
             </div>
             <div class="form-group" style="height:auto;">
