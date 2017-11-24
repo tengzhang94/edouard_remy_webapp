@@ -14,60 +14,71 @@
     </head>
 
 <body>
-    <div>
+    <!--<div>
         <p class="text-right"><span class="float_left">AddResident</span><span class="float_right" style="background-color:#2c3d51;">LetterSize
                 <button class="btn btn-primary" type="button" style="margin-left:10px;">Bigger</button>
                 <button class="btn btn-primary" type="button">Smaller</button></span></p>
         
-    </div>
+    </div> -->
     <div class="row">
-        <div class="column">
+        <div class="column" >
       
         <button class="btn-photo">Photo upload</button>   
         </div>
         
         <form class="form-horizontal" method="post" action="addResident">
             <div class="column">
-                <div class="form-group">
+                <div class="form-group" style="height:55px;">
       <!--                <p class="float_right"><span class="text-right1">Naam: <input type="text" placeholder="naam" name="firstName"></span></p><br>-->
-                    <label class="control-label col-sm-2" for="email">Firstname:</label>
+                    <label class="control-label col-sm-2" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:200px;"name="firstname">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Lastname:</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:200px;"name="lasttname">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Birthdate:</label>
-                    <div class="col-sm-10">
-                    <input type="date" class="form-control" id="birthdate" placeholder="dd/mm/jj" style="width:200px;"name="birthdate">
+                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:250px;margin-top: 5px;"name="firstname">
                     </div>
                 </div>
                 <div class="form-group" style="height:55px;">
-                    <p class="float_right"><span class="text_right1">Gender:<span class="float_right1"><input type="radio" style="margin-left: -45px;font-size:28px;" name="gender" value="Male" checked>Male<input type="radio" style="margin-left: 40px;font-size:28px;" name="gender" value="Female">Female</span></span></p>
-                </div>                                                                                 
-                <div class="form-group" style="height:55px;">
-                    <p class="float_right"><span class="text_right1">Married:<span class="float_right1"><input type="radio" style="margin-left: -75px;font-size:28px;" name="married" value="1" checked>Yes<input type="radio" style="margin-left: 51px;font-size:28px;" name="married" value="0">No</span></span></p>
+                    <label class="control-label col-sm-2" for="lastname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Lastname:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:250px;margin-top: 5px;" name="lasttname">
+                    </div>
+                </div>
+                <div class="form-group" style="height:55;">
+                    <label class="control-label col-sm-2" for="birthdate" style=" font-family:  Lato, sans-serif; font-size: 20px;">Birthdate:</label>
+                    <div class="col-sm-10">
+                    <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" style="width:250px;margin-top: 5px;" name="birthdate">
+                    </div>
                 </div>
                 <div class="form-group" style="height:55px;">
-<!--                <p class="float_right"><span class="text-right1">Kinderen:<input  type="text" placeholder="kinderen" name="children"></span></p><br>-->
-                <p class="float_right"><span class="text_right1">Children:<span class="float_right1"><input type="radio" style="margin-left: -75px;font-size:28px;" name="children" value="1" checked>Yes<input type="radio" style="margin-left: 51px;font-size:28px;" name="children" value="0">No</span></span></p>
+                    <label class="control-label col-sm-2" for="gender" style=" font-family:  Lato, sans-serif; font-size: 20px;">Gender:</label>
+                    <div class="col-sm-10">
+                        <input type="radio" style="float: left; margin-left: 30px;margin-top: 15px;" name="gender" value="Male" checked><p style="float:left;margin-top: 12px">Male</p><input type="radio" style="float:left;margin-left: 32px;margin-top: 15px;" name="gender" value="Female"><p style="float:left;margin-top: 12px">Female</p>
+                    </div>   
                 </div>
                 <div class="form-group" style="height:55px;">
-<!--                <p class="float_right"><span class="text-right1">Anderen: <input  type="text" placeholder="anderen" name="other"></span></p><br>-->
-                <p class="float_right"><span class="text_right1">Others:<span class="float_right1"><input class="form-control" type="text" name="others" placeholder="others" ></span></span></p>
+                    <label class="control-label col-sm-2" for="married" style=" font-family:  Lato, sans-serif; font-size: 20px;">Married:</label>
+                    <div class="col-sm-10">
+                        <input type="radio" style="float: left; margin-left: 30px;margin-top: 15px;" name="married" value="1" checked><p style="float:left;margin-top: 12px">Yes</p><input type="radio" style="float:left;margin-left: 40px;margin-top: 15px;" name="married" value="0"><p style="float:left;margin-top: 12px">No</p>
+                    </div>
                 </div>
+                <div class="form-group" style="height:55px;">
+                    <label class="control-label col-sm-2" for="children" style=" font-family:  Lato, sans-serif; font-size: 20px;">Children:</label>
+                    <div class="col-sm-10">
+                    <input type="radio" style="float: left; margin-left: 30px;margin-top: 15px;" name="children" value="1" checked><p style="float:left;margin-top: 12px">Yes</p><input type="radio" style="float:left;margin-left: 40px;margin-top: 15px;" name="children" value="0"><p style="float:left;margin-top: 12px">No</p>
+                    </div>
+                </div>
+                <div class="form-group" style="height:55px;">
+                    <label class="control-label col-sm-2" for="others" style=" font-family:  Lato, sans-serif; font-size: 20px;">Others:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="others" placeholder="others "style="width:250px;margin-top: 5px;" name="others">
+                    </div>
+                </div>
+                
             </div>
             <div class="form-group" style="height:55px;">
                     <button class="btn-confirm" type="submit">Submit</button>
                     <button class="btn-confirm" type="button">Cancel</button>
-                </div>
+            </div>
         </form>        
-    </div>
+    
 </body>
 
 </html>
