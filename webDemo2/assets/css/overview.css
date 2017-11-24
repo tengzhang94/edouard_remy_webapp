@@ -5,6 +5,10 @@
   height:calc(100vh - 60px);
 }
 
+.col-md-11{
+    background-color: #f4f4f4;
+}
+
 .col-md-1.col-md-offset-0 {
   padding-right:0px;
   padding-left:0px;
