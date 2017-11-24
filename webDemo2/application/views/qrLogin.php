@@ -8,6 +8,7 @@
   </head>
   <body>
     <div id="app">
+        <!--
       <div class="sidebar">
         <section class="scans">
           <h2>Scans</h2>
@@ -19,10 +20,11 @@
           </transition-group>
         </section>
       </div>
+        -->
       <div class="preview-container">
         <video id="preview"></video>
       </div>
     </div>
-    <script type="text/javascript" src="<?php echo base_url() ?>assets/javascript/qrLogin.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>assets/javascript/qrLogin_test.js"></script>
   </body>
 </html>
