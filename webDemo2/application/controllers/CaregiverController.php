@@ -31,11 +31,11 @@ class CaregiverController extends CI_Controller {
         $this->form_validation->set_rules('user', 'lang:username', 'trim|required', array('required' => 'Voer een %s in'));
         $this->form_validation->set_rules('password', 'lang:password', 'trim|required', array('required' => 'Voer een %s in'));
 
-        if ($this->form_validation->run() == FALSE) { 
+        if ($this->form_validation->run() == FALSE) {
             $this->parser->parse('login_new', $data);
         } else {
             $result = $this->Event_model->login($username, $password);
-            
+
             if ($result) {
                 $this->session->set_userdata('logged_in', 'caregiver');
                 $this->session->set_userdata('dutch', $result[0]->dutch);
@@ -84,54 +84,46 @@ class CaregiverController extends CI_Controller {
         $content = $this->parser->parse('content_test', $results, true);
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
-    
+
     public function addResident() {
         $this->load->model('AddResident_model');
+
+        $data['title'] = 'Resident';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $data['content'] = $this->parser->parse('AddResident', $data, true);
+
         $firstName = $this->input->post('firstName');
         $lastName = $this->input->post('lastName');
         $birthDate = $this->input->post('birthDate');
         $gender = $this->input->post('gender');
         $married = $this->input->post('married');
         $children = $this->input->post('children');
-        $other = $this->input->post('other');   
+        $other = $this->input->post('other');
 
-        if($this->input->post('firstName') == NULL) { //TODO: Must be replaced by form validation
-            $parsedata['success'] = "";
-            $this->parser->parse('addresident', $parsedata);
-        }
-        else {
-            if($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-            $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $other);
-            $parsedata['success'] = "Success!";
-            $this->parser->parse('addresident', $parsedata);
-            }
-            else {
-                $parsedata['success'] = "This resident already exists!";
-            $this->parser->parse('addresident', $parsedata);
+        //$this->form_validation->set_rules('firstName', 'First name', 'trim|required', array('required' => 'Fill in %s'));
+        //$this->form_validation->set_rules('lastName', 'Last name', 'trim|required', array('required' => 'Fill in %s'));        
+
+        if ($this->input->post('firstName') == NULL) { //TODO: Must be replaced by form validation
+            $data['success'] = "";
+            $this->parser->parse('navbar_topbar', $data);
+        } else {
+            if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
+                $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $other);
+                $data['success'] = "Success!";
+                $this->parser->parse('navbar_topbar', $data);
+            } else {
+                $data['success'] = "This resident already exists!";
+                $this->parser->parse('navbar_topbar', $data);
             }
         }
     }
-    
-    public function goToAddresident()
-    {
-        $this->load->view('AddResident');
-    }
-   // public function message(){
-     //   $this->load->model('Residentpage_model');
-       // $data['residents'] = $this->Residentpage_model->getAllResidents();
-      //   $data['title'] = 'Message';
-      //  $data['menu'] = $this->Menu_model->get_menuitems('Message');
-       //  $this->parser->parse('residents_overview', $data);
-        
-    //}
-    
-      public function resident(){
+
+    public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
-         $data['title'] = 'Resident';
+        $data['title'] = 'Resident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
-         $this->parser->parse('residents_overview', $data);
-        
+        $this->parser->parse('residents_overview', $data);
     }
 
 }
