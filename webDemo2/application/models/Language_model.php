@@ -32,7 +32,8 @@ class Language_model extends CI_Model {
             'font_size' => lang('res_navbar_font_size'),
             'greater' => lang('res_navbar_bigger_font'),
             'smaller' => lang('res_navbar_smaller_font'),
-            'choose_topic' => lang('choose_topic')
+            'choose_topic' => lang('choose_topic'),
+            'welcome' => lang('welcome')
         );
     }
 

@@ -83,7 +83,8 @@ class ResidentController extends CI_Controller {
         }
         
         $data = array_merge(array(
-            "topicButtons" => $htmlString
+            "topicButtons" => $htmlString,
+            "name" => $this->session->name
         ),$this->navLanArray);
         
         $this->parser->parse('topicpageTest', $data);
