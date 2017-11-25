@@ -125,5 +125,29 @@ class CaregiverController extends CI_Controller {
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $this->parser->parse('residents_overview', $data);
     }
+    
+      public function getPersonalInformation() {
+        $this->load->model('Event_model');
+        
+                $result= $this->Event_model->getPersonalInformation();
+                if($result[0]['dutch']=='1')
+                {
+                   $data['content']='Dutch';
+                }
+ else
+ {
+      $data['content']='English';
+ }
+       
+        $this->parser->parse('testpage', $data);
+    }
+    
+     public function changePersonalInformation() {
+         
+     $language = $this->input->post('language');
+     $this->load->model('Event_model');
+     $this->Event_model->changePersonalInformation($language);
+    
+     }
 
 }

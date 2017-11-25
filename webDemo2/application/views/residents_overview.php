@@ -62,7 +62,17 @@
                     </div>
                     <div class="row" style="height:90%;">
                         {residents}
-                        <div class="col-md-11" style="padding-right:0;padding-left:0;width:16%;height:33%; margin-left: 9%">
+                        <div class="col-md-12" style="width:33%;height:33%;padding-right:0px;padding-left:0px;">
+    <button class="btn btn-default" type="button" style="width:288px;height:180px;background-color:#ffffff;background-image:url(&quot;none&quot;);">
+        <img src="<?php echo base_url();?>assets/css/image/icons8-customer-50.png" style="width:216px;height:140px;" />
+        <img src="<?php echo base_url();?>assets/css/image/icons8-happy-100.png" style="width:70px;height:70px;position:relative;bottom:35px;" />
+        <img src="<?php echo base_url();?>assets/css/image/icons8-time-100.png" style="height:70px;width:70px;position:relative;right:70px;top:35px;"/>
+        <small style="height:40px;width:143px;">{firstName} {lastName}</small>
+        <small style="height:40px;width:143px;position:relative;bottom:40px;left:143px;" name="resident_name">room {Sectors_idSector}.{roomNr}</small>
+    </button>
+</div>
+                        
+         <!--               <div class="col-md-11" style="padding-right:0;padding-left:0;width:16%;height:33%; margin-left: 4%">
                             <div style="width:100%;height:100%; padding-right: 5%">
                                 <div class="row" style="height:60%;margin-top:17px;">
                                     <div class="col-md-12" style="width:60%;height:103px;padding:0px;margin-left:10%;">
@@ -84,7 +94,7 @@
                                     <div class="col-md-12" style="width:30%;padding:0px;height:100%;"><span style="width:100%;height:100%;font-size:14px;">room {Sectors_idSector}.{roomNr}</span></div>
                                 </div>
                             </div>
-                        </div>
+                        </div>    -->
                         {/residents}
                     </div>
                 </div>

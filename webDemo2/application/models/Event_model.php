@@ -38,5 +38,25 @@ class Event_model extends CI_Model {
         $query = $this->db->query("SELECT * FROM Resident WHERE QR = '$qrCode'");
         return $query->result();
     }
+    
+    public function getPersonalInformation(){
+        $idCaregiver = $this->session->userdata('idCaregiver');
+        $query = $this->db->query("SELECT * FROM Caregiver WHERE  idCaregiver= '$idCaregiver'");
+        
+        return  $query->result_array();
+    }
+    
+    public function changePersonalInformation($language)
+    {
+         $idCaregiver = $this->session->userdata('idCaregiver');
+         
+        $data = array(
+        'dutch' => $language,
+);
+
+$this->db->where('idCaregiver', $idCaregiver);
+$this->db->update('Caregiver', $data);
+       
+    }
 
 }
