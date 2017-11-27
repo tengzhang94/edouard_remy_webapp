@@ -126,6 +126,27 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('residents_overview', $data);
     }
     
+    public function residentIndividual() {
+        $this->load->model('Residentpage_model');
+        $resident_id = $this->input->post("resident_id");
+        $resident = $this->Residentpage_model->getResidentWithId($resident_id);
+        $data['firstName'] = $resident->firstName;
+        $data['lastName'] = $resident->lastName;
+        $data['sector'] = $resident->Sectors_idSector;
+        $data['gender'] = $resident->gender;
+        $data['roomNr'] = $resident->roomNr;
+        $data['birthday'] = $resident->birthDate;
+        $data['language'] = $resident->dutch ? "Dutch" : "English";
+        $data['married'] = $resident->married ? "yes" : "no";
+        $data['children'] = $resident->children;
+        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);
+        
+        $data['title'] = 'Resident';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $data['content'] = $this->parser->parse('residentIndividual', $data, true);
+        $this->parser->parse('navbar_topbar', $data);
+    }
+    
       public function getPersonalInformation() {
         $this->load->model('Event_model');
         

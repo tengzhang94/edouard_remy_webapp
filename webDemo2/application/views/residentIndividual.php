@@ -1,13 +1,14 @@
 <div class="row" display="height:calc(100vh - 60px)">
     <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 residentInfoCol">
-        <div id="infoDiv"><span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="<?php echo base_url() ?>assets/css/image/imageedit_2_9809103105.gif" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">Jos Vertenten</span>
+        <div id="infoDiv"><span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="<?php echo base_url() ?>assets/css/image/imageedit_2_9809103105.gif" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
                 <span
-                    class="infoTitleTxt">Kamer 02.13</span>
-            </span><span id="residentContent"><span id="sector" class="infoTxt">Afdeling: {secor}</span><span id="language" class="infoTxt">Taal: {language}</span><span id="birthday" class="infoTxt">Geboortedatum: {birthday}</span>
+                    class="infoTitleTxt">Kamer {roomNr}</span>
+            </span><span id="residentContent"><span id="sector" class="infoTxt">Afdeling: {sector}</span><span id="language" class="infoTxt">Taal: {language}</span><span id="birthday" class="infoTxt">Geboortedatum: {birthday}</span>
                 <span
-                    id="gender" class="infoTxt">Geslacht: {gender}</span><span id="isMarried" class="infoTxt">Getrouwd: {y/n}</span><span id="children" class="infoTxt">Kinderen: {number}</span></span><span id="residentNotes"><span id="notesTitle">Notities <button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd"></button></span>
-                <span
-                    class="infoTxt">{line1} </span><span class="infoTxt">{line2} </span><span class="infoTxt">{line3} </span><span class="infoTxt">{line4} </span><span class="infoTxt">{line5} </span></span>
+                    id="gender" class="infoTxt">Geslacht: {gender}</span><span id="isMarried" class="infoTxt">Getrouwd: {married}</span><span id="children" class="infoTxt">Kinderen: {children}</span></span><span id="residentNotes"><span id="notesTitle">Notities <button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd"></button></span>
+                {notes}
+                <span class="infoTxt">{text}</span>
+                {/notes}
         </div>
     </div>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 residentInfoCol" id="rightInfoCol">

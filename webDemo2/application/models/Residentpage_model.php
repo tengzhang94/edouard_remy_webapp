@@ -14,6 +14,16 @@ class Residentpage_model extends CI_Model {
         return $query->result_array();
     }
     
+    public function getResidentWithId($id) {
+        $query = $this->db->query("SELECT * FROM Resident WHERE idResident = $id");
+        return $query->row();
+    }
+    
+    public function getResidentNotes($id) {
+        $query = $this->db->query("SELECT text FROM Notes WHERE Resident_idResident = $id");
+        return $query->result_array();
+    }
+    
     public function getResidentFromSector($sectorId){
         $query = $this->db->query("SELECT * FROM Resident WHERE Sectors_idSector = $sectorId");
         return $query->result_array();
