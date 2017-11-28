@@ -149,7 +149,7 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data);
     }
     
-      public function getPersonalInformation() {
+    public function getPersonalInformation() {
         $this->load->model('Event_model');
         
                 $result= $this->Event_model->getPersonalInformation();
@@ -157,20 +157,45 @@ class CaregiverController extends CI_Controller {
                 {
                    $data['content']='Dutch';
                 }
- else
- {
-      $data['content']='English';
- }
-       
+        else
+        {
+            $data['content']='English';
+        }
+
         $this->parser->parse('testpage', $data);
     }
+
+    public function changePersonalInformation() {
+
+    $language = $this->input->post('language');
+    $this->load->model('Event_model');
+    $this->Event_model->changePersonalInformation($language);
+
+    }
     
-     public function changePersonalInformation() {
-         
-     $language = $this->input->post('language');
-     $this->load->model('Event_model');
-     $this->Event_model->changePersonalInformation($language);
-    
-     }
+    public function sectorOverview(){
+        //replace with sector info from database
+        $sectors = array(
+            array(
+                "name" => "sector 1",
+                "idSector" => 1
+            ),
+            array(
+                "name" => "sector 2",
+                "idSector" => 2
+            )
+        );
+        
+        $sectorData = array(
+            "sectors" => $sectors,
+            "addSector" => "Add a sector" //replace with language model info
+        );
+        
+        $data['title'] = 'Sectors';
+        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
+        $this->parser->parse('navbar_topbar', $data);
+        
+    }
 
 }
