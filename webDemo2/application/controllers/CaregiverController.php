@@ -132,7 +132,9 @@ class CaregiverController extends CI_Controller {
         $resident = $this->Residentpage_model->getResidentWithId($resident_id);
         $data['firstName'] = $resident->firstName;
         $data['lastName'] = $resident->lastName;
-        $data['sector'] = $resident->Sectors_idSector;
+        $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
+        if(isset($sector)) $data['sector'] = $sector->name;
+        else $data['sector'] = "Niet toegekend";        
         $data['gender'] = $resident->gender;
         $data['roomNr'] = $resident->roomNr;
         $data['birthday'] = $resident->birthDate;
