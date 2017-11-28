@@ -29,19 +29,19 @@
                 <div class="form-group" style="height:55px;margin-top: 70px;">
                     <label class="control-label col-sm-4" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:60%;margin-top: 5px;margin-left:10px;"name="firstName">
+                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:75%;margin-top: 5px;margin-left:3px;"name="firstName">
                     </div>
                 </div>
                 <div class="form-group" style="height:55px;">
                     <label class="control-label col-sm-4" for="lastname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Lastname:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:60%;margin-top: 5px;margin-left:10px;" name="lastName">
+                    <input type="text" class="form-control" id="lastname" placeholder="last name " style="width:75%;margin-top: 5px;margin-left:3px;" name="lastName">
                     </div>
                 </div>
                 <div class="form-group" style="height:55;">
                     <label class="control-label col-sm-4" for="birthdate" style=" font-family:  Lato, sans-serif; font-size: 20px;">Birthdate:</label>
                     <div class="col-sm-8">
-                    <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" style="width:60%;margin-top: 5px;margin-left:10px;" name="birthDate">
+                    <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" style="width:75%;margin-top: 5px;margin-left:3px;" name="birthDate">
                     </div>
                 </div>
                 <div class="form-group" style="height:55px;">
@@ -65,7 +65,7 @@
                 <div class="form-group" style="height:55px;">
                     <label class="control-label col-sm-4" for="others" style=" font-family:  Lato, sans-serif; font-size:20px;">Others:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="others" placeholder="others "style="width:60%;margin-top: 5px;padding-left:10px;" name="others">
+                    <input type="text" class="form-control" id="others" placeholder="others "style="width:75%;margin-top: 5px;padding-left:3px;" name="others">
                     </div>
                 </div>
                 
