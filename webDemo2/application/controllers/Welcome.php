@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		redirect(base_url('index.php/ResidentController/login'));
+                redirect(base_url('index.php/CaregiverController/changePersonalInformation'));
 	}
         
         

@@ -221,12 +221,14 @@ class CaregiverController extends CI_Controller {
         $data['password'] = $result[0]['password'];
         $data['lastName'] = $result[0]['lastName'];
         $data['firstName'] = $result[0]['firstName'];
+        
+        // $this->parser->parse('careGiverInfo', $data);
 
-
-
-
-        $this->parser->parse('testpage', $data);
-    }
+        $data['title'] = 'Caregiver';
+        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
+        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
+        $this->parser->parse('navbar_topbar', $data);
+        }
 
     public function changePersonalInformation() {
 

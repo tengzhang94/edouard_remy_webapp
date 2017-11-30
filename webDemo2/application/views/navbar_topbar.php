@@ -22,6 +22,7 @@
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Caregiver.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
+        
     </head>
 
     <body>
