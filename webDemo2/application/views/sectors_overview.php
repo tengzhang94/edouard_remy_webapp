@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
     
     <div class="topButtons">
-        <button class="btn btn-default addSectorButton" type="button">Add a sector</button>
+        <button class="btn btn-default addSectorButton" type="button" onclick="createSectorForm()">Add a sector</button>
     </div>
     
     {sectors}

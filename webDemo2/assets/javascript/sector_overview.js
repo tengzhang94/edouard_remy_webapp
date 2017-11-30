@@ -29,3 +29,19 @@ function getSectorInfo(idSector) {
         }
     });
 }
+
+function createSectorForm() {
+    var list = document.getElementById('residentList');
+    //Clear html before inserting new html
+    while(list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+    
+    var div = document.createElement('div');
+    div.innerHTML = '<div class="form-group" style="height:55px;margin-top: 70px;"><label class="control-label col-sm-4" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>\
+                    <div class="col-sm-8">\
+                    <input type="text" class="form-control" id="firstname" placeholder="first name " style="width:75%;margin-top: 5px;margin-left:3px;"name="firstName">\
+                    </div>\
+                </div>';
+    list.appendChild(div);
+}
