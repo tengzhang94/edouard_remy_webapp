@@ -154,16 +154,29 @@ class CaregiverController extends CI_Controller {
     
     public function getPersonalInformation() {
         $this->load->model('Event_model');
-        
+       
                 $result= $this->Event_model->getPersonalInformation();
                 if($result[0]['dutch']=='1')
                 {
-                   $data['content']='Dutch';
+                   
+                   $data['check_dutch']='checked';
+                   $data['check_english']='';
                 }
         else
         {
-            $data['content']='English';
+            
+            $data['check_dutch']='';
+            $data['check_english']='checked';
         }
+        
+            $data['idcaregiver']=$result[0]['idCaregiver'];
+            $data['email']=$result[0]['email'];
+            $data['password']=$result[0]['password'];
+            $data['lastName']=$result[0]['lastName'];
+            $data['firstName']=$result[0]['firstName'];
+            
+        
+        
 
         $this->parser->parse('testpage', $data);
     }
@@ -171,8 +184,14 @@ class CaregiverController extends CI_Controller {
     public function changePersonalInformation() {
 
     $language = $this->input->post('language');
+    $email=$this->input->post('email');
+    $firstName=$this->input->post('firstName');
+    $lastName=$this->input->post('lastName');
+    
     $this->load->model('Event_model');
-    $this->Event_model->changePersonalInformation($language);
+    $this->Event_model->changePersonalInformation($language,$email,$firstName,$lastName);
+    $this->session->set_userdata('dutch', $language);
+    redirect('caregiverController/settings');
 
     }
     

@@ -46,12 +46,16 @@ class Event_model extends CI_Model {
         return  $query->result_array();
     }
     
-    public function changePersonalInformation($language)
+    public function changePersonalInformation($language,$email,$firstName,$lastName)
     {
          $idCaregiver = $this->session->userdata('idCaregiver');
          
         $data = array(
-        'dutch' => $language,
+        'dutch' =>$language,
+        'email' =>$email,
+        'firstName' =>$firstName,
+        'lastName' =>$lastName,   
+            
 );
 
 $this->db->where('idCaregiver', $idCaregiver);
