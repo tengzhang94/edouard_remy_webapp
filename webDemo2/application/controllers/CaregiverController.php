@@ -255,5 +255,12 @@ class CaregiverController extends CI_Controller {
         $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
         $this->parser->parse('navbar_topbar', $data);
     }
+    
+    public function addSector() {
+        $this->load->model('Sector_model');
+        $name = $this->input->post("sectorName");
+        $this->Sector_model->addSector($name);
+        redirect('CaregiverController/sectorOverview');
+    }
 
 }

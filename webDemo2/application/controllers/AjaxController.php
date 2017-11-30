@@ -22,4 +22,13 @@ class AjaxController extends CI_Controller {
             ->set_output(json_encode($result,JSON_FORCE_OBJECT));
         }
     }
+    
+    public function removeSector() {
+        $idSector = $this->input->post('idSector');
+        $this->db->where('Sectors_idSector', $idSector);
+        $query = $this->db->get('Resident');
+        if($query->num_rows() == 0){
+            $this->db->delete('Sectors', array('idSector' => $idSector));
+        }
+    }
 }
