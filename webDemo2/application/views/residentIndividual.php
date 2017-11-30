@@ -13,8 +13,8 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 residentInfoCol" id="rightInfoCol">
         <ul class="nav nav-tabs">
-            <li class="active navBtn"><a href="#" class="navItem">Scorebord vragenlijst</a></li>
-            <li class="inactive navBtn"><a href="#" class="navItem">Problemen </a></li>
+            <li class="active navBtn"><a id=scoreLijstNavItem href="#" class="navItem">Scorebord vragenlijst</a></li>
+            <li class="inactive navBtn"><a id="problemenNavItem" href="#" class="navItem">Problemen </a></li>
         </ul>
         <div class="row" id="personalStats">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColLeft">
@@ -37,3 +37,30 @@
         </div>
     </div>
 </div>
+
+<!-- CODE FOR SECOND NAVITEM (=PROBLEMS) (CSS ALREADY ADDED!)
+<div class="row" id="personalProblems">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn <button class="btn btn-default" type="button" id="removeBtn"><img src="icons8-trash-100.png" id="iconTrash" /></button><button class="btn btn-default" type="button" id="addBtn"><img src="icons8-plus-100.png" id="iconAdd" /></button></span>
+        <span
+            class="space"> </span>
+        <div class="line">
+            <label>
+                <input type="checkbox" /><span class="checkmark"></span></label>
+            {messages}
+            <div class="message">hallo</div>
+            {/messages}
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle"><button class="btn btn-default" type="button" id="removeBtn"><img src="icons8-trash-100.png" id="iconTrash" /></button>Lange termijn <button class="btn btn-default" type="button" id="addBtn"><img src="icons8-plus-100.png" id="iconAdd" /></button></span>
+        <span
+            class="space"> </span>
+        <div class="line">
+            <label>
+                <input type="checkbox" /><span class="checkmark"></span></label>
+            {messages2}
+            <div class="message">hallo</div>
+            {/messages2}
+        </div>
+    </div>
+</div>
+-->
