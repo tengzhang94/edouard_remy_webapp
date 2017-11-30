@@ -1,6 +1,6 @@
 <div class="row" display="height:calc(100vh - 60px)">
     <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 residentInfoCol">
-        <div id="infoDiv"><span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="<?php echo base_url() ?>assets/css/image/imageedit_2_9809103105.gif" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
+        <div id="infoDiv"><span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="{photo}" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
                 <span
                     class="infoTitleTxt">Kamer {roomNr}</span>
             </span><span id="residentContent"><span id="sector" class="infoTxt">Afdeling: {sector}</span><span id="language" class="infoTxt">Taal: {language}</span><span id="birthday" class="infoTxt">Geboortedatum: {birthday}</span>
