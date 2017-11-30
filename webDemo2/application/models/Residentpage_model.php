@@ -36,5 +36,15 @@ class Residentpage_model extends CI_Model {
         }
         else return null;
     }
+    
+    public function getResidentUrgProblems($id) {
+        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
+        return $query->result_array();
+    }
+    
+    public function getResidentNonUrgProblems($id) {
+        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
+        return $query->result_array();
+    }
 
 }
