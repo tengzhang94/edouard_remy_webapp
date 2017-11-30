@@ -1,4 +1,4 @@
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
     
     <div class="topButtons">
         <button class="btn btn-default addSectorButton" type="button">Add a sector</button>
@@ -6,10 +6,13 @@
     
     {sectors}
     <div class="line">
-        <input type="text" style="display: none">
-        <div class="sectorName">{name}</div>
+        <button class="btn btn-default"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
+            <input type="text" style="display: none"/>
+            <div class="sectorName">{name}</div>
+            <div class="residentCount">{residentCount} {residentLang}</div>
+        </button>
         <button class="btn btn-default deleteSectorButton" type="button" id="{idSector}">
-            <svg class="deleteSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
+            <svg class="deleteSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M366 978 c-9 -12 -16 -33 -16 -45 0 -22 -3 -23 -99 -23 -74 0 -102
                   -4 -111 -15 -14 -17 -5 -35 18 -35 16 0 21 -43 54 -412 35 -389 38 -414 58
@@ -29,5 +32,16 @@
         </button>
     </div>
     {/sectors}
+    
+</div>
+
+<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+    here comes a list of residents of a certain group
+    <div class="residentList" id="residentList">
+        <!-- insert residents through javascript, this is an example-->
+        <div class="resident">
+            
+        </div>
+    </div>
     
 </div>
