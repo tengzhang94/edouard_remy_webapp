@@ -6,12 +6,12 @@
     
     {sectors}
     <div class="line">
-        <button class="btn btn-default"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
+        <button class="btn btn-default" type="button" onclick="getSectorInfo({idSector})"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
             <input type="text" style="display: none"/>
             <div class="sectorName">{name}</div>
             <div class="residentCount">{residentCount} {residentLang}</div>
         </button>
-        <button class="btn btn-default deleteSectorButton" type="button" id="{idSector}">
+        <button class="btn btn-default deleteSectorButton" type="button" onclick="removeSector({idSector})">
             <svg class="deleteSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M366 978 c-9 -12 -16 -33 -16 -45 0 -22 -3 -23 -99 -23 -74 0 -102
@@ -36,11 +36,11 @@
 </div>
 
 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-    here comes a list of residents of a certain group
+    below is a list of residents of a certain group
     <div class="residentList" id="residentList">
         <!-- insert residents through javascript, this is an example-->
         <div class="resident">
-            
+            Click on a sector to see all residents within
         </div>
     </div>
     
