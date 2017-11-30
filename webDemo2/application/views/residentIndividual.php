@@ -36,27 +36,27 @@
             </div>            
         </div>
         <div class="row" id="personalProblems" {problems_hidden}>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn <button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url()?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button><button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url()?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn <button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button><button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
                     class="space"> </span>
+                {nonUrgProbs}
                 <div class="line">
                     <label>
                         <input type="checkbox" /><span class="checkmark"></span></label>
-                    {nonUrgProbs}
                     <div class="message">{text}</div>
-                    {/nonUrgProbs}
                 </div>
+                {/nonUrgProbs}
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle"><button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url()?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn <button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url()?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle"><button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn <button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
                     class="space"> </span>
+                {urgProbs}
                 <div class="line">
                     <label>
                         <input type="checkbox" /><span class="checkmark"></span></label>
-                    {urgProbs}
                     <div class="message">{text}</div>
-                    {/urgProbs}
                 </div>
+                {/urgProbs}
             </div>
         </div>
     </div>
