@@ -132,11 +132,11 @@ class CaregiverController extends CI_Controller {
             $this->session->set_userdata('resident_id', $this->input->post("resident_id"));
         $resident_id = $this->session->resident_id;
         $resident = $this->Residentpage_model->getResidentWithId($resident_id);
-        $data['scores_hidden'] = '';
-        $data['problems_hidden'] = 'hidden';
-        $data['scores_active'] = "active navBtn";
-        $data['problems_active'] = "inactive navBtn";     
-        $data['firstName'] = $resident->firstName;
+        $resident['scores_hidden'] = '';
+        $resident['problems_hidden'] = 'hidden';
+        $resident['scores_active'] = "active navBtn";
+        $resident['problems_active'] = "inactive navBtn";   
+        /*$data['firstName'] = $resident->firstName;
         $data['lastName'] = $resident->lastName;
         $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
         if (isset($sector))
@@ -156,50 +156,50 @@ class CaregiverController extends CI_Controller {
         $data['language'] = $resident->dutch ? "Dutch" : "English";
         $data['married'] = $resident->married ? "yes" : "no";
         $data['children'] = $resident->children;
-        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);
+        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
 
-        $data['title'] = 'Resident';
-        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
-        $data['content'] = $this->parser->parse('residentIndividual', $data, true);
-        $this->parser->parse('navbar_topbar', $data);
+        $resident['title'] = 'Resident';
+        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
+        $this->parser->parse('navbar_topbar', $resident);
     }
     
     public function residentProblems() {        
         $this->load->model('Residentpage_model');        
         $resident_id = $this->session->resident_id;
         $resident = $this->Residentpage_model->getResidentWithId($resident_id);
-        $data['scores_hidden'] = 'hidden';
-        $data['problems_hidden'] = '';
-        $data['scores_active'] = "inactive navBtn";
-        $data['problems_active'] = "active navBtn";        
-        $data['firstName'] = $resident->firstName;
-        $data['lastName'] = $resident->lastName;
+        $resident['scores_hidden'] = 'hidden';
+        $resident['problems_hidden'] = '';
+        $resident['scores_active'] = "inactive navBtn";
+        $resident['problems_active'] = "active navBtn";        
+        /*$resident['firstName'] = $resident->firstName;
+        $resident['lastName'] = $resident->lastName;
         $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
         if (isset($sector))
-            $data['sector'] = $sector->name;
+            $resident['sector'] = $sector->name;
         else
-            $data['sector'] = "not set";
-        $data['gender'] = $resident->gender;
+            $resident['sector'] = "not set";
+        $resident['gender'] = $resident->gender;
         if (isset($resident->photo))
-            $data['photo'] = $resident->photo;
+            $resident['photo'] = $resident->photo;
         else
-            $data['photo'] = base_url() . "assets/css/image/placeholder.png";
+            $resident['photo'] = base_url() . "assets/css/image/placeholder.png";
         if (isset($resident->roomNr))
-            $data['roomNr'] = $resident->roomNr;
+            $resident['roomNr'] = $resident->roomNr;
         else
-            $data['roomNr'] = "not set";
-        $data['birthday'] = $resident->birthDate;
-        $data['language'] = $resident->dutch ? "Dutch" : "English";
-        $data['married'] = $resident->married ? "yes" : "no";
-        $data['children'] = $resident->children;
-        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);
-        $data['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
-        $data['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+            $resident['roomNr'] = "not set";
+        $resident['birthday'] = $resident->birthDate;
+        $resident['language'] = $resident->dutch ? "Dutch" : "English";
+        $resident['married'] = $resident->married ? "yes" : "no";
+        $resident['children'] = $resident->children;
+        $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
+        $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
+        $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
         
-        $data['title'] = 'Resident';
-        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
-        $data['content'] = $this->parser->parse('residentIndividual', $data, true);
-        $this->parser->parse('navbar_topbar', $data);
+        $resident['title'] = 'Resident';
+        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
+        $this->parser->parse('navbar_topbar', $resident);
     }
 
     public function getPersonalInformation() {
