@@ -136,7 +136,8 @@ class CaregiverController extends CI_Controller {
         if(isset($sector)) $data['sector'] = $sector->name;
         else $data['sector'] = "not set";        
         $data['gender'] = $resident->gender;
-        $data['photo'] = $resident->photo;
+        if (isset($resident->photo)) $data['photo'] = $resident->photo;
+        else $data['photo'] = base_url()."assets/css/image/icons8-customer-50.png";
         if(isset($resident->roomNr)) $data['roomNr'] = $resident->roomNr;
         else $data['roomNr'] = "not set";        
         $data['birthday'] = $resident->birthDate;
