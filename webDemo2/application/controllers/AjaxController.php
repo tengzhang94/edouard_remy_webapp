@@ -13,14 +13,13 @@ class AjaxController extends CI_Controller {
     }
     
     public function getSectorInfo() {
-        $idSector = filter_input(INPUT_POST, 'idSector');
-        $info['results'] = $this->db->get_where('Resident', array('Sectors_idSector' => $idSector));
-        $this->output->set_content_type('application/json');
-        $this->output->set_output(json_encode($info));
-        return $info;
-    }
-    
-    public function test() {
-        
+        $idSector = $this->input->post('idSector');
+        $this->db->where('Sectors_idSector', $idSector);
+        $query = $this->db->get('Resident');
+        if($result= $query->result()){
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result,JSON_FORCE_OBJECT));
+        }
     }
 }
