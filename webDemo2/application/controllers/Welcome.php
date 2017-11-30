@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('careGiverInfo');
+		redirect(base_url('index.php/ResidentController/login'));
 	}
         
         
