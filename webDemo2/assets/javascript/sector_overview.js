@@ -52,3 +52,17 @@ function createSectorForm() {
                     </form>';
     list.appendChild(div);
 }
+
+function removeSector(idSector) {    
+    jQuery.ajax({
+        type: 'POST',
+        url: base_url + "index.php/AjaxController/removeSector",
+        data: {'idSector': idSector},
+        success: function(data){
+            location.reload();
+        },   
+        error: function(){
+            location.reload();
+        }
+    });
+}

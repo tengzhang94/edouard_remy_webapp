@@ -215,7 +215,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Sector_model');
         $name = $this->input->post("sectorName");
         $this->Sector_model->addSector($name);
-        $this->sectorOverview();
+        redirect('CaregiverController/sectorOverview');
     }
 
 }
