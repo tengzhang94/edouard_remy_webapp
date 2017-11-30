@@ -177,17 +177,8 @@ class CaregiverController extends CI_Controller {
     }
     
     public function sectorOverview(){
-        //replace with sector info from database
-        $sectors = array(
-            array(
-                "name" => "sector 1",
-                "idSector" => 1
-            ),
-            array(
-                "name" => "sector 2",
-                "idSector" => 2
-            )
-        );
+        $this->load->model('Sector_model');
+        $sectors = $this->Sector_model->getAllSectorInfos();
         
         $sectorData = array(
             "sectors" => $sectors,

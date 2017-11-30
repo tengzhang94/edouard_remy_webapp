@@ -21,9 +21,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Caregiver.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
     </head>
 
     <body>
+        <script> var base_url = "<?= base_url('') ?>";</script>
         <p class="text-right" id="header"><span class="float_left">GraceAge 2.0 - <?php echo $title; ?> </span></p>
         <div>
             <div class="container">

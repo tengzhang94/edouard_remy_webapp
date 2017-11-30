@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
     
     <div class="topButtons">
-        <button class="btn btn-default addSectorButton" type="button">Add a sector</button>
+        <button class="btn btn-default addSectorButton" type="button" onclick="test()">Add a sector</button>
     </div>
     
     {sectors}
@@ -9,7 +9,7 @@
         <button class="btn btn-default" type="button" onclick="getSectorInfo({idSector})"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
             <input type="text" style="display: none"/>
             <div class="sectorName">{name}</div>
-            <div class="residentCount">{residentCount} {residentLang}</div>
+            <div class="residentCount">{residentCount} {residentLang} {idSector}</div>
         </button>
         <button class="btn btn-default deleteSectorButton" type="button" onclick="removeSector({idSector})">
             <svg class="deleteSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 100 100">
@@ -45,3 +45,4 @@
     </div>
     
 </div>
+<script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/sector_overview.js"></script>
