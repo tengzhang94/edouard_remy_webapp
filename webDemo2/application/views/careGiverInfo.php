@@ -5,13 +5,14 @@
     <div class="row">
          <div class="col-1"></div>
          <div class="col-5">
-            <button class="btn-photo" style="background-image: url(https://www.w3schools.com/images/w3schools_green.jpg);font-size: 150%">Photo upload</button>  
+            <button class="btn-photo" style="background-image: url({photo}); background-position: center;font-size: 150%">Photo upload</button>  
  <!--            <image src="http://www.kesato.com/blog/wp-content/uploads/2015/02/Google-Important-Ranking-Factor-2015.jpg" width="500" height="400">   
  -->       </div>
         
-        <form class="form-horizontal" method="post" action="editCareGiver">
+        <form class="form-horizontal" method="post" action="changePersonalInformation">
            
             <div class="col-6">
+                
                 <div class="form-group" style="height:55px;margin-top: 70px;">
                     <label class="control-label col-sm-4" for="id" style=" font-family:  Lato, sans-serif; font-size: 20px;">ID:</label>
                     <div class="col-sm-8">
@@ -50,20 +51,20 @@
                 </div>
                 
             </div>
-    </div>
+    
             <div class="col-3"></div>
             <div class="form-group" style="height:75px;">
                 <div class="col-2">
-                    <button class="btn-confirm" type="submit">Submit</button>
+                    <input type="submit" class="btn-confirm" name="submit1" value="Submit">
                 </div>
                 <div class="col-1"></div>
                 <div class="col-2">
-                <button class="btn-confirm" type="button">Cancel</button>
+                    <input type="submit" class="btn-confirm" name="cancel1" value="Cancel">
                 </div>
             </div>
             
         </form>        
-    
+    </div>
 </body>
 
 </html>

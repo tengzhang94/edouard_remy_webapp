@@ -221,7 +221,8 @@ class CaregiverController extends CI_Controller {
         $data['password'] = $result[0]['password'];
         $data['lastName'] = $result[0]['lastName'];
         $data['firstName'] = $result[0]['firstName'];
-        
+        $data['photo']=$result[0]['photo'];
+    
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
@@ -231,8 +232,9 @@ class CaregiverController extends CI_Controller {
         }
 
     public function changePersonalInformation() {
-
-        $language = $this->input->post('language');
+if($_REQUEST['submit1'])
+{
+      $language = $this->input->post('language');
         $email = $this->input->post('email');
         $firstName = $this->input->post('firstName');
         $lastName = $this->input->post('lastName');
@@ -241,6 +243,12 @@ class CaregiverController extends CI_Controller {
         $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
         $this->session->set_userdata('dutch', $language);
         redirect('caregiverController/settings');
+}
+elseif($_REQUEST{'cancel1'})
+{
+    redirect('caregiverController/settings');
+}
+      
     }
 
     public function sectorOverview() {
