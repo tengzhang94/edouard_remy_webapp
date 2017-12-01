@@ -25,10 +25,7 @@ class Residentpage_model extends CI_Model {
         else
             $data['sector'] = "not set";
         $data['gender'] = $resident->gender;
-        if (isset($resident->photo))
-            $data['photo'] = $resident->photo;
-        else
-            $data['photo'] = base_url() . "assets/css/image/placeholder.png";
+        $data['photo'] = $resident->photo;        
         if (isset($resident->roomNr))
             $data['roomNr'] = $resident->roomNr;
         else
