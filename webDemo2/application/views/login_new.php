@@ -13,7 +13,7 @@
 
 <body>
     <div class="login-dark">
-        <button class="btn btn-primary btn pull-right" type="submit">{goto_resident}</button>
+        <button class="btn btn-primary btn pull-right" onclick="window.location.href='<?php echo base_url();?>index.php/ResidentController/login'">{goto_resident}</button>
         <h1 class="text-center">GraceAge 2.0</h1>
         <form method="post" action="login">
             <h2 class="sr-only">Login Form</h2>
