@@ -54,7 +54,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Dashboard_model');
         $result = $this->Dashboard_model->getMessages(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < count($result); $i++) {
             $temp = array('messageText' => $result[$i]['messageText']);
             array_push($messages, $temp);
         }
@@ -123,7 +123,7 @@ class CaregiverController extends CI_Controller {
         $data['residents'] = $this->Residentpage_model->getAllResidents();
         
         $resident['title'] = 'Resident Overview';
-        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }

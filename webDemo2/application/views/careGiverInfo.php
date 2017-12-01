@@ -17,19 +17,19 @@
                 <div class="form-group" style="height:75px; margin-top: 125px;">
                     <label class="control-label col-sm-4" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name" value={firstName} style="width:75%;margin-top: 5px;margin-left:3px;" name="firstName">
+                    <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" style="width:75%;margin-top: 5px;margin-left:3px;" name="firstName">
                     </div>
                 </div>
                 <div class="form-group" style="height:75px;">
                     <label class="control-label col-sm-4" for="lastname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Lastname:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name" value={lastName} style="width:75%;margin-top: 5px;margin-left:3px;" name="lastName">
+                    <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}" style="width:75%;margin-top: 5px;margin-left:3px;" name="lastName">
                     </div>
                 </div>
                 <div class="form-group" style="height:75px;">
                     <label class="control-label col-sm-4" for="email" style=" font-family:  Lato, sans-serif; font-size: 20px;">Email:</label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" id="email" placeholder="email" value={email} style="width:75%;margin-top: 5px;margin-left:3px;" name="email">
+                        <input type="email" class="form-control" id="email" placeholder="email" value="{email}" style="width:75%;margin-top: 5px;margin-left:3px;" name="email">
                     </div>
                 </div>
                 <div class="form-group" style="height:75px;">
