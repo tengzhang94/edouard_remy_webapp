@@ -27,7 +27,7 @@
         </div>
         <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/qrLogin_test.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/qrlogin_test.js"></script>
     </body>
 </html>
 
