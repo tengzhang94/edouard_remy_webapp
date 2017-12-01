@@ -26,7 +26,7 @@ class Event_model extends CI_Model {
             'password' => password_hash($password, PASSWORD_DEFAULT)
         );
 
-        $this->db->insert('caregiver', $data);
+        $this->db->insert('Caregiver', $data);
     }
     
     public function scan($scanResult) {
