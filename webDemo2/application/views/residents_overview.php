@@ -58,7 +58,7 @@ m214 -88 c49 -20 112 -81 135 -130 25 -50 28 -149 7 -200 -20 -49
 <div class="row" style="height:90%; margin-top: 20px;">
     {residents}
     <form method="post" action="residentIndividual">
-        <div class="col-md-3 col-md-offset-0 col-lg-offset-0 col-sm-offset-1 residentItem" padding-left:20px;">
+        <div class="col-md-3 col-md-offset-0 col-lg-offset-0 residentItem" padding-left:20px;">
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
                     <img class="iconResOverviewLeft" src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png"/>
