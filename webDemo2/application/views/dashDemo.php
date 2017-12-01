@@ -73,7 +73,7 @@
 
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
     <div class="dashboardTop">
-        <button class="btn btn-default dashboardButton" type="button">
+        <button id="dashIcon" class="btn btn-default dashboardButton" type="button">
             <svg class="selectAllSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M180 920 c-19 -5 -49 -24 -66 -43 -43 -46 -46 -80 -42 -417 3 -313 6
@@ -88,7 +88,7 @@
             </svg>
             
         </button>
-        <button class="btn btn-default filterButton" type="button">
+        <button  id="dashIcon"  class="btn btn-default filterButton" type="button">
             <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
@@ -101,7 +101,7 @@
             </svg>
             
         </button>
-        <button class="btn btn-default removeButton" type="button">
+        <button id="dashIcon"  class="btn btn-default removeButton" type="button">
             <svg class="removeSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M366 978 c-9 -12 -16 -33 -16 -45 0 -22 -3 -23 -99 -23 -74 0 -102
