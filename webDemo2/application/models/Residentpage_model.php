@@ -16,7 +16,29 @@ class Residentpage_model extends CI_Model {
     
     public function getResidentWithId($id) {
         $query = $this->db->query("SELECT * FROM Resident WHERE idResident = $id");
-        return $query->row();
+        $resident = $query->row();
+        $data['firstName'] = $resident->firstName;
+        $data['lastName'] = $resident->lastName;
+        $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
+        if (isset($sector))
+            $data['sector'] = $sector->name;
+        else
+            $data['sector'] = "not set";
+        $data['gender'] = $resident->gender;
+        if (isset($resident->photo))
+            $data['photo'] = $resident->photo;
+        else
+            $data['photo'] = base_url() . "assets/css/image/placeholder.png";
+        if (isset($resident->roomNr))
+            $data['roomNr'] = $resident->roomNr;
+        else
+            $data['roomNr'] = "not set";
+        $data['birthday'] = $resident->birthDate;
+        $data['language'] = $resident->dutch ? "Dutch" : "English";
+        $data['married'] = $resident->married ? "yes" : "no";
+        $data['children'] = $resident->children;
+        $data['notes'] = $this->Residentpage_model->getResidentNotes($this->session->resident_id);
+        return $data;
     }
     
     public function getResidentNotes($id) {
@@ -35,6 +57,16 @@ class Residentpage_model extends CI_Model {
             return $query->row();
         }
         else return null;
+    }
+    
+    public function getResidentUrgProblems($id) {
+        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
+        return $query->result_array();
+    }
+    
+    public function getResidentNonUrgProblems($id) {
+        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 0");
+        return $query->result_array();
     }
 
 }

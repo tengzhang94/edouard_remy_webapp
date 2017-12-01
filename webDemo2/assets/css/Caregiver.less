@@ -561,16 +561,19 @@ label {
 #addBtn {
   background-image:url("0px");
   border:none;
+  margin-top:2px;
   padding:0px;
-  margin-top:-5px;
+  float:right;
 }
+
+
 
 
 //settings page less
 .btn-photo{
     background-color: @background_color_1; 
     font-family: 'Lato', sans-serif;
-    font-weight: bold;
+    //font-weight: bold;
     font-size: 250%;
     margin-left: 20px;
     margin-top:80px;
@@ -654,7 +657,7 @@ body {
 
 }
 
-img {
+.img {
 	margin: 0 auto;
 	margin-top: 15px;
 	width: 70px;
@@ -694,23 +697,52 @@ img {
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-#careGiverPic{
-    margin-left: 20px;
-    margin-top:80px;
-    display: inline-block;
-    border-color: black ;
-    width: 40%;
-    height:452px;
-    min-width: 200px;
-    
-}
-
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="col-"] {
         width: 100%;
     }
+}
+
+#scoreLijstNavItem{
+    background-color: #f4f4f4;
+}
+
+#problemenNavItem{
+    background-color: #fff;
+}
+
+.problemTitle {
+  font-size:24px;
+  color:#2c3d51;
+  font-family:Lato, sans-serif;
+}
+
+#problemLeftCol {
+  border-right:1px solid #2c3d51;
+}
+
+#personalProblems {
+  margin-top:20px;
+}
+
+#iconTrash {
+  height:32px;
+  width:32px;
+}
+
+#removeBtn {
+  background-image:url("0px");
+  border:none;
+  margin-top:2px;
+  padding:0px;
+  float:right;
+}
+
+.space {
+  display:block;
+  height:20px;
 }
 
 

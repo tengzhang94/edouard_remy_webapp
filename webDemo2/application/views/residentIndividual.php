@@ -13,10 +13,10 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 residentInfoCol" id="rightInfoCol">
         <ul class="nav nav-tabs">
-            <li class="active navBtn"><a href="#" class="navItem">Scorebord vragenlijst</a></li>
-            <li class="inactive navBtn"><a href="#" class="navItem">Problemen </a></li>
+            <li class="{scores_active}"><a id=scoreLijstNavItem href="residentIndividual" class="navItem">Scorebord vragenlijst</a></li>
+            <li class="{problems_active}"><a id="problemenNavItem" href="residentProblems" class="navItem">Problemen </a></li>
         </ul>
-        <div class="row" id="personalStats">
+        <div class="row" id="personalStats" {scores_hidden}>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColLeft">
                 <div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
                 <div class="statItem"><span class="subjectTitle">Comfort </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
@@ -33,7 +33,35 @@
                 <div class="statItem"><span class="subjectTitle">Veiligheid </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
                 <div class="statItem"><span class="subjectTitle">Respect </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
                 <div class="statItem"><span class="subjectTitle">Activiteiten </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
+            </div>            
+        </div>
+        <div class="row" id="personalProblems" {problems_hidden}>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn <button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button><button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+                <span
+                    class="space"> </span>
+                {nonUrgProbs}
+                <div class="line">
+                    <label>
+                        <input type="checkbox" /><span class="checkmark"></span></label>
+                    <div class="message">{text}</div>
+                </div>
+                {/nonUrgProbs}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle"><button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn <button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+                <span
+                    class="space"> </span>
+                {urgProbs}
+                <div class="line">
+                    <label>
+                        <input type="checkbox" /><span class="checkmark"></span></label>
+                    <div class="message">{text}</div>
+                </div>
+                {/urgProbs}
             </div>
         </div>
     </div>
 </div>
+
+<!-- CODE FOR SECOND NAVITEM (=PROBLEMS) (CSS ALREADY ADDED!) -->
+
+

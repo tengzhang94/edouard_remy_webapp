@@ -125,90 +125,152 @@ class CaregiverController extends CI_Controller {
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $this->parser->parse('residents_overview', $data);
     }
-    
+
     public function residentIndividual() {
         $this->load->model('Residentpage_model');
-        $resident_id = $this->input->post("resident_id");
+        if (null != $this->input->post("resident_id"))
+            $this->session->set_userdata('resident_id', $this->input->post("resident_id"));
+        $resident_id = $this->session->resident_id;
         $resident = $this->Residentpage_model->getResidentWithId($resident_id);
-        $data['firstName'] = $resident->firstName;
+        $resident['scores_hidden'] = '';
+        $resident['problems_hidden'] = 'hidden';
+        $resident['scores_active'] = "active navBtn";
+        $resident['problems_active'] = "inactive navBtn";   
+        /*$data['firstName'] = $resident->firstName;
         $data['lastName'] = $resident->lastName;
         $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
-        if(isset($sector)) $data['sector'] = $sector->name;
-        else $data['sector'] = "not set";        
+        if (isset($sector))
+            $data['sector'] = $sector->name;
+        else
+            $data['sector'] = "not set";
         $data['gender'] = $resident->gender;
-        if (isset($resident->photo)) $data['photo'] = $resident->photo;
-        else $data['photo'] = base_url()."assets/css/image/icons8-customer-50.png";
-        if(isset($resident->roomNr)) $data['roomNr'] = $resident->roomNr;
-        else $data['roomNr'] = "not set";        
+        if (isset($resident->photo))
+            $data['photo'] = $resident->photo;
+        else
+            $data['photo'] = base_url() . "assets/css/image/placeholder.png";
+        if (isset($resident->roomNr))
+            $data['roomNr'] = $resident->roomNr;
+        else
+            $data['roomNr'] = "not set";
         $data['birthday'] = $resident->birthDate;
         $data['language'] = $resident->dutch ? "Dutch" : "English";
         $data['married'] = $resident->married ? "yes" : "no";
         $data['children'] = $resident->children;
-        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);
-        
-        $data['title'] = 'Resident';
-        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
-        $data['content'] = $this->parser->parse('residentIndividual', $data, true);
-        $this->parser->parse('navbar_topbar', $data);
+        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
+
+        $resident['title'] = 'Resident';
+        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
+        $this->parser->parse('navbar_topbar', $resident);
     }
     
+    public function residentProblems() {        
+        $this->load->model('Residentpage_model');        
+        $resident_id = $this->session->resident_id;
+        $resident = $this->Residentpage_model->getResidentWithId($resident_id);
+        $resident['scores_hidden'] = 'hidden';
+        $resident['problems_hidden'] = '';
+        $resident['scores_active'] = "inactive navBtn";
+        $resident['problems_active'] = "active navBtn";        
+        /*$resident['firstName'] = $resident->firstName;
+        $resident['lastName'] = $resident->lastName;
+        $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
+        if (isset($sector))
+            $resident['sector'] = $sector->name;
+        else
+            $resident['sector'] = "not set";
+        $resident['gender'] = $resident->gender;
+        if (isset($resident->photo))
+            $resident['photo'] = $resident->photo;
+        else
+            $resident['photo'] = base_url() . "assets/css/image/placeholder.png";
+        if (isset($resident->roomNr))
+            $resident['roomNr'] = $resident->roomNr;
+        else
+            $resident['roomNr'] = "not set";
+        $resident['birthday'] = $resident->birthDate;
+        $resident['language'] = $resident->dutch ? "Dutch" : "English";
+        $resident['married'] = $resident->married ? "yes" : "no";
+        $resident['children'] = $resident->children;
+        $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
+        $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
+        $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+        
+        $resident['title'] = 'Resident';
+        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
+        $this->parser->parse('navbar_topbar', $resident);
+    }
+
     public function getPersonalInformation() {
         $this->load->model('Event_model');
-       
-                $result= $this->Event_model->getPersonalInformation();
-                if($result[0]['dutch']=='1')
-                {
-                   
-                   $data['check_dutch']='checked';
-                   $data['check_english']='';
-                }
-        else
-        {
-            
-            $data['check_dutch']='';
-            $data['check_english']='checked';
-        }
-        
-            $data['idcaregiver']=$result[0]['idCaregiver'];
-            $data['email']=$result[0]['email'];
-            $data['password']=$result[0]['password'];
-            $data['lastName']=$result[0]['lastName'];
-            $data['firstName']=$result[0]['firstName'];
-            
-        
-        
 
-        $this->parser->parse('testpage', $data);
-    }
+        $result = $this->Event_model->getPersonalInformation();
+        if ($result[0]['dutch'] == '1') {
+
+            $data['check_dutch'] = 'checked';
+            $data['check_english'] = '';
+        } else {
+
+            $data['check_dutch'] = '';
+            $data['check_english'] = 'checked';
+        }
+
+        $data['idcaregiver'] = $result[0]['idCaregiver'];
+        $data['email'] = $result[0]['email'];
+        $data['password'] = $result[0]['password'];
+        $data['lastName'] = $result[0]['lastName'];
+        $data['firstName'] = $result[0]['firstName'];
+        $data['photo']=$result[0]['photo'];
+    
+        // $this->parser->parse('careGiverInfo', $data);
+
+        $data['title'] = 'Caregiver';
+        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
+        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
+        $this->parser->parse('navbar_topbar', $data);
+        }
 
     public function changePersonalInformation() {
+if($_REQUEST['submit1'])
+{
+      $language = $this->input->post('language');
+        $email = $this->input->post('email');
+        $firstName = $this->input->post('firstName');
+        $lastName = $this->input->post('lastName');
 
-    $language = $this->input->post('language');
-    $email=$this->input->post('email');
-    $firstName=$this->input->post('firstName');
-    $lastName=$this->input->post('lastName');
-    
-    $this->load->model('Event_model');
-    $this->Event_model->changePersonalInformation($language,$email,$firstName,$lastName);
-    $this->session->set_userdata('dutch', $language);
+        $this->load->model('Event_model');
+        $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
+        $this->session->set_userdata('dutch', $language);
+        redirect('caregiverController/settings');
+}
+elseif($_REQUEST{'cancel1'})
+{
     redirect('caregiverController/settings');
-
+}
+      
     }
-    
-    public function sectorOverview(){
+
+    public function sectorOverview() {
         $this->load->model('Sector_model');
         $sectors = $this->Sector_model->getAllSectorInfos();
-        
+
         $sectorData = array(
             "sectors" => $sectors,
             "addSector" => "Add a sector" //replace with language model info
         );
-        
+
         $data['title'] = 'Sectors';
         $data['menu'] = $this->Menu_model->get_menuitems('Settings');
         $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
         $this->parser->parse('navbar_topbar', $data);
-        
+    }
+    
+    public function addSector() {
+        $this->load->model('Sector_model');
+        $name = $this->input->post("sectorName");
+        $this->Sector_model->addSector($name);
+        redirect('CaregiverController/sectorOverview');
     }
 
 }
