@@ -22,7 +22,7 @@ and open the template in the editor.
             <main>
                 <section>
                   
-{content}
+{content}   {content1}
                 
                     <form method="post" action="changePassword">
                         

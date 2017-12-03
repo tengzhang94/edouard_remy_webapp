@@ -62,5 +62,18 @@ $this->db->where('idCaregiver', $idCaregiver);
 $this->db->update('Caregiver', $data);
        
     }
+    
+    public function changePassword($password)
+    {
+        $idCaregiver = $this->session->userdata('idCaregiver');
+        
+         $data = array(
+               'password' => password_hash($password, PASSWORD_DEFAULT)
+             );
+         
+         $this->db->where('idCaregiver', $idCaregiver);
+$this->db->update('Caregiver', $data);
+       
+    }
 
 }

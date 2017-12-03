@@ -69,6 +69,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function settings() {
+        $this->session->set_userdata('passwordCondition', 'begin');
         $data['title'] = 'Settings';
         $data['menu'] = $this->Menu_model->get_menuitems('Settings');
         $data['content'] = $this->parser->parse('settings', $data, true);
@@ -79,32 +80,6 @@ class CaregiverController extends CI_Controller {
         redirect('ResidentController/Topics');
     }
     
-    public function searchResidents($one)
-    {
-      /*  if($one>'bobbb')
-        {
-            $data['content']='1';
-        }
-        if($one['2']=='b')
-        {
-            $data['content']='2';
-        }
-        if($one<'bobbb')
-        {
-            $data['content']='3';
-        }*/
-        
-          if($one['2']=='b')
-        {
-            $data['content']='2';
-        }
- else
- {
-     $data['content']='3';
- }
-        $this->parser->parse('testpage', $data);
-    }
-
     public function insert() {
         $this->load->model('Event_model');
         $content = $this->parser->parse('content_test', $results, true);
@@ -206,6 +181,54 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $resident);
     }
     
+   
+
+
+    public function changePassword()
+    {
+        $this->load->model('Event_model');
+        $password_new=$this->input->post('password_new');
+        $password_confirm=$this->input->post('password_confirm');
+        $password_old=$this->input->post('password_old');
+        
+         $username=$this->session->userdata('name');
+        
+        $result = $this->Event_model->login($username, $password_old);
+        
+        if($result)
+        {
+            if($password_new==NULL||$password_confirm==NULL)
+        {
+                 $this->session->set_userdata('passwordCondition', 'fail1');
+             redirect('caregiverController/getPersonalInformation');
+        }
+        else
+        {
+             if($password_new==$password_confirm)
+        {
+            $this->session->set_userdata('passwordCondition', 'success');
+           $this->Event_model->changePassword($password_confirm);
+            redirect('caregiverController/getPersonalInformation');
+        }
+        else
+        {
+            $this->session->set_userdata('passwordCondition', 'fail');
+             redirect('caregiverController/getPersonalInformation');
+        }
+        }
+       
+        }
+         else
+         {
+              $this->session->set_userdata('passwordCondition', 'oldPassword_wrong');
+             redirect('caregiverController/getPersonalInformation');
+         }
+                
+        
+        
+        
+    }
+    
     public function residentProblems() {        
         $this->load->model('Residentpage_model');        
         $resident_id = $this->session->resident_id;
@@ -264,6 +287,31 @@ class CaregiverController extends CI_Controller {
         $data['lastName'] = $result[0]['lastName'];
         $data['firstName'] = $result[0]['firstName'];
         $data['photo']=$result[0]['photo'];
+        
+        $passwordCondition=$this->session->userdata('passwordCondition');
+        
+        if($passwordCondition=='success')
+        {
+            $data['content']='change password success';
+        }
+        elseif($passwordCondition=='fail')
+        {
+            $data['content']='new and confirm password are not match';
+        }
+        elseif($passwordCondition=='oldPassword_wrong')
+        {
+             $data['content']='old password is wrong' ;
+        }
+        elseif($passwordCondition=='fail1')
+        {
+            $data['content']='new or confirm password is empty';
+        }
+        else
+        {
+            $data['content']='';
+        
+        }
+       
     
         // $this->parser->parse('careGiverInfo', $data);
 

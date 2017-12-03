@@ -22,7 +22,7 @@
            
             <div class="col-6">
                 
-                
+                {content}
                 <div class="form-group" style="height:75px; margin-top: 125px;">
                     <label class="control-label col-sm-4" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
                     <div class="col-sm-8">
@@ -55,7 +55,8 @@
                 </div>
              
             </div>
-    
+     </form>  
+         <form method="post" action="changePassword">
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:800px;">
                  <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
@@ -71,8 +72,9 @@
                                                     <section class="box-login v5-input-txt" id="box-login">
                                                             
                                                                 <ul>
-                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%"><input class="form-control" id="id_password_l" maxlength="50" name="account_l" placeholder="New Password" type="password"></li>
-                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_2" name="password_l" placeholder="Confirm Password" type="password"></li>
+                                                                     <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_3" name="password_old" placeholder="Old Password" type="password"></li>
+                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%"><input class="form-control" id="id_password_l" maxlength="50" name="password_new" placeholder="New Password" type="password"></li>
+                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_2" name="password_confirm" placeholder="Confirm Password" type="password"></li>
                                                                 </ul>
                                                             
                                                                 <div class="login-box marginB10">
@@ -93,9 +95,9 @@
                 
                 
             </div>
+            </form>
             
-            
-        </form>        
+             
     </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/jquery2.2.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/modal.js"></script>
