@@ -1,8 +1,8 @@
 <div class="row" style="height:10%; display: flex; flex-direction: row; padding-top: 10px">
-
-    <input type="text" style="height:46px;width:25%;font-size:44px; margin-left: 50%" />
-    <div style="margin-left: 5%;">                 
-        <button  class="btn btn-default" type="button" style="height:46px; width: 46px;   background-color: transparent; border-color: transparent;"  >
+    <form action='searchResident' method="post" style="margin-left: 50%; width:33%; display: flex; flex-direction: row;">    
+        <input name='inputName' type="text" placeholder="Firstname or Lastname" style="height:46px;width:75%;font-size:30px;" />
+                    
+        <button  class="btn btn-default" type="submit" style="height:46px; width: 46px;   background-color: transparent; border-color: transparent; margin-left: 15%;"  >
             <svg class="searchSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="width: 46px; height: 46px; margin-left: -10px; margin-top: -5px;"viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M300 924 c-79 -28 -144 -87 -188 -169 -24 -45 -27 -60 -27 -155 0
@@ -22,10 +22,11 @@ m214 -88 c49 -20 112 -81 135 -130 25 -50 28 -149 7 -200 -20 -49
                 </g>
             </svg>
         </button> 
-    </div>
+    </form>
+    
     <div style="margin-left: 5%;">                 
         <button id="Button_filter" class="btn btn-default" type="button" style="height:46px; width: 46px;  background-color: transparent; border-color: transparent;">
-            <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="width: 46px; height: 46px;" viewBox="0 0 100 100">
+            <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="width: 46px; height: 46px; margin-left: -10px; margin-top: -5px;" viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
                           -180 0 -180 112 -67 c61 -37 117 -65 125 -62 10 4 13 54 13 248 l1 243 160

@@ -78,6 +78,32 @@ class CaregiverController extends CI_Controller {
     public function selectTopic() {
         redirect('ResidentController/Topics');
     }
+    
+    public function searchResidents($one)
+    {
+      /*  if($one>'bobbb')
+        {
+            $data['content']='1';
+        }
+        if($one['2']=='b')
+        {
+            $data['content']='2';
+        }
+        if($one<'bobbb')
+        {
+            $data['content']='3';
+        }*/
+        
+          if($one['2']=='b')
+        {
+            $data['content']='2';
+        }
+ else
+ {
+     $data['content']='3';
+ }
+        $this->parser->parse('testpage', $data);
+    }
 
     public function insert() {
         $this->load->model('Event_model');
@@ -127,6 +153,20 @@ class CaregiverController extends CI_Controller {
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
+    
+    public function searchResident() {
+        $this->load->model('Residentpage_model');
+          
+        $name=$this->input->post('inputName');
+        $data['residents']=$this->Residentpage_model->getResidentsBySearch($name);
+        
+        $resident['title'] = 'Resident Overview';
+        $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
+        $resident['content'] = $this->parser->parse('residents_overview', $data, true);
+        $this->parser->parse('navbar_topbar', $resident);
+    }
+    
+    
 
     public function residentIndividual() {
         $this->load->model('Residentpage_model');

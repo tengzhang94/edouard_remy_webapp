@@ -13,6 +13,11 @@ class Residentpage_model extends CI_Model {
         $query = $this->db->query("SELECT * FROM Resident");
         return $query->result_array();
     }
+    public function getResidentsBySearch($name)
+    {
+         $query = $this->db->query("SELECT * FROM Resident WHERE firstName LIKE '%$name%' OR lastName LIKE '%$name%'");
+        return $query->result_array();
+    }
     
     public function getResidentWithId($id) {
         $query = $this->db->query("SELECT * FROM Resident WHERE idResident = $id");
