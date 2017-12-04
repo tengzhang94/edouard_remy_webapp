@@ -52,7 +52,7 @@
                 </div>
             </div>
      </form>  
-        <!-- ABOUT CHANGING PASSWORD
+      
          <form method="post" action="changePassword">
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:800px;">
@@ -94,7 +94,7 @@
             </div>
             </form>
             
-     -->        
+          
     </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/jquery2.2.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/modal.js"></script>

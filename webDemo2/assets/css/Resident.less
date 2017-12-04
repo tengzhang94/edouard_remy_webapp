@@ -6,6 +6,8 @@
 @background_color_3: #2c3d51;
 @border_color_1: #2c3d51;
 
+@font_size:0px;
+
 .btn.btn-primary {
 	width: 100px;
 	background-color: @background_color_1;
@@ -21,7 +23,7 @@
 	margin-right: 20px;
 	margin-bottom: 20px;
 	color: @color_1;
-	font-size: 22px;
+	font-size: 22px+@font_size;
 	font-family: @font_family_1;
 	height: 160px;
 	background-color: @background_color_2;
@@ -32,13 +34,13 @@
 	height: 60px;
 	font-family: @font_family_1;
 	color: @color_2;
-	font-size: 20px;
+	font-size: 20px+@font_size;
 	padding-right: 20px;
 	padding-top: 15px;
 }
 .text-center {
 	color: @color_1;
-	font-size: 24px;
+	font-size: 24px+@font_size;
 	font-family: @font_family_1;
 	display: flex;
 	padding-right: 60px;
@@ -65,7 +67,7 @@ h1 {
 	margin-top: 0px;
 	margin-left: 20px;
 	color: @color_2;
-	font-size: 30px;
+	font-size: 30px+@font_size;
 	margin-right: 0px;
 	padding-top: 15px;
 	font-family: @font_family_1;
@@ -76,7 +78,7 @@ h2 {
 	margin-top: 0px;
 	margin-left: 20px;
 	color: @color_2;
-	font-size: 30px;
+	font-size: 30px+@font_size;
 	margin-right: 0px;
 	padding-top: 15px;
 	font-family: @font_family_1;
@@ -86,7 +88,7 @@ h2 {
 	height: 160px;
 	background-color: @background_color_2;
 	background-image: url("0px");
-	font-size: 20px;
+	font-size: 20px+@font_size;
 	color: @color_1;
 	padding: 0px;
 	padding-top: 15px;
@@ -109,13 +111,13 @@ img {
 	display: block;
 }
 .small {
-	font-size: 30px;
+	font-size: 30px+@font_size;
 	font-family: @font_family_1;
 	color: @color_1;
 	display: block;
 }
 small {
-	font-size: 20px;
+	font-size: 20px+@font_size;
 	font-family: @font_family_1;
 	color: @color_1;
 	display: block;
@@ -125,7 +127,7 @@ div {
 }
 .float_left {
 	float: left;
-	font-size: 30px;
+	font-size: 30px+@font_size;
 	font-family: @font_family_1;
 	margin-left: 20px;
 	margin-top: -5px;
@@ -133,7 +135,7 @@ div {
 .float_right {
 	margin-top: 13px;
 	font-family: @font_family_1;
-	font-size: 20px;
+	font-size: 20px+@font_size;
 }
 .container {
         margin-top: 100px;

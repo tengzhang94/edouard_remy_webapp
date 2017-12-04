@@ -8,10 +8,35 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Resident.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 
+         <script>
+          $(function() {
+      var font=0;
+  $("#BG").click(function() {
+      
+font=font+2;
+console.log(font);
+   
+    less.modifyVars({'@font_size': font+'px'});
+    less.refreshStyles();
+  });
+  
+   $("#BS").click(function() {
+      
+font=font-2;
+console.log(font);
+   
+    less.modifyVars({'@font_size': font+'px'});
+    less.refreshStyles();
+  });
+  
+  
+});
+    </script>
     </head>
     <body>
         <div>
-            <p class="text-right" id="header"><span class="float_left">{topic}</span><span class="float_right">{font_size}<button class="btn btn-primary" type="button" style="margin-left:10px;">{greater} </button><button class="btn btn-primary" type="button">{smaller} </button></span></p>
+            <p class="text-right" id="header"><span class="float_left">{topic}</span><span class="float_right">{font_size}<button id="BG" class="btn btn-primary" type="button" style="margin-left:10px;">{greater} </button><button id="BS" class="btn btn-primary" type="button">{smaller} </button></span></p>
             <p
                 class="text-center" style="margin-top:60px;">{question}</p>
             <form style="margin-top:120px;" action="" id='questionForm' onsubmit="return nextQuestion()">
@@ -26,6 +51,7 @@
             </form>
         </div>
         <script type="text/javascript" src ="<?php echo base_url();?>assets/javascript/questionpage.js"></script>
+        
     </body>
     
 </html>
