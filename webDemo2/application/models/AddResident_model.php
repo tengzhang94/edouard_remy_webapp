@@ -12,7 +12,7 @@ class AddResident_model extends CI_Model {
         return false;
     }
     
-    public function addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $other) {
+    public function addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr) {
         $data = array(
             'firstName' => $firstName,
             'lastName' => $lastName,
@@ -20,7 +20,8 @@ class AddResident_model extends CI_Model {
             'gender' => $gender,
             'married' => $married,
             'children' => $children,
-            'other' => $other,           
+            'Sectors_idSector'=> $idSector,
+            'roomNr' => $roomNr,           
         );
         
         $this->db->insert('Resident', $data);
