@@ -86,36 +86,76 @@ class CaregiverController extends CI_Controller {
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
 
-    public function addResident() {
-        $this->load->model('AddResident_model');
-
+    public function addResident() {   // just to load the page addr\Resident
         $data['title'] = 'Resident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
-
+        $this->parser->parse('navbar_topbar', $data);
+        }
+    
+    public function addResidentConfirm(){  //post the new resident info and return to resident overview page
+        if($_REQUEST['submit1']){
+            
         $firstName = $this->input->post('firstName');
-        $lastName = $this->input->post('lastName');
+        $lastName  = $this->input->post('lastName');
         $birthDate = $this->input->post('birthDate');
-        $gender = $this->input->post('gender');
+        $idSector  = $this->input->post('sector');
+        $roomNr  = $this->input->post('room');
+        $gender  = $this->input->post('gender');
         $married = $this->input->post('married');
-        $children = $this->input->post('children');
-        $other = $this->input->post('other');
-
+        $children  = $this->input->post('children');
+        
         //$this->form_validation->set_rules('firstName', 'First name', 'trim|required', array('required' => 'Fill in %s'));
         //$this->form_validation->set_rules('lastName', 'Last name', 'trim|required', array('required' => 'Fill in %s'));        
 
-        if ($this->input->post('firstName') == NULL) { //TODO: Must be replaced by form validation
-            $data['success'] = "";
-            $this->parser->parse('navbar_topbar', $data);
-        } else {
+        if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
+                ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+            //$data['success'] = "";
+            //$this->parser->parse('navbar_topbar', $data);        
+             }
+/*
+        $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
+        if ($this->input->post('firstName')==NULL) {
+                $firstNameErr = "First name is required";
+                echo $firstNameErr;
+        } 
+        if ($this->input->post('lastName')==NULL) {
+                $lastNameErr = "Last name is required";
+                echo $lastNameErr;
+        } 
+    
+        if ($this->input->post('birthDate')==NULL) {
+                $birthDateErr = "Birth date is required";
+                echo $birthDateErr;
+        } 
+
+        if ($this->input->post('sector')==NULL) {
+                $idSectorErr = "ID of sector is required";
+                echo $idSectorErr;
+        }
+        if ($this->input->post('room')==NULL) {
+                $roomNrErr = "Room number is required";
+                echo $roomNrErr;
+        } 
+*/
+        else {
+            $this->load->model('AddResident_model');
             if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-                $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $other);
-                $data['success'] = "Success!";
-                $this->parser->parse('navbar_topbar', $data);
+                $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr);
+                redirect('caregiverController/resident');
+                //return to the resident page
+                
+                //$data['success'] = "Success!";
+                //$this->parser->parse('navbar_topbar', $data);
             } else {
                 $data['success'] = "This resident already exists!";
                 $this->parser->parse('navbar_topbar', $data);
             }
+        }
+        }
+          
+        elseif($_REQUEST['return1']){
+           redirect('caregiverController/resident');
         }
     }
 
@@ -322,9 +362,9 @@ class CaregiverController extends CI_Controller {
         }
 
     public function changePersonalInformation() {
-if($_REQUEST['submit1'])
-{
-      $language = $this->input->post('language');
+        if($_REQUEST['submit1'])
+        {
+        $language = $this->input->post('language');
         $email = $this->input->post('email');
         $firstName = $this->input->post('firstName');
         $lastName = $this->input->post('lastName');
@@ -333,11 +373,11 @@ if($_REQUEST['submit1'])
         $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
         $this->session->set_userdata('dutch', $language);
         redirect('caregiverController/settings');
-}
-elseif($_REQUEST{'cancel1'})
-{
-    redirect('caregiverController/settings');
-}
+        }
+        elseif($_REQUEST{'cancel1'})
+        {
+        redirect('caregiverController/settings');
+        }
       
     }
 

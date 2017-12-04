@@ -1,61 +1,58 @@
-
-    
-<!-- when parse part in controller is added, everything above this should be deleted -->
-        
-<!--<head>
-
-<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-
-
-
--->
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/index.css">   <!--<!--
 </head> -->
     <div class="row">
-         <div class="col-1"></div>
-         <div class="col-5">
+         <div class="col-sm-5 col-sm-offset-1 col-xs-12">
             <button class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%"></button>  
  <!--            <image src="http://www.kesato.com/blog/wp-content/uploads/2015/02/Google-Important-Ranking-Factor-2015.jpg" width="500" height="400">   
  -->       </div>
         
         <form class="form-horizontal" method="post" action="changePersonalInformation">
            
-            <div class="col-6">
+            <div class="col-sm-6 col-xs-12">
                 
                 {content}
-                <div class="form-group" style="height:75px; margin-top: 125px;">
-                    <label class="control-label col-sm-4" for="firstname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Firstname:</label>
-                    <div class="col-sm-8">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" style="width:75%;margin-top: 5px;margin-left:3px;" name="firstName">
+                <div class="form-group" style=" margin-top: 125px;">
+                    <label class="control-label col-sm-4 col-xs-12" for="firstname"><p class="residentInfoStyle">Firstname:</p></label>
+                    <div class="col-sm-8 col-xs-12">
+                    <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" name="firstName">
                     </div>
                 </div>
-                <div class="form-group" style="height:75px;">
-                    <label class="control-label col-sm-4" for="lastname" style=" font-family:  Lato, sans-serif; font-size: 20px;">Lastname:</label>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">Lastname:</p></label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}" style="width:75%;margin-top: 5px;margin-left:3px;" name="lastName">
+                    <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}"name="lastName">
                     </div>
                 </div>
-                <div class="form-group" style="height:75px;">
-                    <label class="control-label col-sm-4" for="email" style=" font-family:  Lato, sans-serif; font-size: 20px;">Email:</label>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="email"><p class="residentInfoStyle">Email:</p></label>
                     <div class="col-sm-8">
-                        <input type="email" class="form-control" id="email" placeholder="email" value="{email}" style="width:75%;margin-top: 5px;margin-left:3px;" name="email">
+                        <input type="email" class="form-control" id="email" placeholder="email" value="{email}"name="email">
                     </div>
                 </div>
-                <div class="form-group" style="height:75px;">
-                <label class="control-label col-sm-4" for="language" style=" font-family:  Lato, sans-serif; font-size: 20px;">Language:</label>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="language"><p class="residentInfoStyle">Language:</p></label>
                     <div class="col-sm-8">
-                        <input type="radio" style="float: left; margin-left: 15px;margin-top: 15px;" name="language" value="1" {check_dutch}><p style="float:left;margin-top: 12px">Dutch</p><input type="radio" style="float:left;margin-left: 20px;margin-top: 15px;" name="language" value="0" {check_english}><p style="float:left;margin-top: 12px">English</p>
+                        <div class="radio-inline" style="margin-top: 5px;">
+                        <input type="radio" name="language" value="1" {check_dutch}>Dutch
+                        </div>
+                        <div class="radio-inline" style="margin-top: 5px;">
+                        <input type="radio" name="language" value="0" {check_english}>English
+                        </div>
                     </div>
                 </div>
-               <div class="form-group" width="50" style="display: flex;flex-direction: row">
-                    <input type="submit" class="btn-confirm" name="submit1" value="Submit" width="20">
-                    
+                <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-5 col-sm-offset-0 col-xs-12">
+                    <input type="submit" class="btn-confirm" name="submit1" value="Submit">
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-1 col-xs-12">   
                     <input type="submit" class="btn-confirm" name="cancel1" value="Cancel">
-              
+                    </div>
                 </div>
-             
+                </div>
             </div>
      </form>  
+        <!-- ABOUT CHANGING PASSWORD
          <form method="post" action="changePassword">
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:800px;">
@@ -97,7 +94,7 @@
             </div>
             </form>
             
-             
+     -->        
     </div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/jquery2.2.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/modal.js"></script>
