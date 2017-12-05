@@ -14,13 +14,13 @@
                 <div class="form-group" style=" margin-top: 125px;">
                     <label class="control-label col-sm-4 col-xs-12" for="firstname"><p class="residentInfoStyle">Firstname:</p></label>
                     <div class="col-sm-8 col-xs-12">
-                    <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" name="firstName">
+                        <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" name="firstName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">Lastname:</p></label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}"name="lastName">
+                        <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}"name="lastName">
                     </div>
                 </div>
                 <div class="form-group">

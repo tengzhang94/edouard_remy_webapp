@@ -110,11 +110,11 @@ class CaregiverController extends CI_Controller {
 
         if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
                 ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+            //$this->addResident();
             redirect('caregiverController/resident');
-            //$data['success'] = "";
-            //$this->parser->parse('navbar_topbar', $data);        
-             }
-/*
+            // form validation is done in HTML, this would actually never redirect
+        
+        /*
         $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
         if ($this->input->post('firstName')==NULL) {
                 $firstNameErr = "First name is required";
@@ -138,16 +138,14 @@ class CaregiverController extends CI_Controller {
                 $roomNrErr = "Room number is required";
                 echo $roomNrErr;
         } 
-*/
+*/        
+             }
+
         else {
             $this->load->model('AddResident_model');
             if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
                 $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr);
                 redirect('caregiverController/resident');
-                //return to the resident page
-                
-                //$data['success'] = "Success!";
-                //$this->parser->parse('navbar_topbar', $data);
             } else {
                 $data['success'] = "This resident already exists!";
                 $this->parser->parse('navbar_topbar', $data);
