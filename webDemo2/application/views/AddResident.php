@@ -9,7 +9,7 @@
                     <input type="submit" class="btn-confirm" name="submit1" value="Submit">
                 </div>
                 <div class="col-sm-4 col-sm-offset-1 col-xs-12">
-                    <input type="submit" class="btn-confirm" name="return1" value="Return"> 
+                    <input type="button" class="btn-confirm" name="return1" onclick="location='resident'" value="Return">
                 </div>
             </div>
              </div>
@@ -19,31 +19,31 @@
                 <div class="form-group" style="margin-top: 70px;">
                     <label class="control-label col-sm-4" for="firstname"><p class="residentInfoStyle">Firstname:</p></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="firstname" placeholder="first name" name="firstName">
+                        <input type="text" class="form-control" id="firstname" placeholder="first name" name="firstName" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">Lastname:</p></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="lastname" placeholder="last name " name="lastName">
+                        <input type="text" class="form-control" id="lastname" placeholder="last name " name="lastName" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="birthdate"><p class="residentInfoStyle">Birthdate:</p></label>
                     <div class="col-sm-8">
-                        <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" name="birthDate" >
+                        <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" name="birthDate" required >
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="sector"><p class="residentInfoStyle">Sector:</p></label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="sector" placeholder="sector number "  name="sector">
+                    <input type="text" class="form-control" id="sector" placeholder="sector number "  name="sector" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="room"><p class="residentInfoStyle">Room:</p></label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="room" placeholder="room number " name="room">
+                    <input type="text" class="form-control" id="room" placeholder="room number " name="room" required>
                     </div>
                 </div>
                 <div class="form-group">
