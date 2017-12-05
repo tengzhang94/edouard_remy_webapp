@@ -110,6 +110,7 @@ class CaregiverController extends CI_Controller {
 
         if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
                 ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+            redirect('caregiverController/resident');
             //$data['success'] = "";
             //$this->parser->parse('navbar_topbar', $data);        
              }
