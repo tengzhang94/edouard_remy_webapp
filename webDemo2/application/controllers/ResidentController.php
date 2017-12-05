@@ -67,6 +67,12 @@ class ResidentController extends CI_Controller {
                 );
         $this->parser->parse('questionpage_new', $data);
     }
+    
+    public function oop()
+    {
+        $data['fontsize']='40';
+        $this->parser->parse('testpage',$data);
+    }
 
     public function topics(){
         $this->Language_model->SetSessionLanguage();
