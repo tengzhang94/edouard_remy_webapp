@@ -403,5 +403,20 @@ class CaregiverController extends CI_Controller {
         $this->Sector_model->addSector($name);
         redirect('CaregiverController/sectorOverview');
     }
+    
+    public function statistics() {
+        $this->load->model('Question_model');
+        
+        for($i = 0; $i <= 11; $i++) {
+            $this->Question_model->getQuestions($i);
+            $topics[$i] = array('topicName' => $this->session->topicName, 
+                'questions' => $this->session->topicQuestions);            
+        }       
+        $data['topics'] = $topics;        
+        $data['title'] = 'Statistics';
+        $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
+        $data['content'] = $this->parser->parse('statistics', $data, true);
+        $this->parser->parse('navbar_topbar', $data);
+    }
 
 }

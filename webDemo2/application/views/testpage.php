@@ -22,12 +22,12 @@ and open the template in the editor.
             <main>
                 <section>
                   
-{content}   {content1}
+{content}   {fontsize}
                 
                     <form method="post" action="changePassword">
                         
                         <div class="form-group" style="height:55px;margin-top: 70px;">
-                    <label class="control-label col-sm-4" for="old password" style=" font-family:  Lato, sans-serif; font-size: 20px;">Old Password:</label>
+                    <label class="control-label col-sm-4" for="old password" style=" font-family:  Lato, sans-serif; font-size:20px;">Old Password:</label>
                     <div class="col-sm-8">
                         <input type="password" class="form-control" id="oldPassword" placeholder="old password"  style="width:75%;margin-top: 5px;margin-left:3px;"name="idCaregiver">
                     </div>

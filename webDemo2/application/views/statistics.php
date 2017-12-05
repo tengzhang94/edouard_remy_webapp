@@ -139,10 +139,12 @@
     </div>
     
     <span class="col-md-6 col-sm-10 col-xs-12">
-        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topic} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{int} </span>
-        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{question1}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{int1} </span>
-        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{question2}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{int2} </span>
-        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{question3}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2 ">{int3} </span>
+        {topics}
+        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{avg} </span>
+        {questions}
+        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{score} </span>  
+        {/questions}
+        {/topics}
     </span>
     <div class="col-md-6  col-sm-10 col-xs-12" id="chartdiv" ></div>
     <script type="text/javascript">
