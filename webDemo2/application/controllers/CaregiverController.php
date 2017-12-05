@@ -38,7 +38,7 @@ class CaregiverController extends CI_Controller {
 
             if ($result) {
                 $this->session->set_userdata('logged_in', 'caregiver');
-                $this->session->set_userdata('dutch', $result[0]->dutch);
+                $this->session->set_userdata('language', $result[0]->lang);
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
@@ -312,11 +312,11 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Event_model');
 
         $result = $this->Event_model->getPersonalInformation();
-        if ($result[0]['dutch'] == '1') {
+        if ($result[0]['lang'] == 'dutch') {
 
             $data['check_dutch'] = 'checked';
             $data['check_english'] = '';
-        } else {
+        } else if($result[0]['lang'] == 'english'){
 
             $data['check_dutch'] = '';
             $data['check_english'] = 'checked';
@@ -358,7 +358,7 @@ class CaregiverController extends CI_Controller {
 
         $data['title'] = 'Caregiver';
         $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
-        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
+        $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
         }
 
@@ -372,7 +372,7 @@ class CaregiverController extends CI_Controller {
 
         $this->load->model('Event_model');
         $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-        $this->session->set_userdata('dutch', $language);
+        $this->session->set_userdata('language', $language);
         redirect('caregiverController/settings');
         }
         elseif($_REQUEST{'cancel1'})

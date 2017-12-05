@@ -10,6 +10,7 @@ class Language_model extends CI_Model {
         parent::__construct();
     }
 
+    /* DEPRECATED FUNCTION
     public function getLanguage() {
         $language;
         switch ($this->session->dutch) {
@@ -25,9 +26,11 @@ class Language_model extends CI_Model {
         }
         return $language;
     }
+     *
+     */
 
     public function getResNavLanguage() {
-        $this->lang->load('ResidentNav_lang', $this->getLanguage());
+        $this->lang->load('ResidentNav_lang', $this->session->language);
         return array(
             'font_size' => lang('res_navbar_font_size'),
             'greater' => lang('res_navbar_bigger_font'),
@@ -38,7 +41,7 @@ class Language_model extends CI_Model {
     }
 
     public function getResQuestionLanguage() {
-        $this->lang->load('ResidentQuestion_lang', $this->getlanguage());
+        $this->lang->load('ResidentQuestion_lang', $this->session->language);
         return array(
             "verybad" => lang('verybad'),
             "bad" => lang('bad'),
@@ -49,7 +52,7 @@ class Language_model extends CI_Model {
     }
 
     public function getResQuestionEndLanguage() {
-        $this->lang->load('ResidentQuestionEndpage_lang', $this->getLanguage());
+        $this->lang->load('ResidentQuestionEndpage_lang', $this->session->language);
         return array(
             'yes' => lang('res_question_end_yes'),
             'no' => lang('res_question_end_no'),
@@ -58,7 +61,7 @@ class Language_model extends CI_Model {
     }
 
     public function getCareLoginLanguage() {
-        $this->lang->load('CaregiverLogin_lang', $this->getLanguage());
+        $this->lang->load('CaregiverLogin_lang', $this->session->language);
         return array(
             'login' => lang('login'),
             'username' => lang('username'),
@@ -68,10 +71,10 @@ class Language_model extends CI_Model {
     }
 
     public function SetSessionLanguage() {
-        if ($this->session->dutch == 1) {
+        if ($this->session->language == 'dutch') {
             $this->session->set_userdata('questionLang', 'qDutch');
             $this->session->set_userdata('topicLang', 'topicDutch');
-        } else {
+        } else if($this->session->language == 'english'){
             $this->session->set_userdata('questionLang', 'qEnglish');
             $this->session->set_userdata('topicLang', 'topicEnglish');
         }

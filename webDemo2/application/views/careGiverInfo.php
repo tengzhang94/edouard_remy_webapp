@@ -33,10 +33,10 @@
                     <label class="control-label col-sm-4" for="language"><p class="residentInfoStyle">Language:</p></label>
                     <div class="col-sm-8">
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="1" {check_dutch}>Dutch
+                        <input type="radio" name="language" value="dutch" {check_dutch}>Dutch
                         </div>
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="0" {check_english}>English
+                        <input type="radio" name="language" value="english" {check_english}>English
                         </div>
                     </div>
                 </div>
