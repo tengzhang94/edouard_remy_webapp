@@ -38,7 +38,7 @@ class CaregiverController extends CI_Controller {
 
             if ($result) {
                 $this->session->set_userdata('logged_in', 'caregiver');
-                $this->session->set_userdata('dutch', $result[0]->dutch);
+                $this->session->set_userdata('language', $result[0]->lang);
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
@@ -110,11 +110,11 @@ class CaregiverController extends CI_Controller {
 
         if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
                 ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+            //$this->addResident();
             redirect('caregiverController/resident');
-            //$data['success'] = "";
-            //$this->parser->parse('navbar_topbar', $data);        
-             }
-/*
+            // form validation is done in HTML, this would actually never redirect
+        
+        /*
         $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
         if ($this->input->post('firstName')==NULL) {
                 $firstNameErr = "First name is required";
@@ -138,16 +138,14 @@ class CaregiverController extends CI_Controller {
                 $roomNrErr = "Room number is required";
                 echo $roomNrErr;
         } 
-*/
+*/        
+             }
+
         else {
             $this->load->model('AddResident_model');
             if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
                 $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr);
                 redirect('caregiverController/resident');
-                //return to the resident page
-                
-                //$data['success'] = "Success!";
-                //$this->parser->parse('navbar_topbar', $data);
             } else {
                 $data['success'] = "This resident already exists!";
                 $this->parser->parse('navbar_topbar', $data);
@@ -312,11 +310,11 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Event_model');
 
         $result = $this->Event_model->getPersonalInformation();
-        if ($result[0]['dutch'] == '1') {
+        if ($result[0]['lang'] == 'dutch') {
 
             $data['check_dutch'] = 'checked';
             $data['check_english'] = '';
-        } else {
+        } else if($result[0]['lang'] == 'english'){
 
             $data['check_dutch'] = '';
             $data['check_english'] = 'checked';
@@ -358,7 +356,7 @@ class CaregiverController extends CI_Controller {
 
         $data['title'] = 'Caregiver';
         $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
-        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
+        $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
         }
 
@@ -372,7 +370,7 @@ class CaregiverController extends CI_Controller {
 
         $this->load->model('Event_model');
         $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-        $this->session->set_userdata('dutch', $language);
+        $this->session->set_userdata('language', $language);
         redirect('caregiverController/settings');
         }
         elseif($_REQUEST{'cancel1'})

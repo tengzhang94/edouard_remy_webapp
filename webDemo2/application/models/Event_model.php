@@ -51,7 +51,7 @@ class Event_model extends CI_Model {
          $idCaregiver = $this->session->userdata('idCaregiver');
          
         $data = array(
-        'dutch' =>$language,
+        'lang' =>$language,
         'email' =>$email,
         'firstName' =>$firstName,
         'lastName' =>$lastName,   
