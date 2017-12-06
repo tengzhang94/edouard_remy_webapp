@@ -406,12 +406,15 @@ class CaregiverController extends CI_Controller {
     
     public function statistics() {
         $this->load->model('Question_model');
+        $scores = $this->Question_model->getScores('de Zonnebloem');
         
         for($i = 0; $i <= 11; $i++) {
             $this->Question_model->getQuestions($i);
             $topics[$i] = array('topicName' => $this->session->topicName, 
-                'questions' => $this->session->topicQuestions);            
-        }       
+                'questions' => $this->session->topicQuestions,
+                'avg' => $scores[$i]);            
+        } 
+        
         $data['topics'] = $topics;        
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
