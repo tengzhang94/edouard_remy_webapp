@@ -36,7 +36,7 @@ class Residentpage_model extends CI_Model {
         else
             $data['roomNr'] = "not set";
         $data['birthday'] = $resident->birthDate;
-        $data['language'] = $resident->lang;
+        $data['language'] = $resident->dutch ? "Dutch" : "English";
         $data['married'] = $resident->married ? "yes" : "no";
         $data['children'] = $resident->children;
         $data['notes'] = $this->Residentpage_model->getResidentNotes($this->session->resident_id);
@@ -69,6 +69,24 @@ class Residentpage_model extends CI_Model {
     public function getResidentNonUrgProblems($id) {
         $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 0");
         return $query->result_array();
+    }
+    
+    public function addResidentUrgProblems($id,$text) {
+           $data = array(
+            'Resident_idResident' => $id,
+            'urgent' => 0,
+            'text' => $text,                 
+        ); 
+        $this->db->insert('Problems', $data);
+    }
+    
+    public function addResidentNonUrgProblems($id,$text) {
+           $data = array(
+            'Resident_idResident' => $id,
+            'urgent' => 1,
+            'text' => $text,                 
+        ); 
+        $this->db->insert('Problems', $data);
     }
 
 }
