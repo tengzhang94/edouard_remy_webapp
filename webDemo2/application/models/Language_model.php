@@ -6,29 +6,6 @@
 
 class Language_model extends CI_Model {
 
-    public function __construct() {
-        parent::__construct();
-    }
-
-    /* DEPRECATED FUNCTION
-    public function getLanguage() {
-        $language;
-        switch ($this->session->dutch) {
-            case 1:
-                $language = 'dutch';
-                break;
-            case 0:
-                $language = 'english';
-                break;
-            default:
-                $language = 'dutch';
-                break;
-        }
-        return $language;
-    }
-     *
-     */
-
     public function getResNavLanguage() {
         $this->lang->load('ResidentNav_lang', $this->session->language);
         return array(
@@ -69,7 +46,105 @@ class Language_model extends CI_Model {
             'goto_resident' => lang('goto_resident')
         );
     }
+    
+    public function getAddResidentLanguage(){
+        $this->lang->load('AddResident_lang', $this->session->language);
+        return array(
+            "uploadPhoto" => lang('addRes_uploadPhoto'),
+            "firstName" => lang('addRes_firstName'),
+            "lastName" => lang("addRes_lastName"),
+            "birthDate" => lang("addRes_birthDate"),
+            "sector" => lang("addRes_sector"),
+            "room" => lang("addRes_room"),
+            "gender" => lang("addRes_gender"),
+            "male" => lang("addRes_male"),
+            "female" => lang("addRes_female"),
+            "married" => lang("addRes_married"),
+            "children" => lang("addRes_children"),
+            "yes" => lang("addRes_yes"),
+            "no" => lang("addRes_no")
+        );
+    }
+    
+    public function getCaregiverInfoLanguage(){
+        $this->lang->load('CaregiverInfo_lang', $this->session->language);
+        return array(
+            "firstName" => lang("CareInfo_firstName"),
+            "lastName" => lang("CareInfo_lastName"),
+            "email" => lang("CareInfo_email"),
+            "language" => lang("CareInfo_language"),
+            "dutch" => lang("CareInfo_dutch"),
+            "english" => lang("CareInfo_english"),
+            "submit" => lang("CareInfo_submit"),
+            "cancel" => lang("CareInfo_cancel"),
+            "changePassword" => lang("CareInfo_changePassword"),
+            "close" => lang("CareInfo_sluiten"),
+            "oldPassword" => lang("CareInfo_oldPassword"),
+            "newPassword" => lang("CareInfo_newPassword"),
+            "confirmPassword" => lang("CareInfo_confirmPassword")
+        );
+    }
+    
+    public function getIndivResLanguage(){
+        $this->lang->load('IndivResident_lang', $this->session->language);
+        return array(
+            "room" => lang("IndivRes_room"),
+            "sector" => lang("IndivRes_sector"),
+            "language" => lang("IndivRes_language"),
+            "birthDate" => lang("IndivRes_birthDate"),
+            "gender" => lang("IndivRes_gender"),
+            "married" => lang("IndivRes_married"),
+            "children" => lang("IndivRes_children"),
+            "notes" => lang("IndivRes_notes"),
+            "scores" => lang("IndivRes_scores"),
+            "issues" => lang("IndivRes_issues"),
+            "shortTerm" => lang("IndivRes_shortTerm"),
+            "longTerm" => lang("IndivRes_longTerm")
+        );
+    }
+    
+    public function getSectorOverviewLanguage(){
+        $this->lang->load('SectorOverview_lang', $this->session->language);
+        return array(
+            "addSector" => lang("SectorOverview_addSector"),
+            "residents" => lang("SectorOverview_residents")
+        );
+    }
+    
+    public function getSettingsLanguage(){
+        $this->lang->load('Settings_lang', $this->session->language);
+        return array(
+            "personal" => lang("Settings_personal"),
+            "settings" => lang("Settings_settings"),
+            "questionnaire1" => lang("Settings_questionnaire1"),
+            "questionnaire2" => lang("Settings_questionnaire2"),
+            "groups1" => lang("Settings_groups1"),
+            "groups2" => lang("Settings_groups2")
+        );
+    }
 
+    public function getStatisticsLanguage(){
+        $this->lang->load('Statistics_lang', $this->session->language);
+        return array(
+            "chooseSectors" => lang("stats_chooseSectors")
+        );
+    }
+    
+    public function getDashboardLanguage(){
+        $this->lang->load('Dashboard_lang', $this->session->language);
+        return array(
+            "avgActivity" => lang("dashboard_avgActivity"),
+            "avgScore" => lang("dashboard_avgScore")
+        );
+    }
+    
+    public function getUploadLanguage(){
+        $this->lang->load('Upload_lang', $this->session->language);
+        return array(
+            "success" => lang("upload_success"),
+        );
+    }
+    
     public function SetSessionLanguage() {
         if ($this->session->language == 'dutch') {
             $this->session->set_userdata('questionLang', 'qDutch');
@@ -80,5 +155,7 @@ class Language_model extends CI_Model {
         }
         return;
     }
+    
+    
 
 }
