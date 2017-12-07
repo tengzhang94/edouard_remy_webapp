@@ -407,10 +407,10 @@ class CaregiverController extends CI_Controller {
         $scores = $this->Question_model->getScores('de Zonnebloem');
         
         for($i = 0; $i <= 11; $i++) {
-            $this->Question_model->getQuestions($i);
+            $this->Question_model->getQuestions($i);            
             $topics[$i] = array('topicName' => $this->session->topicName, 
-                'questions' => $this->session->topicQuestions,
-                'avg' => $scores[$i]);            
+                'questions' => $this->session->topicQuestions, $scores['question_avgs'][$i], //Both topicQuestions and 'question_avgs' need to be parsed in {questions}
+                't_avg' => $scores['topic_avg'][$i]);          
         } 
         
         $data['topics'] = $topics;        
