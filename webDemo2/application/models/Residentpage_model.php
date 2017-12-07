@@ -62,12 +62,12 @@ class Residentpage_model extends CI_Model {
     }
     
     public function getResidentUrgProblems($id) {
-        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
+        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
         return $query->result_array();
     }
     
     public function getResidentNonUrgProblems($id) {
-        $query = $this->db->query("SELECT text FROM Problems WHERE Resident_idResident = $id AND urgent = 0");
+        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = $id AND urgent = 0");
         return $query->result_array();
     }
     
@@ -88,5 +88,13 @@ class Residentpage_model extends CI_Model {
         ); 
         $this->db->insert('Problems', $data);
     }
+    
+    function deleteProblems($ids) {
+        foreach($ids as $id) {
+            $this->db->where('idProblem', $id);
+            $this->db->delete('Problems');
+        }
+    }
+
 
 }

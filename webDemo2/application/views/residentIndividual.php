@@ -7,7 +7,9 @@
                     class="infoTitleTxt">Kamer {roomNr}</span>
             </span><span id="residentContent"><span id="sector" class="infoTxt">Afdeling: {sector}</span><span id="language" class="infoTxt">Taal: {language}</span><span id="birthday" class="infoTxt">Geboortedatum: {birthday}</span>
                 <span
-                    id="gender" class="infoTxt">Geslacht: {gender}</span><span id="isMarried" class="infoTxt">Getrouwd: {married}</span><span id="children" class="infoTxt">Kinderen: {children}</span></span><span id="residentNotes"><span id="notesTitle">Notities <button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button><button class="btn btn-default" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd"></button></span>
+                    id="gender" class="infoTxt">Geslacht: {gender}</span><span id="isMarried" class="infoTxt">Getrouwd: {married}</span><span id="children" class="infoTxt">Kinderen: {children}</span></span><span id="residentNotes"><span id="notesTitle">Notities 
+                            <button class="btn btn-default removeBtn" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>
+                            <button class="btn btn-default addBtn" type="button" id="addBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd"></button></span>
                 {notes}
                 <span class="infoTxt">{text}</span>
                 {/notes}
@@ -38,17 +40,23 @@
             </div>            
         </div>
         <div class="row" id="personalProblems" {problems_hidden}>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn <button class="btn btn-default" type="submit" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>
-                    <button class="btn btn-default" type="submit" id="addBtn1"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn 
+                  
+                    <button class="btn btn-default removeBtn " type="submit" id="removeBtnNonUrg" form="deleteNonUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>
+                    <button class="btn btn-default addBtn" type="submit" id="addBtn1"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
                     class="space"> </span>
-                {nonUrgProbs}
-                <div class="line">
-                    <label>
-                        <input type="checkbox" /><span class="checkmark"></span></label>
-                    <div class="message">{text}</div>
-                </div>
-                {/nonUrgProbs}
+                    
+                <form  action="deleteProblems" method="post" id="deleteNonUrgPro">
+                    {nonUrgProbs}
+                    <div class="line">
+                        <label>
+                            <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
+                        <div class="message">{text}</div>
+                    </div>
+                    {/nonUrgProbs}
+                </form>
+                
                 <form method="post" action="addNonUrgProbs">
                     <input name="nonUrgProb" class = "text" id="inputBlock1" style="display:none">
                     <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
@@ -56,17 +64,22 @@
                 
              
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle"><button class="btn btn-default" type="button" id="removeBtn"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
-                    <button class="btn btn-default" type="button" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle">
+                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
+                    <button class="btn btn-default addBtn" type="submit" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
                     class="space"> </span>
+                    
+                <form  action="deleteProblems" method="post" id="deleteUrgPro">
                 {urgProbs}
                 <div class="line">
                     <label>
-                        <input type="checkbox" /><span class="checkmark"></span></label>
+                        <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
                     <div class="message">{text}</div>
                 </div>
                 {/urgProbs}
+               </form>        
+                
                 <form method="post" action="addUrgProbs">
                     <input name="urgProb" class = "text" id="inputBlock2" style="display:none; width:400px">
                     <button type="submit" id="urgProb_submit" style="display: none"></button>

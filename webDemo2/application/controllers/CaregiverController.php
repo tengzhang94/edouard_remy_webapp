@@ -308,6 +308,7 @@ class CaregiverController extends CI_Controller {
         $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
         $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+
         
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
@@ -446,6 +447,13 @@ class CaregiverController extends CI_Controller {
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
+    }
+    
+     public function deleteProblems() {
+        $ids = $this->input->post('delete_problem');
+        $this->load->model('Residentpage_model');
+        $this->Residentpage_model->deleteProblems($ids);
+        redirect('CaregiverController/residentProblems');
     }
     
    
