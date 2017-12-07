@@ -38,7 +38,7 @@ class CaregiverController extends CI_Controller {
 
             if ($result) {
                 $this->session->set_userdata('logged_in', 'caregiver');
-                $this->session->set_userdata('dutch', $result[0]->dutch);
+                $this->session->set_userdata('language', $result[0]->lang);
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
@@ -60,7 +60,8 @@ class CaregiverController extends CI_Controller {
         }
 
         //Parse the html document
-        $data = array('messages' => $messages);
+        $data = $this->Language_model->getDashboardLanguage();
+        $data['messages'] = $messages;
 
         $data['title'] = 'Homepage';    //Fill in title for the page
         $data['menu'] = $this->Menu_model->get_menuitems('Homepage');   //Get all the menu items and set the right one as active        
@@ -77,6 +78,7 @@ class CaregiverController extends CI_Controller {
 
     public function settings() {
         $this->session->set_userdata('passwordCondition', 'begin');
+        $data = $this->Language_model->getSettingsLanguage();
         $data['title'] = 'Settings';
         $data['menu'] = $this->Menu_model->get_menuitems('Settings');
         $data['content'] = $this->parser->parse('settings', $data, true);
@@ -94,6 +96,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function addResident() {   // just to load the page addr\Resident
+        $data = $this->Language_model->getAddResidentLanguage();
         $data['title'] = 'Resident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
@@ -165,7 +168,7 @@ class CaregiverController extends CI_Controller {
     public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
-
+        
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
@@ -174,7 +177,7 @@ class CaregiverController extends CI_Controller {
 
     public function searchResident() {
         $this->load->model('Residentpage_model');
-
+        
         $name = $this->input->post('inputName');
         $data['residents'] = $this->Residentpage_model->getResidentsBySearch($name);
 
@@ -185,11 +188,12 @@ class CaregiverController extends CI_Controller {
     }
 
     public function residentIndividual() {
+        $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Residentpage_model');
         if (null != $this->input->post("resident_id"))
             $this->session->set_userdata('resident_id', $this->input->post("resident_id"));
         $resident_id = $this->session->resident_id;
-        $resident = $this->Residentpage_model->getResidentWithId($resident_id);
+        $resident = array_merge($data, $this->Residentpage_model->getResidentWithId($resident_id));
         $resident['scores_hidden'] = '';
         $resident['problems_hidden'] = 'hidden';
         $resident['scores_active'] = "active navBtn";
@@ -311,15 +315,15 @@ class CaregiverController extends CI_Controller {
     }
 
     public function getPersonalInformation() {
+        $data = $this->Language_model->getCaregiverInfoLanguage();
         $this->load->model('Event_model');
-
+        
         $result = $this->Event_model->getPersonalInformation();
-        if ($result[0]['dutch'] == '1') {
-
+        if ($result[0]['lang'] == 'dutch') {
             $data['check_dutch'] = 'checked';
             $data['check_english'] = '';
-        } else {
-
+        } 
+        else if($result[0]['lang'] == 'english'){
             $data['check_dutch'] = '';
             $data['check_english'] = 'checked';
         }
@@ -363,7 +367,7 @@ class CaregiverController extends CI_Controller {
 
             $this->load->model('Event_model');
             $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-            $this->session->set_userdata('dutch', $language);
+            $this->session->set_userdata('language', $language);
             redirect('caregiverController/settings');
         } elseif ($_REQUEST{'cancel1'}) {
             redirect('caregiverController/settings');
@@ -371,6 +375,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function sectorOverview() {
+        $data = $this->Language_model->getSectorOverviewLanguage();
         $this->load->model('Sector_model');
         $sectors = $this->Sector_model->getAllSectorInfos();
 
@@ -393,6 +398,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function statistics() {
+        $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $scores = $this->Question_model->getScores('de Zonnebloem');
         for ($i = 0; $i <= 11; $i++) {

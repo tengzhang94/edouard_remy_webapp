@@ -5,13 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ResidentController extends CI_Controller {
     
     private $language;
-    private $navLanArray;
+    private $navLangArray;
     
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
         $this->load->model('Language_model');
-        $this->navLanArray = $this->Language_model->getResNavLanguage();
+        $this->navLangArray = $this->Language_model->getResNavLanguage();
     }
     
     public function question($questionNr) {
@@ -62,7 +62,7 @@ class ResidentController extends CI_Controller {
             "question" => $question,
             "hiddenQuestionNr" => $hiddenQuestionNr
                 ),
-                $this->navLanArray,
+                $this->navLangArray,
                 $this->Language_model->getResQuestionLanguage()
                 );
         $this->parser->parse('questionpage_new', $data);
@@ -83,7 +83,7 @@ class ResidentController extends CI_Controller {
         foreach($topicsChunks as $topicRow){
             $templateData = array_merge(array(
                 'paragraph' => $topicRow
-            ),$this->navLanArray);
+            ),$this->navLangArray);
             $tempString = $this->parser->parse('topicTemplate', $templateData, true);
             $htmlString .= $tempString; 
         }
@@ -91,7 +91,7 @@ class ResidentController extends CI_Controller {
         $data = array_merge(array(
             "topicButtons" => $htmlString,
             "name" => $this->session->name
-        ),$this->navLanArray);
+        ),$this->navLangArray);
         
        $font_size = $this->session->userdata('font_size');
             if($font_size=='great')
@@ -130,7 +130,7 @@ class ResidentController extends CI_Controller {
     public function end(){
         $this->lang->load('ResidentQuestionEndpage_lang', $this->language);
         $data = array_merge($this->Language_model->getResQuestionEndLanguage(),
-        $this->navLanArray);
+        $this->navLangArray);
         $font_size = $this->session->userdata('font_size');
            if($font_size=='great')
         {
