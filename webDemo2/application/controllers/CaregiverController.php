@@ -38,7 +38,7 @@ class CaregiverController extends CI_Controller {
 
             if ($result) {
                 $this->session->set_userdata('logged_in', 'caregiver');
-                $this->session->set_userdata('language', $result[0]->lang);
+                $this->session->set_userdata('dutch', $result[0]->dutch);
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
@@ -55,7 +55,7 @@ class CaregiverController extends CI_Controller {
         $result = $this->Dashboard_model->getMessages(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
         for ($i = 0; $i < count($result); $i++) {
-            $temp = array('messageText' => $result[$i]['messageText']);
+            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idMessage']);
             array_push($messages, $temp);
         }
 
@@ -66,6 +66,13 @@ class CaregiverController extends CI_Controller {
         $data['menu'] = $this->Menu_model->get_menuitems('Homepage');   //Get all the menu items and set the right one as active        
         $data['content'] = $this->parser->parse('dashDemo', $data, true);   //parse messages into dashboard page
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
+    }
+    
+    public function deleteMessages() {
+        $ids = $this->input->post('delete_list');
+        $this->load->model('Dashboard_model');
+        $this->Dashboard_model->deleteMessages($ids);
+        redirect('CaregiverController/home');
     }
 
     public function settings() {
@@ -110,11 +117,11 @@ class CaregiverController extends CI_Controller {
 
         if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
                 ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
-            //$this->addResident();
             redirect('caregiverController/resident');
-            // form validation is done in HTML, this would actually never redirect
-        
-        /*
+            //$data['success'] = "";
+            //$this->parser->parse('navbar_topbar', $data);        
+             }
+/*
         $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
         if ($this->input->post('firstName')==NULL) {
                 $firstNameErr = "First name is required";
@@ -138,14 +145,16 @@ class CaregiverController extends CI_Controller {
                 $roomNrErr = "Room number is required";
                 echo $roomNrErr;
         } 
-*/        
-             }
-
+*/
         else {
             $this->load->model('AddResident_model');
             if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
                 $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr);
                 redirect('caregiverController/resident');
+                //return to the resident page
+                
+                //$data['success'] = "Success!";
+                //$this->parser->parse('navbar_topbar', $data);
             } else {
                 $data['success'] = "This resident already exists!";
                 $this->parser->parse('navbar_topbar', $data);
@@ -299,22 +308,45 @@ class CaregiverController extends CI_Controller {
         $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
         $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+
         
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
+    
+     public function addNonUrgProbs(){
+         $text=$this->input->post('nonUrgProb');
+         
+        $this->load->model('Residentpage_model');        
+        $resident_id = $this->session->resident_id;
+       $this->Residentpage_model->addResidentUrgProblems($resident_id,$text);
+        redirect('caregiverController/residentProblems');
+      
+    }
+    
+     public function addUrgProbs(){
+         $text=$this->input->post('urgProb');
+         
+        $this->load->model('Residentpage_model');        
+        $resident_id = $this->session->resident_id;
+         $this->Residentpage_model->addResidentNonUrgProblems($resident_id,$text);
+       
+        redirect('caregiverController/residentProblems');
+      
+    }
+
 
     public function getPersonalInformation() {
         $this->load->model('Event_model');
 
         $result = $this->Event_model->getPersonalInformation();
-        if ($result[0]['lang'] == 'dutch') {
+        if ($result[0]['dutch'] == '1') {
 
             $data['check_dutch'] = 'checked';
             $data['check_english'] = '';
-        } else if($result[0]['lang'] == 'english'){
+        } else {
 
             $data['check_dutch'] = '';
             $data['check_english'] = 'checked';
@@ -356,7 +388,7 @@ class CaregiverController extends CI_Controller {
 
         $data['title'] = 'Caregiver';
         $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
-        $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
+        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
         $this->parser->parse('navbar_topbar', $data);
         }
 
@@ -370,7 +402,7 @@ class CaregiverController extends CI_Controller {
 
         $this->load->model('Event_model');
         $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-        $this->session->set_userdata('language', $language);
+        $this->session->set_userdata('dutch', $language);
         redirect('caregiverController/settings');
         }
         elseif($_REQUEST{'cancel1'})
@@ -405,12 +437,11 @@ class CaregiverController extends CI_Controller {
     public function statistics() {
         $this->load->model('Question_model');
         $scores = $this->Question_model->getScores('de Zonnebloem');
-        
         for($i = 0; $i <= 11; $i++) {
-            $this->Question_model->getQuestions($i);
+            $this->Question_model->getQuestions($i);            
             $topics[$i] = array('topicName' => $this->session->topicName, 
-                'questions' => $this->session->topicQuestions,
-                'avg' => $scores[$i]);            
+                'questions' => $this->session->topicQuestions, $scores['question_avgs'][$i], //Both topicQuestions and 'question_avgs' need to be parsed in {questions}
+                't_avg' => $scores['topic_avg'][$i]);          
         } 
         
         $data['topics'] = $topics;        
@@ -419,5 +450,13 @@ class CaregiverController extends CI_Controller {
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
-
+    
+     public function deleteProblems() {
+        $ids = $this->input->post('delete_problem');
+        $this->load->model('Residentpage_model');
+        $this->Residentpage_model->deleteProblems($ids);
+        redirect('CaregiverController/residentProblems');
+    }
+    
+   
 }

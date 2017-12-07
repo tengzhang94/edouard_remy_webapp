@@ -9,7 +9,7 @@
         <button class="btn btn-default" type="button" onclick="getSectorInfo({idSector})"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
             <input type="text" style="display: none"/>
             <div class="sectorName">{name}</div>
-            <div class="residentCount">{residentCount} {residentLang} {idSector}</div>
+            <div class="residentCount">{residentCount}</div>
         </button>
         <button class="btn btn-default deleteSectorButton" type="button" onclick="removeSector({idSector})">
             <svg class="deleteSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 100 100">
@@ -32,7 +32,6 @@
         </button>
     </div>
     {/sectors}
-    
 </div>
 
 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">

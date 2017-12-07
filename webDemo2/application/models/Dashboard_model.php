@@ -34,5 +34,12 @@ class Dashboard_model extends CI_Model {
         $sectorIds = Dashboard_model::getCaregiverSectors();
         return Dashboard_model::getAllMessagesFromSectors($sectorIds);
     }
+    
+    function deleteMessages($ids) {
+        foreach($ids as $id) {
+            $this->db->where('idMessage', $id);
+            $this->db->delete('Messages');
+        }
+    }
 }
 
