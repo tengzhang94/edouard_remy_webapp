@@ -153,7 +153,7 @@ class ResidentController extends CI_Controller {
             $result = $this->Event_model->loginResident($qrCode);
             if($result){
                 $this->session->set_userdata('logged_in', 'resident');
-                $this->session->set_userdata('dutch', $result[0]->dutch);
+                $this->session->set_userdata('language', $result[0]->lang);
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('id', $result[0]->idResident);
                 $this->session->set_userdata('font_size','small');

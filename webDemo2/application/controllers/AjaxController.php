@@ -31,4 +31,12 @@ class AjaxController extends CI_Controller {
             $this->db->delete('Sectors', array('idSector' => $idSector));
         }
     }
+    
+    public function addResident() {
+        $idSector = $this->input->post('idSector');
+        $firstName = $this->input->post('firstName');
+        $lastName = $this->input->post('lastName');
+        $result = $this->db->query("UPDATE Resident SET Sectors_idSector = '$idSector' WHERE (firstName = '$firstName' AND lastName = '$lastName')");
+        return $result;
+    }
 }

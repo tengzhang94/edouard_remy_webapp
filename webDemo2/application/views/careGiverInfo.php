@@ -1,12 +1,12 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/index.css">   <!--<!--
 </head> -->
-    <div class="row">
+    <div class="row" style="display: flex;flex-direction: column">
          <div class="col-sm-5 col-sm-offset-1 col-xs-12">
             <button class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%"></button>  
  <!--            <image src="http://www.kesato.com/blog/wp-content/uploads/2015/02/Google-Important-Ranking-Factor-2015.jpg" width="500" height="400">   
  -->       </div>
         
-        <form class="form-horizontal" method="post" action="changePersonalInformation">
+        <form class="form-horizontal" method="post" action="changePersonalInformation" style="margin-left: 50%">
            
             <div class="col-sm-6 col-xs-12">
                 
@@ -33,10 +33,10 @@
                     <label class="control-label col-sm-4" for="language"><p class="residentInfoStyle">Language:</p></label>
                     <div class="col-sm-8">
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="1" {check_dutch}>Dutch
+                        <input type="radio" name="language" value="dutch" {check_dutch}>Dutch
                         </div>
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="0" {check_english}>English
+                        <input type="radio" name="language" value="english" {check_english}>English
                         </div>
                     </div>
                 </div>

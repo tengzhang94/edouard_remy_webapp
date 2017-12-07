@@ -12,22 +12,62 @@ function getSectorInfo(idSector) {
         url: base_url + "index.php/AjaxController/getSectorInfo",
         data: {'idSector': idSector},
         dataType: 'json',
-        success: function(data){
-            console.log(data);
+        success: function(data){   
             if(data){
-                $.each(data, function(id, info){
-                    var div = document.createElement('div');
-                    div.innerHTML = info.firstName + " " + info.lastName;
-                    list.appendChild(div);
-                });
+                for(i in data) {
+                        var div = document.createElement('div');
+                        div.classList.add("message");
+                        div.innerHTML = data[i].firstName + " " + data[i].lastName;
+                        list.appendChild(div);
+                }
             }
+            var input = document.createElement('div');
+            input.classList.add("message");
+            input.innerHTML = '<div ondblclick="makeInput(' + idSector + ')" >Double click to add resident to this sector</div>';
+            list.appendChild(input);
+            
         },   
         error: function(){
             var div = document.createElement('div');
-                    div.innerHTML = "There are no residents in this group";
-                    list.appendChild(div);
+            div.innerHTML = "There are no residents in this group"
+            list.appendChild(div);
+            var input = document.createElement('div');
+            input.classList.add("message");
+            input.innerHTML = '<div ondblclick="makeInput(' + idSector + ')" >Double click to add resident to this sector</div>';
+            list.appendChild(input);
         }
     });
+}
+
+function makeInput(idSector){
+    var list = document.getElementById('residentList');
+    //Clear lastchild and insert form
+    list.removeChild(list.lastChild);
+    var div = document.createElement('div');
+    div.classList.add("message");
+    div.innerHTML = '<form class="form-horizontal" onsubmit="addResident(' + idSector + ')">\
+                        <input type="submit" style="display: none" />\
+                        <div class="control-group">\
+                            <div class="controls form-inline">\
+                                <input type="text" class="input-small" placeholder="First Name" id="firstName">\
+                                <input type="text" class="input-small" placeholder="Last Name" id="lastName">\
+                            </div>\
+                        </div>\
+                    </form>';
+    list.appendChild(div);
+}
+
+function addResident(idSector) {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    
+    jQuery.ajax({
+        type: 'POST',
+        url: base_url + "index.php/AjaxController/addResident",
+        data: {'idSector': idSector, 'firstName': firstName, 'lastName': lastName},
+        dataType: 'json'
+    });
+    setTimeout(getSectorInfo(idSector), 100);
 }
 
 function createSectorForm() {

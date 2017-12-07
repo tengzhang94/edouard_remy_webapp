@@ -140,9 +140,9 @@
     
     <span class="col-md-6 col-sm-10 col-xs-12">
         {topics}
-        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{avg} </span>
+        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>
         {questions}
-        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{score} </span>  
+        <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{avg} </span>  
         {/questions}
         {/topics}
     </span>
