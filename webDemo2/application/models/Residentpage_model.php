@@ -48,6 +48,12 @@ class Residentpage_model extends CI_Model {
         return $query->result_array();
     }
     
+    public function addResidentNotes($note){
+        if($note != NULL) {
+        $this->db->insert('Notes', array('text' => $note));
+        }
+    }
+    
     public function getResidentFromSector($sectorId){
         $query = $this->db->query("SELECT * FROM Resident WHERE Sectors_idSector = $sectorId");
         return $query->result_array();

@@ -220,7 +220,16 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $resident);
     }
     
-   
+   public function addNewNote(){    //CANNOT SUCCESSFULLY INSERT
+       $this->load->model('Residentpage_model');
+       $newNote= $this->input->post('newNote');
+       $result=$this->Residentpage_model->addResidentNotes($newNote);
+       if($result){}
+       else{
+       redirect('caregiverController/residentIndividual');
+       }
+       
+   }
 
 
     public function changePassword()
@@ -305,6 +314,8 @@ class CaregiverController extends CI_Controller {
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
+    
+   
 
     public function getPersonalInformation() {
         $this->load->model('Event_model');

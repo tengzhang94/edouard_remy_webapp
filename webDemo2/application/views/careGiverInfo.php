@@ -56,7 +56,7 @@
          <form method="post" action="changePassword">
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:800px;">
-                 <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
+                <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
                     <a class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%;text-align: center;" >Change Password</a>
                     <div class="modal fade" id="loginModal" style="display:none;">
                             <div class="modal-dialog modal-sm" style="width:540px;">
@@ -67,18 +67,15 @@
                                             </div>
                                             <div class="modal-body">
                                                     <section class="box-login v5-input-txt" id="box-login">
-                                                            
-                                                                <ul>
+                                                    <ul>
                                                                      <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_3" name="password_old" placeholder="Old Password" type="password"></li>
                                                                         <li class="form-group" style="margin-left: 4%; margin-right: 4%"><input class="form-control" id="id_password_l" maxlength="50" name="password_new" placeholder="New Password" type="password"></li>
                                                                         <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_2" name="password_confirm" placeholder="Confirm Password" type="password"></li>
-                                                                </ul>
-                                                            
-                                                                <div class="login-box marginB10">
+                                                    </ul>
+                                                    <div class="login-box marginB10">
                                                                     <button class="btn-confirm"id="login_btn"  name="submit3" type="submit" class="btn btn-micv5 btn-block globalLogin" style="width:92%">Submit</button>
-                                                                        <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">Alert</div>
-                                                                </div>
-                                                           
+                                                                    <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">Alert</div>
+                                                    </div>
                                                     </section>
                                             </div>
                                     </div>
