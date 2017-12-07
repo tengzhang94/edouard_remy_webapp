@@ -67,7 +67,7 @@ class CaregiverController extends CI_Controller {
         $data['content'] = $this->parser->parse('dashDemo', $data, true);   //parse messages into dashboard page
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
-    
+
     public function deleteMessages() {
         $ids = $this->input->post('delete_list');
         $this->load->model('Dashboard_model');
@@ -86,7 +86,7 @@ class CaregiverController extends CI_Controller {
     public function selectTopic() {
         redirect('ResidentController/Topics');
     }
-    
+
     public function insert() {
         $this->load->model('Event_model');
         $content = $this->parser->parse('content_test', $results, true);
@@ -98,98 +98,91 @@ class CaregiverController extends CI_Controller {
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
         $this->parser->parse('navbar_topbar', $data);
-        }
-    
-    public function addResidentConfirm(){  //post the new resident info and return to resident overview page
-        if($_REQUEST['submit1']){
-            
-        $firstName = $this->input->post('firstName');
-        $lastName  = $this->input->post('lastName');
-        $birthDate = $this->input->post('birthDate');
-        $idSector  = $this->input->post('sector');
-        $roomNr  = $this->input->post('room');
-        $gender  = $this->input->post('gender');
-        $married = $this->input->post('married');
-        $children  = $this->input->post('children');
-        
-        //$this->form_validation->set_rules('firstName', 'First name', 'trim|required', array('required' => 'Fill in %s'));
-        //$this->form_validation->set_rules('lastName', 'Last name', 'trim|required', array('required' => 'Fill in %s'));        
+    }
 
-        if ($this->input->post('firstName') == NULL ||$this->input->post('lastName') == NULL||$this->input->post('birthDate') == NULL
-                ||$this->input->post('sector') == NULL||$this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
-            redirect('caregiverController/resident');
-            //$data['success'] = "";
-            //$this->parser->parse('navbar_topbar', $data);        
-             }
-/*
-        $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
-        if ($this->input->post('firstName')==NULL) {
-                $firstNameErr = "First name is required";
-                echo $firstNameErr;
-        } 
-        if ($this->input->post('lastName')==NULL) {
-                $lastNameErr = "Last name is required";
-                echo $lastNameErr;
-        } 
-    
-        if ($this->input->post('birthDate')==NULL) {
-                $birthDateErr = "Birth date is required";
-                echo $birthDateErr;
-        } 
+    public function addResidentConfirm() {  //post the new resident info and return to resident overview page
+        if ($_REQUEST['submit1']) {
 
-        if ($this->input->post('sector')==NULL) {
-                $idSectorErr = "ID of sector is required";
-                echo $idSectorErr;
-        }
-        if ($this->input->post('room')==NULL) {
-                $roomNrErr = "Room number is required";
-                echo $roomNrErr;
-        } 
-*/
-        else {
-            $this->load->model('AddResident_model');
-            if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-                $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr);
+            $firstName = $this->input->post('firstName');
+            $lastName = $this->input->post('lastName');
+            $birthDate = $this->input->post('birthDate');
+            $idSector = $this->input->post('sector');
+            $roomNr = $this->input->post('room');
+            $gender = $this->input->post('gender');
+            $married = $this->input->post('married');
+            $children = $this->input->post('children');
+
+            //$this->form_validation->set_rules('firstName', 'First name', 'trim|required', array('required' => 'Fill in %s'));
+            //$this->form_validation->set_rules('lastName', 'Last name', 'trim|required', array('required' => 'Fill in %s'));        
+
+            if ($this->input->post('firstName') == NULL || $this->input->post('lastName') == NULL || $this->input->post('birthDate') == NULL || $this->input->post('sector') == NULL || $this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
                 redirect('caregiverController/resident');
-                //return to the resident page
-                
-                //$data['success'] = "Success!";
-                //$this->parser->parse('navbar_topbar', $data);
-            } else {
-                $data['success'] = "This resident already exists!";
-                $this->parser->parse('navbar_topbar', $data);
+                //$data['success'] = "";
+                //$this->parser->parse('navbar_topbar', $data);        
             }
-        }
-        }
-          
-        elseif($_REQUEST['return1']){
-           redirect('caregiverController/resident');
+            /*
+              $firstNameErr = $lastNameErr = $birthDateErr = $idSectorErr =$roomNrErr="";
+              if ($this->input->post('firstName')==NULL) {
+              $firstNameErr = "First name is required";
+              echo $firstNameErr;
+              }
+              if ($this->input->post('lastName')==NULL) {
+              $lastNameErr = "Last name is required";
+              echo $lastNameErr;
+              }
+
+              if ($this->input->post('birthDate')==NULL) {
+              $birthDateErr = "Birth date is required";
+              echo $birthDateErr;
+              }
+
+              if ($this->input->post('sector')==NULL) {
+              $idSectorErr = "ID of sector is required";
+              echo $idSectorErr;
+              }
+              if ($this->input->post('room')==NULL) {
+              $roomNrErr = "Room number is required";
+              echo $roomNrErr;
+              }
+             */ else {
+                $this->load->model('AddResident_model');
+                if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
+                    $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr);
+                    redirect('caregiverController/resident');
+                    //return to the resident page
+                    //$data['success'] = "Success!";
+                    //$this->parser->parse('navbar_topbar', $data);
+                } else {
+                    $data['success'] = "This resident already exists!";
+                    $this->parser->parse('navbar_topbar', $data);
+                }
+            }
+        } elseif ($_REQUEST['return1']) {
+            redirect('caregiverController/resident');
         }
     }
 
     public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
-        
+
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
+
     public function searchResident() {
         $this->load->model('Residentpage_model');
-          
-        $name=$this->input->post('inputName');
-        $data['residents']=$this->Residentpage_model->getResidentsBySearch($name);
-        
+
+        $name = $this->input->post('inputName');
+        $data['residents'] = $this->Residentpage_model->getResidentsBySearch($name);
+
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
-    
 
     public function residentIndividual() {
         $this->load->model('Residentpage_model');
@@ -200,143 +193,122 @@ class CaregiverController extends CI_Controller {
         $resident['scores_hidden'] = '';
         $resident['problems_hidden'] = 'hidden';
         $resident['scores_active'] = "active navBtn";
-        $resident['problems_active'] = "inactive navBtn";   
-        /*$data['firstName'] = $resident->firstName;
-        $data['lastName'] = $resident->lastName;
-        $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
-        if (isset($sector))
-            $data['sector'] = $sector->name;
-        else
-            $data['sector'] = "not set";
-        $data['gender'] = $resident->gender;
-        if (isset($resident->photo))
-            $data['photo'] = $resident->photo;
-        else
-            $data['photo'] = base_url() . "assets/css/image/placeholder.png";
-        if (isset($resident->roomNr))
-            $data['roomNr'] = $resident->roomNr;
-        else
-            $data['roomNr'] = "not set";
-        $data['birthday'] = $resident->birthDate;
-        $data['language'] = $resident->dutch ? "Dutch" : "English";
-        $data['married'] = $resident->married ? "yes" : "no";
-        $data['children'] = $resident->children;
-        $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
+        $resident['problems_active'] = "inactive navBtn";
+        /* $data['firstName'] = $resident->firstName;
+          $data['lastName'] = $resident->lastName;
+          $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
+          if (isset($sector))
+          $data['sector'] = $sector->name;
+          else
+          $data['sector'] = "not set";
+          $data['gender'] = $resident->gender;
+          if (isset($resident->photo))
+          $data['photo'] = $resident->photo;
+          else
+          $data['photo'] = base_url() . "assets/css/image/placeholder.png";
+          if (isset($resident->roomNr))
+          $data['roomNr'] = $resident->roomNr;
+          else
+          $data['roomNr'] = "not set";
+          $data['birthday'] = $resident->birthDate;
+          $data['language'] = $resident->dutch ? "Dutch" : "English";
+          $data['married'] = $resident->married ? "yes" : "no";
+          $data['children'] = $resident->children;
+          $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
 
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
-   
 
-
-    public function changePassword()
-    {
+    public function changePassword() {
         $this->load->model('Event_model');
-        $password_new=$this->input->post('password_new');
-        $password_confirm=$this->input->post('password_confirm');
-        $password_old=$this->input->post('password_old');
-        
-         $username=$this->session->userdata('name');
-        
+        $password_new = $this->input->post('password_new');
+        $password_confirm = $this->input->post('password_confirm');
+        $password_old = $this->input->post('password_old');
+
+        $username = $this->session->userdata('name');
+
         $result = $this->Event_model->login($username, $password_old);
-        
-        if($result)
-        {
-            if($password_new==NULL||$password_confirm==NULL)
-        {
-                 $this->session->set_userdata('passwordCondition', 'fail1');
-             redirect('caregiverController/getPersonalInformation');
-        }
-        else
-        {
-             if($password_new==$password_confirm)
-        {
-            $this->session->set_userdata('passwordCondition', 'success');
-           $this->Event_model->changePassword($password_confirm);
+
+        if ($result) {
+            if ($password_new == NULL || $password_confirm == NULL) {
+                $this->session->set_userdata('passwordCondition', 'fail1');
+                redirect('caregiverController/getPersonalInformation');
+            } else {
+                if ($password_new == $password_confirm) {
+                    $this->session->set_userdata('passwordCondition', 'success');
+                    $this->Event_model->changePassword($password_confirm);
+                    redirect('caregiverController/getPersonalInformation');
+                } else {
+                    $this->session->set_userdata('passwordCondition', 'fail');
+                    redirect('caregiverController/getPersonalInformation');
+                }
+            }
+        } else {
+            $this->session->set_userdata('passwordCondition', 'oldPassword_wrong');
             redirect('caregiverController/getPersonalInformation');
         }
-        else
-        {
-            $this->session->set_userdata('passwordCondition', 'fail');
-             redirect('caregiverController/getPersonalInformation');
-        }
-        }
-       
-        }
-         else
-         {
-              $this->session->set_userdata('passwordCondition', 'oldPassword_wrong');
-             redirect('caregiverController/getPersonalInformation');
-         }
-                
-        
-        
-        
     }
-    
-    public function residentProblems() {        
-        $this->load->model('Residentpage_model');        
+
+    public function residentProblems() {
+        $this->load->model('Residentpage_model');
         $resident_id = $this->session->resident_id;
         $resident = $this->Residentpage_model->getResidentWithId($resident_id);
         $resident['scores_hidden'] = 'hidden';
         $resident['problems_hidden'] = '';
         $resident['scores_active'] = "inactive navBtn";
-        $resident['problems_active'] = "active navBtn";        
-        /*$resident['firstName'] = $resident->firstName;
-        $resident['lastName'] = $resident->lastName;
-        $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
-        if (isset($sector))
-            $resident['sector'] = $sector->name;
-        else
-            $resident['sector'] = "not set";
-        $resident['gender'] = $resident->gender;
-        if (isset($resident->photo))
-            $resident['photo'] = $resident->photo;
-        else
-            $resident['photo'] = base_url() . "assets/css/image/placeholder.png";
-        if (isset($resident->roomNr))
-            $resident['roomNr'] = $resident->roomNr;
-        else
-            $resident['roomNr'] = "not set";
-        $resident['birthday'] = $resident->birthDate;
-        $resident['language'] = $resident->dutch ? "Dutch" : "English";
-        $resident['married'] = $resident->married ? "yes" : "no";
-        $resident['children'] = $resident->children;
-        $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id);*/
+        $resident['problems_active'] = "active navBtn";
+        /* $resident['firstName'] = $resident->firstName;
+          $resident['lastName'] = $resident->lastName;
+          $sector = $this->Residentpage_model->getSectorWithId($resident->Sectors_idSector);
+          if (isset($sector))
+          $resident['sector'] = $sector->name;
+          else
+          $resident['sector'] = "not set";
+          $resident['gender'] = $resident->gender;
+          if (isset($resident->photo))
+          $resident['photo'] = $resident->photo;
+          else
+          $resident['photo'] = base_url() . "assets/css/image/placeholder.png";
+          if (isset($resident->roomNr))
+          $resident['roomNr'] = $resident->roomNr;
+          else
+          $resident['roomNr'] = "not set";
+          $resident['birthday'] = $resident->birthDate;
+          $resident['language'] = $resident->dutch ? "Dutch" : "English";
+          $resident['married'] = $resident->married ? "yes" : "no";
+          $resident['children'] = $resident->children;
+          $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
         $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
 
-        
+
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
-     public function addNonUrgProbs(){
-         $text=$this->input->post('nonUrgProb');
-         
-        $this->load->model('Residentpage_model');        
+
+    public function addNonUrgProbs() {
+        $text = $this->input->post('nonUrgProb');
+
+        $this->load->model('Residentpage_model');
         $resident_id = $this->session->resident_id;
-       $this->Residentpage_model->addResidentUrgProblems($resident_id,$text);
+        $this->Residentpage_model->addResidentUrgProblems($resident_id, $text);
         redirect('caregiverController/residentProblems');
-      
-    }
-    
-     public function addUrgProbs(){
-         $text=$this->input->post('urgProb');
-         
-        $this->load->model('Residentpage_model');        
-        $resident_id = $this->session->resident_id;
-         $this->Residentpage_model->addResidentNonUrgProblems($resident_id,$text);
-       
-        redirect('caregiverController/residentProblems');
-      
     }
 
+    public function addUrgProbs() {
+        $text = $this->input->post('urgProb');
+
+        $this->load->model('Residentpage_model');
+        $resident_id = $this->session->resident_id;
+        $this->Residentpage_model->addResidentNonUrgProblems($resident_id, $text);
+
+        redirect('caregiverController/residentProblems');
+    }
 
     public function getPersonalInformation() {
         $this->load->model('Event_model');
@@ -357,59 +329,45 @@ class CaregiverController extends CI_Controller {
         $data['password'] = $result[0]['password'];
         $data['lastName'] = $result[0]['lastName'];
         $data['firstName'] = $result[0]['firstName'];
-        $data['photo']=$result[0]['photo'];
-        
-        $passwordCondition=$this->session->userdata('passwordCondition');
-        
-        if($passwordCondition=='success')
-        {
-            $data['content']='change password success';
+        $data['photo'] = $result[0]['photo'];
+
+        $passwordCondition = $this->session->userdata('passwordCondition');
+
+        if ($passwordCondition == 'success') {
+            $data['content'] = 'change password success';
+        } elseif ($passwordCondition == 'fail') {
+            $data['content'] = 'new and confirm password are not match';
+        } elseif ($passwordCondition == 'oldPassword_wrong') {
+            $data['content'] = 'old password is wrong';
+        } elseif ($passwordCondition == 'fail1') {
+            $data['content'] = 'new or confirm password is empty';
+        } else {
+            $data['content'] = '';
         }
-        elseif($passwordCondition=='fail')
-        {
-            $data['content']='new and confirm password are not match';
-        }
-        elseif($passwordCondition=='oldPassword_wrong')
-        {
-             $data['content']='old password is wrong' ;
-        }
-        elseif($passwordCondition=='fail1')
-        {
-            $data['content']='new or confirm password is empty';
-        }
-        else
-        {
-            $data['content']='';
-        
-        }
-       
-    
+
+
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
         $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
-        $data['content'] = $this->parser->parse('careGiverInfo', $data,true);
+        $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
-        }
+    }
 
     public function changePersonalInformation() {
-        if($_REQUEST['submit1'])
-        {
-        $language = $this->input->post('language');
-        $email = $this->input->post('email');
-        $firstName = $this->input->post('firstName');
-        $lastName = $this->input->post('lastName');
+        if ($_REQUEST['submit1']) {
+            $language = $this->input->post('language');
+            $email = $this->input->post('email');
+            $firstName = $this->input->post('firstName');
+            $lastName = $this->input->post('lastName');
 
-        $this->load->model('Event_model');
-        $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-        $this->session->set_userdata('dutch', $language);
-        redirect('caregiverController/settings');
+            $this->load->model('Event_model');
+            $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
+            $this->session->set_userdata('dutch', $language);
+            redirect('caregiverController/settings');
+        } elseif ($_REQUEST{'cancel1'}) {
+            redirect('caregiverController/settings');
         }
-        elseif($_REQUEST{'cancel1'})
-        {
-        redirect('caregiverController/settings');
-        }
-      
     }
 
     public function sectorOverview() {
@@ -426,37 +384,44 @@ class CaregiverController extends CI_Controller {
         $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
         $this->parser->parse('navbar_topbar', $data);
     }
-    
+
     public function addSector() {
         $this->load->model('Sector_model');
         $name = $this->input->post("sectorName");
         $this->Sector_model->addSector($name);
         redirect('CaregiverController/sectorOverview');
     }
-    
+
     public function statistics() {
         $this->load->model('Question_model');
         $scores = $this->Question_model->getScores('de Zonnebloem');
-        for($i = 0; $i <= 11; $i++) {
-            $this->Question_model->getQuestions($i);            
-            $topics[$i] = array('topicName' => $this->session->topicName, 
-                'questions' => $this->session->topicQuestions, $scores['question_avgs'][$i], //Both topicQuestions and 'question_avgs' need to be parsed in {questions}
-                't_avg' => $scores['topic_avg'][$i]);          
-        } 
-        
-        $data['topics'] = $topics;        
+        for ($i = 0; $i <= 11; $i++) {
+            $this->Question_model->getQuestions($i);
+            //prepare the inner {questions} loop array
+            $k = 0;
+            $questions = null;
+            foreach ($this->session->topicQuestions as $q) {
+                $questions[$k] = array('questionString' => $q->questionString, 'avg' => $scores['question_avgs'][$i][$k]->avg);
+                $k++;
+            }
+            //put everything in the topics array for the {topics} loop
+            $topics[$i] = array('topicName' => $this->session->topicName,
+                'questions' => $questions,
+                't_avg' => $scores['topic_avg'][$i]);
+        }
+
+        $data['topics'] = $topics;
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
-    
-     public function deleteProblems() {
+
+    public function deleteProblems() {
         $ids = $this->input->post('delete_problem');
         $this->load->model('Residentpage_model');
         $this->Residentpage_model->deleteProblems($ids);
         redirect('CaregiverController/residentProblems');
     }
-    
-   
+
 }
