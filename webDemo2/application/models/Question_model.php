@@ -28,11 +28,14 @@ class Question_model extends CI_Model {
 
     public function getScores($sector) {
         $total = NULL;
-        /*$sector_id = $this->db->query("SELECT idSector from Sectors WHERE name = '$sector'")
-                        ->result()[0]->idSector;    //get the sector id*/
-        $residents = $this->db->query("SELECT idResident from Resident "
-                        . "WHERE Sectors_idSector = '$sector'")->result();   //select all residents from a sector
-        if($residents == null) return null;
+        if ($sector == -1) {
+            $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
+        } else {
+            $residents = $this->db->query("SELECT idResident from Resident "
+                            . "WHERE Sectors_idSector = '$sector'")->result();   //select all residents from a sector
+        }
+        if ($residents == null)
+            return null;
         //loop over all topics
         for ($topic = 0; $topic <= 11; $topic++) {
             $i = 0;
@@ -41,16 +44,19 @@ class Question_model extends CI_Model {
                 $all_residents[$i] = $res->idResident;
                 $i++;
             }
-            if(isset($residents)) $r = join("','", $all_residents);
-            else $r = '';
+            if (isset($residents))
+                $r = join("','", $all_residents);
+            else
+                $r = '';
             $fill_in_ids = $this->db->query("SELECT id_fill_in FROM Resident_fills_in_Topics "
                             . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
                             . "FROM Resident_fills_in_Topics "
                             . "WHERE Resident_idResident IN ('$r')"
                             . "GROUP BY Resident_idResident) "
                             . "AND Topics_idTopic = '$topic'")->result();
-            
-            if($fill_in_ids == null) return null;
+
+            if ($fill_in_ids == null)
+                return null;
             $j = 0;
             $all_ids = null;
             foreach ($fill_in_ids as $id) {
@@ -58,16 +64,16 @@ class Question_model extends CI_Model {
                 $j++;
             }
             $ids = join("','", $all_ids);
-            $topic_scores = $this->db->query("SELECT AVG(Answer) AS avg "
+            $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids')")->row();
 
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
-                            . "AVG(Answer) AS avg "
+                            . "ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids') "
                             . "GROUP BY Questions_idQuestion")->result();
-            
+
             $total['topic_avg'][$topic] = $topic_scores->avg;
             $total['question_avgs'][$topic] = $question_scores;
         }
