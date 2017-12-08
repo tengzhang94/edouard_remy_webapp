@@ -383,7 +383,7 @@ class CaregiverController extends CI_Controller {
 
             $this->load->model('Event_model');
             $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
-            $this->session->set_userdata('dutch', $language);
+            $this->session->set_userdata('language', $language);
             redirect('caregiverController/settings');
         } elseif ($_REQUEST{'cancel1'}) {
             redirect('caregiverController/settings');
