@@ -321,9 +321,6 @@ class CaregiverController extends CI_Controller {
         redirect('caregiverController/residentProblems');
     }
 
-    
-   
-
     public function getPersonalInformation() {
         $this->load->model('Event_model');
 
