@@ -48,11 +48,6 @@ class Residentpage_model extends CI_Model {
         return $query->result_array();
     }
     
-    public function addResidentNotes($note){
-        if($note != NULL) {
-        $this->db->insert('Notes', array('text' => $note));
-        }
-    }
     
     public function getResidentFromSector($sectorId){
         $query = $this->db->query("SELECT * FROM Resident WHERE Sectors_idSector = $sectorId");
@@ -86,6 +81,16 @@ class Residentpage_model extends CI_Model {
         $this->db->insert('Problems', $data);
     }
     
+    public function addResidentNotes($note,$resident_id){
+        if($note != NULL&&$resident_id !=NULL) {
+            $data=array(
+                'Resident_idResident' => $resident_id,
+                'text' => $note,
+            );
+        $this->db->insert('Notes',$data);
+        }
+    }
+  
     public function addResidentNonUrgProblems($id,$text) {
            $data = array(
             'Resident_idResident' => $id,
@@ -99,6 +104,13 @@ class Residentpage_model extends CI_Model {
         foreach($ids as $id) {
             $this->db->where('idProblem', $id);
             $this->db->delete('Problems');
+        }
+    }
+    
+    function deleteNotes($ids) {
+        foreach($ids as $id) {
+            $this->db->where('noteId', $id);
+            $this->db->delete('Notes');
         }
     }
 

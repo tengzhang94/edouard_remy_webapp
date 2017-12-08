@@ -69,12 +69,6 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
 
-    public function deleteMessages() {
-        $ids = $this->input->post('delete_list');
-        $this->load->model('Dashboard_model');
-        $this->Dashboard_model->deleteMessages($ids);
-        redirect('CaregiverController/home');
-    }
 
     public function deleteMessages() {
         $ids = $this->input->post('delete_list');
@@ -82,6 +76,8 @@ class CaregiverController extends CI_Controller {
         $this->Dashboard_model->deleteMessages($ids);
         redirect('CaregiverController/home');
     }
+    
+   
 
     public function settings() {
         $this->session->set_userdata('passwordCondition', 'begin');
@@ -233,17 +229,6 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $resident);
     }
     
-   public function addNewNote(){    //CANNOT SUCCESSFULLY INSERT
-       $this->load->model('Residentpage_model');
-       $newNote= $this->input->post('newNote');
-       $result=$this->Residentpage_model->addResidentNotes($newNote);
-       if($result){}
-       else{
-       redirect('caregiverController/residentIndividual');
-       }
-       
-   }
-
     public function changePassword() {
         $this->load->model('Event_model');
         $password_new = $this->input->post('password_new');
@@ -321,24 +306,18 @@ class CaregiverController extends CI_Controller {
         $this->Residentpage_model->addResidentUrgProblems($resident_id, $text);
         redirect('caregiverController/residentProblems');
     }
-
-    public function addUrgProbs() {
-        $text = $this->input->post('urgProb');
-
-        $this->load->model('Residentpage_model');
-        $resident_id = $this->session->resident_id;
-        $this->Residentpage_model->addResidentNonUrgProblems($resident_id, $text);
-
-        redirect('caregiverController/residentProblems');
-    }
-
-    public function addNonUrgProbs() {
-        $text = $this->input->post('nonUrgProb');
-
-        $this->load->model('Residentpage_model');
-        $resident_id = $this->session->resident_id;
-        $this->Residentpage_model->addResidentUrgProblems($resident_id, $text);
-        redirect('caregiverController/residentProblems');
+    
+    public function addNewNote(){    //CANNOT SUCCESSFULLY INSERT
+       $this->load->model('Residentpage_model');
+       $newNote= $this->input->post('newNote');
+       $resident_id = $this->session->resident_id;
+       $result= $this->Residentpage_model->addResidentNotes($newNote,$resident_id);
+       if($result){
+           
+       }
+       else{
+       redirect('caregiverController/residentIndividual');
+       }
     }
 
     public function addUrgProbs() {
@@ -465,6 +444,14 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Residentpage_model');
         $this->Residentpage_model->deleteProblems($ids);
         redirect('CaregiverController/residentProblems');
+    }
+    
+     public function deleteNotes(){
+        $ids = $this->input->post('delete_notes');
+        $this->load->model('Residentpage_model');
+        $this-> Residentpage_model->deleteNotes($ids);
+        redirect('CaregiverController/residentIndividual');
+        
     }
 
 }
