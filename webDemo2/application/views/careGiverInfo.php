@@ -16,41 +16,41 @@
                 
                 {content}
                 <div class="form-group" style=" margin-top: 125px;">
-                    <label class="control-label col-sm-4 col-xs-12" for="firstname"><p class="residentInfoStyle">Firstname:</p></label>
+                    <label class="control-label col-sm-4 col-xs-12" for="firstname"><p class="residentInfoStyle">{firstName}:</p></label>
                     <div class="col-sm-8 col-xs-12">
                         <input type="text" class="form-control" id="firstname" placeholder="first name" value="{firstName}" name="firstName">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">Lastname:</p></label>
+                    <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">{lastName}:</p></label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="lastname" placeholder="last name" value="{lastName}"name="lastName">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="email"><p class="residentInfoStyle">Email:</p></label>
+                    <label class="control-label col-sm-4" for="email"><p class="residentInfoStyle">{email}:</p></label>
                     <div class="col-sm-8">
                         <input type="email" class="form-control" id="email" placeholder="email" value="{email}"name="email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="language"><p class="residentInfoStyle">Language:</p></label>
+                    <label class="control-label col-sm-4" for="language"><p class="residentInfoStyle">{language}:</p></label>
                     <div class="col-sm-8">
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="dutch" {check_dutch}>Dutch
+                        <input type="radio" name="language" value="dutch" {check_dutch}>{dutch}
                         </div>
                         <div class="radio-inline" style="margin-top: 5px;">
-                        <input type="radio" name="language" value="english" {check_english}>English
+                        <input type="radio" name="language" value="english" {check_english}>{english}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                 <div class="form-group">
                     <div class="col-sm-5 col-sm-offset-0 col-xs-12">
-                    <input type="submit" class="btn-confirm" name="submit1" value="Submit">
+                    <input type="submit" class="btn-confirm" name="submit1" value="{submit}">
                     </div>
                     <div class="col-sm-5 col-sm-offset-1 col-xs-12">   
-                    <input type="submit" class="btn-confirm" name="cancel1" value="Cancel">
+                    <input type="submit" class="btn-confirm" name="cancel1" value="{cancel}">
                     </div>
                 </div>
                 </div>
@@ -62,23 +62,23 @@
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:800px;">
                 <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
-                    <a class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%;text-align: center;" >Change Password</a>
+                    <a class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%;text-align: center;" >{changePassword}</a>
                     <div class="modal fade" id="loginModal" style="display:none;">
                             <div class="modal-dialog modal-sm" style="width:540px;">
                                     <div class="modal-content" style="border:none;">		
                                             <div class="modal-header">
-                                                    <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px; color:#2c3d51">Change Password</h4>
+                                                    <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">{close}</span></button>
+                                                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px; color:#2c3d51">{changePassword}</h4>
                                             </div>
                                             <div class="modal-body">
                                                     <section class="box-login v5-input-txt" id="box-login">
                                                     <ul>
-                                                                     <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_3" name="password_old" placeholder="Old Password" type="password"></li>
-                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%"><input class="form-control" id="id_password_l" maxlength="50" name="password_new" placeholder="New Password" type="password"></li>
-                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_2" name="password_confirm" placeholder="Confirm Password" type="password"></li>
+                                                                     <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_3" name="password_old" placeholder="{oldPassword}" type="password"></li>
+                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%"><input class="form-control" id="id_password_l" maxlength="50" name="password_new" placeholder="{newPassword}" type="password"></li>
+                                                                        <li class="form-group" style="margin-left: 4%; margin-right: 4%" ><input class="form-control" id="id_password_2" name="password_confirm" placeholder="{confirmPassword}" type="password"></li>
                                                     </ul>
                                                     <div class="login-box marginB10">
-                                                                    <button class="btn-confirm"id="login_btn"  name="submit3" type="submit" class="btn btn-micv5 btn-block globalLogin" style="width:92%">Submit</button>
+                                                                    <button class="btn-confirm"id="login_btn"  name="submit3" type="submit" class="btn btn-micv5 btn-block globalLogin" style="width:92%">{submit}</button>
                                                                     <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">Alert</div>
                                                     </div>
                                                     </section>

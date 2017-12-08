@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<h3>Your file was successfully uploaded!</h3>
+<h3>{success}</h3>
 
 <ul>
 <?php foreach ($upload_data as $item => $value):?>

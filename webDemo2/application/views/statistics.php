@@ -121,7 +121,7 @@
 </head>
 
 <body>
-    <span class="titleStats">Kies afdelingen waarvan je statistieken wil zien:</span>
+    <span class="titleStats">{chooseSectors}:</span>
     <div class="form-group" >
         <div class="col-md-6 col-sm-10 col-xs-12" style="display:block">
             <span class="multiselect-native-select">

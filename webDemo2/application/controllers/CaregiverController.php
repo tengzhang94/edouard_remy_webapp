@@ -268,9 +268,10 @@ class CaregiverController extends CI_Controller {
     }
 
     public function residentProblems() {
+        $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Residentpage_model');
         $resident_id = $this->session->resident_id;
-        $resident = $this->Residentpage_model->getResidentWithId($resident_id);
+        $resident = array_merge($data, $this->Residentpage_model->getResidentWithId($resident_id));
         $resident['scores_hidden'] = 'hidden';
         $resident['problems_hidden'] = '';
         $resident['scores_active'] = "inactive navBtn";
@@ -385,14 +386,11 @@ class CaregiverController extends CI_Controller {
     }
 
     public function sectorOverview() {
-        $data = $this->Language_model->getSectorOverviewLanguage();
+        $sectorData = $this->Language_model->getSectorOverviewLanguage();
         $this->load->model('Sector_model');
         $sectors = $this->Sector_model->getAllSectorInfos();
 
-        $sectorData = array(
-            "sectors" => $sectors,
-            "addSector" => "Add a sector" //replace with language model info
-        );
+        $sectorData["sectors"] = $sectors;
 
         $data['title'] = 'Sectors';
         $data['menu'] = $this->Menu_model->get_menuitems('Settings');
