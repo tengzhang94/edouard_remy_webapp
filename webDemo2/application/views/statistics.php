@@ -71,6 +71,24 @@
             border-color: #2c3d51;
             margin-top: 10px;
         }
+        
+        .btn:hover {             
+            background-color: #2c3d51;            
+            color: #f5f5f5;
+            border-color: #2c3d51;            
+        }        
+        
+        .open>.dropdown-toggle.btn-primary:hover{
+            background-color: #2c3d51;            
+            color: #f5f5f5;
+            border-color: #2c3d51; 
+        }
+        
+        .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+            background-color: #2c3d51;            
+            color: #f5f5f5;
+            border-color: #2c3d51; 
+        }
 
         .open>.dropdown-menu {
             width: 100%;
