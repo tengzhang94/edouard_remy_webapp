@@ -36,7 +36,7 @@ class Residentpage_model extends CI_Model {
         else
             $data['roomNr'] = "not set";
         $data['birthday'] = $resident->birthDate;
-        $data['language'] = $resident->dutch ? "Dutch" : "English";
+        $data['language'] = $resident->lang;
         $data['married'] = $resident->married ? "yes" : "no";
         $data['children'] = $resident->children;
         $data['notes'] = $this->Residentpage_model->getResidentNotes($this->session->resident_id);

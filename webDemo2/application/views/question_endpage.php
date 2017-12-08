@@ -20,15 +20,33 @@ console.log(font);
    
     less.modifyVars({'@font_size': font+'px'});
     less.refreshStyles();
+    
+    if(font>=6)
+    {
+        $("#BG").attr('disabled','disabled');
+    }
+    else
+    {
+        $("#BS").removeAttr('disabled');
+    }
   });
   
-   $("#BS").click(function() {
+  $("#BS").click(function() {
       
 font=font-2;
 console.log(font);
    
     less.modifyVars({'@font_size': font+'px'});
     less.refreshStyles();
+    
+     if(font<=-6)
+    {
+        $("#BS").attr('disabled','disabled');
+    }
+    else
+    {
+        $("#BG").removeAttr('disabled');
+    }
   });
   
   

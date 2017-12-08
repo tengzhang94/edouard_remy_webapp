@@ -32,8 +32,14 @@ class UploadController extends CI_Controller {
                 else
                 {
                         $data = array('upload_data' => $this->upload->data());
+                        $filepath=$data['upload_data']['full_path'];
+                        $nameOfPhoto=$data['upload_data']['file_name'];
+                        chmod($filepath,0644);
+                         $this->load->model('Event_model');
+                          $this->Event_model->changePersonalPhoto($nameOfPhoto);
+                          redirect('caregiverController/getPersonalInformation');
 
-                        $this->load->view('upload_success', $data);
+                       // $this->load->view('upload_success', $data);
                 }
         }
 }
