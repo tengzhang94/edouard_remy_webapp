@@ -65,7 +65,7 @@
     <div class="row7" style="display:flex; flex-direction: row;width:90%; margin-left:6%">
     <div id = "text5" style="display:flex; flex-direction: column">
         <div id = "text1_5">
-            <div id = "text2_5">Overall Activity</div>
+            <div id = "text2_5">{avgActivity}</div>
             <div id = "text5" style="display:flex; flex-direction:column;">
                 <div class="col-md-2" align="left" style="margin-bottom: 5px;margin-left: 45%">
                     <button id="b1" style="border:0;background: transparent " type="submit"><img id="img1" src="http://a17-webapps04.studev.groept.be/assets/css/image/redClock.png" width="60"/></button>
@@ -79,7 +79,7 @@
 
     <div id = "text5" style="display:flex; flex-direction: column">
         <div id = "text1_5" style="display:flex; flex-direction: column">
-            <div id = "text2_5">Overall Score</div>                                                                
+            <div id = "text2_5">{avgScore}</div>                                                                
             <div id = "text5" style="display:flex; flex-direction: row">
                 <h2 type="text"style="font-family: 'Lato', sans-serif; margin-top: 10px;margin-left: 45%; 
                     font-size: 40px;color:#333333;">3</h2>

@@ -1,9 +1,9 @@
 <?php
-$lang['settings_personal'] = "Personal";
-$lang['settings_settings'] = "settings";
-$lang['settings_questionnaire1'] = "Edit"; //order important due to different html tags
-$lang['settings_questionnaires'] = "questionnaires"; //and different word order in english
-$lang['settings_groups1'] = "Edit";
-$lang['settings_groups2'] = "Groups";
+$lang['Settings_personal'] = "Persoonlijke";
+$lang['Settings_settings'] = "instellingen";
+$lang['Settings_questionnaire1'] = "Vragenlijsten"; //order important due to different html tags
+$lang['Settings_questionnaire2'] = "bewerken"; //and different word order in english
+$lang['Settings_groups1'] = "Groepen";
+$lang['Settings_groups2'] = "bewerken";
 
 

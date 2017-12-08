@@ -89,13 +89,17 @@ class Language_model extends CI_Model {
         $this->lang->load('IndivResident_lang', $this->session->language);
         return array(
             "room" => lang("IndivRes_room"),
-            "sector" => lang("IndivRes_sector"),
-            "language" => lang("IndivRes_language"),
+            "sectorString" => lang("IndivRes_sector"),
+            "languageString" => lang("IndivRes_language"),
             "birthDate" => lang("IndivRes_birthDate"),
-            "gender" => lang("IndivRes_gender"),
-            "married" => lang("IndivRes_married"),
-            "children" => lang("IndivRes_children"),
-            "notes" => lang("IndivRes_notes"),
+            "genderString" => lang("IndivRes_gender"),
+            "marriedString" => lang("IndivRes_married"),
+            "childrenString" => lang("IndivRes_children"),
+            "notesString" => lang("IndivRes_notes"),
+            "addNote" => lang("IndivRes_addNote"),
+            "writeNote" => lang("IndivRes_writeNote"),
+            "submit" => lang("IndivRes_submit"),
+            "close" => lang("IndivRes_close"),
             "scores" => lang("IndivRes_scores"),
             "issues" => lang("IndivRes_issues"),
             "shortTerm" => lang("IndivRes_shortTerm"),
@@ -107,7 +111,7 @@ class Language_model extends CI_Model {
         $this->lang->load('SectorOverview_lang', $this->session->language);
         return array(
             "addSector" => lang("SectorOverview_addSector"),
-            "residents" => lang("SectorOverview_residents")
+            "residentsString" => lang("SectorOverview_residents")
         );
     }
     
@@ -126,7 +130,8 @@ class Language_model extends CI_Model {
     public function getStatisticsLanguage(){
         $this->lang->load('Statistics_lang', $this->session->language);
         return array(
-            "chooseSectors" => lang("stats_chooseSectors")
+            "chooseSectors" => lang("stats_chooseSectors"),
+            "allSectors" => lang('stats_allSectors')
         );
     }
     

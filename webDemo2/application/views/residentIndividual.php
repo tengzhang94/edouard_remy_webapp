@@ -6,12 +6,12 @@
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  residentInfoCol">
         <div id="infoDiv">
             <span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="{photo}" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
-                <span class="infoTitleTxt">Kamer {roomNr}</span>
+                <span class="infoTitleTxt">{room} {roomNr}</span>
             </span>
-                <span id="residentContent"><span id="sector" class="infoTxt">Afdeling: {sector}</span><span id="language" class="infoTxt">Taal: {language}</span><span id="birthday" class="infoTxt">Geboortedatum: {birthday}</span>
-                <span id="gender" class="infoTxt">Geslacht: {gender}</span>
-                <span id="isMarried" class="infoTxt">Getrouwd: {married}</span>
-                <span id="children" class="infoTxt">Kinderen: {children}</span>
+                <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
+                <span id="gender" class="infoTxt">{genderString}: {gender}</span>
+                <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
+                <span id="children" class="infoTxt">{childrenString}: {children}</span>
                 </span>
 
             <span id="residentNotes">
@@ -30,17 +30,17 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">ADD NOTE</h4>
+                                <h4 class="modal-title">{addNote}</h4>
                             </div>
                             <div class="modal-body">
                                 <ul>
                                     <li class="form-group" style="margin-right: 6%;" >
-                                        <input class="form-control" id="newNote" name="newNote" placeholder="Write down the new note here" type="text">
+                                        <input class="form-control" id="newNote" name="newNote" placeholder="{writeNote}" type="text">
                                     </li>
                                 </ul>
                             <div class="modal-footer" style="height:45px;">
-                                <button class="btn btn-default" id="login_btn"  name="newNote" type="submit" onclick="location='addNewNote'" >Submit</button>
-                                <button type="button" class="btn btn-default" id="login_btn"data-dismiss="modal">Close</button>
+                                <button class="btn btn-default" id="login_btn"  name="newNote" type="submit" onclick="location='addNewNote'" >{submit}</button>
+                                <button type="button" class="btn btn-default" id="login_btn"data-dismiss="modal">{close}</button>
                             </div>
                             </div>
                         </div>
@@ -101,14 +101,16 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                        <div class="message">{text}</div>
+                        <div class="message messageProbs">{text}</div>
                     </div>
                     {/nonUrgProbs}
                 </form>
                 
-                <form method="post" action="addNonUrgProbs">
-                    <input name="nonUrgProb" class = "text" id="inputBlock1" style="display:none">
-                    <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                <form method="post" action="addNonUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage1" style="display:none">
+                        <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
+                        <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                    </div>
                 </form>
                 
              
@@ -124,14 +126,16 @@
                 <div class="line">
                     <label>
                         <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                    <div class="message">{text}</div>
+                    <div class="message messageProbs">{text}</div>
                 </div>
                 {/urgProbs}
                </form>        
                 
-                <form method="post" action="addUrgProbs">
-                    <input name="urgProb" class = "text" id="inputBlock2" style="display:none; width:400px">
-                    <button type="submit" id="urgProb_submit" style="display: none"></button>
+                <form method="post" action="addUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage2" style="display:none">
+                        <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
+                        <button type="submit" id="urgProb_submit" style="display: none"></button>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -142,6 +146,7 @@
     $(function() {
         $("#addBtn1").click(function() {
             $("#inputBlock1").removeAttr("style");
+             $("#inputMessage1").removeAttr("style");
         });
   
         $("#inputBlock1").on( "keydown", function(event) {
@@ -155,6 +160,7 @@
         $("#addBtn2").click(function() {
             console.log("aaa");
             $("#inputBlock2").removeAttr("style");
+            $("#inputMessage2").removeAttr("style");
         });
         
         $("#inputBlock2").on( "keydown", function(event) {
@@ -163,6 +169,7 @@
                 $("#urgProb_submit").click();
             }
         });
+        
     });
       
         
