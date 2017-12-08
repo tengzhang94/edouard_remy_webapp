@@ -177,7 +177,7 @@ class CaregiverController extends CI_Controller {
 
     public function searchResident() {
         $this->load->model('Residentpage_model');
-        
+
         $name = $this->input->post('inputName');
         $data['residents'] = $this->Residentpage_model->getResidentsBySearch($name);
 
@@ -225,17 +225,17 @@ class CaregiverController extends CI_Controller {
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
-   public function addNewNote(){    //CANNOT SUCCESSFULLY INSERT
-       $this->load->model('Residentpage_model');
-       $newNote= $this->input->post('newNote');
-       $result=$this->Residentpage_model->addResidentNotes($newNote);
-       if($result){}
-       else{
-       redirect('caregiverController/residentIndividual');
-       }
-       
-   }
+
+    public function addNewNote() {    //CANNOT SUCCESSFULLY INSERT
+        $this->load->model('Residentpage_model');
+        $newNote = $this->input->post('newNote');
+        $result = $this->Residentpage_model->addResidentNotes($newNote);
+        if ($result) {
+            
+        } else {
+            redirect('caregiverController/residentIndividual');
+        }
+    }
 
     public function changePassword() {
         $this->load->model('Event_model');
@@ -328,13 +328,12 @@ class CaregiverController extends CI_Controller {
     public function getPersonalInformation() {
         $data = $this->Language_model->getCaregiverInfoLanguage();
         $this->load->model('Event_model');
-        
+
         $result = $this->Event_model->getPersonalInformation();
         if ($result[0]['lang'] == 'dutch') {
             $data['check_dutch'] = 'checked';
             $data['check_english'] = '';
-        } 
-        else if($result[0]['lang'] == 'english'){
+        } else if ($result[0]['lang'] == 'english') {
             $data['check_dutch'] = '';
             $data['check_english'] = 'checked';
         }
@@ -411,23 +410,32 @@ class CaregiverController extends CI_Controller {
     public function statistics() {
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
+        $this->load->model('Event_model');
         $scores = $this->Question_model->getScores('de Zonnebloem');
-        for ($i = 0; $i <= 11; $i++) {
-            $this->Question_model->getQuestions($i);
-            //prepare the inner {questions} loop array
-            $k = 0;
-            $questions = null;
-            foreach ($this->session->topicQuestions as $q) {
-                $questions[$k] = array('questionString' => $q->questionString, 'avg' => $scores['question_avgs'][$i][$k]->avg);
-                $k++;
+        if (isset($scores)) {
+            for ($i = 0; $i <= 11; $i++) {
+                $this->Question_model->getQuestions($i);
+                //prepare the inner {questions} loop array
+                $k = 0;
+                $questions = null;
+                foreach ($this->session->topicQuestions as $q) {
+                    $questions[$k] = array('questionString' => $q->questionString, 'avg' => $scores['question_avgs'][$i][$k]->avg);
+                    $k++;
+                }
+                //put everything in the topics array for the {topics} loop
+                $topics[$i] = array('topicName' => $this->session->topicName,
+                    'questions' => $questions,
+                    't_avg' => $scores['topic_avg'][$i]);
             }
-            //put everything in the topics array for the {topics} loop
-            $topics[$i] = array('topicName' => $this->session->topicName,
-                'questions' => $questions,
-                't_avg' => $scores['topic_avg'][$i]);
+            $data['hidden'] = '';
+            $data['no_data_msg'] = '';
+            $data['topics'] = $topics;            
         }
-
-        $data['topics'] = $topics;
+        else {            
+            $data['hidden'] = 'hidden';
+            $data['no_data_msg'] = "No data available for this sector";
+        }
+        $data['sectors'] = $this->Event_model->getSectors();
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
