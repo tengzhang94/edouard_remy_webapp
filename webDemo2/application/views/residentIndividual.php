@@ -15,13 +15,15 @@
                 </span>
 
             <span id="residentNotes">
-                <span id="notesTitle">{notesString}
-                    <button class="btn btn-default" type="button" id="removeBtn">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash">
+                <span id="notesTitle">Notities
+               
+                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteNotes">
+                        <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
-                    <button class="btn btn-default" type="button"  id="addBtn" data-toggle="modal" data-target="#myModal">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd">
+                    <button class="btn btn-default addBtn" type="button" id="addBtn2" data-toggle="modal" data-target="#myModal">
+                        <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" />
                     </button>
+                    
                 </span>
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
@@ -44,15 +46,21 @@
                         </div>
                         </div>
                     </div>  
-            </form>
             </span>
+            
+            
+
+            <form  action="deleteNotes" method="post" id="deleteNotes">
                 {notes}
                 <div class="line">
                     <label>
-                        <input type="checkbox" /><span class="checkmark"></span></label>
-                        <div class="infoText">{text}</div>
+                        <input type="checkbox" name="delete_notes[]" value='{noteId}' />
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="infoTxt">{text}</div>
                 </div>
                 {/notes}
+            </form>
         </div>
     </div>
     
@@ -93,14 +101,16 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                        <div class="message">{text}</div>
+                        <div class="message messageProbs">{text}</div>
                     </div>
                     {/nonUrgProbs}
                 </form>
                 
-                <form method="post" action="addNonUrgProbs">
-                    <input name="nonUrgProb" class = "text" id="inputBlock1" style="display:none">
-                    <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                <form method="post" action="addNonUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage1" style="display:none">
+                        <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
+                        <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                    </div>
                 </form>
                 
              
@@ -116,14 +126,16 @@
                 <div class="line">
                     <label>
                         <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                    <div class="message">{text}</div>
+                    <div class="message messageProbs">{text}</div>
                 </div>
                 {/urgProbs}
                </form>        
                 
-                <form method="post" action="addUrgProbs">
-                    <input name="urgProb" class = "text" id="inputBlock2" style="display:none; width:400px">
-                    <button type="submit" id="urgProb_submit" style="display: none"></button>
+                <form method="post" action="addUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage2" style="display:none">
+                        <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
+                        <button type="submit" id="urgProb_submit" style="display: none"></button>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -134,6 +146,7 @@
     $(function() {
         $("#addBtn1").click(function() {
             $("#inputBlock1").removeAttr("style");
+             $("#inputMessage1").removeAttr("style");
         });
   
         $("#inputBlock1").on( "keydown", function(event) {
@@ -147,6 +160,7 @@
         $("#addBtn2").click(function() {
             console.log("aaa");
             $("#inputBlock2").removeAttr("style");
+            $("#inputMessage2").removeAttr("style");
         });
         
         $("#inputBlock2").on( "keydown", function(event) {
@@ -155,6 +169,7 @@
                 $("#urgProb_submit").click();
             }
         });
+        
     });
       
         

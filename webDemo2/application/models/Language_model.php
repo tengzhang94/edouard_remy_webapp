@@ -130,7 +130,8 @@ class Language_model extends CI_Model {
     public function getStatisticsLanguage(){
         $this->lang->load('Statistics_lang', $this->session->language);
         return array(
-            "chooseSectors" => lang("stats_chooseSectors")
+            "chooseSectors" => lang("stats_chooseSectors"),
+            "allSectors" => lang('stats_allSectors')
         );
     }
     
