@@ -44,7 +44,7 @@ class Residentpage_model extends CI_Model {
     }
     
     public function getResidentNotes($id) {
-        $query = $this->db->query("SELECT text FROM Notes WHERE Resident_idResident = $id");
+        $query = $this->db->query("SELECT * FROM Notes WHERE Resident_idResident = $id");
         return $query->result_array();
     }
     
