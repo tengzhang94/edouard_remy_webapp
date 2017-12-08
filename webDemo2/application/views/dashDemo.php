@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
     <div class="dashboardTop">
-        <button id="dashIcon" class="btn btn-default dashboardButton" type="button">
-            <svg class="selectAllSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
-            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
-            <path d="M180 920 c-19 -5 -49 -24 -66 -43 -43 -46 -46 -80 -42 -417 3 -313 6
-                  -323 85 -361 39 -19 57 -20 355 -17 436 4 402 -30 406 406 5 463 29 436 -403
-                  439 -165 1 -316 -2 -335 -7z m630 -58 c59 -29 60 -35 58 -369 l-3 -303 -28
-                  -27 -27 -28 -303 -3 c-334 -2 -340 -1 -369 58 -16 31 -18 68 -18 313 0 221 3
-                  285 15 313 25 60 44 63 360 64 247 0 284 -2 315 -18z"/>
-            <path d="M583 536 l-131 -155 -33 36 c-19 19 -56 53 -82 75 -46 39 -49 40 -63
-                  22 -13 -18 -7 -26 83 -111 54 -51 100 -93 103 -92 3 0 70 77 149 171 112 133
-                  142 175 134 187 -5 8 -14 16 -19 18 -6 2 -69 -66 -141 -151z"/>
-            </g>
-            </svg>
-            
-        </button>
-        <button  id="dashIcon"  class="btn btn-default filterButton" type="button">
+        <div class="line">
+        <label>
+            <input type="checkbox" name="deleteAll" onclick="selectAll(this)">
+            <span class="checkmark"></span>
+        </label>
+
+            <span id="dashIconBar">
+                <button  id="dashIcon"  class="btn btn-default filterButton" type="button">
             <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
@@ -29,7 +21,7 @@
             </svg>
             
         </button>
-        <button id="dashIcon"  class="btn btn-default removeButton" type="submit" form="deleteForm">
+                <button id="dashIcon"  class="btn btn-default removeButton" onclick ="confirmAndDelete()"><!--type="submit" form="deleteForm"-->
             <svg class="removeSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M366 978 c-9 -12 -16 -33 -16 -45 0 -22 -3 -23 -99 -23 -74 0 -102
@@ -48,13 +40,15 @@
             </g>
             </svg>            
         </button>
+            </span>
+        </div>
     </div>
     
     <form action="deleteMessages" method="post" id="deleteForm">
     {messages}
     <div class="line">
         <label>
-            <input type="checkbox" name="delete_list[]" value='{messageId}'>
+            <input type="checkbox" name="delete_list[]" id="check_{messageId}" value='{messageId}'>
             <span class="checkmark"></span>
         </label>
         <div class="message">{messageText}</div>
@@ -68,6 +62,4 @@
 </div>
     
 </div>
-
-
-
+<script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/dashboard.js"></script>
