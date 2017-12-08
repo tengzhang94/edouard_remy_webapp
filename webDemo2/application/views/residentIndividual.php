@@ -43,13 +43,11 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
-                        <div class="message" id="inputMessage3">
+                        <div class="message" id="inputMessage3" style="display:none">
                             <input name="newNote" class = "text textProb" id="inputBlock3" style="display:none">
                             <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
-                        </div>
-                        
-                    </div>
-                 
+                        </div>                        
+                    </div>         
             </form>
             
         </div>
