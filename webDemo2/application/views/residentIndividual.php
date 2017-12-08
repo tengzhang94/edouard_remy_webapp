@@ -15,13 +15,15 @@
                 </span>
 
             <span id="residentNotes">
-                <span id="notesTitle">{notesString}
-                    <button class="btn btn-default" type="button" id="removeBtn">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash">
+                <span id="notesTitle">Notities
+               
+                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteNotes">
+                        <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
-                    <button class="btn btn-default" type="button"  id="addBtn" data-toggle="modal" data-target="#myModal">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd">
+                    <button class="btn btn-default addBtn" type="button" id="addBtn2" data-toggle="modal" data-target="#myModal">
+                        <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" />
                     </button>
+                    
                 </span>
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog">
@@ -44,15 +46,21 @@
                         </div>
                         </div>
                     </div>  
-            </form>
             </span>
+            
+            
+
+            <form  action="deleteNotes" method="post" id="deleteNotes">
                 {notes}
                 <div class="line">
                     <label>
-                        <input type="checkbox" /><span class="checkmark"></span></label>
-                        <div class="infoText">{text}</div>
+                        <input type="checkbox" name="delete_notes[]" value='{noteId}' />
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="infoTxt">{text}</div>
                 </div>
                 {/notes}
+            </form>
         </div>
     </div>
     
