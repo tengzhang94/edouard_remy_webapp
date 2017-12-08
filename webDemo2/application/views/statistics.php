@@ -125,6 +125,7 @@
         .topicTitle {
             padding-left:5px;
             padding-bottom: 0px;
+            padding-top:20px;
             font-family:Lato,sans-serif;
             font-size:30px;
             border-bottom:1px solid #2c3d51;
@@ -161,7 +162,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-6" style="height: 75px"></div>
+        <div class="col-md-6" style="height: 60px"></div>
     </div>
     {no_data_msg}
     <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>        
