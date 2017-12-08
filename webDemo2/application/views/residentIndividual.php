@@ -17,7 +17,7 @@
             <span id="residentNotes">
                 <span id="notesTitle">Notities
                
-                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro">
+                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteNotes">
                         <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
                     <button class="btn btn-default addBtn" type="button" id="addBtn2" data-toggle="modal" data-target="#myModal">
@@ -48,15 +48,7 @@
                     </div>  
             </span>
             
-            <form  action="deleteProblems" method="post" id="deleteUrgPro">
-                {urgProbs}
-                <div class="line">
-                    <label>
-                        <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                    <div class="message">{text}</div>
-                </div>
-                {/urgProbs}
-               </form> 
+            
 
             <form  action="deleteNotes" method="post" id="deleteNotes">
                 {notes}
