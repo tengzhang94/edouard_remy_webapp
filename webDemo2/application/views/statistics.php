@@ -136,6 +136,7 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{current_sector}
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?id=-1">{allSectors}</a></li>  
                     {sectors}
                     <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?id={idSector}">{name}</a></li>  
                     {/sectors}

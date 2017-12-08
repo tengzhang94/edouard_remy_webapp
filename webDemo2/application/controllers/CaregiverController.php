@@ -410,7 +410,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Question_model');
         $this->load->model('Event_model');
         if(null != $this->input->get('id')) $sector = $this->input->get('id');
-        else $sector = '2';
+        else $sector = '-1';
         $scores = $this->Question_model->getScores($sector);
         if (isset($scores)) {
             for ($i = 0; $i <= 11; $i++) {
@@ -438,7 +438,8 @@ class CaregiverController extends CI_Controller {
         $data['sectors'] = $this->Event_model->getSectors();
         foreach ($data['sectors'] as $s) {
             if($s->idSector == $sector) $data['current_sector'] = $s->name;
-        }        
+        }
+        if ($sector == -1) $data['current_sector'] = $data['allSectors'];
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
