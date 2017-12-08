@@ -25,27 +25,7 @@
                     </button>
                     
                 </span>
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">{addNote}</h4>
-                            </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <li class="form-group" style="margin-right: 6%;" >
-                                        <input class="form-control" id="newNote" name="newNote" placeholder="{writeNote}" type="text">
-                                    </li>
-                                </ul>
-                            <div class="modal-footer" style="height:45px;">
-                                <button class="btn btn-default" id="login_btn"  name="newNote" type="submit" onclick="location='addNewNote'" >{submit}</button>
-                                <button type="button" class="btn btn-default" id="login_btn"data-dismiss="modal">{close}</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>  
+  
             </span>
  
             <form  action="deleteNotes" method="post" id="deleteNotes">

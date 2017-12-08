@@ -313,12 +313,12 @@ class CaregiverController extends CI_Controller {
        $newNote= $this->input->post('newNote');
        $resident_id = $this->session->resident_id;
        $result= $this->Residentpage_model->addResidentNotes($newNote,$resident_id);
-       if($result){
+       /*if($result){
            
        }
        else{
        redirect('caregiverController/residentIndividual');
-       }
+       }*/
     }
 
     public function addUrgProbs() {
