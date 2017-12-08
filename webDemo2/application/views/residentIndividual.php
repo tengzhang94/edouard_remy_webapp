@@ -93,14 +93,16 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                        <div class="message">{text}</div>
+                        <div class="message messageProbs">{text}</div>
                     </div>
                     {/nonUrgProbs}
                 </form>
                 
-                <form method="post" action="addNonUrgProbs">
-                    <input name="nonUrgProb" class = "text" id="inputBlock1" style="display:none">
-                    <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                <form method="post" action="addNonUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage1" style="display:none">
+                        <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
+                        <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                    </div>
                 </form>
                 
              
@@ -116,14 +118,16 @@
                 <div class="line">
                     <label>
                         <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                    <div class="message">{text}</div>
+                    <div class="message messageProbs">{text}</div>
                 </div>
                 {/urgProbs}
                </form>        
                 
-                <form method="post" action="addUrgProbs">
-                    <input name="urgProb" class = "text" id="inputBlock2" style="display:none; width:400px">
-                    <button type="submit" id="urgProb_submit" style="display: none"></button>
+                <form method="post" action="addUrgProbs" style="margin-left: 12%">
+                    <div class="message" id="inputMessage2" style="display:none">
+                        <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
+                        <button type="submit" id="urgProb_submit" style="display: none"></button>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -134,6 +138,7 @@
     $(function() {
         $("#addBtn1").click(function() {
             $("#inputBlock1").removeAttr("style");
+             $("#inputMessage1").removeAttr("style");
         });
   
         $("#inputBlock1").on( "keydown", function(event) {
@@ -147,6 +152,7 @@
         $("#addBtn2").click(function() {
             console.log("aaa");
             $("#inputBlock2").removeAttr("style");
+            $("#inputMessage2").removeAttr("style");
         });
         
         $("#inputBlock2").on( "keydown", function(event) {
@@ -155,6 +161,7 @@
                 $("#urgProb_submit").click();
             }
         });
+        
     });
       
         
