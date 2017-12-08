@@ -17,7 +17,7 @@
             <span id="residentNotes">
                 <span id="notesTitle">Notities
                
-                    <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteNotes">
+                    <button class="btn btn-default removeBtn" type="submit" id="removeNote"  form="deleteNotes">
                         <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
                     <button class="btn btn-default addBtn" type="button" id="addBtn2" data-toggle="modal" data-target="#myModal">
@@ -47,9 +47,7 @@
                         </div>
                     </div>  
             </span>
-            
-            
-
+ 
             <form  action="deleteNotes" method="post" id="deleteNotes">
                 {notes}
                 <div class="line">
@@ -57,7 +55,7 @@
                         <input type="checkbox" name="delete_notes[]" value='{noteId}' />
                         <span class="checkmark"></span>
                     </label>
-                    <div class="infoTxt">{text}</div>
+                    <div class="message infoTxt">{text}</div>
                 </div>
                 {/notes}
             </form>

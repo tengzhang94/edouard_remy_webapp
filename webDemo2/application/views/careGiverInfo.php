@@ -1,6 +1,4 @@
-<link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/index.css">   <!--<!--
-</head> -->
-    <div class="row">
+  <div class="row">
          <div class="col-sm-5 col-sm-offset-1 col-xs-12">
           <?php echo form_open_multipart('UploadController/do_upload');?>
              <span id="label_span"></span>
@@ -62,7 +60,7 @@
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:600px;">
                  <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
-                     <button type="button" class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%; text-align: center; margin-left: 100%" >Change Password</button>
+                     <button type="button" class="a globalLoginBtn btn-confirm" style="height:50px;width:630px; font-size:150%; text-align: center; margin-top: -1px; margin-left: 582px" >Change Password</button>
                     <div class="modal fade" id="loginModal" style="display:none;">
                             <div class="modal-dialog modal-sm" style="width:540px;">
                                     <div class="modal-content" style="border:none;">		
@@ -124,6 +122,4 @@
     
 
     </script>
-</body>
 
-</html>
