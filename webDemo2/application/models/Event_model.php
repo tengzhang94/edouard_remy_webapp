@@ -83,10 +83,5 @@ class Event_model extends CI_Model {
         $this->db->where('idCaregiver', $idCaregiver);
         $this->db->update('Caregiver', $data);
     }
-    
-    public function getSectors() {
-        $sectors = $this->db->query("SELECT idSector, name from Sectors")->result();
-        return $sectors;
-    }
 
 }

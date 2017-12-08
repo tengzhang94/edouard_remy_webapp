@@ -16,4 +16,9 @@ class Sector_model extends CI_Model {
         $this->db->insert('Sectors', array('name' => $name));
         }
     }
+    
+    public function getSectors() {
+        $sectors = $this->db->query("SELECT idSector, name from Sectors")->result();
+        return $sectors;
+    }
 }

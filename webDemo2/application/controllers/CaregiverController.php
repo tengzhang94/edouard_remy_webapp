@@ -413,7 +413,7 @@ class CaregiverController extends CI_Controller {
     public function statistics() {
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
-        $this->load->model('Event_model');
+        $this->load->model('Sector_model');
         if(null != $this->input->get('id')) $sector = $this->input->get('id');
         else $sector = '-1';
         $scores = $this->Question_model->getScores($sector);
@@ -440,7 +440,7 @@ class CaregiverController extends CI_Controller {
             $data['hidden'] = 'hidden';
             $data['no_data_msg'] = "No data available for this sector";
         }
-        $data['sectors'] = $this->Event_model->getSectors();
+        $data['sectors'] = $this->Sector_model->getSectors();
         foreach ($data['sectors'] as $s) {
             if($s->idSector == $sector) $data['current_sector'] = $s->name;
         }
