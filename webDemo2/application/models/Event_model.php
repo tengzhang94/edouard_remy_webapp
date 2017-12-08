@@ -63,6 +63,20 @@ $this->db->update('Caregiver', $data);
        
     }
     
+    public function changePersonalPhoto($nameOfPhoto)
+    {
+        $idCaregiver = $this->session->userdata('idCaregiver');
+        $original_photoPath='http://a17-webapps04.studev.groept.be/upload/';
+        $photo=$original_photoPath.$nameOfPhoto;
+       
+         $data = array(
+               'photo' => $photo,
+             );
+         
+         $this->db->where('idCaregiver', $idCaregiver);
+$this->db->update('Caregiver', $data);
+    }
+    
     public function changePassword($password)
     {
         $idCaregiver = $this->session->userdata('idCaregiver');

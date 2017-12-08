@@ -1,12 +1,16 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/index.css">   <!--<!--
 </head> -->
-    <div class="row" style="display: flex;flex-direction: column">
+    <div class="row">
          <div class="col-sm-5 col-sm-offset-1 col-xs-12">
-            <button class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%"></button>  
- <!--            <image src="http://www.kesato.com/blog/wp-content/uploads/2015/02/Google-Important-Ranking-Factor-2015.jpg" width="500" height="400">   
- -->       </div>
+          <?php echo form_open_multipart('UploadController/do_upload');?>
+             <span id="label_span"></span>
+             <label for="file" class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%"><input id="file"  name="userfile" type="file" size="20" style="display: none; " /></label>  
+             <input id="upload_button" type="submit" style="display: none;" />
+             
+      </form>  
+         </div>
         
-        <form class="form-horizontal" method="post" action="changePersonalInformation" style="margin-left: 50%">
+        <form class="form-horizontal" method="post" action="changePersonalInformation">
            
             <div class="col-sm-6 col-xs-12">
                 
@@ -51,13 +55,14 @@
                 </div>
                 </div>
             </div>
-     </form>  
-      
-         <form method="post" action="changePassword">
+  </form>  
+        
+       <form method="post" action="changePassword">   
+        
             <div class="col-3" >
-                <div class="form-group" style="height:75px;width:800px;">
+                <div class="form-group" style="height:75px;width:600px;">
                  <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
-                    <a class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%;text-align: center;" >Change Password</a>
+                     <button type="button" class="a globalLoginBtn" style="height:50%;width:100%; font-size:150%; text-align: center; margin-left: 100%" >Change Password</button>
                     <div class="modal fade" id="loginModal" style="display:none;">
                             <div class="modal-dialog modal-sm" style="width:540px;">
                                     <div class="modal-content" style="border:none;">		
@@ -75,7 +80,7 @@
                                                                 </ul>
                                                             
                                                                 <div class="login-box marginB10">
-                                                                    <button class="btn-confirm"id="login_btn"  name="submit3" type="submit" class="btn btn-micv5 btn-block globalLogin" style="width:92%">Submit</button>
+                                                                    <button class="btn-confirm"id="login_btn"  name="submit3" type="submit" class="btn btn-micv5 btn-block globalLogin" style="width:92%; margin-top: -1px">Submit</button>
                                                                         <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">Alert</div>
                                                                 </div>
                                                            
@@ -99,6 +104,26 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/jquery2.2.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/modal.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $("#file").on("change",function()
+        {
+            var files=$(this)[0].files;
+            if(files.length>=1)
+           
+        {
+                $("#upload_button").click();
+            }
+           
+        
+        });
+        
+      
+    });
+    
+
+    </script>
 </body>
 
 </html>
