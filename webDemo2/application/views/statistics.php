@@ -62,6 +62,7 @@
             border-bottom-left-radius: 4px;
         }
         .btn {
+            width:100%;
             background-color: #f5f5f5;
             border-radius: 0px;
             font-family: Lato, sans-serif;
@@ -69,6 +70,12 @@
             color: #2c3d51;
             border-color: #2c3d51;
             margin-top: 10px;
+        }
+
+        .open>.dropdown-menu {
+            width: 100%;
+            display: block;
+            font-size: 18px;
         }
 
         #statsTopBar {
@@ -107,7 +114,7 @@
         #chartdiv {
             padding: 0px; height: 250px; background-color: #F5F5F5;
         }
-        
+
     </style>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -117,23 +124,23 @@
     <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/amChart.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/amChart.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/amChart.js"></script>
-    
+
 </head>
 
 <body>
     <span class="titleStats">{chooseSectors}:</span>
+
     <div class="form-group" >
         <div class="col-md-6 col-sm-10 col-xs-12" style="display:block">
-            <span class="multiselect-native-select">
-                <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple">
-                    <option value="sector1">de Halve Maan</option>
-                    <option value="sector2">de Zonnebloem</option>
-                    <option value="sector3">het Eiland</option>
-                    <option value="sector4">de Palmboom</option>
-                    <option value="sector5">de Zon</option>
-                    <option value="sector6">de Ster</option>
-                </select>
-            </span>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{current_sector}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    {sectors}
+                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?id={idSector}">{name}</a></li>  
+                    {/sectors}
+                </ul>
+            </div>
         </div>
         <div class="col-md-6" style="height: 75px"></div>
     </div>
@@ -147,12 +154,4 @@
         {/topics}
     </span>
     <div class="col-md-6  col-sm-10 col-xs-12" id="chartdiv" {hidden}></div>
-    <script type="text/javascript">
-        $(function () {
-            $('.multiselect-ui').multiselect({
-                includeSelectAllOption: true
-            });
-        });
-    </script>
-
 </body></html>

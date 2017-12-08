@@ -28,10 +28,10 @@ class Question_model extends CI_Model {
 
     public function getScores($sector) {
         $total = NULL;
-        $sector_id = $this->db->query("SELECT idSector from Sectors WHERE name = '$sector'")
-                        ->result()[0]->idSector;    //get the sector id
+        /*$sector_id = $this->db->query("SELECT idSector from Sectors WHERE name = '$sector'")
+                        ->result()[0]->idSector;    //get the sector id*/
         $residents = $this->db->query("SELECT idResident from Resident "
-                        . "WHERE Sectors_idSector = '$sector_id'")->result();   //select all residents from a sector
+                        . "WHERE Sectors_idSector = '$sector'")->result();   //select all residents from a sector
         if($residents == null) return null;
         //loop over all topics
         for ($topic = 0; $topic <= 11; $topic++) {
