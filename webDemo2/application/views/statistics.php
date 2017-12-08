@@ -137,8 +137,8 @@
         </div>
         <div class="col-md-6" style="height: 75px"></div>
     </div>
-    
-    <span class="col-md-6 col-sm-10 col-xs-12">
+    {no_data_msg}
+    <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>        
         {topics}
         <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>
         {questions}
@@ -146,7 +146,7 @@
         {/questions}
         {/topics}
     </span>
-    <div class="col-md-6  col-sm-10 col-xs-12" id="chartdiv" ></div>
+    <div class="col-md-6  col-sm-10 col-xs-12" id="chartdiv" {hidden}></div>
     <script type="text/javascript">
         $(function () {
             $('.multiselect-ui').multiselect({
