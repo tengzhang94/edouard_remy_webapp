@@ -82,13 +82,13 @@ class Residentpage_model extends CI_Model {
     }
     
     public function addResidentNotes($note,$resident_id){
-        if($note != NULL&&$resident_id !=NULL) {
-            $data=array(
+       
+        $data=array(
                 'Resident_idResident' => $resident_id,
                 'text' => $note,
             );
         $this->db->insert('Notes',$data);
-        }
+        
     }
   
     public function addResidentNonUrgProblems($id,$text) {

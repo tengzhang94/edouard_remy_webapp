@@ -20,12 +20,10 @@
                     <button class="btn btn-default removeBtn" type="submit" id="removeNote"  form="deleteNotes">
                         <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
-                    <button class="btn btn-default addBtn" type="button" id="addBtn2" data-toggle="modal" data-target="#myModal">
+                    <button class="btn btn-default addBtn" type="button" id="addBtn3">
                         <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" />
                     </button>
-                    
                 </span>
-  
             </span>
  
             <form  action="deleteNotes" method="post" id="deleteNotes">
@@ -35,10 +33,24 @@
                         <input type="checkbox" name="delete_notes[]" value='{noteId}' />
                         <span class="checkmark"></span>
                     </label>
-                    <div class="message infoTxt">{text}</div>
+                    <div class="message messageProbs">{text}</div>
                 </div>
                 {/notes}
             </form>
+            
+            <form method="post" action="addNewNote" >
+                    <div class="line">
+                        <label>
+                            <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
+                        <div class="message" id="inputMessage3">
+                            <input name="newNote" class = "text textProb" id="inputBlock3" style="display:none">
+                            <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                        </div>
+                        
+                    </div>
+                 
+            </form>
+            
         </div>
     </div>
     
@@ -79,15 +91,19 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                        <div class="message messageProbs">{text}</div>
+                    <div class="message messageProbs">{text}</div>
                     </div>
                     {/nonUrgProbs}
                 </form>
                 
-                <form method="post" action="addNonUrgProbs" style="margin-left: 12%">
-                    <div class="message" id="inputMessage1" style="display:none">
-                        <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
-                        <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                <form method="post" action="addNonUrgProbs">
+                    <div class="line">
+                        <label>
+                            <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
+                        <div class="message" id="inputMessage1" style="display:none">
+                            <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
+                            <button type="submit" id="note_submit" style="display: none"></button>
+                        </div>
                     </div>
                 </form>
                 
@@ -100,20 +116,26 @@
                     class="space"> </span>
                     
                 <form  action="deleteProblems" method="post" id="deleteUrgPro">
-                {urgProbs}
-                <div class="line">
-                    <label>
-                        <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                    <div class="message messageProbs">{text}</div>
-                </div>
-                {/urgProbs}
+                    {urgProbs}
+                    <div class="line">
+                        <label>
+                            <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
+                        <div class="message messageProbs">{text}</div>
+                    </div>
+                    {/urgProbs}
                </form>        
                 
-                <form method="post" action="addUrgProbs" style="margin-left: 12%">
-                    <div class="message" id="inputMessage2" style="display:none">
-                        <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
-                        <button type="submit" id="urgProb_submit" style="display: none"></button>
-                    </div> 
+                
+                
+                <form method="post" action="addUrgProbs">
+                    <div class="line">
+                        <label>
+                            <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
+                        <div class="message" id="inputMessage2" style="display:none">
+                            <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
+                            <button type="submit" id="urgProb_submit" style="display: none"></button>
+                        </div>
+                    </div>    
                 </form>
             </div>
         </div>
@@ -124,7 +146,7 @@
     $(function() {
         $("#addBtn1").click(function() {
             $("#inputBlock1").removeAttr("style");
-             $("#inputMessage1").removeAttr("style");
+            $("#inputMessage1").removeAttr("style");
         });
   
         $("#inputBlock1").on( "keydown", function(event) {
@@ -133,8 +155,7 @@
                 $("#nonUrgProb_submit").click();
             }
         });
-        
-        
+      
         $("#addBtn2").click(function() {
             console.log("aaa");
             $("#inputBlock2").removeAttr("style");
@@ -145,6 +166,19 @@
             if(event.which === 13) 
             {
                 $("#urgProb_submit").click();
+            }
+        });
+        
+        $("#addBtn3").click(function() {
+            console.log("aaa");
+            $("#inputBlock3").removeAttr("style");
+            $("#inputMessage3").removeAttr("style");
+        });
+        
+        $("#inputBlock3").on( "keydown", function(event) {
+            if(event.which === 13) 
+            {
+                $("#note_submit").click();
             }
         });
         
