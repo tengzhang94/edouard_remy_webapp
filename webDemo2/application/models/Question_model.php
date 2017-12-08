@@ -64,12 +64,12 @@ class Question_model extends CI_Model {
                 $j++;
             }
             $ids = join("','", $all_ids);
-            $topic_scores = $this->db->query("SELECT AVG(Answer) AS avg "
+            $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids')")->row();
 
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
-                            . "AVG(Answer) AS avg "
+                            . "ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids') "
                             . "GROUP BY Questions_idQuestion")->result();
