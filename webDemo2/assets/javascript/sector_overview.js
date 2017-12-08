@@ -16,14 +16,14 @@ function getSectorInfo(idSector) {
             if(data){
                 for(i in data) {
                         var div = document.createElement('div');
-                        div.classList.add("message");
+                        div.classList.add("sectorPerson");
                         div.innerHTML = data[i].firstName + " " + data[i].lastName;
                         list.appendChild(div);
                 }
             }
             var input = document.createElement('div');
-            input.classList.add("message");
-            input.innerHTML = '<div ondblclick="makeInput(' + idSector + ')" >Double click to add resident to this sector</div>';
+            input.classList.add("sectorAddPerson");
+            input.innerHTML = '<div class="sectorAddPerson btn btn-default" onclick="makeInput(' + idSector + ')" >Click to add resident to this sector</div>';
             list.appendChild(input);
             
         },   
@@ -32,8 +32,8 @@ function getSectorInfo(idSector) {
             div.innerHTML = "There are no residents in this group"
             list.appendChild(div);
             var input = document.createElement('div');
-            input.classList.add("message");
-            input.innerHTML = '<div ondblclick="makeInput(' + idSector + ')" >Double click to add resident to this sector</div>';
+            input.classList.add("sectorAddPerson");
+            input.innerHTML = '<div class="sectorAddPerson btn btn-default" onclick="makeInput(' + idSector + ')" >Click to add resident to this sector</div>';
             list.appendChild(input);
         }
     });
@@ -44,7 +44,7 @@ function makeInput(idSector){
     //Clear lastchild and insert form
     list.removeChild(list.lastChild);
     var div = document.createElement('div');
-    div.classList.add("message");
+    div.classList.add("sectorPerson");
     div.innerHTML = '<form class="form-horizontal" onsubmit="addResident(' + idSector + ')">\
                         <input type="submit" style="display: none" />\
                         <div class="control-group">\

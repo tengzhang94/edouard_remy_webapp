@@ -1,12 +1,8 @@
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-    
-    <div class="topButtons">
-        <button class="btn btn-default addSectorButton" type="button" onclick="createSectorForm()">Add a sector</button>
-    </div>
-    
+<div class="sectorCol col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <span class="sectorTitle">Kies een sector uit onderstaande lijst:</span>
     {sectors}
     <div class="line">
-        <button class="btn btn-default" type="button" onclick="getSectorInfo({idSector})"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
+        <button class="sectorButton btn btn-default" type="button" onclick="getSectorInfo({idSector})"> <!-- TODO: id distinction between buttons for selecting a sector and deleting it-->
             <input type="text" style="display: none"/>
             <div class="sectorName">{name}</div>
             <div class="residentCount">{residentCount}</div>
@@ -32,14 +28,20 @@
         </button>
     </div>
     {/sectors}
+    
+    <div class="topButtons">
+        <button class="btn btn-default addSectorButton" type="button" onclick="createSectorForm()">Add a sector</button>
+    </div>
 </div>
 
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-    below is a list of residents of a certain group
+
+
+<div class="sectorCol col-lg-8 col-md-8 col-sm-8 col-xs-12">
+    <span class="sectorTitle">Dit zijn de mensen van afdeling "{sector}":</span>
     <div class="residentList" id="residentList">
         <!-- insert residents through javascript, this is an example-->
         <div class="resident">
-            Click on a sector to see all residents within
+            Kies een afdeling om leden te zien.
         </div>
     </div>
     
