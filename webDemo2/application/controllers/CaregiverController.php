@@ -409,7 +409,9 @@ class CaregiverController extends CI_Controller {
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $this->load->model('Event_model');
-        $scores = $this->Question_model->getScores('de Zonnebloem');
+        if(null != $this->input->get('id')) $sector = $this->input->get('id');
+        else $sector = '2';
+        $scores = $this->Question_model->getScores($sector);
         if (isset($scores)) {
             for ($i = 0; $i <= 11; $i++) {
                 $this->Question_model->getQuestions($i);
@@ -434,6 +436,9 @@ class CaregiverController extends CI_Controller {
             $data['no_data_msg'] = "No data available for this sector";
         }
         $data['sectors'] = $this->Event_model->getSectors();
+        foreach ($data['sectors'] as $s) {
+            if($s->idSector == $sector) $data['current_sector'] = $s->name;
+        }        
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
