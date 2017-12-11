@@ -8,9 +8,10 @@
       </form>  
          </div>
         
-        <form class="form-horizontal" method="post" action="changePersonalInformation">
+      
            
             <div class="col-sm-6 col-xs-12">
+                  <form class="form-horizontal" method="post" action="changePersonalInformation">
                 
                 {content}
                 <div class="form-group" style=" margin-top: 125px;">
@@ -52,15 +53,14 @@
                     </div>
                 </div>
                 </div>
-            </div>
-  </form>  
-        
-       <form method="post" action="changePassword">   
+                </form> 
+                
+                   <form method="post" action="changePassword">   
         
             <div class="col-3" >
                 <div class="form-group" style="height:75px;width:600px;">
                  <div class="form-group" style="height:75px;margin-top: 3%; width:100%;margin-left: 20%">
-                     <button type="button" class="a globalLoginBtn btn-confirm" style="height:50px;width:630px; font-size:150%; text-align: center; margin-top: -1px; margin-left: 582px" >Change Password</button>
+                     <button type="button" class="a globalLoginBtn btn-confirm" style="height:50px;width:630px; font-size:150%; text-align: center;">Change Password</button>
                     <div class="modal fade" id="loginModal" style="display:none;">
                             <div class="modal-dialog modal-sm" style="width:540px;">
                                     <div class="modal-content" style="border:none;">		
@@ -96,6 +96,10 @@
                 
             </div>
             </form>
+            </div>
+   
+        
+    
             
           
     </div>
