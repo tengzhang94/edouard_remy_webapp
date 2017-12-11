@@ -164,4 +164,16 @@ class ResidentController extends CI_Controller {
         $this->parser->parse('login_resident', $data);
     }
     
+    public function sendMessage(){
+        $this->load->view('sendMessage');
+    }
+    
+    public function menu(){
+        $this->load->view('resident_menu');
+    }
+    
+    public function message(){
+        $this->load->view('resident_message');
+    }
+    
 }
