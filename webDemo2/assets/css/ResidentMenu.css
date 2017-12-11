@@ -1,0 +1,51 @@
+.btn.btn-primary {
+  width:100px;
+  background-color:#e4e4e4;
+  background-image:url("0px");
+  color:#2c3d51;
+  margin-top:-3px;
+  border-radius:0px;
+}
+
+.text-right {
+  background-color:#2c3d51;
+  height:60px;
+  font-family:Lato, sans-serif;
+  color:#e4e4e4;
+  font-size:20px;
+  padding-right:20px;
+  padding-top:15px;
+}
+
+.text-center {
+  color:#2c3d51;
+  font-size:24px;
+  font-family:Lato, sans-serif;
+  padding:20px;
+  padding-bottom:20px;
+  display:block;
+  margin-bottom:0px;
+}
+
+body {
+  background-color:#e4e4e4;
+  height: calc(~"100vh - 60px");
+}
+
+div {
+  text-align:center;
+}
+
+.menuButton {
+  width:90%;
+  height:100px;
+  font-size:24px;
+  border:1px solid #2c3d51;
+  border-radius:0px;
+  background-color: #f5f5f5;
+}
+
+form {
+  padding:20px;
+}
+
