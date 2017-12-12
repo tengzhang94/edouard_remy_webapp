@@ -1,9 +1,10 @@
-<div class="row" style="height:10%; display: flex; flex-direction: row; padding-top: 10px">
-    <form action='searchResident' method="post" style="margin-left: 50%; width:33%; display: flex; flex-direction: row;">    
-        <input name='inputName' type="text" placeholder="Firstname or Lastname" style="height:46px;width:75%;font-size:30px;" />
+<div class="row" style="height:10%; display: flex; flex-direction: row; padding-top: 20px;">
+    <div class="col-lg-5 col-sm-5 col-xs-6">
+    <form action='searchResident' method="post" style="  display: flex; flex-direction: row;margin-left: 25px;">   
+        <input id="searchBar" name='inputName' type="text" placeholder="Firstname or Lastname" />
                     
-        <button  class="btn btn-default" type="submit" style="height:46px; width: 46px;   background-color: transparent; border-color: transparent; margin-left: 15%;"  >
-            <svg class="searchSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="width: 46px; height: 46px; margin-left: -10px; margin-top: -5px;"viewBox="0 0 100 100">
+        <button  class="btn btn-default" type="submit" style="height:46px; width: 46px;   background-color: transparent; border-color: transparent; margin-left: 5%;"  >
+            <svg class="searchSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="float: right;width: 46px; height: 46px; margin-left: -10px; margin-top: -5px;"viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M300 924 c-79 -28 -144 -87 -188 -169 -24 -45 -27 -60 -27 -155 0
 -94 3 -110 27 -155 33 -64 89
@@ -23,7 +24,8 @@ m214 -88 c49 -20 112 -81 135 -130 25 -50 28 -149 7 -200 -20 -49
             </svg>
         </button> 
     </form>
-    
+   </div>
+    <div class="col-lg-1 col-lg-offset-5 col-sm-1 col-sm-offset-5 col-xs-1 col-xs-offset-4" >
     <div style="margin-left: 5%;">                 
         <button id="Button_filter" class="btn btn-default" type="button" style="height:46px; width: 46px;  background-color: transparent; border-color: transparent;">
             <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" style="width: 46px; height: 46px; margin-left: -10px; margin-top: -5px;" viewBox="0 0 100 100">
@@ -37,7 +39,9 @@ m214 -88 c49 -20 112 -81 135 -130 25 -50 28 -149 7 -200 -20 -49
                 </g>
             </svg>
         </button> 
-    </div>              
+    </div> 
+    </div>
+        <div class="col-lg-1 col-sm-1 col-xs-1">
     <form method="post" action="addResident" style="margin-left: 5%">
 
         <button id="Button_add" class="btn btn-default" type="submit" style="height:46px; width: 46px; background-color: transparent; border-color: transparent;">
@@ -56,10 +60,12 @@ m214 -88 c49 -20 112 -81 135 -130 25 -50 28 -149 7 -200 -20 -49
     </form>
 
 </div>
+</div>
+
 <div class="row" style="height:90%; margin-top: 20px;">
     {residents}
     <form method="post" action="residentIndividual">
-        <div class="col-md-3 col-md-offset-0 col-lg-offset-0 residentItem" padding-left:20px;">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 residentItem">
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
                     <img class="iconResOverviewLeft" src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png"/>
