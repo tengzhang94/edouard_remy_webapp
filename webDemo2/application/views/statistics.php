@@ -129,9 +129,12 @@
             font-family:Lato,sans-serif;
             font-size:30px;
             border-bottom:1px solid #2c3d51;
-        }
+        }        
         #chartdiv {
             padding: 0px; height: 250px; background-color: #F5F5F5;
+            width: 50%;
+            position: fixed;
+            margin-left: 42%;
         }
 
     </style>
@@ -155,9 +158,9 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{current_sector}
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?id=-1">{allSectors}</a></li>  
+                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?sector=-1">{allSectors}</a></li>  
                     {sectors}
-                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?id={idSector}">{name}</a></li>  
+                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/statistics?sector={idSector}">{name}</a></li>  
                     {/sectors}
                 </ul>
             </div>
@@ -165,10 +168,10 @@
         <div class="col-md-6" style="height: 60px"></div>
     </div>
     {no_data_msg}
-    <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>        
+    <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>
+        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{Tap a topic title to show chart} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{Average} </span>        
         {topics}
-        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>
-        <button id="showChart" onclick="drawChart({topicId})">{Show chart}</button>
+        <span class="topicTitle col-md-10  col-sm-10 col-xs-10" onclick="drawChart({topicId})">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>        
         {questions}
         <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{avg} </span>  
         {/questions}
