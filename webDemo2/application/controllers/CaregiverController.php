@@ -69,15 +69,12 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
 
-
     public function deleteMessages() {
         $ids = $this->input->post('delete_list');
         $this->load->model('Dashboard_model');
         $this->Dashboard_model->deleteMessages($ids);
         redirect('CaregiverController/home');
     }
-    
-   
 
     public function settings() {
         $this->session->set_userdata('passwordCondition', 'begin');
@@ -228,7 +225,7 @@ class CaregiverController extends CI_Controller {
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
-    
+
     public function changePassword() {
         $this->load->model('Event_model');
         $password_new = $this->input->post('password_new');
@@ -307,13 +304,14 @@ class CaregiverController extends CI_Controller {
         $this->Residentpage_model->addResidentUrgProblems($resident_id, $text);
         redirect('caregiverController/residentProblems');
     }
-    
-    public function addNewNote(){  
-       $newNote= $this->input->post('newNote');
-       $this->load->model('Residentpage_model');
-       $resident_id = $this->session->resident_id;
-       $result= $this->Residentpage_model->addResidentNotes($newNote,$resident_id);
-       redirect('caregiverController/residentIndividual');
+
+    public function addNewNote() {    //CANNOT SUCCESSFULLY INSERT
+        $newNote = $this->input->post('newNote');
+        $this->load->model('Residentpage_model');
+        $resident_id = $this->session->resident_id;
+        $result = $this->Residentpage_model->addResidentNotes($newNote, $resident_id);
+
+        redirect('caregiverController/residentIndividual');
     }
 
     public function addUrgProbs() {
@@ -409,8 +407,10 @@ class CaregiverController extends CI_Controller {
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $this->load->model('Sector_model');
-        if(null != $this->input->get('id')) $sector = $this->input->get('id');
-        else $sector = '-1';
+        if (null != $this->input->get('sector'))
+            $sector = $this->input->get('sector');
+        else
+            $sector = '-1';
         $scores = $this->Question_model->getScores($sector);
         if (isset($scores)) {
             for ($i = 0; $i <= 11; $i++) {
@@ -419,31 +419,59 @@ class CaregiverController extends CI_Controller {
                 $k = 0;
                 $questions = null;
                 foreach ($this->session->topicQuestions as $q) {
-                    $questions[$k] = array('questionString' => $q->questionString, 'avg' => $scores['question_avgs'][$i][$k]->avg);
+                    $score_q = $scores['question_avgs'][$i];
+                    $score_q != null ? $avg = $score_q[$k]->avg : $avg = "/";
+                    $questions[$k] = array('questionString' => $q->questionString, 'avg' => $avg);
                     $k++;
                 }
                 //put everything in the topics array for the {topics} loop
                 $topics[$i] = array('topicName' => $this->session->topicName,
+                    'topicId' => $this->session->topicId,
                     'questions' => $questions,
                     't_avg' => $scores['topic_avg'][$i]);
             }
             $data['hidden'] = '';
             $data['no_data_msg'] = '';
-            $data['topics'] = $topics;            
-        }
-        else {            
+            $data['topics'] = $topics;
+        } else {
             $data['hidden'] = 'hidden';
             $data['no_data_msg'] = "No data available for this sector";
         }
         $data['sectors'] = $this->Sector_model->getSectors();
         foreach ($data['sectors'] as $s) {
-            if($s->idSector == $sector) $data['current_sector'] = $s->name;
+            if ($s->idSector == $sector)
+                $data['current_sector'] = $s->name;
         }
-        if ($sector == -1) $data['current_sector'] = $data['allSectors'];
+        if ($sector == -1)
+            $data['current_sector'] = $data['allSectors'];
+        $data['current_sector_id'] = $sector;
         $data['title'] = 'Statistics';
         $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
+    }
+
+    public function getChartStats() {
+        $this->load->model('Question_model');
+        if (null != $this->input->get('sector'))
+            $sector = $this->input->get('sector');
+        else
+            $sector = '-1';
+        $topic = $this->input->get('topic');
+        $qIds = $this->Question_model->getQuestionIds($topic);
+        $startId = reset($qIds)['idQuestion'] - 1;
+        $range = count($qIds);
+        $scores = $this->Question_model->getChartScores($sector);
+
+        $array = array(            
+            array('test1', 2, 1, 1, 3, 1),
+            array('test2', 1, 3, 2, 2, 0),
+            array('test3', 4, 1, 1, 0, 0),
+            array('test4', 1, 2, 3, 1, 1),
+            array('test5', 1, 2, 0, 3, 5),
+        );
+
+        echo json_encode(array_slice($scores, $startId, $range));
     }
 
     public function deleteProblems() {
@@ -452,13 +480,12 @@ class CaregiverController extends CI_Controller {
         $this->Residentpage_model->deleteProblems($ids);
         redirect('CaregiverController/residentProblems');
     }
-    
-     public function deleteNotes(){
+
+    public function deleteNotes() {
         $ids = $this->input->post('delete_notes');
         $this->load->model('Residentpage_model');
-        $this-> Residentpage_model->deleteNotes($ids);
+        $this->Residentpage_model->deleteNotes($ids);
         redirect('CaregiverController/residentIndividual');
-        
     }
 
 }
