@@ -8,11 +8,11 @@ class Dashboard_model extends CI_Model {
     
     public function getCaregiverSectors() {
         $idCaregiver = $this->session->userdata('idCaregiver'); //Get id from session to get caregivers sector id
-        $sectorId = $this->db->query("SELECT Sectors_idSector AS sectorId FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'");
-        return $sectorId->result_array();
+        $sector = $this->db->query("SELECT Sectors_idSector AS sectorId FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'");
+        return $sector->result_array();
     }
     
-    public function getAllMessagesFromSectors($sectors) {
+    public function getAllNotificationsFromSectors($sectors) {
         if(count($sectors) == 0) {
             $messages = array("Geen berichten.");
             return $messages;
@@ -22,7 +22,7 @@ class Dashboard_model extends CI_Model {
         //Caregiver can have multiple sectors, loop throught them to get all messages and store in session for later use/filtering.
         for ($x = 0; $x < count($sectors); $x++) {
             $id = $sectors[$x]['sectorId'];
-            $mResult = $this->db->query("SELECT * FROM Messages WHERE sectorId = '$id'");
+            $mResult = $this->db->query("SELECT * FROM Notifications WHERE Sectors_idSector = '$id'");
             for ($i = 0; $i < $mResult->num_rows(); $i++) {                
                 $messages[] = $mResult->result_array()[$i];
             }
@@ -30,15 +30,15 @@ class Dashboard_model extends CI_Model {
         return $messages;
     }
     
-    public function getMessages() {
+    public function getNotifications() {
         $sectorIds = Dashboard_model::getCaregiverSectors();
-        return Dashboard_model::getAllMessagesFromSectors($sectorIds);
+        return Dashboard_model::getAllNotificationsFromSectors($sectorIds);
     }
     
-    function deleteMessages($ids) {
+    function deleteNotifications($ids) {
         foreach($ids as $id) {
             $this->db->where('idMessage', $id);
-            $this->db->delete('Messages');
+            $this->db->delete('Notifications');
         }
     }
 }

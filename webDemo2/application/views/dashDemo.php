@@ -44,7 +44,7 @@
         </div>
     </div>
     
-    <form action="deleteMessages" method="post" id="deleteForm">
+    <form action="deleteNotifications" method="post" id="deleteForm">
     {messages}
     <div class="line">
         <label>

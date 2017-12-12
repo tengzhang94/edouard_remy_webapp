@@ -52,7 +52,7 @@ class CaregiverController extends CI_Controller {
 
     public function home() {
         $this->load->model('Dashboard_model');
-        $result = $this->Dashboard_model->getMessages(); //Message rows from database for the sectors this caregiver monitors        
+        $result = $this->Dashboard_model->getNotifications(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
         for ($i = 0; $i < count($result); $i++) {
             $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idMessage']);
@@ -69,10 +69,10 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
 
-    public function deleteMessages() {
+    public function deleteNotifications() {
         $ids = $this->input->post('delete_list');
         $this->load->model('Dashboard_model');
-        $this->Dashboard_model->deleteMessages($ids);
+        $this->Dashboard_model->deleteNotifications($ids);
         redirect('CaregiverController/home');
     }
 
