@@ -76,7 +76,7 @@ console.log(font);
                     <?php echo form_close();?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_open('CaregiverController/home');?>
+                    <?php echo form_open('ResidentController/menu');?>
                         <div class="form-group">
                             <button class="btn btn-default" type="submit">{no}</button>
                         </div>

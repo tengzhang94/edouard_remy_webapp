@@ -17,13 +17,13 @@
                     <p class="text-right"><span class="float_right">{Lettergrootte:}<button class="btn btn-primary" type="button" style="margin-left:10px;">{Groter} </button><button class="btn btn-primary" type="button">{Kleiner} </button></span></p>
                 </div><span class="text-center">{Wat wil je nu doen? Kies een van de onderstaande opties.}</span>
                 <form>
-                    <button class="btn btn-default menuButton" type="button">{Bekijk je foto's} - {Er zijn x foto's beschikbaar!}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='message'">{Bekijk je foto's} - {Er zijn x foto's beschikbaar!}</button>
                 </form>
                 <form>
-                    <button class="btn btn-default menuButton" type="button">{Beantwoordt meer vragen}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='topics'">{Beantwoordt meer vragen}</button>
                 </form>
                 <form>
-                    <button class="btn btn-default menuButton" type="button">{Afsluiten}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='login'">{Afsluiten}</button>
                 </form>
             </div>
         </div>
