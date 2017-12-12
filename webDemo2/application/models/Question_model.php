@@ -16,8 +16,13 @@ class Question_model extends CI_Model {
         $questions = $this->db->query("SELECT idQuestion, $questionLang AS questionString FROM Questions WHERE Topics_idTopic = '$topicId'");
         $this->session->set_userdata('topicQuestions', $questions->result());   //get all questins of current topic and store them in session
         //get the topic name and store it temporarily in session
-        $topicName = $this->db->query("SELECT $topicLang AS topicName FROM Topics WHERE idTopic = '$topicId'");
+        $topicName = $this->db->query("SELECT idTopic, $topicLang AS topicName FROM Topics WHERE idTopic = '$topicId'");
         $this->session->set_userdata('topicName', $topicName->result()[0]->topicName);
+        $this->session->set_userdata('topicId', $topicName->result()[0]->idTopic);
+    }
+    
+    public function getQuestionIds($topicId) {
+        return $this->db->query("SELECT idQuestion FROM Questions WHERE Topics_idTopic = '$topicId'")->result_array();
     }
 
     public function getTopics() {
@@ -52,8 +57,9 @@ class Question_model extends CI_Model {
                             . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
                             . "FROM Resident_fills_in_Topics "
                             . "WHERE Resident_idResident IN ('$r')"
+                            . "AND Topics_idTopic = '$topic' "
                             . "GROUP BY Resident_idResident) "
-                            . "AND Topics_idTopic = '$topic'")->result();            
+                            . "AND Topics_idTopic = '$topic' ")->result();               
             $j = 0;
             $all_ids = null;
             foreach ($fill_in_ids as $id) {
@@ -106,8 +112,9 @@ class Question_model extends CI_Model {
                             . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
                             . "FROM Resident_fills_in_Topics "
                             . "WHERE Resident_idResident IN ('$r')"
+                            . "AND Topics_idTopic = '$topic' "
                             . "GROUP BY Resident_idResident) "
-                            . "AND Topics_idTopic = '$topic'")->result();            
+                            . "AND Topics_idTopic = '$topic' ")->result();            
             $j = 0;
             $all_ids = null;
             foreach ($fill_in_ids as $id) {

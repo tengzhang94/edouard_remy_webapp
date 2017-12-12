@@ -407,8 +407,8 @@ class CaregiverController extends CI_Controller {
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $this->load->model('Sector_model');
-        if (null != $this->input->get('id'))
-            $sector = $this->input->get('id');
+        if (null != $this->input->get('sector'))
+            $sector = $this->input->get('sector');
         else
             $sector = '-1';
         $scores = $this->Question_model->getScores($sector);
@@ -426,6 +426,7 @@ class CaregiverController extends CI_Controller {
                 }
                 //put everything in the topics array for the {topics} loop
                 $topics[$i] = array('topicName' => $this->session->topicName,
+                    'topicId' => $this->session->topicId,
                     'questions' => $questions,
                     't_avg' => $scores['topic_avg'][$i]);
             }
@@ -452,10 +453,14 @@ class CaregiverController extends CI_Controller {
 
     public function getChartStats() {
         $this->load->model('Question_model');
-        if (null != $this->input->get('id'))
-            $sector = $this->input->get('id');
+        if (null != $this->input->get('sector'))
+            $sector = $this->input->get('sector');
         else
             $sector = '-1';
+        $topic = $this->input->get('topic');
+        $qIds = $this->Question_model->getQuestionIds($topic);
+        $startId = reset($qIds)['idQuestion'] - 1;
+        $range = count($qIds);
         $scores = $this->Question_model->getChartScores($sector);
 
         $array = array(            
@@ -466,7 +471,7 @@ class CaregiverController extends CI_Controller {
             array('test5', 1, 2, 0, 3, 5),
         );
 
-        echo json_encode(array_slice($scores, 0, 2));
+        echo json_encode(array_slice($scores, $startId, $range));
     }
 
     public function deleteProblems() {

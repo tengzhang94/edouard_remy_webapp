@@ -168,6 +168,7 @@
     <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>        
         {topics}
         <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>
+        <button id="showChart" onclick="drawChart({topicId})">{Show chart}</button>
         {questions}
         <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{avg} </span>  
         {/questions}
@@ -181,11 +182,36 @@
         google.charts.load('current', {'packages': ['corechart']});
 
         // Set a callback to run when the Google Visualization API is loaded. 
-        google.charts.setOnLoadCallback(drawChart);
+        //google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
+        function drawChart(topicId) {
+            var options = {
+                title: '{chart_title}',
+                chartArea: {width: '50%', backgroundColor: '#F5F5F5'},
+                isStacked: 'percent',
+                hAxis: {
+                    title: '{x_label}',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: '{y_label}'
+                },
+                series: {
+                    0: {color: '#D61B1C'},
+                    1: {color: '#ff8e26'},
+                    2: {color: '#D9D684'},
+                    3: {color: '#ADD8E9'},
+                    4: {color: '#2C79B3'}
+                    /*0: {color: '#c23b22'},
+                     1: {color: '#c2721d'},
+                     2: {color: '#888'},
+                     3: {color: '#06c07a'},
+                     4: {color: '#03c03c'}*/
+                }
+            };
+
             var jsonData = $.ajax({
-                url: "<?php echo base_url() . 'index.php/CaregiverController/getChartStats?id={current_sector_id}' ?>",
+                url: "<?php echo base_url() . 'index.php/CaregiverController/getChartStats?sector={current_sector_id}&topic=' ?>" + topicId,
                 dataType: "json",
                 async: false
             }).responseText;
@@ -200,42 +226,20 @@
             // Create our data table out of JSON data loaded from server.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Question');
-            data.addColumn('number', 'Very bad');
-            data.addColumn('number', 'Bad');
-            data.addColumn('number', 'Neutral');
-            data.addColumn('number', 'Good');
-            data.addColumn('number', 'Very good');
+            data.addColumn('number', '{strongly_disagree}');
+            data.addColumn('number', '{disagree}');
+            data.addColumn('number', '{neutral}');
+            data.addColumn('number', '{agree}');
+            data.addColumn('number', '{strongly_agree}');
             data.addRows(arr);
             //var data = new google.visualization.arrayToDataTable(jsonData);
 
-            var options = {
-                title: 'Distribution of answers per question',
-                chartArea: {width: '50%', backgroundColor: '#F5F5F5'},
-                isStacked: 'percent',
-                hAxis: {
-                    title: 'Responses',
-                    minValue: 0
-                },
-                vAxis: {
-                    title: 'Question'
-                },
-                series: {
-                    0: {color: '#a88c5f'},
-                    1: {color: '#cfb68f'},
-                    2: {color: '#f5f5f5'},
-                    3: {color: '#617288'},
-                    4: {color: '#42566e'}
-                    /*0: {color: '#c23b22'},
-                    1: {color: '#c2721d'},
-                    2: {color: '#888'},
-                    3: {color: '#06c07a'},
-                    4: {color: '#03c03c'}*/
-                }
-            };
+
 
             // Instantiate and draw our chart, passing in some options. 
             var chart = new google.visualization.BarChart(document.getElementById('chartdiv'));
             chart.draw(data, options);
+
         }
 
     </script> 
