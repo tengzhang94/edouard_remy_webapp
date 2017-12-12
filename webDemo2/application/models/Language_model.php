@@ -131,7 +131,18 @@ class Language_model extends CI_Model {
         $this->lang->load('Statistics_lang', $this->session->language);
         return array(
             "chooseSectors" => lang("stats_chooseSectors"),
-            "allSectors" => lang('stats_allSectors')
+            "allSectors" => lang('stats_allSectors'),
+            "strongly_disagree" => lang('stats_stronglyDisagree'),
+            "disagree" => lang('stats_disagree'),
+            "neutral" => lang('stats_neutral'),
+            "agree" => lang('stats_agree'),
+            "strongly_agree" => lang('stats_stronglyAgree'),
+            "y_label" => lang('stats_chartY'),
+            "x_label" => lang('stats_chartX'),
+            "chart_title" => lang('stats_chartTitle'),
+            "show_chart_header" => lang('stats_showChart'),
+            "average_header" => lang('stats_average'),
+            "no_data_msg" => lang('stats_noData')
         );
     }
     

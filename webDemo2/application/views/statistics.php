@@ -129,9 +129,18 @@
             font-family:Lato,sans-serif;
             font-size:30px;
             border-bottom:1px solid #2c3d51;
-        }        
+        }
+        .statsHeader{
+            padding-left:5px;
+            padding-bottom: 0px;
+            padding-top:20px;
+            font-family:Lato,sans-serif;
+            font-size:20px;
+        }
         #chartdiv {
-            padding: 0px; height: 250px; background-color: #F5F5F5;
+            padding: 0px; 
+            height: 250px; 
+            background-color: #F5F5F5;
             width: 50%;
             position: fixed;
             margin-left: 42%;
@@ -140,13 +149,9 @@
     </style>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/bootstrap_multiselect.js"></script>
-    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/bootstrap_multiselect.js"></script>    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!--<script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/gChart.js"></script>-->
-
 </head>
 
 <body>
@@ -167,9 +172,9 @@
         </div>
         <div class="col-md-6" style="height: 60px"></div>
     </div>
-    {no_data_msg}
+    <span class="statsHeader col-md-10  col-sm-10 col-xs-10" {notHidden}>{no_data_msg}</span>
     <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>
-        <span class="topicTitle col-md-10  col-sm-10 col-xs-10">{Tap a topic title to show chart} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{Average} </span>        
+        <span class="statsHeader col-md-10  col-sm-10 col-xs-10">{show_chart_header} </span><span class="statsHeader col-md-2  col-sm-2 col-xs-2">{average_header} </span>        
         {topics}
         <span class="topicTitle col-md-10  col-sm-10 col-xs-10" onclick="drawChart({topicId})">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>        
         {questions}

@@ -431,11 +431,11 @@ class CaregiverController extends CI_Controller {
                     't_avg' => $scores['topic_avg'][$i]);
             }
             $data['hidden'] = '';
-            $data['no_data_msg'] = '';
+            $data['notHidden'] = 'hidden';
             $data['topics'] = $topics;
         } else {
             $data['hidden'] = 'hidden';
-            $data['no_data_msg'] = "No data available for this sector";
+            $data['notHidden'] = '';
         }
         $data['sectors'] = $this->Sector_model->getSectors();
         foreach ($data['sectors'] as $s) {
