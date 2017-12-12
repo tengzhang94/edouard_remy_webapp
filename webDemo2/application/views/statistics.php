@@ -201,9 +201,9 @@
                     title: '{x_label}',
                     minValue: 0
                 },
-                vAxis: {
+                /*vAxis: {
                     title: '{y_label}'
-                },
+                },*/
                 series: {
                     0: {color: '#D61B1C'},
                     1: {color: '#ff8e26'},
