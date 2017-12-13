@@ -69,7 +69,7 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
 
-    public function deleteNotifications() {
+    public function deleteNotifications() {       
         $ids = $this->input->post('delete_list');
         $this->load->model('Dashboard_model');
         $this->Dashboard_model->deleteNotifications($ids);
@@ -219,7 +219,40 @@ class CaregiverController extends CI_Controller {
           $data['married'] = $resident->married ? "yes" : "no";
           $data['children'] = $resident->children;
           $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
+        //last score
+        $score_last =  $this->Residentpage_model->getTopicScore($resident_id,'0')->avg;
+        
+        //second last score
+        $score_second_last = $this->Residentpage_model->getLastSecondScore($resident_id,'0')->avgSecondLast;
+        $resident['scoreTopic0'] = $score_last;
 
+        //compute 
+        if($score_last >=  $score_second_last ){
+            $arrowImage = 'assets/css/image/icons8-arrow.png';
+        }
+        else{
+            $arrowImage = 'assets/css/image/icons8-redArrow.png';
+        }
+        $resident['arrowImage'] = $arrowImage;
+        
+        //time interval between last and secondLast filled_in 
+        date_default_timezone_set('UTC');
+        $time_last = $this->Residentpage_model->getLastTime($resident_id,'0')->lastTime;
+        $time_secondLast = $this->Residentpage_model->getSecondLastTime($resident_id,'0')->timeSecondLast;
+        $ts1 = strtotime($time_last);
+        $ts2 = strtotime($time_secondLast);
+        $time_interval =($ts1-$ts2)/86400; 
+        if($time_interval >5){
+            $colorSubject2 = '#ff8166';
+        }
+        else{
+            $colorSubject2 = '#2c3d51';
+        }
+        $resident['LastTime0'] =$time_interval;
+        $resident['colorSubject2'] =  $colorSubject2 ;
+        
+        
+                     
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);

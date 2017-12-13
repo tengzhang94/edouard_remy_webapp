@@ -87,8 +87,7 @@ class Residentpage_model extends CI_Model {
                 'Resident_idResident' => $resident_id,
                 'text' => $note,
             );
-        $this->db->insert('Notes',$data);
-        
+        $this->db->insert('Notes',$data);    
     }
   
     public function addResidentNonUrgProblems($id,$text) {
@@ -113,6 +112,70 @@ class Residentpage_model extends CI_Model {
             $this->db->delete('Notes');
         }
     }
+    
+    public function getTopicScore($resident_id,$topic_id){
+        $query = $this->db->query("SELECT round(AVG(Answer),1) as avg FROM Resident_fills_in_Topics  INNER JOIN Answers
+                                WHERE Timestamp IN
+                                (SELECT MAX(Timestamp) FROM Resident_fills_in_Topics
+                                INNER JOIN Answers
+                                where Resident_fills_in_Topics.id_fill_in = Answers.fill_in_id
+                                AND Resident_idResident = $resident_id
+                                AND Topics_idTopic = $topic_id)
+                                AND Resident_fills_in_Topics.id_fill_in = Answers.fill_in_id
+                                AND Resident_idResident = $resident_id
+                                AND Topics_idTopic = $topic_id;" );
+        return $query->row();          
+    }
+    
+        public function getLastSecondScore($resident_id,$topic_id){
+        $query = $this->db->query("SELECT round(AVG(Answer),1) as avgSecondLast FROM a17_webapps04.Resident_fills_in_Topics  INNER JOIN a17_webapps04.Answers
+                                WHERE Timestamp IN
+                                (SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
+                                    INNER JOIN a17_webapps04.Answers
+                                    where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                    AND Resident_idResident = '2'
+                                    AND Topics_idTopic = '0'
+                                    AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
+                                    INNER JOIN a17_webapps04.Answers
+                                    where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                    AND Resident_idResident = '2'
+                                    AND Topics_idTopic ='0'))
+                                AND a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                AND Resident_idResident  = '2'
+                                AND Topics_idTopic = '0';" );
+        return $query->row();          
+    }
+    
+    public function getLastTime($resident_id,$topic_id){
+        $query = $this->db->query("SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
+                                    INNER JOIN a17_webapps04.Answers
+                                    where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                    AND Resident_idResident = $resident_id
+                                    AND Topics_idTopic =$topic_id;"
+                );
+        return $query->row();
+    }
+    
+    public function getSecondLastTime($resident_id,$topic_id){
+         $query = $this->db->query("SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
+                                    INNER JOIN a17_webapps04.Answers
+                                    where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                    AND Resident_idResident = '2'
+                                    AND Topics_idTopic = '0'
+                                    AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
+                                    INNER JOIN a17_webapps04.Answers
+                                    where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
+                                    AND Resident_idResident ='2'
+                                    AND Topics_idTopic = '0');"
+                );
+        return $query->row();
+    }
+    
+    
+
+
+
+   
 
 
 }

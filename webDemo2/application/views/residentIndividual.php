@@ -5,8 +5,9 @@
 <div class="row" display="height:calc(100vh - 60px)">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  residentInfoCol">
         <div id="infoDiv">
-            <span id="residentHeader"><span id="imgSpan"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" id="iconClock"><img src="{photo}" id="image"><img src="<?php echo base_url() ?>assets/css/image/happyhappy.png" id="iconSmiley"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
-                <span class="infoTitleTxt">{room} {roomNr}</span>
+            <span id="residentHeader"><span id="imgSpan"><img src="{photo}" id="image"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
+                <span class="infoTitleTxt" >{room} {roomNr}</span>
+                <span class="infoTitleTxt" id = "imageMark" ><img src="<?php echo base_url() ?>assets/css/image/icons8-mark-red.png" id="iconClock"><img src="<?php echo base_url() ?>assets/css/image/icons8-lol.png" id="iconSmiley" ></span>
             </span>
                 <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
                 <span id="gender" class="infoTxt">{genderString}: {gender}</span>
@@ -59,7 +60,8 @@
         </ul>
         <div class="row" id="personalStats" {scores_hidden}>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColLeft">
-                <div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
+                <div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo" style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; position:absolute;bottom:0;width:100%;">{scoreTopic0} <img src="<?php echo base_url() ?>{arrowImage}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject2}">{LastTime0} days</span></div>
                 <div class="statItem"><span class="subjectTitle">Comfort </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
                 <div class="statItem"><span class="subjectTitle">Responsiviteit Zorgverleners</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
                 <div class="statItem"><span class="subjectTitle">Persoonlijke Omgang</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
