@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Resident.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
-            <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 
+        <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 
           <script>
           $(function() {
       var font=0;
@@ -53,6 +53,7 @@ console.log(font);
     </script>
     </head>
     <body>
+        <script> var base_url = "<?= base_url('') ?>";</script>
         <div>
             <p class="text-right" id="header"><span class="float_left">{topic}</span><span class="float_right">{font_size}<button id="BG" class="btn btn-primary" type="button" style="margin-left:10px;">{greater} </button><button id="BS" class="btn btn-primary" type="button">{smaller} </button></span></p>
             <p
@@ -60,11 +61,12 @@ console.log(font);
             <form style="margin-top:120px;" action="" id='questionForm' onsubmit="return nextQuestion()">
                 <div class="form-group">
                     <?php echo form_input($hiddenQuestionNr)?>
-                    <button class="btn btn-link question" type="submit"><small>{verybad}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sad.png"></button>
-                    <button class="btn btn-link" type="submit"><small>{bad}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sadsad.png"></button>
-                    <button class="btn btn-link" type="submit"><small>{ok}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sadsadsad.png"></button>
-                    <button class="btn btn-link" type="submit"><small>{good}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happy.png"></button>
-                    <button class="btn btn-link" type="submit"><small>{verygood}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happyhappy.png"></button>
+                    <?php echo form_input($hiddenQuestionId)?>
+                    <button class="btn btn-link question" onclick="score=0;" type="submit"><small>{verybad}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sad.png"></button>
+                    <button class="btn btn-link" onclick="score=1;" type="submit"><small>{bad}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sadsad.png"></button>
+                    <button class="btn btn-link" onclick="score=2;" type="submit"><small>{ok}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/sadsadsad.png"></button>
+                    <button class="btn btn-link" onclick="score=3;" type="submit"><small>{good}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happy.png"></button>
+                    <button class="btn btn-link" onclick="score=4;" type="submit"><small>{verygood}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happyhappy.png"></button>
                 </div>
             </form>
         </div>

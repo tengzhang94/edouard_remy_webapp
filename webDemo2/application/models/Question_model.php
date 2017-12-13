@@ -30,6 +30,28 @@ class Question_model extends CI_Model {
         $query = $this->db->query("SELECT idTopic, $topicLang AS topicName FROM Topics");
         return $query->result_array();
     }
+    
+    public function storeAnswers($answerArray){
+        date_default_timezone_set("Europe/Brussels");
+        //make a new 'resident fills in topics' entry
+        $fillInData = array(
+            "id_fill_in" => "",
+            "Resident_idResident" => $this->session->userdata("id"),
+            "Topics_idTopic" => $this->session->userdata("topicId"),
+            "Timestamp" => date("Y-m-d") //timestamp doesn't work yet
+        );
+        $this->db->insert('Resident_fills_in_Topics', $fillInData);
+        //insert all answers into the database
+        $fillInId = $this->db->insert_id();
+        foreach($answerArray as $answerRow){
+            $data = array(
+                "fill_in_id" => $fillInId,
+                "Questions_idQuestion" => $answerRow['questionId'],
+                "Answer" => $answerRow['score']
+            );
+            $this->db->insert('Answers', $data);
+        }
+    }
 
     public function getScores($sector) {
         $total = NULL;

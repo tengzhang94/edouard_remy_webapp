@@ -22,6 +22,7 @@ class ResidentController extends CI_Controller {
             if(isset($topicId)){
                 $this->session->unset_userdata('topicQuestions');
                 $this->session->unset_userdata('topicName');
+                $this->session->unset_userdata('answers');
                 $this->session->set_userdata('topicId', $topicId);
             }
         }
@@ -34,12 +35,15 @@ class ResidentController extends CI_Controller {
         
         if (!empty($this->session->topicQuestions [$questionNr])) {
             $question = $this->session->topicQuestions[$questionNr]->questionString;
+            $questionId = $this->session->topicQuestions[$questionNr]->idQuestion;
         } else {
+            //store answers in database BEFORE unsetting session data!
+            $this->Question_model->storeAnswers($this->session->userdata('answers'));
             //redirect to 'end of topic' page
-            //redirect('CaregiverController/login');
             $this->session->unset_userdata('topicQuestions');
             $this->session->unset_userdata('topicId');
             $this->session->unset_userdata('topicName');
+            $this->session->unset_userdata('answers');
             //$this->session->set_userdata('topicId', $this->session->topicId + 1);
             redirect('ResidentController/end');
         }
@@ -55,16 +59,23 @@ class ResidentController extends CI_Controller {
             "type" => "hidden"
         );
         
+        $hiddenQuestionId = array(
+            "value" => $questionId,
+            "id" => "hiddenQuestionId",
+            "type" => "hidden"
+        );
+        
         $this->lang->load('ResidentQuestion_lang', $this->language);
         //put the question and topic title in array, then parse data
         $data = array_merge(array(
             "topic" => $topic,
             "question" => $question,
-            "hiddenQuestionNr" => $hiddenQuestionNr
-                ),
-                $this->navLangArray,
-                $this->Language_model->getResQuestionLanguage()
-                );
+            "hiddenQuestionNr" => $hiddenQuestionNr,
+            "hiddenQuestionId" => $hiddenQuestionId
+            ),
+            $this->navLangArray,
+            $this->Language_model->getResQuestionLanguage()
+            );
         $this->parser->parse('questionpage_new', $data);
     }
     
@@ -98,9 +109,9 @@ class ResidentController extends CI_Controller {
         {
             $data['great_href']='assets/css/Resident_greatSize.less';
         }
- else {
-     $data['great_href']='assets/css/Resident.less';
- }
+        else {
+            $data['great_href']='assets/css/Resident.less';
+        }
        
        
       

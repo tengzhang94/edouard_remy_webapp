@@ -39,4 +39,14 @@ class AjaxController extends CI_Controller {
         $result = $this->db->query("UPDATE Resident SET Sectors_idSector = '$idSector' WHERE (firstName = '$firstName' AND lastName = '$lastName')");
         return $result;
     }
+    
+    public function saveScore(){
+        $question = array(
+            "questionId" => $this->input->post('questionId'),
+            "score" => $this->input->post('score')
+        );
+        $data = $this->session->userdata('answers');
+        $data[] = $question;
+        $this->session->set_userdata('answers', $data);
+    }
 }
