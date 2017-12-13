@@ -33,6 +33,7 @@ class Question_model extends CI_Model {
 
     public function getScores($sector) {
         $total = NULL;
+        //get residents from a certain sector
         if ($sector == -1) {
             $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
         } else {
@@ -42,44 +43,19 @@ class Question_model extends CI_Model {
         if ($residents == null)
             return null;
         //loop over all topics
-        for ($topic = 0; $topic <= 11; $topic++) {
-            $i = 0;
-            $all_residents = null;
-            foreach ($residents as $res) {
-                $all_residents[$i] = $res->idResident;
-                $i++;
-            }
-            if (isset($residents))
-                $r = join("','", $all_residents);
-            else
-                $r = '';
-            $fill_in_ids = $this->db->query("SELECT id_fill_in FROM Resident_fills_in_Topics "
-                            . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
-                            . "FROM Resident_fills_in_Topics "
-                            . "WHERE Resident_idResident IN ('$r')"
-                            . "AND Topics_idTopic = '$topic' "
-                            . "GROUP BY Resident_idResident) "
-                            . "AND Topics_idTopic = '$topic' ")->result();               
-            $j = 0;
-            $all_ids = null;
-            foreach ($fill_in_ids as $id) {
-                $all_ids[$j] = $id->id_fill_in;
-                $j++;
-            }
-            if (isset($all_ids))
-                $ids = join("','", $all_ids);
-            else
-                $ids = '';
+        for ($topic = 0; $topic <= 11; $topic++) {            
+            $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
+            //calculate the average per topic
             $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids')")->row();
-
+            //calculte the average per question
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
                             . "ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids') "
                             . "GROUP BY Questions_idQuestion")->result();
-
+            //store topic and question averages in $total variable
             $total['topic_avg'][$topic] = $topic_scores->avg != null ? $topic_scores->avg : '/';            
             $total['question_avgs'][$topic] = $question_scores != null ? $question_scores : null;         
         }
@@ -88,6 +64,7 @@ class Question_model extends CI_Model {
 
     public function getChartScores($sector) {
         $questions = null;
+        //get residents from a certain sector
         if ($sector == -1) {
             $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
         } else {
@@ -97,47 +74,21 @@ class Question_model extends CI_Model {
         if ($residents == null)
             return null;
         //loop over all topics
-        for ($topic = 0; $topic <= 11; $topic++) {
-            $i = 0;
-            $all_residents = null;
-            foreach ($residents as $res) {
-                $all_residents[$i] = $res->idResident;
-                $i++;
-            }
-            if (isset($residents))
-                $r = join("','", $all_residents);
-            else
-                $r = '';
-            $fill_in_ids = $this->db->query("SELECT id_fill_in FROM Resident_fills_in_Topics "
-                            . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
-                            . "FROM Resident_fills_in_Topics "
-                            . "WHERE Resident_idResident IN ('$r')"
-                            . "AND Topics_idTopic = '$topic' "
-                            . "GROUP BY Resident_idResident) "
-                            . "AND Topics_idTopic = '$topic' ")->result();            
-            $j = 0;
-            $all_ids = null;
-            foreach ($fill_in_ids as $id) {
-                $all_ids[$j] = $id->id_fill_in;
-                $j++;
-            }
-            if (isset($all_ids))
-                $ids = join("','", $all_ids);
-            else
-                $ids = '';            
-
-            $this->getQuestions($topic);
-
+        for ($topic = 0; $topic <= 11; $topic++) {                   
+            $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
+            $this->getQuestions($topic);    //get the questions and set them in session variable
+            //loop over all questions and count the answers
             foreach ($this->session->topicQuestions as $q) {
-                $questions[$q->idQuestion] = array($q->questionString, 0, 0, 0, 0, 0);
+                $questions[$q->idQuestion] = array($q->questionString, 0, 0, 0, 0, 0);  //set question text and set initial answer counts to 0
                 $scores = $this->db->query("SELECT Answers.Answer
                 FROM Answers
                 INNER JOIN Questions 
                 ON Answers.Questions_idQuestion=Questions.idQuestion
                 WHERE Questions.Topics_idTopic = '$topic'
                 AND Answers.fill_in_id IN ('$ids')
-                AND Answers.Questions_idQuestion = '$q->idQuestion';")->result();               
-                $questions = $this->countAnswers($q->idQuestion, $scores, $questions);
+                AND Answers.Questions_idQuestion = '$q->idQuestion';")->result(); 
+                //count the answers and store it in $questions at index = quesion id
+                $questions = $this->countAnswers($q->idQuestion, $scores, $questions);  
             }
         }
         return $questions;
@@ -159,6 +110,42 @@ class Question_model extends CI_Model {
             }
         }
         return $qArray;
+    }
+    
+    public function getFillInIds($residents, $topic) {        
+            $i = 0;
+            $all_residents = null; 
+            //loop over all residents and store ids in array
+            foreach ($residents as $res) {
+                $all_residents[$i] = $res->idResident;
+                $i++;
+            }
+            //prepare resident ids to be used in SQL query
+            if (isset($residents))
+                $r = join("','", $all_residents);
+            else
+                $r = '';
+            //get all fill_in_ids
+            $fill_in_ids = $this->db->query("SELECT id_fill_in FROM Resident_fills_in_Topics "
+                            . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
+                            . "FROM Resident_fills_in_Topics "
+                            . "WHERE Resident_idResident IN ('$r')"
+                            . "AND Topics_idTopic = '$topic' "
+                            . "GROUP BY Resident_idResident) "
+                            . "AND Topics_idTopic = '$topic' ")->result();               
+            $j = 0;
+            $all_ids = null;
+            //loop over fill_in_ids and store them in array
+            foreach ($fill_in_ids as $id) {
+                $all_ids[$j] = $id->id_fill_in;
+                $j++;
+            }
+            //prepare ids for SQL query and return them
+            if (isset($all_ids))
+                $ids = join("','", $all_ids);
+            else
+                $ids = '';
+            return $ids;
     }
 
 }
