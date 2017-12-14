@@ -72,7 +72,11 @@ class Event_model extends CI_Model {
         $this->db->where('idCaregiver', $idCaregiver);
         $this->db->update('Caregiver', $data);
     }
-
+    
+/*    public function addResidentPhoto($nameOfPhoto){
+        
+    }
+*/
     public function changePassword($password) {
         $idCaregiver = $this->session->userdata('idCaregiver');
 

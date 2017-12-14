@@ -88,6 +88,10 @@ class CaregiverController extends CI_Controller {
     public function selectTopic() {
         redirect('ResidentController/Topics');
     }
+    
+    public function addMessage(){
+        redirect('ResidentController/sendMessage');
+    }
 
     public function insert() {
         $this->load->model('Event_model');
