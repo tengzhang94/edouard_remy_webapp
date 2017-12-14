@@ -43,9 +43,7 @@ class AjaxController extends CI_Controller {
     public function saveScore(){
         $question['questionId'] = $this->input->post('questionId');
         $score = $this->input->post('score');
-        if($score != -1){
-            $question['score']= $score;
-        };
+        $question['score']= $score;
         $data = $this->session->userdata('answers');
         $data[] = $question;
         $this->session->set_userdata('answers', $data);

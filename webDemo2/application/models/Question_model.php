@@ -46,11 +46,9 @@ class Question_model extends CI_Model {
         foreach($answerArray as $answerRow){
             $data = array(
                 "fill_in_id" => $fillInId,
-                "Questions_idQuestion" => $answerRow['questionId']
+                "Questions_idQuestion" => $answerRow['questionId'],
+                "Answer" => $answerRow['score']
             );
-            if(array_key_exists('score', $answerRow)){
-                $data["Answer"]= $answerRow['score'];
-            }
             $this->db->insert('Answers', $data);
         }
     }
