@@ -68,6 +68,9 @@ console.log(font);
                     <button class="btn btn-link" onclick="score=3;" type="submit"><small>{good}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happy.png"></button>
                     <button class="btn btn-link" onclick="score=4;" type="submit"><small>{verygood}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happyhappy.png"></button>
                 </div>
+                <div>
+                    <button class="btn btn-link" onclick="score=-1" type="submit">{skipquestion}</button>
+                </div>
             </form>
         </div>
         <script type="text/javascript" src ="<?php echo base_url();?>assets/javascript/questionpage.js"></script>
