@@ -494,7 +494,7 @@ class CaregiverController extends CI_Controller {
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
-        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
+        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
         $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
