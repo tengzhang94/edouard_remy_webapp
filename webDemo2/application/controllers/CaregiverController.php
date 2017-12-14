@@ -42,6 +42,8 @@ class CaregiverController extends CI_Controller {
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
+                $this->load->model('Notification_model');
+                $this->Notification_model->longtimeNot($result[0]->idCaregiver);
                 redirect('CaregiverController/home');
             } else {
                 $data['login_fail'] = 'Inloggegevens incorrect';
@@ -51,8 +53,6 @@ class CaregiverController extends CI_Controller {
     }
 
     public function home() {
-        $this->load->model('Notification_model');
-        $this->Notification_model->longtimeNot($this->session->userdata('idCaregiver'));
         $this->load->model('Dashboard_model');
         $result = $this->Dashboard_model->getNotifications(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
