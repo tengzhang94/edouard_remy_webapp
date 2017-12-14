@@ -2,7 +2,6 @@ const nextQuestionNr = document.getElementById("hiddenQuestionNr").value;
 const questionId = document.getElementById("hiddenQuestionId").value;
 
 function nextQuestion(){
-    nextQuestion = noop(); //to prevent the function from executing multiple times before exiting the page
     saveScore(score); //variable score defined within questionpage_new.php
     var url = window.location.pathname; //get current pathname
     url = url.replace(/\/[^\/]*$/, "/" + nextQuestionNr); //replace the last part of the question with the new nr
@@ -11,6 +10,7 @@ function nextQuestion(){
 }
 
 function saveScore(score){
+    saveScore = function(){}; //to prevent the function from executing multiple times before exiting the page
     jQuery.ajax({
         type: 'POST',
         url: base_url + "index.php/ajaxController/saveScore",
