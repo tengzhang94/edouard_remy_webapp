@@ -141,9 +141,9 @@
             padding: 0px; 
             height: 250px; 
             background-color: #F5F5F5;
-            width: 50%;
+            width: 45%;
             position: fixed;
-            margin-left: 42%;
+            margin-left: 46%;
         }
 
     </style>
