@@ -37,7 +37,7 @@ class Dashboard_model extends CI_Model {
     
     function deleteNotifications($ids) {
         foreach($ids as $id) {
-            $this->db->where('idMessage', $id);
+            $this->db->where('idNotification', $id);
             $this->db->delete('Notifications');
         }
     }
