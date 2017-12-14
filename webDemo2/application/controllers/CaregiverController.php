@@ -241,10 +241,10 @@ class CaregiverController extends CI_Controller {
             //time interval between last and secondLast filled_in 
             date_default_timezone_set('UTC');
             $time_last[$i] = $this->Residentpage_model->getLastTime($resident_id,$i)->lastTime;
-            $time_secondLast[$i] = $this->Residentpage_model->getSecondLastTime($resident_id,$i)->timeSecondLast;
-            $ts1[$i] = strtotime('2017-12-14');
+           // $time_secondLast[$i] = $this->Residentpage_model->getSecondLastTime($resident_id,$i)->timeSecondLast;
+            $ts1[$i] = strtotime("now");
             $ts2[$i]= strtotime($time_last[$i]);
-            $time_interval[$i] =($ts1[$i]-$ts2[$i])/86400; 
+            $time_interval[$i]=floor(($ts1[$i]-$ts2[$i])/86400); 
             if($time_interval[$i] > 99){
                 $time_interval[$i] = '∞';
                 $colorSubject2[$i] = '#ff8166';
@@ -255,7 +255,45 @@ class CaregiverController extends CI_Controller {
             else{
             $colorSubject2[$i] = '#2c3d51';
             }
-        }        
+        }    
+        
+        //determine mark image
+        $time_interval_biggest = max($time_interval);
+        if($time_interval_biggest >= 10){
+            $markImage = 'assets/css/image/icons8-mark-red.png';
+        }
+        else{
+            $markImage = 'assets/css/image/icons8-mark-blue.png';
+        }
+        $resident['markImage'] = $markImage;
+        
+        //determine happy face
+        $a_last = array_filter($score_last);
+        if(count($a_last) == 0){
+             $avgScore_last = 0;
+        }else{
+            $avgScore_last = array_sum($score_last)/count($a_last);
+        }
+        
+        $a_second_last = array_filter($score_second_last);
+        if(count($a_second_last)==0){
+            $avgScore_second_last = 0;
+        }
+        else{
+            $avgScore_second_last = array_sum($score_second_last)/count($a_second_last);
+        }
+        
+        if($avgScore_last >  $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-lol.png';
+        }
+        else if($avgScore_last = $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-bored.png';
+        }else {
+            $faceImage = 'assets/css/image/icons8-face-cry.png';
+        }
+        
+        $resident['faceImage'] = $faceImage;
+        
         
         //second last score
        // $score_second_last = $this->Residentpage_model->getLastSecondScore($resident_id,'0')->avgSecondLast;
@@ -558,11 +596,11 @@ class CaregiverController extends CI_Controller {
         $scores = $this->Question_model->getChartScores($sector);
 
         $array = array(            
-            array('test1', 2, 1, 1, 3, 1, 3),
-            array('test2', 1, 3, 2, 2, 0, 1),
-            array('test3', 4, 1, 1, 0, 0, 0),
-            array('test4', 1, 2, 3, 1, 1, 1),
-            array('test5', 1, 2, 0, 3, 5, 2),
+            array('test1', 2, 1, 1, 3, 1),
+            array('test2', 1, 3, 2, 2, 0),
+            array('test3', 4, 1, 1, 0, 0),
+            array('test4', 1, 2, 3, 1, 1),
+            array('test5', 1, 2, 0, 3, 5),
         );
 
         echo json_encode(array_slice($scores, $startId, $range));

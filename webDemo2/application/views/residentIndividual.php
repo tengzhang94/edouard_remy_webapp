@@ -7,7 +7,7 @@
         <div id="infoDiv">
             <span id="residentHeader"><span id="imgSpan"><img src="{photo}" id="image"></span><span class="infoTitleTxt">{firstName} {lastName}</span>
                 <span class="infoTitleTxt" >{room} {roomNr}</span>
-                <span class="infoTitleTxt" id = "imageMark" ><img src="<?php echo base_url() ?>assets/css/image/icons8-mark-red.png" id="iconClock"><img src="<?php echo base_url() ?>assets/css/image/icons8-lol.png" id="iconSmiley" ></span>
+                <span class="infoTitleTxt" id = "imageMark" ><img src="<?php echo base_url() ?>{markImage}" id="iconClock"><img src="<?php echo base_url() ?>{faceImage}" id="iconSmiley" ></span>
             </span>
                 <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
                 <span id="gender" class="infoTxt">{genderString}: {gender}</span>
