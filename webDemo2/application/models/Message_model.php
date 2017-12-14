@@ -21,13 +21,14 @@ class Message_model extends CI_Model {
             ) AS 'Users'
             ON 'Messages'.'idSender'='Users'.'userName'
             WHERE 'id' = '$idResident'
-            ORDER BY 'Messages'.'MessageDate'"
+            ORDER BY 'Messages'.'messageDate'"
         )->result_array();
     }
     
     public function sendMessage($idSender, $idReceiver, $messageText, $messagePhoto){
         date_default_timezone_set("Europe/Brussels");
         $data = array(
+            "idMessage" => "",
             "idSender" => $idSender,
             "idReceiver" => $idReceiver,
             "messageText" => $messageText,
@@ -35,5 +36,15 @@ class Message_model extends CI_Model {
             "messageDate" => date("Y-m-d")
         );
         $this->db->insert('Messages', $data);
+    }
+    
+    public function getFamilyAcquaintances($idFamily){
+        return $this->db->query(
+            "SELECT Residents.* 
+            FROM 'Residents'
+            INNER JOIN 'Family_knows_Residents' as 'FkR'
+            ON 'FkR'.'idResident' = 'Residents'.'idResident'
+            WHERE 'FkR'.'idFamily' = '$idFamily'"
+        )->result_array();
     }
 }
