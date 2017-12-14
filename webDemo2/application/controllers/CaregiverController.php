@@ -42,8 +42,6 @@ class CaregiverController extends CI_Controller {
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
-                $this->load->model('Notification_model');
-                $this->Notification_model->longtimeNot($result[0]->idCaregiver);
                 redirect('CaregiverController/home');
             } else {
                 $data['login_fail'] = 'Inloggegevens incorrect';
@@ -251,7 +249,7 @@ class CaregiverController extends CI_Controller {
                 $time_interval[$i] = '∞';
                 $colorSubject2[$i] = '#ff8166';
             }
-            else if($time_interval[$i] >5){
+            else if($time_interval[$i] >=30){
                 $colorSubject2[$i] = '#ff8166';
             }
             else{
@@ -420,6 +418,77 @@ class CaregiverController extends CI_Controller {
           $resident['married'] = $resident->married ? "yes" : "no";
           $resident['children'] = $resident->children;
           $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
+        
+         for($i=1;$i<12;$i++){
+            $score_last[$i] =  $this->Residentpage_model->getTopicScore($resident_id,$i)->avg;
+            if($score_last[$i] == null){
+                $score_last[$i] = 'no';
+            }
+            
+            $score_second_last[$i] = $this->Residentpage_model->getLastSecondScore($resident_id,$i)->avgSecondLast;
+            if($score_last[$i] >=  $score_second_last[$i] ){
+                $arrowImage[$i] = 'assets/css/image/icons8-arrow.png';
+            }
+            else{
+                $arrowImage[$i] = 'assets/css/image/icons8-redArrow.png';
+            }
+            
+            //time interval between last and secondLast filled_in 
+            date_default_timezone_set('UTC');
+            $time_last[$i] = $this->Residentpage_model->getLastTime($resident_id,$i)->lastTime;
+           // $time_secondLast[$i] = $this->Residentpage_model->getSecondLastTime($resident_id,$i)->timeSecondLast;
+            $ts1[$i] = strtotime("now");
+            $ts2[$i]= strtotime($time_last[$i]);
+            $time_interval[$i]=floor(($ts1[$i]-$ts2[$i])/86400); 
+            if($time_interval[$i] > 99){
+                $time_interval[$i] = '∞';
+                $colorSubject2[$i] = '#ff8166';
+            }
+            else if($time_interval[$i] >5){
+                $colorSubject2[$i] = '#ff8166';
+            }
+            else{
+            $colorSubject2[$i] = '#2c3d51';
+            }
+        }    
+        
+        //determine mark image
+        $time_interval_biggest = max($time_interval);
+        if($time_interval_biggest >= 10){
+            $markImage = 'assets/css/image/icons8-mark-red.png';
+        }
+        else{
+            $markImage = 'assets/css/image/icons8-mark-blue.png';
+        }
+        $resident['markImage'] = $markImage;
+        
+        //determine happy face
+        $a_last = array_filter($score_last);
+        if(count($a_last) == 0){
+             $avgScore_last = 0;
+        }else{
+            $avgScore_last = array_sum($score_last)/count($a_last);
+        }
+        
+        $a_second_last = array_filter($score_second_last);
+        if(count($a_second_last)==0){
+            $avgScore_second_last = 0;
+        }
+        else{
+            $avgScore_second_last = array_sum($score_second_last)/count($a_second_last);
+        }
+        
+        if($avgScore_last >  $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-lol.png';
+        }
+        else if($avgScore_last = $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-bored.png';
+        }else {
+            $faceImage = 'assets/css/image/icons8-face-cry.png';
+        }
+        
+        $resident['faceImage'] = $faceImage;
+        
         $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
 
@@ -496,7 +565,7 @@ class CaregiverController extends CI_Controller {
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
-        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
         $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
