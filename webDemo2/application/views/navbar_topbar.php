@@ -45,7 +45,7 @@
                         </li>
                         {/menu} 
                     </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">{content}</div>
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">{content}</div>
                 </div>
             </div>
         </div>

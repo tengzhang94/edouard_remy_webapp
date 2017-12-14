@@ -58,26 +58,99 @@
             <li class="{scores_active}"><a id=scoreLijstNavItem href="residentIndividual" class="navItem">Scorebord vragenlijst</a></li>
             <li class="{problems_active}"><a id="problemenNavItem" href="residentProblems" class="navItem">Problemen </a></li>
         </ul>
-        <div class="row" id="personalStats" {scores_hidden}>
+
+         <div class="row" id="personalStats" {scores_hidden}>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColLeft">
-                <div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo" style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; position:absolute;bottom:0;width:100%;">{scoreTopic0} <img src="<?php echo base_url() ?>{arrowImage}" class="arrow"></span>
-                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject2}">{LastTime0} days</span></div>
-                <div class="statItem"><span class="subjectTitle">Comfort </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Responsiviteit Zorgverleners</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Persoonlijke Omgang</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
+                <div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic1} <img src="<?php echo base_url() ?>{arrowImage1}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject1}">{LastTime1} days</span></div>
+                        
+                <div class="statItem"><span class="subjectTitle">Comfort </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic2} <img src="<?php echo base_url() ?>{arrowImage2}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject2}">{LastTime2} days</span></div>
+                        
+                <div class="statItem"><span class="subjectTitle">Responsiviteit Zorgverleners</span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic3} <img src="<?php echo base_url() ?>{arrowImage3}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject3}">{LastTime3} days</span></div>
+                        
+                <div class="statItem"><span class="subjectTitle">Persoonlijke Omgang</span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic4} <img src="<?php echo base_url() ?>{arrowImage4}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject4}">{LastTime4} days</span></div>
+                        
             </div>
+             
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColMiddle">
-                <div class="statItem"><span class="subjectTitle">Maaltijden </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Autonomie </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Band bewoner - zorgverlener</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Informatie krijgen</span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
+                <div class="statItem"><span class="subjectTitle">Maaltijden </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic5} <img src="<?php echo base_url() ?>{arrowImage5}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject5}">{LastTime5} days</span></div>
+                <div class="statItem"><span class="subjectTitle">Autonomie </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic6} <img src="<?php echo base_url() ?>{arrowImage6}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject6}">{LastTime6} days</span></div>
+                <div class="statItem"><span class="subjectTitle">Band bewoner - zorgverlener</span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic7} <img src="<?php echo base_url() ?>{arrowImage7}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject7}">{LastTime7} days</span></div>
+                <div class="statItem"><span class="subjectTitle">Informatie krijgen</span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic8} <img src="<?php echo base_url() ?>{arrowImage8}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject8}">{LastTime8} days</span></div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColRight">
-                <div class="statItem"><span class="subjectTitle">Veiligheid </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Respect </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
-                <div class="statItem"><span class="subjectTitle">Activiteiten </span><span class="subjectInfo">6 <img src="<?php echo base_url() ?>assets/css/image/icons8-arrow.png" class="arrow"><img src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png" class="clock"></span></div>
+                <div class="statItem"><span class="subjectTitle">Veiligheid </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic9} <img src="<?php echo base_url() ?>{arrowImage9}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject9}">{LastTime9} days</span></div>
+                <div class="statItem"><span class="subjectTitle">Respect </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic10} <img src="<?php echo base_url() ?>{arrowImage10}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject10}">{LastTime10} days</span></div>
+                <div class="statItem"><span class="subjectTitle">Activiteiten </span><span class="subjectInfo" 
+                        style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; 
+                        position:absolute;bottom:0;width:100%;">{scoreTopic11} <img src="<?php echo base_url() ?>{arrowImage11}" class="arrow"></span>
+                    <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;
+                        text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject11}">{LastTime11} days</span></div>
             </div>            
         </div>
+<!--            
+            
+        <div class="table-container" id="personalStats"{scores_hidden}>
+            <table class="topicTable">
+                <tbody>
+                    <?php
+                    $i=0;
+                    foreach ($information as $data) {
+                        echo '
+                <tr><td><div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo" style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; position:absolute;bottom:0;width:100%;">'.$data[""]["scoreTopic0"].' <img src='.base_url().$data["arrowImage"].'" class="arrow"></span>
+                <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject2}">'.$data["LastTime0"].' days</span></div>
+                </div></td></tr>';
+                    }
+                    ?>
+
+
+
+                </tbody>
+            </table>
+        </div>-->
+
+
+        </div>
+      
         <div class="row" id="personalProblems" {problems_hidden}>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn 
                   
