@@ -1,4 +1,4 @@
-
+ 
 
 function getSectorInfo(idSector, nameSector) {
     var list = document.getElementById('residentList');

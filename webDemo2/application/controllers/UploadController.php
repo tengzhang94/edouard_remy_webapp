@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class UploadController extends CI_Controller {
 
@@ -35,9 +35,10 @@ class UploadController extends CI_Controller {
                         $filepath=$data['upload_data']['full_path'];
                         $nameOfPhoto=$data['upload_data']['file_name'];
                         chmod($filepath,0644);
-                         $this->load->model('Event_model');
+                        /* $this->load->model('Event_model');
                           $this->Event_model->addResidentPhoto($nameOfPhoto);
-                        //  redirect('caregiverController/addResident');
+                        */
+                        redirect('caregiverController/addResident1($nameOfPhoto)');
 
                        // $this->load->view('upload_success', $data);
                 }

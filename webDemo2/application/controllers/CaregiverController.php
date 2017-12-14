@@ -99,9 +99,19 @@ class CaregiverController extends CI_Controller {
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
 
+    public function addResident1($photo) {   // just to load the page addr\Resident
+        $photo1=$photo;
+        $data = $this->Language_model->getAddResidentLanguage();
+        $data['title'] = 'AddResident';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $data['content'] = $this->parser->parse('AddResident', $data, true);
+        $data['photo']=$photo1;
+        $this->parser->parse('navbar_topbar', $data);
+    }
+    
     public function addResident() {   // just to load the page addr\Resident
         $data = $this->Language_model->getAddResidentLanguage();
-        $data['title'] = 'Resident';
+        $data['title'] = 'AddResident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
         $this->parser->parse('navbar_topbar', $data);
@@ -118,6 +128,7 @@ class CaregiverController extends CI_Controller {
             $gender = $this->input->post('gender');
             $married = $this->input->post('married');
             $children = $this->input->post('children');
+            $photo = $this->input->post('photo');
 
             //$this->form_validation->set_rules('firstName', 'First name', 'trim|required', array('required' => 'Fill in %s'));
             //$this->form_validation->set_rules('lastName', 'Last name', 'trim|required', array('required' => 'Fill in %s'));        
@@ -154,7 +165,7 @@ class CaregiverController extends CI_Controller {
              */ else {
                 $this->load->model('AddResident_model');
                 if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-                    $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr);
+                    $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr, $photo);
                     redirect('caregiverController/resident');
                     //return to the resident page
                     //$data['success'] = "Success!";

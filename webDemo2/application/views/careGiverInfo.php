@@ -2,7 +2,9 @@
          <div class="col-sm-5 col-sm-offset-1 col-xs-12">
           <?php echo form_open_multipart('UploadController/do_upload');?>
              <span id="label_span"></span>
-             <label for="file" class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%"><input id="file"  name="userfile" type="file" size="20" style="display: none; " /></label>  
+             <label for="file" class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%">
+                 <input id="file"  name="userfile" type="file" size="20" style="display: none; " />
+             </label>  
              <input id="upload_button" type="submit" style="display: none;" />
              
       </form>  
