@@ -69,7 +69,7 @@ console.log(font);
                     <button class="btn btn-link" onclick="score=4;" type="submit"><small>{verygood}</small><img class="image_topic" src="<?php echo base_url();?>assets/css/image/happyhappy.png"></button>
                 </div>
                 <div>
-                    <button class="btn btn-link" onclick="score=5" type="submit">{skipquestion}</button>
+                    <button id="btnSkip" class="btn btn-primary" onclick="score=5" type="submit">{skipquestion}</button>
                 </div>
             </form>
         </div>
