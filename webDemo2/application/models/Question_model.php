@@ -70,12 +70,14 @@ class Question_model extends CI_Model {
             //calculate the average per topic
             $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
-                            . "WHERE fill_in_id IN ('$ids')")->row();
+                            . "WHERE fill_in_id IN ('$ids') "
+                            . "AND Answer <> '5'")->row();
             //calculte the average per question
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
                             . "ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids') "
+                            . "AND Answer <> '5' "
                             . "GROUP BY Questions_idQuestion")->result();
             //store topic and question averages in $total variable
             $total['topic_avg'][$topic] = $topic_scores->avg != null ? $topic_scores->avg : '/';            
@@ -101,7 +103,7 @@ class Question_model extends CI_Model {
             $this->getQuestions($topic);    //get the questions and set them in session variable
             //loop over all questions and count the answers
             foreach ($this->session->topicQuestions as $q) {
-                $questions[$q->idQuestion] = array($q->questionString, 0, 0, 0, 0, 0);  //set question text and set initial answer counts to 0
+                $questions[$q->idQuestion] = array($q->questionString, 0, 0, 0, 0, 0, 0);  //set question text and set initial answer counts to 0
                 $scores = $this->db->query("SELECT Answers.Answer
                 FROM Answers
                 INNER JOIN Questions 
@@ -128,6 +130,8 @@ class Question_model extends CI_Model {
                 case 3: $qArray[$qId][4] += 1;
                     break;
                 case 4: $qArray[$qId][5] += 1;
+                    break;
+                case 5: $qArray[$qId][6] += 1;
                     break;
             }
         }

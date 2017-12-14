@@ -209,7 +209,8 @@
                     1: {color: '#ff8e26'},
                     2: {color: '#D9D684'},
                     3: {color: '#ADD8E9'},
-                    4: {color: '#2C79B3'}
+                    4: {color: '#2C79B3'},
+                    5: {color: '#5c5555'}
                     /*0: {color: '#c23b22'},
                      1: {color: '#c2721d'},
                      2: {color: '#888'},
@@ -239,6 +240,7 @@
             data.addColumn('number', '{neutral}');
             data.addColumn('number', '{agree}');
             data.addColumn('number', '{strongly_agree}');
+            data.addColumn('number', '{no_answer}');
             data.addRows(arr);
             //var data = new google.visualization.arrayToDataTable(jsonData);
 

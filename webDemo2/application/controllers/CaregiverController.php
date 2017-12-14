@@ -501,11 +501,11 @@ class CaregiverController extends CI_Controller {
         $scores = $this->Question_model->getChartScores($sector);
 
         $array = array(            
-            array('test1', 2, 1, 1, 3, 1),
-            array('test2', 1, 3, 2, 2, 0),
-            array('test3', 4, 1, 1, 0, 0),
-            array('test4', 1, 2, 3, 1, 1),
-            array('test5', 1, 2, 0, 3, 5),
+            array('test1', 2, 1, 1, 3, 1, 3),
+            array('test2', 1, 3, 2, 2, 0, 1),
+            array('test3', 4, 1, 1, 0, 0, 0),
+            array('test4', 1, 2, 3, 1, 1, 1),
+            array('test5', 1, 2, 0, 3, 5, 2),
         );
 
         echo json_encode(array_slice($scores, $startId, $range));
