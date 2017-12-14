@@ -35,7 +35,7 @@ class Event_model extends CI_Model {
     }
 
     public function loginResident($qrCode) {
-        $query = $this->db->query("SELECT * FROM Resident WHERE QR = '$qrCode'");
+        $query = $this->db->query("SELECT * FROM Resident WHERE QRlogin = '$qrCode'");
         return $query->result();
     }
 

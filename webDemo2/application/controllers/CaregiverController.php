@@ -42,6 +42,8 @@ class CaregiverController extends CI_Controller {
                 $this->Language_model->setSessionLanguage();
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
+                $this->load->model('Notification_model');
+                $this->Notification_model->longtimeNot($result[0]->idCaregiver);
                 redirect('CaregiverController/home');
             } else {
                 $data['login_fail'] = 'Inloggegevens incorrect';
@@ -235,36 +237,131 @@ class CaregiverController extends CI_Controller {
           $data['children'] = $resident->children;
           $data['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
         //last score
-        $score_last =  $this->Residentpage_model->getTopicScore($resident_id,'0')->avg;
+        for($i=1;$i<12;$i++){
+            $score_last[$i] =  $this->Residentpage_model->getTopicScore($resident_id,$i)->avg;
+            if($score_last[$i] == null){
+                $score_last[$i] = 'no';
+            }
+            
+            $score_second_last[$i] = $this->Residentpage_model->getLastSecondScore($resident_id,$i)->avgSecondLast;
+            if($score_last[$i] >=  $score_second_last[$i] ){
+                $arrowImage[$i] = 'assets/css/image/icons8-arrow.png';
+            }
+            else{
+                $arrowImage[$i] = 'assets/css/image/icons8-redArrow.png';
+            }
+            
+            //time interval between last and secondLast filled_in 
+            date_default_timezone_set('UTC');
+            $time_last[$i] = $this->Residentpage_model->getLastTime($resident_id,$i)->lastTime;
+           // $time_secondLast[$i] = $this->Residentpage_model->getSecondLastTime($resident_id,$i)->timeSecondLast;
+            $ts1[$i] = strtotime("now");
+            $ts2[$i]= strtotime($time_last[$i]);
+            $time_interval[$i]=floor(($ts1[$i]-$ts2[$i])/86400); 
+            if($time_interval[$i] > 99){
+                $time_interval[$i] = '∞';
+                $colorSubject2[$i] = '#ff8166';
+            }
+            else if($time_interval[$i] >5){
+                $colorSubject2[$i] = '#ff8166';
+            }
+            else{
+            $colorSubject2[$i] = '#2c3d51';
+            }
+        }    
+        
+        //determine mark image
+        $time_interval_biggest = max($time_interval);
+        if($time_interval_biggest >= 10){
+            $markImage = 'assets/css/image/icons8-mark-red.png';
+        }
+        else{
+            $markImage = 'assets/css/image/icons8-mark-blue.png';
+        }
+        $resident['markImage'] = $markImage;
+        
+        //determine happy face
+        $a_last = array_filter($score_last);
+        if(count($a_last) == 0){
+             $avgScore_last = 0;
+        }else{
+            $avgScore_last = array_sum($score_last)/count($a_last);
+        }
+        
+        $a_second_last = array_filter($score_second_last);
+        if(count($a_second_last)==0){
+            $avgScore_second_last = 0;
+        }
+        else{
+            $avgScore_second_last = array_sum($score_second_last)/count($a_second_last);
+        }
+        
+        if($avgScore_last >  $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-lol.png';
+        }
+        else if($avgScore_last = $avgScore_second_last){
+            $faceImage = 'assets/css/image/icons8-face-bored.png';
+        }else {
+            $faceImage = 'assets/css/image/icons8-face-cry.png';
+        }
+        
+        $resident['faceImage'] = $faceImage;
+        
         
         //second last score
-        $score_second_last = $this->Residentpage_model->getLastSecondScore($resident_id,'0')->avgSecondLast;
-        $resident['scoreTopic0'] = $score_last;
-
-        //compute 
-        if($score_last >=  $score_second_last ){
-            $arrowImage = 'assets/css/image/icons8-arrow.png';
-        }
-        else{
-            $arrowImage = 'assets/css/image/icons8-redArrow.png';
-        }
-        $resident['arrowImage'] = $arrowImage;
+       // $score_second_last = $this->Residentpage_model->getLastSecondScore($resident_id,'0')->avgSecondLast;
+        $resident['scoreTopic1'] = $score_last[1];
+        $resident['scoreTopic2'] = $score_last[2];
+        $resident['scoreTopic3'] = $score_last[3];
+        $resident['scoreTopic4'] = $score_last[4];
+        $resident['scoreTopic5'] = $score_last[5];
+        $resident['scoreTopic6'] = $score_last[6];
+        $resident['scoreTopic7'] = $score_last[7];
+        $resident['scoreTopic8'] = $score_last[8];
+        $resident['scoreTopic9'] = $score_last[9];
+        $resident['scoreTopic10'] = $score_last[10];
+        $resident['scoreTopic11'] = $score_last[11];
         
-        //time interval between last and secondLast filled_in 
-        date_default_timezone_set('UTC');
-        $time_last = $this->Residentpage_model->getLastTime($resident_id,'0')->lastTime;
-        $time_secondLast = $this->Residentpage_model->getSecondLastTime($resident_id,'0')->timeSecondLast;
-        $ts1 = strtotime($time_last);
-        $ts2 = strtotime($time_secondLast);
-        $time_interval =($ts1-$ts2)/86400; 
-        if($time_interval >5){
-            $colorSubject2 = '#ff8166';
-        }
-        else{
-            $colorSubject2 = '#2c3d51';
-        }
-        $resident['LastTime0'] =$time_interval;
-        $resident['colorSubject2'] =  $colorSubject2 ;
+
+        //arrow image
+        $resident['arrowImage1'] = $arrowImage[1];
+        $resident['arrowImage2'] = $arrowImage[2];
+        $resident['arrowImage3'] = $arrowImage[3];
+        $resident['arrowImage4'] = $arrowImage[4];
+        $resident['arrowImage5'] = $arrowImage[5];
+        $resident['arrowImage6'] = $arrowImage[6];
+        $resident['arrowImage7'] = $arrowImage[7];
+        $resident['arrowImage8'] = $arrowImage[8];
+        $resident['arrowImage9'] = $arrowImage[9];
+        $resident['arrowImage10'] = $arrowImage[10];
+        $resident['arrowImage11'] = $arrowImage[11];
+        
+        //time interval
+        $resident['LastTime1'] =$time_interval[1];
+        $resident['LastTime2'] =$time_interval[2];
+        $resident['LastTime3'] =$time_interval[3];
+        $resident['LastTime4'] =$time_interval[4];
+        $resident['LastTime5'] =$time_interval[5];
+        $resident['LastTime6'] =$time_interval[6];
+        $resident['LastTime7'] =$time_interval[7];
+        $resident['LastTime8'] =$time_interval[8];
+        $resident['LastTime9'] =$time_interval[9];
+        $resident['LastTime10'] =$time_interval[10];
+        $resident['LastTime11'] =$time_interval[11];
+        
+        //time interval color
+        $resident['colorSubject1'] =  $colorSubject2[1] ;
+        $resident['colorSubject2'] =  $colorSubject2[2] ;
+        $resident['colorSubject3'] =  $colorSubject2[3] ;
+        $resident['colorSubject4'] =  $colorSubject2[4] ;
+        $resident['colorSubject5'] =  $colorSubject2[5] ;
+        $resident['colorSubject6'] =  $colorSubject2[6] ;
+        $resident['colorSubject7'] =  $colorSubject2[7] ;
+        $resident['colorSubject8'] =  $colorSubject2[8] ;
+        $resident['colorSubject9'] =  $colorSubject2[9] ;
+        $resident['colorSubject10'] =  $colorSubject2[10] ;
+        $resident['colorSubject11'] =  $colorSubject2[11] ;
+        
         
         
                      
@@ -410,7 +507,7 @@ class CaregiverController extends CI_Controller {
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
-        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
+        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
         $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }

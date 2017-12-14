@@ -127,22 +127,23 @@ class Residentpage_model extends CI_Model {
         return $query->row();          
     }
     
+    
         public function getLastSecondScore($resident_id,$topic_id){
         $query = $this->db->query("SELECT round(AVG(Answer),1) as avgSecondLast FROM a17_webapps04.Resident_fills_in_Topics  INNER JOIN a17_webapps04.Answers
                                 WHERE Timestamp IN
                                 (SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = '2'
-                                    AND Topics_idTopic = '0'
+                                    AND Resident_idResident = $resident_id
+                                    AND Topics_idTopic = $topic_id
                                     AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = '2'
-                                    AND Topics_idTopic ='0'))
+                                    AND Resident_idResident = $resident_id
+                                    AND Topics_idTopic =$topic_id))
                                 AND a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                AND Resident_idResident  = '2'
-                                AND Topics_idTopic = '0';" );
+                                AND Resident_idResident  = $resident_id
+                                AND Topics_idTopic = $topic_id;" );
         return $query->row();          
     }
     
@@ -160,15 +161,19 @@ class Residentpage_model extends CI_Model {
          $query = $this->db->query("SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = '2'
-                                    AND Topics_idTopic = '0'
+                                    AND Resident_idResident =$resident_id
+                                    AND Topics_idTopic = $topic_id
                                     AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident ='2'
-                                    AND Topics_idTopic = '0');"
+                                    AND Resident_idResident =$resident_id
+                                    AND Topics_idTopic = $topic_id);"
                 );
         return $query->row();
+    }
+    
+    public function getAvgScoreTotal($resident_id){
+        
     }
     
     

@@ -141,9 +141,9 @@
             padding: 0px; 
             height: 250px; 
             background-color: #F5F5F5;
-            width: 50%;
+            width: 45%;
             position: fixed;
-            margin-left: 42%;
+            margin-left: 46%;
         }
 
     </style>
@@ -151,7 +151,6 @@
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/bootstrap_multiselect.js"></script>    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -209,7 +208,8 @@
                     1: {color: '#ff8e26'},
                     2: {color: '#D9D684'},
                     3: {color: '#ADD8E9'},
-                    4: {color: '#2C79B3'}
+                    4: {color: '#2C79B3'},
+                    5: {color: '#5c5555'}
                     /*0: {color: '#c23b22'},
                      1: {color: '#c2721d'},
                      2: {color: '#888'},
@@ -239,6 +239,7 @@
             data.addColumn('number', '{neutral}');
             data.addColumn('number', '{agree}');
             data.addColumn('number', '{strongly_agree}');
+            data.addColumn('number', '{no_answer}');
             data.addRows(arr);
             //var data = new google.visualization.arrayToDataTable(jsonData);
 

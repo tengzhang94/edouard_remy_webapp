@@ -1,10 +1,13 @@
 .btn.btn-primary {
-  width:100px;
-  background-color:#e4e4e4;
-  background-image:url("0px");
-  color:#2c3d51;
-  margin-top:-3px;
-  border-radius:0px;
+    width: fit-content;
+    background-color: #e4e4e4;
+    background-image: url("0px");
+    color: #2c3d51;
+    margin-top: -6px;
+    border-radius: 0px;
+    border-color: #2c3d51;
+    font-size: 20px;
+    font-family: Lato, sans-serif;
 }
 
 .text-right {
@@ -25,6 +28,15 @@
   padding-bottom:20px;
   display:block;
   margin-bottom:0px;
+}
+
+.float_left{
+    float: left;
+}
+
+.returnBtn{
+    width: 100px;
+    margin-left:10px;
 }
 
 img {

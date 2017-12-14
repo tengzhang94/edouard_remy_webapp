@@ -143,7 +143,8 @@ class Language_model extends CI_Model {
             "chart_title" => lang('stats_chartTitle'),
             "show_chart_header" => lang('stats_showChart'),
             "average_header" => lang('stats_average'),
-            "no_data_msg" => lang('stats_noData')
+            "no_data_msg" => lang('stats_noData'),
+            "no_answer" => lang('stats_noAnswer')
         );
     }
     

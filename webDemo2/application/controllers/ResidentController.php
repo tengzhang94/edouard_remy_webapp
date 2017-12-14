@@ -11,6 +11,7 @@ class ResidentController extends CI_Controller {
         parent::__construct();
         $this->load->library('parser');
         $this->load->model('Language_model');
+        $this->load->model('Notification_model');
         $this->navLangArray = $this->Language_model->getResNavLanguage();
     }
     
@@ -38,7 +39,15 @@ class ResidentController extends CI_Controller {
             $questionId = $this->session->topicQuestions[$questionNr]->idQuestion;
         } else {
             //store answers in database BEFORE unsetting session data!
-            $this->Question_model->storeAnswers($this->session->userdata('answers'));
+            $answers = $this->session->userdata('answers');
+            $this->Question_model->storeAnswers($answers);
+            $average = ResidentController::averageTopic($answers);
+            //If average is 5 it means al questions where skipped
+            if($average < 5) {
+                $topicId = $this->session->userdata('topicId');
+                if($average < 2) {$this->Notification_model->lowAverageNot($this->session->userdata('id'), $topicId);}
+                else {$this->Notification_model->topicNot($this->session->userdata('id'), $topicId);}
+            }
             //redirect to 'end of topic' page
             $this->session->unset_userdata('topicQuestions');
             $this->session->unset_userdata('topicId');
@@ -77,6 +86,19 @@ class ResidentController extends CI_Controller {
             $this->Language_model->getResQuestionLanguage()
             );
         $this->parser->parse('questionpage_new', $data);
+    }
+    
+    public function averageTopic($answers) {
+        $count = 0;
+        $total = 0;
+        for($i = 0; $i < count($answers); $i++) {
+            if($answers[$i]['score'] < 5) {
+                $total += $answers[$i]['score'];
+                $count++;
+            }
+        }
+        if($count > 0) return $total/$count;
+        return 5;
     }
     
     public function oop()

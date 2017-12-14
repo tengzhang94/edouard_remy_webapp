@@ -6,6 +6,7 @@ $lang['stats_disagree'] = "Disagree";
 $lang['stats_neutral'] = "Neutral";
 $lang['stats_agree'] = "Agree";
 $lang['stats_stronglyAgree'] = "Strongly Agree";
+$lang['stats_noAnswer'] = "No answer";
 $lang['stats_chartTitle'] = "Distribution of answers per question";
 $lang['stats_chartX'] = "Answer distribution";
 $lang['stats_chartY'] = "Questions";
