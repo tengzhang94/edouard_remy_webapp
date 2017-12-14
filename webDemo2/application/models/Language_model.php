@@ -162,6 +162,21 @@ class Language_model extends CI_Model {
         );
     }
     
+    public function getSendMessageLanguage(){
+        $this->lang->load('sendMessage_lang', $this->session->language);
+        return array(
+            "welcome" => lang("sendMessage_welcome"),
+            "changeImage" => lang("sendMessage_changeImage"),
+            "selectReceivers" => lang("sendMessage_selectReceivers"),
+            "searchboxPlaceholder" => lang("sendMessage_searchboxPlaceholder"),
+            "makeMessage" => lang("sendMessage_makeMessage"),
+            "addImage" => lang("sendMessage_addImage"),
+            "maxChar" => lang("sendMessage_maxChar"),
+            "messagePlaceholder" => lang("sendMessage_messagePlaceholder"),
+            "sendMessage" => lang("sendMessage_sendMessage")
+        );
+    }
+    
     public function SetSessionLanguage() {
         if ($this->session->language == 'dutch') {
             $this->session->set_userdata('questionLang', 'qDutch');
@@ -172,7 +187,4 @@ class Language_model extends CI_Model {
         }
         return;
     }
-    
-    
-
 }

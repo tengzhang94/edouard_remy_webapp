@@ -186,7 +186,8 @@ class ResidentController extends CI_Controller {
     }
     
     public function sendMessage(){
-        $this->load->view('sendMessage');
+        $data = $this->Language_model->getSendMessageLanguage();
+        $this->parser->parse('sendMessage', $data);
     }
     
 }

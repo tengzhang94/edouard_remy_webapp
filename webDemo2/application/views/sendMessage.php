@@ -17,9 +17,9 @@
                             <div id="row">
                                 <div class="col-md-6 leftCol">
                                     <div class="col-md-3"><img src="<?php echo base_url(); ?>assets\css\image\giani.jpg" id="imgPerson" /></div>
-                                    <div class="col-md-9 personInfo"><span class="normalPxFont personInfoLine">Welkom {Name}!</span>
-                                        <button class="imgBtn" type="button">{Change_Image}</button>
-                                    </div><span class="col-md-12 normalPxFont">{Choose the resident(s) you want to send a message to using the search box &amp; checkboxes below}</span>
+                                    <div class="col-md-9 personInfo"><span class="normalPxFont personInfoLine">{welcome} {name}!</span>
+                                        <button class="imgBtn" type="button">{changeImage}</button>
+                                    </div><span class="col-md-12 normalPxFont">{selectReceivers}</span>
                                     <div class="col-md-12 buttonBar">
                                         <button class="dashboardButton" type="button">
                                             <svg class="selectAllSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
@@ -97,10 +97,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6" id="rightcol"><span id="addImageHere" class="normalPxFont col-md-12">{Add an image and a personal message here}</span>
-                                    <button class="imgBtn" type="button">{Add image}</button><span id="imageSpan" class="col-md-12"><img src="IMG_8938.jpg" class="imgPlaceHolder" /></span><span id="maxCharSpan">{max. 250 characters}</span>
-                                    <textarea id="textArea" class="col-md-12" placeholder="{Add your message here}"></textarea>
-                                    <button class= "imgBtn" type="button">{Send message}</button>
+                                <div class="col-md-6" id="rightcol"><span id="addImageHere" class="normalPxFont col-md-12">{makeMessage}</span>
+                                    <button class="imgBtn" type="button">{addImage}</button><span id="imageSpan" class="col-md-12"><img src="IMG_8938.jpg" class="imgPlaceHolder" /></span><span id="maxCharSpan">{maxChar}</span>
+                                    <textarea id="textArea" class="col-md-12" maxlength="250" placeholder="{messagePlaceholder}"></textarea>
+                                    <button class= "imgBtn" type="button">{sendMessage}</button>
                                 </div>
                             </div>
                         </div>
