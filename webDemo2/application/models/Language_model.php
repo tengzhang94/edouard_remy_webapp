@@ -24,7 +24,8 @@ class Language_model extends CI_Model {
             "bad" => lang('bad'),
             "ok" => lang('ok'),
             "good" => lang('good'),
-            "verygood" => lang('verygood')
+            "verygood" => lang('verygood'),
+            "skipquestion" => lang('skipquestion')
         );
     }
 

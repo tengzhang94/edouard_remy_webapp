@@ -55,7 +55,7 @@ class CaregiverController extends CI_Controller {
         $result = $this->Dashboard_model->getNotifications(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
         for ($i = 0; $i < count($result); $i++) {
-            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idMessage']);
+            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification']);
             array_push($messages, $temp);
         }
 
