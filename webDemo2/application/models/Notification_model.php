@@ -15,7 +15,7 @@ class Notification_model extends CI_Model {
             "messageText" => $msgTxt,
             "priority" => 5,
             "notificationType" => "lowScore",
-            'redirectPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
+            'redirectPath' => "gotoIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
     
@@ -29,7 +29,7 @@ class Notification_model extends CI_Model {
             "messageText" => $msgTxt,
             "priority" => 0,
             "notificationType" => "activity",
-            'redirectPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
+            'redirectPath' => "gotoIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
     
@@ -60,7 +60,7 @@ class Notification_model extends CI_Model {
             "messageText" => $msgTxt,
             "priority" => 6,
             "notificationType" => "activity",
-            'redirectPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
+            'redirectPath' => "gotoIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
 }
