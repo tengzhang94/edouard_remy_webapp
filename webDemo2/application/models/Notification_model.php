@@ -24,7 +24,7 @@ class Notification_model extends CI_Model {
         $msgTxt = $residentInfo[0]["firstName"] ." " .$residentInfo[0]["lastName"] ." heeft feedback gegeven over: " .$topicName[0]["topicDutch"] .".";
         $not_data = array(
             "idResident" => $residentId,
-            "Sectors_idSector" => $residentInfo[0]["Sectors_idSector"],
+            "idSector" => $residentInfo[0]["Sectors_idSector"],
             "messageText" => $msgTxt,
             "priority" => 0,
             "notificationType" => "activity");
@@ -54,7 +54,7 @@ class Notification_model extends CI_Model {
         $msgTxt = $residentInfo[0]["firstName"] ." " .$residentInfo[0]["lastName"] ." heeft al 2 weken geen vragenlijst meer ingevuld.";
         $not_data = array(
             "idResident" => $residentId,
-            "Sectors_idSector" => $residentInfo[0]["Sectors_idSector"],
+            "idSector" => $residentInfo[0]["Sectors_idSector"],
             "messageText" => $msgTxt,
             "priority" => 6,
             "notificationType" => "activity");
