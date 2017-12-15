@@ -17,6 +17,7 @@
 
             <span id="residentNotes">
                 <span id="notesTitle">Notities
+               
                     <button class="btn btn-default removeBtn" type="submit" id="removeNote"  form="deleteNotes">
                         <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
                     </button>
@@ -28,7 +29,7 @@
  
             <form  action="deleteNotes" method="post" id="deleteNotes">
                 {notes}
-                <div class="line linenote" >
+                <div class="line">
                     <label>
                         <input type="checkbox" name="delete_notes[]" value='{noteId}' />
                         <span class="checkmark"></span>
@@ -39,12 +40,13 @@
             </form>
             
             <form method="post" action="addNewNote" >
-                    <div class="line linenote">
+                    <div class="line">
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage3" style="display:none">
                             <textarea name="newNote" class = "text textProb" id="inputBlock3" style="display:none"></textarea>
-                            <button type="submit" id="note_submit"  class="submitMessageBtn"><img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
+                            <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
                         </div>                        
                     </div>         
             </form>
@@ -241,8 +243,10 @@
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage1" style="display:none">
-                            <textarea name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none"></textarea>
-                            <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn"><img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
+                             <textarea name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none"></textarea>
+                            <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
+
                         </div>
                     </div>
                 </form>
@@ -260,7 +264,7 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                            <textarea class="message messageProbs">{text}</textarea>
+                        <div class="message messageProbs">{text}</div>
                     </div>
                     {/urgProbs}
                </form>        
@@ -272,8 +276,9 @@
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage2" style="display:none">
-                            <textarea name="urgProb" class = "text textProb" id="inputBlock2" style="display:none;"></textarea>
-                            <button type="submit" id="urgProb_submit" class="submitMessageBtn"><img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
+                            <textarea name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; "></textarea>
+                            <button type="submit" id="urgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
                         </div>
                     </div>    
                 </form>
@@ -292,7 +297,7 @@
         $("#inputBlock1").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-               return false;
+                $("#nonUrgProb_submit").click();
             }
         });
       
@@ -305,7 +310,7 @@
         $("#inputBlock2").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                return false;
+                $("#urgProb_submit").click();
             }
         });
         
@@ -318,7 +323,7 @@
         $("#inputBlock3").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-               return false;
+                $("#note_submit").click();
             }
         });
         
@@ -334,6 +339,7 @@
         $('#LastTime10').css('color','<?php echo '{colorSubject10}'?>');
         $('#LastTime11').css('color','<?php echo '{colorSubject11}'?>');
         
+        
         $("#scoreLijstNavItem").click(function() { 
             $("#scoreLijstNavItem").css('background-color','#f4f4f4');
             $("#problemenNavItem").css('background-color','#fff' );
@@ -344,9 +350,12 @@
             $("#scoreLijstNavItem").css('background-color','#fff' );
         });
 
+        
+    });
+ 
+   
+  
+  
+      
+     
     </script>
-
-
-<!-- CODE FOR SECOND NAVITEM (=PROBLEMS) (CSS ALREADY ADDED!) -->
-
-
