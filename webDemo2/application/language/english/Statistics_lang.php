@@ -1,11 +1,11 @@
 <?php
 $lang['stats_chooseSectors'] = "Choose sectors to view their statistics";
 $lang['stats_allSectors'] = "All sectors";
-$lang['stats_stronglyDisagree'] = "Strongly disagree";
-$lang['stats_disagree'] = "Disagree";
-$lang['stats_neutral'] = "Neutral";
-$lang['stats_agree'] = "Agree";
-$lang['stats_stronglyAgree'] = "Strongly Agree";
+$lang['stats_stronglyDisagree'] = "Never";
+$lang['stats_disagree'] = "Rarely";
+$lang['stats_neutral'] = "Sometimes";
+$lang['stats_agree'] = "Often";
+$lang['stats_stronglyAgree'] = "Always";
 $lang['stats_noAnswer'] = "No answer";
 $lang['stats_chartTitle'] = "Distribution of answers per question";
 $lang['stats_chartX'] = "Answer distribution";

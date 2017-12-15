@@ -1,11 +1,11 @@
 <?php
 $lang['stats_chooseSectors'] = "Kies sectoren om de statistieken ervan te zien";
 $lang['stats_allSectors'] = "Alle sectoren";
-$lang['stats_stronglyDisagree'] = "Helemaal oneens";
-$lang['stats_disagree'] = "Oneens";
-$lang['stats_neutral'] = "Neutraal";
-$lang['stats_agree'] = "Eens";
-$lang['stats_stronglyAgree'] = "Helemaal eens";
+$lang['stats_stronglyDisagree'] = "Nooit";
+$lang['stats_disagree'] = "Zelden";
+$lang['stats_neutral'] = "Soms";
+$lang['stats_agree'] = "Meestal";
+$lang['stats_stronglyAgree'] = "Altijd";
 $lang['stats_noAnswer'] = "Geen antwoord";
 $lang['stats_chartTitle'] = "Verdeling van antwoorden per vraag";
 $lang['stats_chartX'] = "Verdeling antwoorden";
