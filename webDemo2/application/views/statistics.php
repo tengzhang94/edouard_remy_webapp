@@ -135,7 +135,8 @@
             padding-bottom: 0px;
             padding-top:20px;
             font-family:Lato,sans-serif;
-            font-size:20px;
+            font-size:24px;
+            color: #2c3d51;
         }
         #chartdiv {
             padding: 0px; 
