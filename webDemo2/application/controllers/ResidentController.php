@@ -200,11 +200,22 @@ class ResidentController extends CI_Controller {
    
     
     public function menu(){
+        $this->load->model('Message_model');
+        $messages = $this->Message_model->getAllMessages($this->session->id);
+        $this->session->set_userdata('messages', $messages);
         $this->load->view('resident_menu');
     }
     
     public function message(){
-        $this->load->view('resident_message');
+        $this->load->model('Message_model');
+        $messages = $this->session->userdata('messages');
+        $data = array(
+            'senderPhoto' => $messages[0]['photo'],
+            'senderName' => $messages[0]['firstName'],
+            'messageText' => $messages[0]['messageText'],
+            'messagePhoto' => $messages[0]['messagePhoto']
+        );
+        $this->parser->parse('resident_message', $data);
     }
     
     public function sendMessage(){

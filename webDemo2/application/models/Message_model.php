@@ -3,25 +3,25 @@ class Message_model extends CI_Model {
 
     public function getAllMessages($idResident){
         return $this->db->query(
-            "SELECT 'Messages'.*, 'Users'.'firstName', 'Users'.'lastName', 'Users'.'photo'
-            FROM 'Messages'
+            "SELECT Messages.*, Users.firstName, Users.photo
+            FROM Messages
             LEFT JOIN(
                 SELECT 
-                'idCaregiver' as 'id',
-                'firstName',
-                'lastName',
-                'photo'
-                FROM 'Caregiver'
+                idCaregiver as id,
+                firstName,
+                lastName,
+                photo
+                FROM Caregiver
                 UNION SELECT
-                'idFamily' as 'id',
-                'firstName',
-                'lastName',
-                'photo'
-                FROM 'Family'
-            ) AS 'Users'
-            ON 'Messages'.'idSender'='Users'.'userName'
-            WHERE 'id' = '$idResident'
-            ORDER BY 'Messages'.'messageDate'"
+                idFamily as id,
+                firstName,
+                lastName,
+                photo
+                FROM Family
+            ) AS Users
+            ON Messages.idSender=Users.id
+            WHERE Messages.idReceiver = '$idResident'
+            ORDER BY Messages.messageDate"
         )->result_array();
     }
     
