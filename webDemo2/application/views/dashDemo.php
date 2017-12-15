@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+<div class="">
     <div class="dashboardTop">
         <div class="line">
             <label>
@@ -114,7 +114,7 @@
                     <input type="checkbox" name="delete_list[]" id="check_{messageId}" value='{messageId}'>
                     <span class="checkmark"></span>
                 </label>
-                <div class="message">{messageText}</div>
+                <div class="message" onclick="{redirectionPath}">{messageText}</div>
             </div>
             {/messages}
         </div>

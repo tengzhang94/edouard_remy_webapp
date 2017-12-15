@@ -220,7 +220,7 @@
         </div>
       
         <div class="row" id="personalProblems" {problems_hidden}>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="problemLeftCol"><span class="problemTitle">Korte termijn 
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemLeftCol"><span class="problemTitle">Korte termijn 
                   
                     <button class="btn btn-default removeBtn " type="submit" id="removeBtnNonUrg" form="deleteNonUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>
                     <button class="btn btn-default addBtn" type="submit" id="addBtn1"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
@@ -250,7 +250,7 @@
                 
              
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="problemTitle">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="problemTitle">
                     <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
                     <button class="btn btn-default addBtn" type="submit" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span

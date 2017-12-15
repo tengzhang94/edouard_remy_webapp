@@ -193,7 +193,7 @@ class ResidentController extends CI_Controller {
                 redirect('ResidentController/topics');
             }
         }
-        $data['goto_caregiver']="Not a resident?";
+        $data = array_merge($this->Language_model->getResidentLoginLanguage());
         $this->parser->parse('login_resident', $data);
     }
     

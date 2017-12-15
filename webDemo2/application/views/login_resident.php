@@ -20,14 +20,15 @@
             <form method="get" action="<?php echo base_url(); ?>index.php/CaregiverController/login">
                 <button type="submit" class="btn btn-primary btn pull-right">{goto_caregiver}</button>
             </form>
-            
+
             <form method="post" class="resident">
-                     <video id="preview" style="height: 100%; width: 100%"></video>
+                <div class="residentLoginTitle">{title}</div>
+                <video id="preview" style="height: 100%; width: 100%"></video>
             </form>
         </div>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/javascript/qrlogin_test.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/qrlogin_test.js"></script>
     </body>
 </html>
 
