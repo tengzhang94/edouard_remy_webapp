@@ -74,14 +74,14 @@ class Question_model extends CI_Model {
                             . "AND Answer <> '5'")->row();
             //calculte the average per question
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
-                            . "ROUND(AVG(Answer), 2) AS avg "
+                            . "ROUND(AVG(NULLIF(Answer, 5)), 2) AS avg "
                             . "FROM Answers "
                             . "WHERE fill_in_id IN ('$ids') "
-                            . "AND Answer <> '5' "
+                            //. "AND Answer <> '5' "
                             . "GROUP BY Questions_idQuestion")->result();
             //store topic and question averages in $total variable
             $total['topic_avg'][$topic] = $topic_scores->avg != null ? $topic_scores->avg : '/';            
-            $total['question_avgs'][$topic] = $question_scores != null ? $question_scores : null;         
+            $total['question_avgs'][$topic] = $question_scores;         
         }
         return $total;
     }
@@ -158,7 +158,8 @@ class Question_model extends CI_Model {
                             . "WHERE Resident_idResident IN ('$r')"
                             . "AND Topics_idTopic = '$topic' "
                             . "GROUP BY Resident_idResident) "
-                            . "AND Topics_idTopic = '$topic' ")->result();               
+                            . "AND Topics_idTopic = '$topic' "
+                            . "AND Resident_idResident IN ('$r') ")->result();               
             $j = 0;
             $all_ids = null;
             //loop over fill_in_ids and store them in array

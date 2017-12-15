@@ -649,7 +649,7 @@ class CaregiverController extends CI_Controller {
                 $questions = null;
                 foreach ($this->session->topicQuestions as $q) {
                     $score_q = $scores['question_avgs'][$i];
-                    $score_q != null ? $avg = $score_q[$k]->avg : $avg = "/";
+                    $score_q != null ? $avg = ($score_q[$k]->avg != null ? $score_q[$k]->avg : $avg = "/") : $avg = "/";
                     $questions[$k] = array('questionString' => $q->questionString, 'avg' => $avg);
                     $k++;
                 }
