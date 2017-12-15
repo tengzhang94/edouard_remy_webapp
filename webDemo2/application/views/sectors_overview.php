@@ -1,4 +1,4 @@
-<div class="sectorCol col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="sectorCol col-lg-4 col-md-4 col-sm-4 col-xs-12" id="sectors">
     <span class="sectorTitle">Kies een sector uit onderstaande lijst:</span>
     {sectors}
     <div class="line">
@@ -30,8 +30,8 @@
     </div>
     {/sectors}
     
-    <div class="topButtons">
-        <button class="btn btn-default addSectorButton" type="button" onclick="createSectorForm()">Add a sector</button>
+    <div class="topButtons" id="addSectorBtn">
+        <button class="btn btn-default addSectorButton" type="button" onclick="makeSectorInput()">Add a sector</button>
     </div>
 </div>
 

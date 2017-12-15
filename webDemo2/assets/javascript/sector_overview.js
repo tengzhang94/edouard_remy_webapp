@@ -110,3 +110,20 @@ function removeSector(idSector) {
         }
     });
 }
+
+function makeSectorInput() {
+    var list = document.getElementById('sectors');
+    //Clear lastchild and insert form
+    list.removeChild(document.getElementById('addSectorBtn'));
+    var div = document.createElement('div');
+    div.classList.add("newSector");
+    div.innerHTML = '<form class="form-horizontal" method="post" action="addSector">\
+                        <input type="submit" style="display: none"/>\
+                            <div class="control-group">\
+                                <div class="controls form-inline">\
+                                    <input type="text" class="input-small" placeholder="Sector name" id="sectorName" name="sectorName">\
+                                </div>\
+                            </div>\
+                    </form>';
+    list.appendChild(div);
+}
