@@ -129,6 +129,20 @@
             font-family:Lato,sans-serif;
             font-size:30px;
             border-bottom:1px solid #2c3d51;
+            width: 100%;
+        }
+        .topicAvg {
+            padding-left:5px;
+            padding-bottom: 0px;
+            padding-top:20px;
+            font-family:Lato,sans-serif;
+            font-size:30px;
+            border-bottom:1px solid #2c3d51;
+            width: 10%;
+            text-align: center;
+        }
+        .topicHeader{
+            display: flex;
         }
         .statsHeader{
             padding-left:5px;
@@ -146,9 +160,19 @@
             position: fixed;
             margin-left: 46%;
         }
+        #btnStats {
+            border-bottom: 1px solid #2c3d51;
+            /*border-left: 1px solid #2c3d51;
+            border-top: 1px solid #2c3d51;
+            border-right: 1px solid #2c3d51;*/
+            width: 70px;
+        }
+        #btnStats:hover {
+            background-color: #f5f5f5; 
+        }
 
     </style>
-    
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
@@ -174,7 +198,33 @@
     <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>
         <span class="statsHeader col-md-10  col-sm-10 col-xs-10">{show_chart_header} </span><span class="statsHeader col-md-2  col-sm-2 col-xs-2">{average_header} </span>        
         {topics}
-        <span class="topicTitle col-md-10  col-sm-10 col-xs-10" onclick="drawChart({topicId})">{topicName} </span><span class="topicTitle col-md-2  col-sm-2 col-xs-2">{t_avg} </span>        
+        <div class="col-md-12 topicHeader">
+            <span class="topicTitle" onclick="">{topicName} </span>
+                <button id="btnStats"class="btn btn-default" onclick="drawChart({topicId})">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
+                        <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
+                            <path d="M857 953 c-4 -3 -7 -15 -7 -26 0 -19 -129 -211 -158 -234 -12 -10
+                                  -28 -5 -83 23 -38 19 -69 39 -69 44 0 15 -39 32 -60 25 -11 -4 -23 -16 -26
+                                  -28 -7 -26 -128 -121 -166 -131 -16 -3 -28 -11 -28 -17 0 -15 -111 -62 -145
+                                  -61 -47 2 -60 -12 -56 -60 2 -28 48 -34 74 -10 29 26 91 52 147 60 32 5 48 13
+                                  56 29 14 30 144 133 167 133 26 0 140 -60 155 -81 24 -35 82 -18 82 24 0 24
+                                  149 232 175 243 24 11 31 39 15 59 -13 15 -61 20 -73 8z"/>
+                            <path d="M810 355 l0 -355 85 0 85 0 0 355 0 355 -85 0 -85 0 0 -355z m120 0
+                                  l0 -305 -35 0 -35 0 0 305 0 305 35 0 35 0 0 -305z"/>
+                            <path d="M410 265 l0 -265 85 0 85 0 0 265 0 265 -85 0 -85 0 0 -265z m120 0
+                                  l0 -215 -35 0 -35 0 0 215 0 215 35 0 35 0 0 -215z"/>
+                            <path d="M610 215 l0 -215 85 0 85 0 0 215 0 215 -85 0 -85 0 0 -215z m120 0
+                                  l0 -165 -35 0 -35 0 0 165 0 165 35 0 35 0 0 -165z"/>
+                            <path d="M210 185 l0 -185 85 0 85 0 0 185 0 185 -85 0 -85 0 0 -185z m120 0
+                                  l0 -135 -35 0 -35 0 0 135 0 135 35 0 35 0 0 -135z"/>
+                            <path d="M20 145 l0 -145 85 0 85 0 0 145 0 145 -85 0 -85 0 0 -145 m120 0
+                                  l0 -95 -35 0 -35 0 0 95 0 95 35 0 35 0 0 -95"/>
+                        </g>
+                    </svg>
+                </button>
+                    
+            <span class="topicAvg ">{t_avg} </span>
+        </div>        
         {questions}
         <span class="topicQuestion col-md-10  col-sm-10 col-xs-10">{questionString}</span><span class="topicQuestion col-md-2 col-sm-2 col-xs-2">{avg} </span>  
         {/questions}
@@ -200,8 +250,8 @@
                     minValue: 0
                 },
                 /*vAxis: {
-                    title: '{y_label}'
-                },*/
+                 title: '{y_label}'
+                 },*/
                 series: {
                     0: {color: '#D61B1C'},
                     1: {color: '#ff8e26'},
