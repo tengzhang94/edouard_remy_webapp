@@ -322,6 +322,7 @@ class CaregiverController extends CI_Controller {
         
         //second last score
        // $score_second_last = $this->Residentpage_model->getLastSecondScore($resident_id,'0')->avgSecondLast;
+        $resident['scoreTopic'] = $score_last;
         $resident['scoreTopic1'] = $score_last[1];
         $resident['scoreTopic2'] = $score_last[2];
         $resident['scoreTopic3'] = $score_last[3];

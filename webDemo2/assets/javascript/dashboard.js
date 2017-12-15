@@ -6,13 +6,6 @@ function confirmAndDelete() {
     }
 }
 
-
-
-
-
-
-
-
 function showFilterList(id)
 {
     var residentFilterList='residents_'+id;
@@ -26,8 +19,6 @@ function showFilterList(id)
         e.style.display='block';
     }
 }
-
-
 
 function filter(source)
 {
@@ -45,9 +36,6 @@ function filter(source)
     }
     selectNotification();
 }
-
-
-
 
 function selectResidents(source,idSector) {
     

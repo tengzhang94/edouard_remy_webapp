@@ -1,5 +1,5 @@
 <?php
-$lang['stats_chooseSectors'] = "Choose sectors to view their statistics";
+$lang['stats_chooseSectors'] = "Choose sector to view their statistics";
 $lang['stats_allSectors'] = "All sectors";
 $lang['stats_stronglyDisagree'] = "Never";
 $lang['stats_disagree'] = "Rarely";
