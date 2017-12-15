@@ -6,6 +6,16 @@ function confirmAndDelete() {
     }
 }
 
+function gotoIndividualResident(id) {
+    jQuery.ajax({
+        type: 'POST',
+        url: base_url + "index.php/CaregiverController/residentIndividual",
+        data: {'resident_id': id},
+        dataType: 'json'
+    });
+    window.location=base_url + "index.php/CaregiverController/residentIndividual";
+}
+
 function showFilterList(id)
 {
     var residentFilterList='residents_'+id;

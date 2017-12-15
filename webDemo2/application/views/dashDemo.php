@@ -114,7 +114,7 @@
                     <input type="checkbox" name="delete_list[]" id="check_{messageId}" value='{messageId}'>
                     <span class="checkmark"></span>
                 </label>
-                <div class="message">{messageText}</div>
+                <div class="message" onclick="{redirectionPath}">{messageText}</div>
             </div>
             {/messages}
         </div>

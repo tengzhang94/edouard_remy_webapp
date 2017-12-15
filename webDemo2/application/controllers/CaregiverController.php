@@ -57,7 +57,7 @@ class CaregiverController extends CI_Controller {
         $result = $this->Dashboard_model->getNotifications(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
         for ($i = 0; $i < count($result); $i++) {
-            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification']);
+            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification'], 'redirectionPath' => $result[$i]['redirectPath']);
             array_push($messages, $temp);
         }
         
@@ -311,7 +311,7 @@ class CaregiverController extends CI_Controller {
         if($avgScore_last >  $avgScore_second_last){
             $faceImage = 'assets/css/image/icons8-face-lol.png';
         }
-        else if($avgScore_last = $avgScore_second_last){
+        else if($avgScore_last == $avgScore_second_last){
             $faceImage = 'assets/css/image/icons8-face-bored.png';
         }else {
             $faceImage = 'assets/css/image/icons8-face-cry.png';

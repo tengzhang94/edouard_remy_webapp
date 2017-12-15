@@ -6,7 +6,7 @@ class Notification_model extends CI_Model {
     }
     
     public function lowAverageNot($residentId, $topicId) {
-        $residentInfo = $this->db->query("SELECT firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
+        $residentInfo = $this->db->query("SELECT idResident, firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
         $topicName = $this->db->query("SELECT * FROM Topics WHERE idTopic = '$topicId'")->result_array();
         $msgTxt = $residentInfo[0]["firstName"] ." " .$residentInfo[0]["lastName"] ." heeft een lage gemiddelde score gegeven op de categorie: " .$topicName[0]["topicDutch"] .".";
         $not_data = array(
@@ -14,12 +14,13 @@ class Notification_model extends CI_Model {
             "idSector" => $residentInfo[0]['Sectors_idSector'],
             "messageText" => $msgTxt,
             "priority" => 5,
-            "notificationType" => "lowScore");
+            "notificationType" => "lowScore",
+            'redirectionPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
     
     public function topicNot($residentId, $topicId) {
-        $residentInfo = $this->db->query("SELECT firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
+        $residentInfo = $this->db->query("SELECT idResident, firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
         $topicName = $this->db->query("SELECT * FROM Topics WHERE idTopic = '$topicId'")->result_array();
         $msgTxt = $residentInfo[0]["firstName"] ." " .$residentInfo[0]["lastName"] ." heeft feedback gegeven over: " .$topicName[0]["topicDutch"] .".";
         $not_data = array(
@@ -27,7 +28,8 @@ class Notification_model extends CI_Model {
             "idSector" => $residentInfo[0]["Sectors_idSector"],
             "messageText" => $msgTxt,
             "priority" => 0,
-            "notificationType" => "activity");
+            "notificationType" => "activity",
+            'redirectionPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
     
@@ -50,14 +52,15 @@ class Notification_model extends CI_Model {
     }
     
     public function longtimeNotToDB($residentId) {
-        $residentInfo = $this->db->query("SELECT firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
+        $residentInfo = $this->db->query("SELECT idResident, firstName, lastName, Sectors_idSector FROM Resident WHERE idResident = '$residentId'")->result_array();
         $msgTxt = $residentInfo[0]["firstName"] ." " .$residentInfo[0]["lastName"] ." heeft al 2 weken geen vragenlijst meer ingevuld.";
         $not_data = array(
             "idResident" => $residentId,
             "idSector" => $residentInfo[0]["Sectors_idSector"],
             "messageText" => $msgTxt,
             "priority" => 6,
-            "notificationType" => "activity");
+            "notificationType" => "activity",
+            'redirectionPath' => "redirectToIndividualResident(" .$residentInfo[0]['idResident'] .")");
         $this->db->insert('Notifications', $not_data);
     }
 }
