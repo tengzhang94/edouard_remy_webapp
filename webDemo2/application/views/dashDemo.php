@@ -128,4 +128,3 @@
 </div>
 <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/dashboard.js"></script>
 
-<script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 
