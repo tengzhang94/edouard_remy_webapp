@@ -41,8 +41,9 @@ class Notification_model extends CI_Model {
                 . "WHERE Sectors_idSector = "
                 . "ANY (SELECT Sectors_idSector FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'))"
                 . "GROUP BY Resident_idResident")->result_array();
+        date_default_timezone_set('Europe/Brussels');
         for($i = 0; $i < count($dates); $i++) {
-            if($dates[$i]['Timestamp'] - $currentTime > (86400 * 14)) {
+            if(strtotime($dates[$i]['Timestamp']) - $currentTime > (86400 * 14)) {
                 Notification_model::longTimeNotToDB($dates[$i]['Resident_idResident']);
             }
         }
