@@ -83,6 +83,48 @@ a {
     background-color:@color_2;
 }
 
+.settingItem {
+  list-style-type:none;
+  padding:0px;
+  height:calc(16.667vh - 10px);
+  width:100%;
+  text-align:center;
+  display:table;
+  border-top:1px solid #2c3d51;
+  background-color: #f4f4f4;
+}
+
+.settingCategory {
+  color:#2c3d51;
+  font-family:Lato,sans-serif;
+  font-size:16px;
+  display:block;
+}
+
+.settingA {
+   pointer-events: none;
+   cursor: default;
+}
+
+.popover {
+  border:none;
+  border-radius:0px;
+}
+
+.popover-content {
+  padding:0px;
+  border-left:1px solid #2c3d51;
+  border-right:1px solid #2c3d51;
+  border-bottom:1px solid #2c3d51;
+  border-radius:0px;
+  width: 100px;
+}
+
+.arrow {
+    display: none;
+}
+
+
 checkbox{
     width: 70px;
     margin-left: 20%;
@@ -245,6 +287,12 @@ label {
 .line {
 	display: flex;
 	align-items: center;
+}
+
+.filterLine {
+    display: flex;
+    align-items: center;
+    height: 40px;
 }
 .message {
 	display: flex;
