@@ -63,42 +63,48 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColLeft">
                 <div class="statItem">
                     <span class="subjectTitle">Privacy </span>
-                    <span class="subjectInfo">{scoreTopic1} <img src="<?php echo base_url() ?>{arrowImage1}" class="arrow"></span>
-                    <span class = "subjectInfo2">
-                        <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
-                            <small class="timeText" id = "LastTime1">{LastTime1}d </small>
-                        </div>
+                    <span class="subjectInfo">{scoreTopic1} <img src="<?php echo base_url() ?>{arrowImage1}" class="arrow">
+                        <span class = "subjectInfo2">
+                            <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
+                                <small class="timeText" id = "LastTime1">{LastTime1}d </small>
+                            </div>
+                        </span>
                     </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Comfort </span>
-                    <span class="subjectInfo" >{scoreTopic2} <img src="<?php echo base_url() ?>{arrowImage2}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                    <span class="subjectInfo" >{scoreTopic2} <img src="<?php echo base_url() ?>{arrowImage2}" class="arrow">
+                        <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime2">{LastTime2}d </small>
                         </div>
+                        </span>
                     </span>
                 </div>
                         
                 <div class="statItem">
                     <span class="subjectTitle">Responsiviteit Zorgverleners</span>
-                    <span class="subjectInfo" >{scoreTopic3} <img src="<?php echo base_url() ?>{arrowImage3}" class="arrow"></span>
+                    <span class="subjectInfo" >{scoreTopic3} <img src="<?php echo base_url() ?>{arrowImage3}" class="arrow">
                     <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime3">{LastTime3}d </small>
                         </div>
                     </span>
+                    </span>
+                    
                 </div>
                         
                 <div class="statItem">
                     <span class="subjectTitle">Persoonlijke Omgang</span>
-                   <span class="subjectInfo" >{scoreTopic4} <img src="<?php echo base_url() ?>{arrowImage4}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                   <span class="subjectInfo" >{scoreTopic4} <img src="<?php echo base_url() ?>{arrowImage4}" class="arrow">
+                   <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime4">{LastTime4}d </small>
                         </div>
-                    </span>
+                    </span></span>
+                    
                 </div>
                         
             </div>
@@ -106,74 +112,86 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColMiddle">
                 <div class="statItem">
                     <span class="subjectTitle">Maaltijden </span>
-                 <span class="subjectInfo" >{scoreTopic5} <img src="<?php echo base_url() ?>{arrowImage5}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                 <span class="subjectInfo" >{scoreTopic5} <img src="<?php echo base_url() ?>{arrowImage5}" class="arrow">
+                 <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime5">{LastTime5}d </small>
                         </div>
                     </span>
+                 </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Autonomie </span>
-                  <span class="subjectInfo" >{scoreTopic6} <img src="<?php echo base_url() ?>{arrowImage6}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                  <span class="subjectInfo" >{scoreTopic6} <img src="<?php echo base_url() ?>{arrowImage6}" class="arrow">
+                     <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime6">{LastTime6}d </small>
                         </div>
                     </span>
+                  </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Band bewoner - zorgverlener</span>
-                  <span class="subjectInfo" >{scoreTopic7} <img src="<?php echo base_url() ?>{arrowImage7}" class="arrow"></span>
+                  <span class="subjectInfo" >{scoreTopic7} <img src="<?php echo base_url() ?>{arrowImage7}" class="arrow">
                     <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime7">{LastTime7}d </small>
                         </div>
                     </span>
+                  </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Informatie krijgen</span>
-                   <span class="subjectInfo" >{scoreTopic8} <img src="<?php echo base_url() ?>{arrowImage8}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                   <span class="subjectInfo" >{scoreTopic8} <img src="<?php echo base_url() ?>{arrowImage8}" class="arrow"><span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime8">{LastTime8}d </small>
                         </div>
                     </span>
+                   </span>
+                    
                 </div>
             </div>
              
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="statColRight">
                 <div class="statItem">
                     <span class="subjectTitle">Veiligheid </span>
-                   <span class="subjectInfo" >{scoreTopic9} <img src="<?php echo base_url() ?>{arrowImage9}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                   <span class="subjectInfo" >{scoreTopic9} <img src="<?php echo base_url() ?>{arrowImage9}" class="arrow"><span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime9">{LastTime9}d </small>
                         </div>
                     </span>
+                   </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Respect </span>
-                   <span class="subjectInfo" >{scoreTopic10} <img src="<?php echo base_url() ?>{arrowImage10}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                   <span class="subjectInfo" >{scoreTopic10} <img src="<?php echo base_url() ?>{arrowImage10}" class="arrow">
+                   <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime10">{LastTime10}d </small>
                         </div>
                     </span>
+                   </span>
+                    
                 </div>
                 
                 <div class="statItem">
                     <span class="subjectTitle">Activiteiten </span>
-                  <span class="subjectInfo" >{scoreTopic11} <img src="<?php echo base_url() ?>{arrowImage11}" class="arrow"></span>
-                    <span class = "subjectInfo2">
+                  <span class="subjectInfo" >{scoreTopic11} <img src="<?php echo base_url() ?>{arrowImage11}" class="arrow">
+                  <span class = "subjectInfo2">
                         <div class="calendarDiv"><img src="<?php echo base_url() ?>assets/css/image/icon8-calendar.png" class="calendarIcon">
                             <small class="timeText" id = "LastTime11">{LastTime11}d </small>
                         </div>
                     </span>
+                  </span>
+                    
                 </div>
             </div>            
         </div>
