@@ -89,9 +89,8 @@
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 residentItem" name="resident_element" id="resident_element_{idResident}">
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
-                    <img class="iconResOverviewLeft" src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png"/>
                     <img class="imgResOverviewCent img-circle" src="{photo}"/> 
-                    <img class="iconResOverviewRight" src="<?php echo base_url() ?>assets/css/image/happyhappy.png"/>
+                    <img class="iconResOverviewRight" src="<?php echo base_url() ?>assets/css/image/icons8-lol-100.png"/>
                     <small class= "txtResOverviewBottom">{firstName} {lastName}</small>
                     <small class= "txtResOverviewBottom" name="resident_name">room {Sectors_idSector}.{roomNr}</small>
                 </button>
