@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div id="topRow" class="row residentOverviewRow">
     <form class="searchFormResOverview" action='searchResident' method="post">   
         <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="Firstname or Lastname" />
@@ -20,8 +21,8 @@
             </svg>
         </button> 
     </form>
-    <form method="post" action="filter">
-        <button class="btn btn-default iconBtnResident" type="button">
+    
+        <button class="btn btn-default iconBtnResident" onclick="document.getElementById('id01').style.display='block'" type="button">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
@@ -33,7 +34,7 @@
                 </g>
             </svg>
         </button>
-    </form>
+   
     <form method="post" action="addResident">
         <button class="btn btn-default iconBtnResident" type="submit">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -49,12 +50,43 @@
             </svg>
         </button> 
     </form>
+    
+     <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <ul id="filter_list" class="list-group" style="  width: 50%; " >
+             {sectors}
+          
+        <div class="line">
+        <label>
+            <input type="checkbox"  id="checkbox_{idSector}" name="filter_list" onclick="selectResidents({idSector});"  >
+            <span class="checkmark"></span>
+        </label>
+            <div>{name} :    {residentCount} People </div>
+         
+    </div>
+                
+             
+    
+             {/sectors}
+             
+          
+            
+              
+   
+</ul>   
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 <div class="row residentOverviewRow">
     {residents}
     <form method="post" action="residentIndividual">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 residentItem">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 residentItem" name="resident_element" id="resident_element_{idResident}">
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
                     <img class="iconResOverviewLeft" src="<?php echo base_url() ?>assets/css/image/icons8-clock-red.png"/>
@@ -67,3 +99,5 @@
     </form>
     {/residents}
 </div>
+    
+     <script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/residents_overview.js"></script>

@@ -8,21 +8,30 @@ class Dashboard_model extends CI_Model {
     
     public function getCaregiverSectors() {
         $idCaregiver = $this->session->userdata('idCaregiver'); //Get id from session to get caregivers sector id
-        $sector = $this->db->query("SELECT Sectors_idSector AS sectorId FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'");
-        return $sector->result_array();
+        $sector = $this->db->query("SELECT Sectors_idSector AS sectorId FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'")->result_array();
+        $ids = array();
+        for ($x = 0; $x < count($sector); $x++)
+        {
+            $id = $sector[$x]['sectorId'];
+            $mResult = $this->db->query("SELECT idResident FROM Resident WHERE Sectors_idSector = '$id'");
+            for ($i = 0; $i < $mResult->num_rows(); $i++) {                
+                $ids[] = $mResult->result_array()[$i];
+            }
+        }
+        return $ids;
     }
     
-    public function getAllNotificationsFromSectors($sectors) {
-        if(count($sectors) == 0) {
+    public function getAllNotificationsFromSectors($ids) {
+        if(count($ids) == 0) {
             $messages = array("Geen berichten.");
             return $messages;
         }
         
         $messages = array(); //Array to store all results. Starts off empty.
         //Caregiver can have multiple sectors, loop throught them to get all messages and store in session for later use/filtering.
-        for ($x = 0; $x < count($sectors); $x++) {
-            $id = $sectors[$x]['sectorId'];
-            $mResult = $this->db->query("SELECT * FROM Notifications WHERE Sectors_idSector = '$id'");
+        for ($x = 0; $x < count($ids); $x++) {
+            $id = $ids[$x]['idResident'];
+            $mResult = $this->db->query("SELECT * FROM Notifications WHERE idResident = '$id'");
             for ($i = 0; $i < $mResult->num_rows(); $i++) {                
                 $messages[] = $mResult->result_array()[$i];
             }
@@ -30,8 +39,37 @@ class Dashboard_model extends CI_Model {
         return $messages;
     }
     
+      public function getSectors_caregiverhas()
+    {
+        $idCaregiver = $this->session->userdata('idCaregiver'); //Get id from session to get caregivers sector id
+        $sectorIds = $this->db->query("SELECT Sectors_idSector AS sectorId FROM Caregiver_has_Sectors WHERE Caregiver_idCaregiver = '$idCaregiver'")->result_array();
+         $sectors=array();
+         
+          for ($x = 0; $x < count($sectorIds); $x++) {
+            $id = $sectorIds[$x]['sectorId'];
+            $mResult = $this->db->query("SELECT name, idSector, COUNT(idResident) AS residentCount FROM Sectors LEFT JOIN Resident ON idSector = Sectors_idSector where idSector= '$id' GROUP BY idSector ");
+         
+             
+            $sectors[$x]=$mResult->row_array();
+         
+        }
+        
+        foreach($sectors as $key => $sector)
+        {
+            $sector_id=$sector['idSector'];
+            $sectors[$key]['residents_sector']=$this->db->query("SELECT Sectors_idSector,idResident,firstName, lastName FROM Resident WHERE Sectors_idSector='$sector_id' ")->result_array()  ;
+        }
+     
+        return $sectors;
+    }
+    
+    
+
+
+
+    
     public function getNotifications() {
-        $sectorIds = Dashboard_model::getCaregiverSectors();
+        $sectorIds = Dashboard_model::getCaregiverSectors();   
         return Dashboard_model::getAllNotificationsFromSectors($sectorIds);
     }
     

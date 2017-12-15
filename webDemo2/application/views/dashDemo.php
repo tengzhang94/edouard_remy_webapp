@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<div class="col-md-12">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
     <div class="dashboardTop">
         <div class="line">
         <label>
@@ -8,7 +9,7 @@
         </label>
 
             <span id="dashIconBar">
-                <button  id="dashIcon"  class="btn btn-default filterButton" type="button">
+                <button  id="dashIcon"  class="btn btn-default filterButton"  onclick="document.getElementById('id01').style.display='block'" type="button">
             <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
             <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
             <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
@@ -44,9 +45,69 @@
         </div>
     </div>
     
+    
+      <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <ul id="filter_list" class="list-group" style="  width: 50%; " >
+             {sectors}
+          
+        <div class="line">
+        <label>
+            <input type="checkbox"  id="{idSector}" name="filter_list" onclick="selectResidents(this,{idSector});" >
+            <span class="checkmark"></span>
+        </label>
+            <div onclick="showFilterList({idSector})" >{name}  {residentCount}</div>
+         
+    </div>
+                 <ul id="residents_{idSector}" class="list-group" style="  margin-left: 50%;width: 50%; display: none" >
+      {residents_sector}
+          
+        <div class="line">
+        <label>
+            <input type="checkbox"  name="resident_check_{Sectors_idSector}" id="filterCheckbox"   onclick="filter(this);"  value="{idResident}"  >
+            <span class="checkmark"></span>
+        </label>
+            <div >{firstName}  {lastName}</div>
+    </div>
+    {/residents_sector}
+         
+              
+   
+</ul> 
+             
+    
+             {/sectors}
+             
+             <div class="line">
+        <label>
+            <input type="checkbox"  name="activity_type" id="filterCheckbox"  onclick="filter(this);"   value='activity'>
+            <span class="checkmark"></span>
+        </label>
+            <div >Activity</div>
+         
+    </div>
+             
+             <div class="line">
+        <label>
+            <input type="checkbox"  name="lowScore_type" id="filterCheckbox"  onclick="filter(this);"  value='LowScore'>
+            <span class="checkmark"></span>
+        </label>
+            <div>Low Score</div>
+         
+    </div>
+              
+   
+</ul>   
+      </div>
+    </div>
+  </div>
+    
     <form action="deleteNotifications" method="post" id="deleteForm">
+        <div id="allNotification">
     {messages}
-    <div class="line">
+    <div class="line" >
         <label>
             <input type="checkbox" name="delete_list[]" id="check_{messageId}" value='{messageId}'>
             <span class="checkmark"></span>
@@ -54,6 +115,7 @@
         <div class="message">{messageText}</div>
     </div>
     {/messages}
+    </div>
     </form>
     
     <div class="row statsDash">
@@ -63,3 +125,5 @@
     
 </div>
 <script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/dashboard.js"></script>
+
+<script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 

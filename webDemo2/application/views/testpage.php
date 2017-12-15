@@ -22,7 +22,7 @@ and open the template in the editor.
             <main>
                 <section>
                   
-{content}   {fontsize}
+{id1}{id2}{id3}{id4}
                 
                     <form method="post" action="changePassword">
                         

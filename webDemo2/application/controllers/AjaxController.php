@@ -23,6 +23,41 @@ class AjaxController extends CI_Controller {
         }
     }
     
+    public function getSectorInfo1() {
+         
+        
+                
+        $typeList = $this->input->post('typeList');
+            $idList = $this->input->post('idList');
+           
+            
+             $type="(";
+            for($i=0;$i<(count($typeList)-1);$i++)
+            {
+                $type=$type."notificationType= '$typeList[$i]'  OR ";
+                
+            }
+           
+            $type=$type."notificationType= '$typeList[$i]' )";
+            
+            $id="(";
+            
+            for($i=0;$i<(count($idList)-1);$i++)
+                {
+                    $id=$id."idResident = '$idList[$i]' OR ";
+                }
+              
+                $id=$id."idResident = '$idList[$i]' )";
+                
+                $query = $this->db->query("SELECT * FROM Notifications WHERE $id AND $type");
+      
+               if($result= $query->result()){
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result,JSON_FORCE_OBJECT));
+        }
+        
+    }
     public function removeSector() {
         $idSector = $this->input->post('idSector');
         $this->db->where('Sectors_idSector', $idSector);

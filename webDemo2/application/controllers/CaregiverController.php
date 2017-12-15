@@ -58,10 +58,14 @@ class CaregiverController extends CI_Controller {
             $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification']);
             array_push($messages, $temp);
         }
+        
+          
 
         //Parse the html document
         $data = $this->Language_model->getDashboardLanguage();
         $data['messages'] = $messages;
+        $result1 = $this->Dashboard_model->getsectors_caregiverhas();
+        $data["sectors"] = $result1;
 
         $data['title'] = 'Homepage';    //Fill in title for the page
         $data['menu'] = $this->Menu_model->get_menuitems('Homepage');   //Get all the menu items and set the right one as active        
@@ -183,6 +187,10 @@ class CaregiverController extends CI_Controller {
     public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
+        
+        $this->load->model('Dashboard_model');
+        $result1 = $this->Dashboard_model->getsectors_caregiverhas();
+        $data["sectors"] = $result1;
 
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
@@ -195,6 +203,10 @@ class CaregiverController extends CI_Controller {
 
         $name = $this->input->post('inputName');
         $data['residents'] = $this->Residentpage_model->getResidentsBySearch($name);
+        
+         $this->load->model('Dashboard_model');
+        $result1 = $this->Dashboard_model->getsectors_caregiverhas();
+        $data["sectors"] = $result1;
 
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
