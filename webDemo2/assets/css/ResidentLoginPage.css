@@ -11,7 +11,7 @@
   max-width:1200px;
   max-height:1000px;
   background-color:#2c3d51;
-  padding:40px;
+  padding:50px;
   border-radius:4px;
   transform:translate(-50%, -50%);
   position:absolute;
@@ -47,7 +47,6 @@
   border-radius:0px;
   padding:11px;
   box-shadow:none;
-  margin-top:26px;
   text-shadow:none;
   outline:none;
   font-family:Lato, sans-serif;
@@ -85,18 +84,26 @@ div {
 }
 
 .btn.btn-primary.btn.pull-right {
-  width:20%;
-  height:8%;
-  background-color:#f4f4f4;
-  background-image:url("0px");
-  color:#2c3d51;
-  font-size:18px;
-  border-color:#2c3d51;
-  min-width:143px;
-  min-height:40px;
-  border-radius:0px;
-  font-family:Lato, sans-serif;
-  margin-right:1%;
-  margin-top:1%;
+      width: fit-content;
+    background-color: #f4f4f4;
+    background-image: url(0px);
+    color: #2c3d51;
+    font-size: 24px;
+    border: 1px solid #2c3d51;
+    border-radius: 0px;
+    font-family: Lato, sans-serif;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+}
+
+.residentLoginTitle {
+    position: absolute;
+    height: fit-content;
+    z-index: 1;
+    font-size: 28px;
+    font-family: Lato,sans-serif;
+    top: 5px;
+    left: 73px;
 }
 

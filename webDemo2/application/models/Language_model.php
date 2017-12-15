@@ -47,8 +47,16 @@ class Language_model extends CI_Model {
             'goto_resident' => lang('goto_resident')
         );
     }
-    
-    public function getAddResidentLanguage(){
+
+    public function getResidentLoginLanguage() {
+        $this->lang->load('ResidentLogin_lang', $this->session->language);
+        return array(
+            'title' => lang('ResidentLogin_Title'),
+            'goto_caregiver' => lang('ResidentLogin_gotoCaregiver')
+        );
+    }
+
+    public function getAddResidentLanguage() {
         $this->lang->load('AddResident_lang', $this->session->language);
         return array(
             "uploadPhoto" => lang('addRes_uploadPhoto'),
@@ -66,8 +74,8 @@ class Language_model extends CI_Model {
             "no" => lang("addRes_no")
         );
     }
-    
-    public function getCaregiverInfoLanguage(){
+
+    public function getCaregiverInfoLanguage() {
         $this->lang->load('CaregiverInfo_lang', $this->session->language);
         return array(
             "firstName" => lang("CareInfo_firstName"),
@@ -85,8 +93,8 @@ class Language_model extends CI_Model {
             "confirmPassword" => lang("CareInfo_confirmPassword")
         );
     }
-    
-    public function getIndivResLanguage(){
+
+    public function getIndivResLanguage() {
         $this->lang->load('IndivResident_lang', $this->session->language);
         return array(
             "room" => lang("IndivRes_room"),
@@ -107,16 +115,16 @@ class Language_model extends CI_Model {
             "longTerm" => lang("IndivRes_longTerm")
         );
     }
-    
-    public function getSectorOverviewLanguage(){
+
+    public function getSectorOverviewLanguage() {
         $this->lang->load('SectorOverview_lang', $this->session->language);
         return array(
             "addSector" => lang("SectorOverview_addSector"),
             "residentsString" => lang("SectorOverview_residents")
         );
     }
-    
-    public function getSettingsLanguage(){
+
+    public function getSettingsLanguage() {
         $this->lang->load('Settings_lang', $this->session->language);
         return array(
             "personal" => lang("Settings_personal"),
@@ -128,7 +136,7 @@ class Language_model extends CI_Model {
         );
     }
 
-    public function getStatisticsLanguage(){
+    public function getStatisticsLanguage() {
         $this->lang->load('Statistics_lang', $this->session->language);
         return array(
             "chooseSectors" => lang("stats_chooseSectors"),
@@ -147,23 +155,23 @@ class Language_model extends CI_Model {
             "no_answer" => lang('stats_noAnswer')
         );
     }
-    
-    public function getDashboardLanguage(){
+
+    public function getDashboardLanguage() {
         $this->lang->load('Dashboard_lang', $this->session->language);
         return array(
             "avgActivity" => lang("dashboard_avgActivity"),
             "avgScore" => lang("dashboard_avgScore")
         );
     }
-    
-    public function getUploadLanguage(){
+
+    public function getUploadLanguage() {
         $this->lang->load('Upload_lang', $this->session->language);
         return array(
             "success" => lang("upload_success"),
         );
     }
-    
-    public function getSendMessageLanguage(){
+
+    public function getSendMessageLanguage() {
         $this->lang->load('sendMessage_lang', $this->session->language);
         return array(
             "welcome" => lang("sendMessage_welcome"),
@@ -177,15 +185,16 @@ class Language_model extends CI_Model {
             "sendMessage" => lang("sendMessage_sendMessage")
         );
     }
-    
+
     public function SetSessionLanguage() {
         if ($this->session->language == 'dutch') {
             $this->session->set_userdata('questionLang', 'qDutch');
             $this->session->set_userdata('topicLang', 'topicDutch');
-        } else if($this->session->language == 'english'){
+        } else if ($this->session->language == 'english') {
             $this->session->set_userdata('questionLang', 'qEnglish');
             $this->session->set_userdata('topicLang', 'topicEnglish');
         }
         return;
     }
+
 }
