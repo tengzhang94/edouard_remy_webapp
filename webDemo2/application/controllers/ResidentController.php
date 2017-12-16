@@ -221,8 +221,8 @@ class ResidentController extends CI_Controller {
             'messageText' => $messages[0]['messageText'],
             'messagePhoto' => $messages[0]['messagePhoto'],
             'messageDate' => $messages[0]['messageDate'],
-            'nextPhotoExists' => $nextPhotoExists,
-            'prevPhotoExists' => $prevPhotoExists
+            'nextMessageExists' => $nextPhotoExists,
+            'prevMessageExists' => $prevPhotoExists
         );
         $this->parser->parse('resident_message', $data);
     }

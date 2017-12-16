@@ -21,5 +21,8 @@ function changeHtml(jsonData){
     document.getElementById("message").textContent = jsonData.messageText;
     document.getElementById("messagePhoto").src = jsonData.messagePhoto;
     document.getElementById("date").textContent = jsonData.messageDate;
+    
+    document.getElementById("prevMessage").disabled = jsonData.firstMessage;
+    document.getElementById("nextMessage").disabled = jsonData.lastMessage;
     //window.top.location = window.top.location; //refreshes page (html only)
 }

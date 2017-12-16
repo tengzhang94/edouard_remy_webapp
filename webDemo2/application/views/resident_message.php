@@ -34,11 +34,11 @@
                 </div>
                 <div class="row content">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 buttonLeftCol">
-                        <button class="btn btn-default" type="button" onclick="getMessage(-1)" {prevPhotoExists}> <span class="buttonSpan">Vorige</span><span class="buttonSpan">Foto</span><img src="<?php echo base_url(); ?>assets\css\image\icons8-left-100.png" class="icon" /></button>
+                        <button class="btn btn-default" type="button" onclick="getMessage(-1)" {prevMessageExists} id="prevMessage"> <span class="buttonSpan">Vorige</span><span class="buttonSpan">Foto</span><img src="<?php echo base_url(); ?>assets\css\image\icons8-left-100.png" class="icon" /></button>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 imgCol"><img src="{messagePhoto}" id="messagePhoto"/></div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 buttonRightCol">
-                        <button class="btn btn-default" type="button" onclick="getMessage(1)" {nextPhotoExists}><span class="buttonSpan">Volgende</span><span class="buttonSpan">Foto</span><img src="<?php echo base_url(); ?>assets\css\image\icons8-right-100.png" class="icon" /></button>
+                        <button class="btn btn-default" type="button" onclick="getMessage(1)" {nextMessageExists} id="nextMessage"><span class="buttonSpan">Volgende</span><span class="buttonSpan">Foto</span><img src="<?php echo base_url(); ?>assets\css\image\icons8-right-100.png" class="icon" /></button>
                     </div>
                 </div>
             </div>

@@ -86,6 +86,20 @@ class AjaxController extends CI_Controller {
     public function getMessage(){
         $messages = $this->session->userdata('messages');
         $newIndex = $this->session->userdata('messageNr') + $this->input->post('correction');
-        return $this->output->set_content_type('application/json')->set_output(json_encode($messages[$newIndex]));
+        $this->session->set_userdata('messageNr',$newIndex);
+        $returnedMessage = $messages[$newIndex];
+        if($newIndex == 0){ //check if it's the first message
+            $returnedMessage['firstMessage'] = true;
+        }
+        else{
+            $returnedMessage['firstMessage'] = false;
+        }
+        if($newIndex == count($messages)-1){ //check if it's the last message
+            $returnedMessage['lastMessage'] = true;
+        }
+        else{
+           $returnedMessage['lastMessage'] = false;
+        }
+        return $this->output->set_content_type('application/json')->set_output(json_encode($returnedMessage));
     }
 }
