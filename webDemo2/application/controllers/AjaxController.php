@@ -9,7 +9,6 @@ class AjaxController extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->helper('url');
         $this->load->model('Menu_model');
-        $this->load->model('Language_model');
     }
     
     public function getSectorInfo() {
@@ -82,5 +81,25 @@ class AjaxController extends CI_Controller {
         $data = $this->session->userdata('answers');
         $data[] = $question;
         $this->session->set_userdata('answers', $data);
+    }
+    
+    public function getMessage(){
+        $messages = $this->session->userdata('messages');
+        $newIndex = $this->session->userdata('messageNr') + $this->input->post('correction');
+        $this->session->set_userdata('messageNr',$newIndex);
+        $returnedMessage = $messages[$newIndex];
+        if($newIndex == 0){ //check if it's the first message
+            $returnedMessage['firstMessage'] = true;
+        }
+        else{
+            $returnedMessage['firstMessage'] = false;
+        }
+        if($newIndex == count($messages)-1){ //check if it's the last message
+            $returnedMessage['lastMessage'] = true;
+        }
+        else{
+           $returnedMessage['lastMessage'] = false;
+        }
+        return $this->output->set_content_type('application/json')->set_output(json_encode($returnedMessage));
     }
 }
