@@ -9,6 +9,7 @@
             </label>
 
             <span id="dashIconBar">
+                <span id="selectAll">{selectAll}</span>
                 <button  id="dashIcon"  class="btn btn-default filterButton"  onclick="document.getElementById('id01').style.display = 'block'" type="button">
                     <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
                     <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">

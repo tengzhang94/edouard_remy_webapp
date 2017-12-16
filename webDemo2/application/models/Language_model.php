@@ -160,7 +160,8 @@ class Language_model extends CI_Model {
         $this->lang->load('Dashboard_lang', $this->session->language);
         return array(
             "avgActivity" => lang("dashboard_avgActivity"),
-            "avgScore" => lang("dashboard_avgScore")
+            "avgScore" => lang("dashboard_avgScore"),
+            "selectAll" => lang("dashboard_selectAll")
         );
     }
 
