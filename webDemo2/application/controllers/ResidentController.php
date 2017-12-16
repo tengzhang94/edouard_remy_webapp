@@ -209,11 +209,20 @@ class ResidentController extends CI_Controller {
     public function message(){
         $this->load->model('Message_model');
         $messages = $this->session->userdata('messages');
+        $this->session->set_userdata('messageNr', 0);
+        $prevPhotoExists = "disabled";
+        $nextPhotoExists = "";
+        if(count($messages)==1){
+            $nextPhotoExists = "disabled";
+        }
         $data = array(
             'senderPhoto' => $messages[0]['photo'],
             'senderName' => $messages[0]['firstName'],
             'messageText' => $messages[0]['messageText'],
-            'messagePhoto' => $messages[0]['messagePhoto']
+            'messagePhoto' => $messages[0]['messagePhoto'],
+            'messageDate' => $messages[0]['messageDate'],
+            'nextPhotoExists' => $nextPhotoExists,
+            'prevPhotoExists' => $prevPhotoExists
         );
         $this->parser->parse('resident_message', $data);
     }
