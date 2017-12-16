@@ -197,31 +197,24 @@ if(o==0&&m==0)
                
                 for(i in data) {
                     
-                     var inputId='check_'+data[i].idNotification;
+                 
                     
                      var div = document.createElement('div');
                     div.classList.add("line");
                     
-                    var input=document.createElement('input');
-                    input.type="checkbox";
-                    input.name="delete_list[]";
-                    input.id=inputId;
-                    input.value=data[i].idNotification;
-                    
-                    var span=document.createElement('span');
-                    span.classList.add("checkmark");
-                    
-                    var label=document.createElement('label')
-                    
-                    label.appendChild(input);
-                     label.appendChild(span);
+                  
+                         
+                   console.log('hi');
                      
-                     var content=document.createElement('div');
-                     content.classList.add("message");
-                       content.innerHTML = data[i].messageText;
+               
                      
-                     div.appendChild(label);
-                     div.appendChild(content);
+                     
+                    div.innerHTML= '<label>\n\
+<input type="checkbox" name="delete_list[]" id="check_'+data[i].idNotification+'" value="'+data[i].idNotification+'">\n\
+<span class="checkmark">\n\
+</span>\n\
+</label>\n\
+<div class="message" onclick="'+ data[i].redirectPath+'">'+data[i].messageText+'</div>';
                     
                     
                     notificationList.appendChild(div);

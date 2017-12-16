@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
  * This model uses the language files to make it easier to parse them into the views
@@ -164,6 +164,25 @@ class Language_model extends CI_Model {
             "selectAll" => lang("dashboard_selectAll")
         );
     }
+    
+    public function getResidentMenuLanguage()
+    {
+        $this->lang->load('ResidentMenu_lang',$this->session->language);
+        return array(
+            "font_size"=> lang("residentMenu_fontSize"),
+            "greater"=> lang("residentMenu_greater"),
+            "smaller"=> lang("residentMenu_smaller"),
+            "sentence1"=> lang("residentMenu_sentence1"),
+            "sentence2"=> lang("residentMenu_sentence2"),
+            "sentence3"=> lang("residentMenu_sentence3"),
+            "sentence4"=> lang("residentMenu_sentence4"),
+            
+        );
+        
+        
+    }
+    
+   
 
     public function getUploadLanguage() {
         $this->lang->load('Upload_lang', $this->session->language);
@@ -183,7 +202,8 @@ class Language_model extends CI_Model {
             "addImage" => lang("sendMessage_addImage"),
             "maxChar" => lang("sendMessage_maxChar"),
             "messagePlaceholder" => lang("sendMessage_messagePlaceholder"),
-            "sendMessage" => lang("sendMessage_sendMessage")
+            "sendMessage" => lang("sendMessage_sendMessage"),
+            "FirstName or LastName" =>lang("sendMessage_forl")
         );
     }
 

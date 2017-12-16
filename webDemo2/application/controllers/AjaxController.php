@@ -66,6 +66,20 @@ class AjaxController extends CI_Controller {
         }
     }
     
+    public function getResidents()
+    {
+         
+
+        $name = $this->input->post('inputName');
+      $query = $this->db->query("SELECT * FROM Resident WHERE firstName LIKE '%$name%' OR lastName LIKE '%$name%'");
+         if($result= $query->result()){
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result,JSON_FORCE_OBJECT));
+        }
+        
+    }
+    
     public function addResident() {
         $idSector = $this->input->post('idSector');
         $firstName = $this->input->post('firstName');

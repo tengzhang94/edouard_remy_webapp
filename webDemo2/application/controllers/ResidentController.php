@@ -10,6 +10,8 @@ class ResidentController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('parser');
+          $this->load->helper('url');
+     
         $this->load->model('Language_model');
         $this->load->model('Notification_model');
         $this->navLangArray = $this->Language_model->getResNavLanguage();
@@ -101,11 +103,7 @@ class ResidentController extends CI_Controller {
         return 5;
     }
     
-    public function oop()
-    {
-        $data['fontsize']='40';
-        $this->parser->parse('testpage',$data);
-    }
+   
 
     public function topics(){
         $this->Language_model->SetSessionLanguage();
@@ -126,36 +124,14 @@ class ResidentController extends CI_Controller {
             "name" => $this->session->name
         ),$this->navLangArray);
         
-       $font_size = $this->session->userdata('font_size');
-            if($font_size=='great')
-        {
-            $data['great_href']='assets/css/Resident_greatSize.less';
-        }
-        else {
-            $data['great_href']='assets/css/Resident.less';
-        }
+     
        
        
       
         $this->parser->parse('topicpageTest', $data);
     }
     
-    public function changeFontSize($one,$two)
-    {
-        if($_REQUEST['greatButton'])
-        {
-            $this->session->set_userdata('font_size','great');
-        }
-        elseif($_REQUEST['smallButton'])
-        {
-            $this->session->set_userdata('font_size','small');
-        }
-        
-        redirect($one."/".$two);
-        
-      
-    }
-
+   
         public function test(){
         $this->load->view('resident_topicpage');
     }
@@ -164,14 +140,7 @@ class ResidentController extends CI_Controller {
         $this->lang->load('ResidentQuestionEndpage_lang', $this->language);
         $data = array_merge($this->Language_model->getResQuestionEndLanguage(),
         $this->navLangArray);
-        $font_size = $this->session->userdata('font_size');
-           if($font_size=='great')
-        {
-            $data['great_href']='assets/css/Resident_greatSize.less';
-        }
- else {
-     $data['great_href']='assets/css/Resident.less';
- }
+       
         $this->parser->parse('question_endpage', $data);
     }
     
@@ -189,7 +158,7 @@ class ResidentController extends CI_Controller {
                 $this->session->set_userdata('language', $result[0]->lang);
                 $this->session->set_userdata('name', $result[0]->firstName);
                 $this->session->set_userdata('id', $result[0]->idResident);
-                $this->session->set_userdata('font_size','small');
+               
                 redirect('ResidentController/topics');
             }
         }
@@ -203,7 +172,8 @@ class ResidentController extends CI_Controller {
         $this->load->model('Message_model');
         $messages = $this->Message_model->getAllMessages($this->session->id);
         $this->session->set_userdata('messages', $messages);
-        $this->load->view('resident_menu');
+         $data = $this->Language_model->getResidentMenuLanguage();
+        $this->parser->parse('resident_menu',$data);
     }
     
     public function message(){
@@ -229,7 +199,13 @@ class ResidentController extends CI_Controller {
     
     public function sendMessage(){
         $data = $this->Language_model->getSendMessageLanguage();
-        $this->parser->parse('sendMessage', $data);
+        $data['name']=$this->session->userdata('name');
+         $this->load->model('Residentpage_model');
+        $data['residents'] = $this->Residentpage_model->getAllResidents();
+       $this->parser->parse('sendMessage', $data);
+        
+         
+       
     }
     
 }

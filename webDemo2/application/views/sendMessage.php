@@ -7,7 +7,11 @@
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/sendMessage.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+                <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
+                 <script src="<?php echo base_url(); ?>assets/javascript/bootstrap.min.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+              
+                
                 </head>
 
                 <body>
@@ -21,21 +25,12 @@
                                         <button class="imgBtn" type="button">{changeImage}</button>
                                     </div><span class="col-md-12 normalPxFont">{selectReceivers}</span>
                                     <div class="col-md-12 buttonBar">
-                                        <button class="dashboardButton" type="button">
-                                            <svg class="selectAllSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
-                                                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
-                                                    <path d="M180 920 c-19 -5 -49 -24 -66 -43 -43 -46 -46 -80 -42 -417 3 -313 6
-                                                          -323 85 -361 39 -19 57 -20 355 -17 436 4 402 -30 406 406 5 463 29 436 -403
-                                                          439 -165 1 -316 -2 -335 -7z m630 -58 c59 -29 60 -35 58 -369 l-3 -303 -28
-                                                          -27 -27 -28 -303 -3 c-334 -2 -340 -1 -369 58 -16 31 -18 68 -18 313 0 221 3
-                                                          285 15 313 25 60 44 63 360 64 247 0 284 -2 315 -18z"/>
-                                                    <path d="M583 536 l-131 -155 -33 36 c-19 19 -56 53 -82 75 -46 39 -49 40 -63
-                                                          22 -13 -18 -7 -26 83 -111 54 -51 100 -93 103 -92 3 0 70 77 149 171 112 133
-                                                          142 175 134 187 -5 8 -14 16 -19 18 -6 2 -69 -66 -141 -151z"/>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                        <button class="searchButton" type="button">
+                                        <label >
+                <input type="checkbox" name="deleteAll" onclick="selectAll(this)">
+                <span class="checkmark"></span>
+            </label>
+                                       
+                                        <button id="searchButton" class="searchButton" type="button" onclick="searchResidents()">
                                             <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
                                                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                                                     <path d="M363 939 c-145 -18 -262 -137 -282 -284 -22 -159 53 -296 198 -364 
@@ -47,54 +42,16 @@
                                                 </g>
                                             </svg>
                                         </button>
-                                        <input type="text" class="searchBox" placeholder="{FirstName or LastName}" />
+                                        <input id="searchInput" type="text" class="searchBox" placeholder="{FirstName or LastName}" />
                                     </div>
-                                    <div class="pre-scrollable col-md-12">
+                                    <div id="residentsList" class="pre-scrollable col-md-12">
+                                        {residents}
                                         <div class="line col-md-12">
                                             <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
+                                                <input type="checkbox" name="delete_list[]" /><span class="checkmark"></span></label>
+                                            <div class="resident"><span class="normalPxFont">{firstName} {lastName}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
                                         </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
-                                        <div class="line col-md-12">
-                                            <label>
-                                                <input type="checkbox" /><span class="checkmark"></span></label>
-                                            <div class="resident"><span class="normalPxFont">{resident name}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
-                                        </div>
+                                        {/residents}                                   
                                     </div>
                                 </div>
                                 <div class="col-md-6" id="rightcol"><span id="addImageHere" class="normalPxFont col-md-12">{makeMessage}</span>
@@ -105,6 +62,20 @@
                             </div>
                         </div>
                     </div>
+                      <script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/caregiver_message.js"></script>
                 </body>
+    <script>
+            $(function() {
+                 $("#searchInput").on( "keydown", function(event) {
+            if(event.which === 13) 
+            {
+                $("#searchButton").click();
+            }
+        });
+                
+            });
+            
+    </script>
+   
 
                 </html>

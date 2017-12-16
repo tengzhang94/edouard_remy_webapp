@@ -17,15 +17,15 @@
             <div class="col-md-12">
                 <div>
                     <p class="text-right"><span class="float_right">{font_size}<button id="BG" class="btn btn-primary" type="button" style="margin-left:10px;">{greater} </button><button id="BS" class="btn btn-primary" type="button">{smaller} </button></span></p>
-                </div><span class="text-center">{Wat wil je nu doen? Kies een van de onderstaande opties.}</span>
+                </div><span class="text-center">{sentence1}</span>
                 <form>
-                    <button class="btn btn-default menuButton" type="button" onclick="location='message'">{Bekijk je foto's} - {Er zijn x foto's beschikbaar!}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='message'">{sentence2}</button>
                 </form>
                 <form>
-                    <button class="btn btn-default menuButton" type="button" onclick="location='topics'">{Beantwoordt meer vragen}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='topics'">{sentence3}</button>
                 </form>
                 <form>
-                    <button class="btn btn-default menuButton" type="button" onclick="location='login'">{Afsluiten}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='login'">{sentence4}</button>
                 </form>
             </div>
         </div>
