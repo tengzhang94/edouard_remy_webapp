@@ -99,7 +99,6 @@ body {
 
 #personsays {
   margin-top:30px;
-  margin-left:-70px;
 }
 
 .messageText {
@@ -110,6 +109,7 @@ body {
 
 #message {
   margin-top:-140px;
+  padding-left: 50px;
 }
 
 #messageCol {
