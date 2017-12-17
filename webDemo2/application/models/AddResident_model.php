@@ -12,7 +12,7 @@ class AddResident_model extends CI_Model {
         return false;
     }
     
-    public function addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr,$photo) {
+    public function addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr) {
         $data = array(
             'firstName' => $firstName,
             'lastName' => $lastName,
@@ -22,10 +22,29 @@ class AddResident_model extends CI_Model {
             'children' => $children,
             'Sectors_idSector'=> $idSector,
             'roomNr' => $roomNr,
-            'photo' => $photo,
+            
         );
         
         $this->db->insert('Resident', $data);
+    }
+    
+    public function updateInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr){
+        $data = array(
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'birthDate' => $birthDate,
+            'gender' => $gender,
+            'married' => $married,
+            'children' => $children,
+            'Sectors_idSector'=> $idSector,
+            'roomNr' => $roomNr,
+            
+        );
+        $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
+        $id = $last_row->idResident;
+        
+        $this->db->where('idResident', $id);
+        $this->db->update('Resident', $data);
     }
 
     public function insertCaregiver($firstName, $lastName, $email, $password) {

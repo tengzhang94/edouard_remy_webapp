@@ -47,10 +47,12 @@ class Event_model extends CI_Model {
     }
     
     public function getResidentInformation(){
-        //$idResident = $this->session->userdata('idResident');
-        $count=$this->db->from("Resident")->count_all_results();
-
-        $query = $this->db->query("SELECT * FROM Resident WHERE  idResidentr= '$count'");
+    //    $count=$this->db->from("Resident")->count_all_results();
+    
+    //    $query = $this->db->query('SELECT * FROM Resident');
+    //    $count = $query->num_rows();
+        $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
+        $query = $this->db->query("SELECT * FROM Resident WHERE  idResident= '$last_row->idResident'");
         return $query->result_array();
     }
 
@@ -79,6 +81,24 @@ class Event_model extends CI_Model {
 
         $this->db->where('idCaregiver', $idCaregiver);
         $this->db->update('Caregiver', $data);
+    }
+    
+    public function changeResidentPhoto($nameOfPhoto) {
+        $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
+        $id = $last_row->idResident;
+        $original_photoPath = 'http://a17-webapps04.studev.groept.be/upload/';
+        $photo =$original_photoPath . $nameOfPhoto;
+       
+        /*$id = $this->session->userdata('idResident');
+        //$original_photoPath = 'http://a17-webapps04.studev.groept.be/upload/';
+        $photo =$nameOfPhoto;
+        */
+        $data = array(
+            'photo' => $photo,
+        );
+
+        $this->db->where('idResident', $id);
+        $this->db->update('Resident', $data);
     }
     
     public function changePassword($password) {

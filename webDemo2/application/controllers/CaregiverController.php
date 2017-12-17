@@ -187,7 +187,7 @@ class CaregiverController extends CI_Controller {
              else {
                 $this->load->model('AddResident_model');
                 if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-                    $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr, $photo);
+                    $this->AddResident_model->updateInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr);
                     redirect('caregiverController/resident');
                     //return to the resident page
                     //$data['success'] = "Success!";
@@ -198,6 +198,7 @@ class CaregiverController extends CI_Controller {
                 }
             }
         } elseif ($_REQUEST['return1']) {
+            //redirect('careGiverController/backToResident')
             redirect('caregiverController/resident');
         }
     }

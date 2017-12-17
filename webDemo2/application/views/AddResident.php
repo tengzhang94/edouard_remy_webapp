@@ -1,15 +1,9 @@
 <div class="container-fluid">
-    <!--<form class="form-horizontal" method="post" action="addResidentConfirm"> -->
-    
     <div class="row">
         <div class="col-sm-6 col-xs-12" >
-            <!--
-            <image class="btn-photo" name="photo" id="output"/>
-             <input type="file" accept="image/*" id="upload_file" name="upload_file[]" onchange="loadFile(event)" style="width:89px;" />
-            -->
             <?php echo form_open_multipart('UploadController/resident_upload');?>
              <span id="label_span"></span>
-             <label for="file" class="btn-photo" style="background-image: url({photo}); background-position: center; background-size: cover; font-size: 150%">
+             <label for="file" class="btn-photo" style="background-image:url({photo}); background-position: center; background-size: cover; font-size: 150%">
                  <input id="file"  name="userfile" type="file" size="20" style="display: none; " />
              </label>  
              <input id="upload_button" type="submit" style="display: none;" />
