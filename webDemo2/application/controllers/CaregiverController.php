@@ -57,7 +57,7 @@ class CaregiverController extends CI_Controller {
         $result = $this->Dashboard_model->getNotifications(); //Message rows from database for the sectors this caregiver monitors        
         $messages = array(); //Create array of arrays to fill {messages} in dashDemo.php
         for ($i = 0; $i < count($result); $i++) {
-            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification']);
+            $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification'], 'redirectionPath' => $result[$i]['redirectPath']);
             array_push($messages, $temp);
         }
         
@@ -209,7 +209,7 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Dashboard_model');
         $result1 = $this->Dashboard_model->getsectors_caregiverhas();
         $data["sectors"] = $result1;
-
+ 
         $resident['title'] = 'Resident Overview';
         $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
@@ -316,6 +316,8 @@ class CaregiverController extends CI_Controller {
             $avgScore_last = array_sum($score_last)/count($a_last);
         }
         
+        $this->Residentpage_model->addResidentAvgScoreTotal($resident_id,$avgScore_last);
+        
         $a_second_last = array_filter($score_second_last);
         if(count($a_second_last)==0){
             $avgScore_second_last = 0;
@@ -327,7 +329,7 @@ class CaregiverController extends CI_Controller {
         if($avgScore_last >  $avgScore_second_last){
             $faceImage = 'assets/css/image/icons8-face-lol.png';
         }
-        else if($avgScore_last = $avgScore_second_last){
+        else if($avgScore_last == $avgScore_second_last){
             $faceImage = 'assets/css/image/icons8-face-bored.png';
         }else {
             $faceImage = 'assets/css/image/icons8-face-cry.png';
@@ -391,6 +393,14 @@ class CaregiverController extends CI_Controller {
         $resident['colorSubject11'] =  $colorSubject2[11] ;
         
         
+        //change sector
+        $this->load->model('Sector_model');
+        $sectors = $this->Sector_model->getAllSectorInfos();
+
+        $resident["sectors"] = $sectors;
+
+   //     $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
+    
         
                      
         $resident['title'] = 'Resident';
@@ -460,80 +470,16 @@ class CaregiverController extends CI_Controller {
           $resident['children'] = $resident->children;
           $resident['notes'] = $this->Residentpage_model->getResidentNotes($resident_id); */
         
-         for($i=1;$i<12;$i++){
-            $score_last[$i] =  $this->Residentpage_model->getTopicScore($resident_id,$i)->avg;
-            if($score_last[$i] == null){
-                $score_last[$i] = 'no';
-            }
-            
-            $score_second_last[$i] = $this->Residentpage_model->getLastSecondScore($resident_id,$i)->avgSecondLast;
-            if($score_last[$i] >=  $score_second_last[$i] ){
-                $arrowImage[$i] = 'assets/css/image/icons8-arrow.png';
-            }
-            else{
-                $arrowImage[$i] = 'assets/css/image/icons8-redArrow.png';
-            }
-            
-            //time interval between last and secondLast filled_in 
-            date_default_timezone_set('UTC');
-            $time_last[$i] = $this->Residentpage_model->getLastTime($resident_id,$i)->lastTime;
-           // $time_secondLast[$i] = $this->Residentpage_model->getSecondLastTime($resident_id,$i)->timeSecondLast;
-            $ts1[$i] = strtotime("now");
-            $ts2[$i]= strtotime($time_last[$i]);
-            $time_interval[$i]=floor(($ts1[$i]-$ts2[$i])/86400); 
-            if($time_interval[$i] > 99){
-                $time_interval[$i] = '∞';
-                $colorSubject2[$i] = '#ff8166';
-            }
-            else if($time_interval[$i] >5){
-                $colorSubject2[$i] = '#ff8166';
-            }
-            else{
-            $colorSubject2[$i] = '#2c3d51';
-            }
-        }    
-        
-        //determine mark image
-        $time_interval_biggest = max($time_interval);
-        if($time_interval_biggest >= 10){
-            $markImage = 'assets/css/image/icons8-mark-red.png';
-        }
-        else{
-            $markImage = 'assets/css/image/icons8-mark-blue.png';
-        }
-        $resident['markImage'] = $markImage;
-        
-        //determine happy face
-        $a_last = array_filter($score_last);
-        if(count($a_last) == 0){
-             $avgScore_last = 0;
-        }else{
-            $avgScore_last = array_sum($score_last)/count($a_last);
-        }
-        
-        $a_second_last = array_filter($score_second_last);
-        if(count($a_second_last)==0){
-            $avgScore_second_last = 0;
-        }
-        else{
-            $avgScore_second_last = array_sum($score_second_last)/count($a_second_last);
-        }
-        
-        if($avgScore_last >  $avgScore_second_last){
-            $faceImage = 'assets/css/image/icons8-face-lol.png';
-        }
-        else if($avgScore_last = $avgScore_second_last){
-            $faceImage = 'assets/css/image/icons8-face-bored.png';
-        }else {
-            $faceImage = 'assets/css/image/icons8-face-cry.png';
-        }
-        
-        $resident['faceImage'] = $faceImage;
-        
-        $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
-        $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
 
+//        $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
+//        $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
 
+        $urgProbs =  $this->Residentpage_model->getResidentUrgProblems($resident_id);
+        $nonUrgProbs = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+        
+        $resident['urgProbs'] = $urgProbs;
+        $resident['nonUrgProbs'] = $nonUrgProbs;
+ 
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
@@ -664,7 +610,7 @@ class CaregiverController extends CI_Controller {
                 $questions = null;
                 foreach ($this->session->topicQuestions as $q) {
                     $score_q = $scores['question_avgs'][$i];
-                    $score_q != null ? $avg = $score_q[$k]->avg : $avg = "/";
+                    $score_q != null ? $avg = ($score_q[$k]->avg != null ? $score_q[$k]->avg : $avg = "/") : $avg = "/";
                     $questions[$k] = array('questionString' => $q->questionString, 'avg' => $avg);
                     $k++;
                 }

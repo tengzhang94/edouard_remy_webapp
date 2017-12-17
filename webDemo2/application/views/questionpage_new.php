@@ -9,48 +9,7 @@
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/Resident.less"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script> 
-          <script>
-          $(function() {
-      var font=0;
-  $("#BG").click(function() {
-      
-font=font+2;
-console.log(font);
-   
-    less.modifyVars({'@font_size': font+'px'});
-    less.refreshStyles();
-    
-    if(font>=6)
-    {
-        $("#BG").attr('disabled','disabled');
-    }
-    else
-    {
-        $("#BS").removeAttr('disabled');
-    }
-  });
-  
-  $("#BS").click(function() {
-      
-font=font-2;
-console.log(font);
-   
-    less.modifyVars({'@font_size': font+'px'});
-    less.refreshStyles();
-    
-     if(font<=-6)
-    {
-        $("#BS").attr('disabled','disabled');
-    }
-    else
-    {
-        $("#BG").removeAttr('disabled');
-    }
-  });
-  
-  
-});
-    </script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/javascript/changeFontsize.js"></script>
     </head>
     <body>
         <script> var base_url = "<?= base_url('') ?>";</script>

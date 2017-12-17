@@ -9,11 +9,23 @@
                 <span class="infoTitleTxt" >{room} {roomNr}</span>
                
             </span>
-                <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
-                <span id="gender" class="infoTxt">{genderString}: {gender}</span>
-                <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
-                <span id="children" class="infoTxt">{childrenString}: {children}</span>
-                </span>
+            <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
+            <span id="gender" class="infoTxt">{genderString}: {gender}</span>
+            <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
+            <span id="children" class="infoTxt">{childrenString}: {children}</span>
+            <span class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{sectorString}: {sector}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>{allSectors}</li>  
+                    {sectors}
+                    <li>{name}</li>  
+                    {/sectors}
+                </ul>
+            </span>
+            </span>
+            
+            
 
             <span id="residentNotes">
                 <span id="notesTitle">Notities
@@ -34,7 +46,7 @@
                         <input type="checkbox" name="delete_notes[]" value='{noteId}' />
                         <span class="checkmark"></span>
                     </label>
-                    <div class="message messageProbs">{text}</div>
+                    <div class="message messageProbs" id="noteArea"><textarea class="probTextArea"style="margin-top:{marginTopNote}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea></div>
                 </div>
                 {/notes}
             </form>
@@ -44,8 +56,9 @@
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage3" style="display:none">
-                            <input name="newNote" class = "text textProb" id="inputBlock3" style="display:none">
-                            <button type="submit" id="nonUrgProb_submit" style="display: none"></button>
+                            <textarea name="newNote" class = "text textProb" id="inputBlock3" style="display:none"></textarea>
+                            <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
                         </div>                        
                     </div>         
             </form>
@@ -232,7 +245,7 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                    <div class="message messageProbs">{text}</div>
+                    <div class="message messageProbs"><textarea class="probTextArea"style="margin-top:{marginTop}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea></div>
                     </div>
                     {/nonUrgProbs}
                 </form>
@@ -242,15 +255,17 @@
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage1" style="display:none">
-                            <input name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none">
-                            <button type="submit" id="note_submit" style="display: none"></button>
+                             <textarea name="nonUrgProb" class = "text textProb" id="inputBlock1" style="display:none"></textarea>
+                            <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
+
                         </div>
                     </div>
                 </form>
                 
              
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="problemTitle">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemRightCol"><span class="problemTitle">
                     <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
                     <button class="btn btn-default addBtn" type="submit" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
@@ -261,7 +276,9 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                        <div class="message messageProbs">{text}</div>
+                        <div class="message messageProbs">
+                            <textarea class="probTextArea"style="margin-top:{marginTop}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea>
+                        </div>
                     </div>
                     {/urgProbs}
                </form>        
@@ -273,8 +290,9 @@
                         <label>
                             <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
                         <div class="message" id="inputMessage2" style="display:none">
-                            <input name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; ">
-                            <button type="submit" id="urgProb_submit" style="display: none"></button>
+                            <textarea name="urgProb" class = "text textProb" id="inputBlock2" style="display:none; "></textarea>
+                            <button type="submit" id="urgProb_submit" class="submitMessageBtn">
+                                <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
                         </div>
                     </div>    
                 </form>
@@ -293,7 +311,7 @@
         $("#inputBlock1").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#nonUrgProb_submit").click();
+                return false;
             }
         });
       
@@ -306,7 +324,7 @@
         $("#inputBlock2").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#urgProb_submit").click();
+                return false;
             }
         });
         
@@ -319,7 +337,7 @@
         $("#inputBlock3").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#note_submit").click();
+                return false;
             }
         });
         
@@ -335,6 +353,20 @@
         $('#LastTime10').css('color','<?php echo '{colorSubject10}'?>');
         $('#LastTime11').css('color','<?php echo '{colorSubject11}'?>');
         
+        
+
+        
+        $("#scoreLijstNavItem").click(function() { 
+            $("#scoreLijstNavItem").css('background-color','#f4f4f4');
+            $("#problemenNavItem").css('background-color','#fff' );
+        });
+        
+        $("#problemenNavItem").click(function() { 
+            $("#problemenNavItem").css('background-color', '#00000' );
+            $("#scoreLijstNavItem").css('background-color','#fff' );
+        });
+
+        
     });
  
    
@@ -343,8 +375,3 @@
       
      
     </script>
-
-
-<!-- CODE FOR SECOND NAVITEM (=PROBLEMS) (CSS ALREADY ADDED!) -->
-
-
