@@ -176,6 +176,32 @@ class Residentpage_model extends CI_Model {
         
     }
     
+    public function addResidentAvgScoreTotal($id,$avgScore_last) {
+        
+        
+        if($avgScore_last >= 4){
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/icons8-lol-100.png';
+        }
+        else if($avgScore_last >= 3){
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/happy.png';
+        }else if($avgScore_last >= 2){
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/sadsadsad.png';
+        }
+        else if($avgScore_last >= 1){
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/sadsad.png';
+        }else{
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/sad.png';
+        }
+           $data = array(
+            'avgLastScore' => $avgScore_last, 
+            'faceImage'=> $faceImage
+        ); 
+
+        $this->db->where('idResident', $id);
+        $this->db->update('Resident', $data);
+ 
+    }
+    
     
 
 

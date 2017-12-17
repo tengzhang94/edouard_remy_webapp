@@ -66,9 +66,6 @@
             <div>{name} :    {residentCount} People </div>
          
     </div>
-                
-             
-    
              {/sectors}
              
           
@@ -90,7 +87,7 @@
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
                     <img class="imgResOverviewCent img-circle" src="{photo}"/> 
-                    <img class="iconResOverviewRight" src="<?php echo base_url() ?>assets/css/image/icons8-lol-100.png"/>
+                    <img class="iconResOverviewRight" src="{faceImage}"/>{faceImage}
                     <small class= "txtResOverviewBottom">{firstName} {lastName}</small>
                     <small class= "txtResOverviewBottom" name="resident_name">room {Sectors_idSector}.{roomNr}</small>
                 </button>

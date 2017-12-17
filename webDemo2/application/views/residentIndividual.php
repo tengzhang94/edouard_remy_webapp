@@ -264,7 +264,9 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
-                        <div class="message messageProbs">{text}</div>
+                        <div class="message messageProbs">
+                            <textarea id="urgTextArea"style="width:400px; border-color: transparent;background-color: transparent">{text}</textarea>
+                        </div>
                     </div>
                     {/urgProbs}
                </form>        
@@ -297,7 +299,7 @@
         $("#inputBlock1").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#nonUrgProb_submit").click();
+                return false;
             }
         });
       
@@ -310,7 +312,7 @@
         $("#inputBlock2").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#urgProb_submit").click();
+                return false;
             }
         });
         
@@ -323,7 +325,7 @@
         $("#inputBlock3").on( "keydown", function(event) {
             if(event.which === 13) 
             {
-                $("#note_submit").click();
+                return false;
             }
         });
         
@@ -338,6 +340,8 @@
         $('#LastTime9').css('color','<?php echo '{colorSubject9}'?>');
         $('#LastTime10').css('color','<?php echo '{colorSubject10}'?>');
         $('#LastTime11').css('color','<?php echo '{colorSubject11}'?>');
+        
+         $('#urgTextArea').css('margin-top','<?php echo '{urgMarginTop}'?>');
         
         
         $("#scoreLijstNavItem").click(function() { 
