@@ -31,7 +31,7 @@ function searchResidents()
     
     jQuery.ajax({
         type: 'POST',
-        url: "http://localhost/a17_webApps04/webDemo2/index.php/AjaxController/getResidents",
+        url: base_url +"index.php/AjaxController/getResidents",
         data: {'inputName':searchInput.value},
         dataType: 'json',
         success: function(data){
@@ -40,6 +40,7 @@ function searchResidents()
                 for(i in data)
                 {
                       var div = document.createElement('div');
+                    
                       div.classList.add("line");
                        div.classList.add("col-md-12");
                     
@@ -49,7 +50,7 @@ function searchResidents()
 </label>\n\
 <div class="resident">\n\
 <span class="normalPxFont">'+data[i].firstName+' '+data[i].lastName+'</span>\n\
-<span class="imgSpan"> <img src="http://localhost/a17_webApps04/webDemo2/assets\css\image\happy.png" class="residentImg" />\n\
+<span class="imgSpan"> <img src="'+base_url+'assets/css/image/happy.png" class="residentImg" />\n\
 </span>\n\
 </div>';
                     

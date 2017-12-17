@@ -15,6 +15,7 @@
                 </head>
 
                 <body>
+                    <script> var base_url = "<?= base_url('') ?>";</script>
                     <p class="text-right" id="header"><span class="float_left">GraceAge 2.0 - &lt;?php echo $title; ?&gt; </span></p>
                     <div>
                         <div id="container">
