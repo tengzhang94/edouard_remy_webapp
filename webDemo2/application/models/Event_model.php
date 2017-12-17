@@ -45,6 +45,14 @@ class Event_model extends CI_Model {
 
         return $query->result_array();
     }
+    
+    public function getResidentInformation(){
+        //$idResident = $this->session->userdata('idResident');
+        $count=$this->db->from("Resident")->count_all_results();
+
+        $query = $this->db->query("SELECT * FROM Resident WHERE  idResidentr= '$count'");
+        return $query->result_array();
+    }
 
     public function changePersonalInformation($language, $email, $firstName, $lastName) {
         $idCaregiver = $this->session->userdata('idCaregiver');
@@ -71,18 +79,6 @@ class Event_model extends CI_Model {
 
         $this->db->where('idCaregiver', $idCaregiver);
         $this->db->update('Caregiver', $data);
-    }
-    
-    public function addResidentPhoto($nameOfPhoto){
-        $idResident = $this->session->userdata('idResident');
-        $photo = $nameOfPhoto;
-
-        $data = array(
-            'photo' => $photo,
-        );
-
-        $this->db->where('idResident', $idResident);
-        $this->db->update('Resident', $data);
     }
     
     public function changePassword($password) {
