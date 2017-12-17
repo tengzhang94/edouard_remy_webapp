@@ -172,7 +172,15 @@ class ResidentController extends CI_Controller {
         $this->load->model('Message_model');
         $messages = $this->Message_model->getAllMessages($this->session->id);
         $this->session->set_userdata('messages', $messages);
-         $data = $this->Language_model->getResidentMenuLanguage();
+        $data = $this->Language_model->getResidentMenuLanguage();
+        if(count($messages) == 0){
+            $data['sentence2'] = $data['noMessages'];
+            $data['messageDisabled'] = 'disabled';
+        }
+        else{
+            $data['sentence2'] = $data['messagesAvailable'];
+            $data['messageDisabled'] = '';
+        }
         $this->parser->parse('resident_menu',$data);
     }
     
