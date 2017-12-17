@@ -10,6 +10,6 @@ $lang['stats_noAnswer'] = "No answer";
 $lang['stats_chartTitle'] = "Distribution of answers per question";
 $lang['stats_chartX'] = "Answer distribution";
 $lang['stats_chartY'] = "Questions";
-$lang['stats_showChart'] = "Tap topic title to show chart";
+$lang['stats_showChart'] = "Tap the chart-icon to show chart";
 $lang['stats_average'] = "Average";
 $lang['stats_noData'] = "No data available for this sector";
