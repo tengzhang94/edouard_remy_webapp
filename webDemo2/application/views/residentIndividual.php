@@ -9,11 +9,23 @@
                 <span class="infoTitleTxt" >{room} {roomNr}</span>
                
             </span>
-                <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
-                <span id="gender" class="infoTxt">{genderString}: {gender}</span>
-                <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
-                <span id="children" class="infoTxt">{childrenString}: {children}</span>
-                </span>
+            <span id="residentContent"><span id="sector" class="infoTxt">{sectorString}: {sector}</span><span id="language" class="infoTxt">{languageString}: {language}</span><span id="birthday" class="infoTxt">{birthDate}: {birthday}</span>
+            <span id="gender" class="infoTxt">{genderString}: {gender}</span>
+            <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
+            <span id="children" class="infoTxt">{childrenString}: {children}</span>
+            <span class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{sectorString}: {sector}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>{allSectors}</li>  
+                    {sectors}
+                    <li>{name}</li>  
+                    {/sectors}
+                </ul>
+            </span>
+            </span>
+            
+            
 
             <span id="residentNotes">
                 <span id="notesTitle">Notities
@@ -34,7 +46,7 @@
                         <input type="checkbox" name="delete_notes[]" value='{noteId}' />
                         <span class="checkmark"></span>
                     </label>
-                    <div class="message messageProbs">{text}</div>
+                    <div class="message messageProbs" id="noteArea"><textarea class="probTextArea"style="margin-top:{marginTopNote}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea></div>
                 </div>
                 {/notes}
             </form>
@@ -233,7 +245,7 @@
                     <div class="line">
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}' /><span class="checkmark"></span></label>
-                    <div class="message messageProbs">{text}</div>
+                    <div class="message messageProbs"><textarea class="probTextArea"style="margin-top:{marginTop}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea></div>
                     </div>
                     {/nonUrgProbs}
                 </form>
@@ -253,7 +265,7 @@
                 
              
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="problemTitle">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemRightCol"><span class="problemTitle">
                     <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
                     <button class="btn btn-default addBtn" type="submit" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
                 <span
@@ -265,7 +277,7 @@
                         <label>
                             <input type="checkbox" name="delete_problem[]" value='{idProblem}'/><span class="checkmark"></span></label>
                         <div class="message messageProbs">
-                            <textarea id="urgTextArea"style="width:400px; border-color: transparent;background-color: transparent">{text}</textarea>
+                            <textarea class="probTextArea"style="margin-top:{marginTop}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea>
                         </div>
                     </div>
                     {/urgProbs}
@@ -341,8 +353,8 @@
         $('#LastTime10').css('color','<?php echo '{colorSubject10}'?>');
         $('#LastTime11').css('color','<?php echo '{colorSubject11}'?>');
         
-         $('#urgTextArea').css('margin-top','<?php echo '{urgMarginTop}'?>');
         
+
         
         $("#scoreLijstNavItem").click(function() { 
             $("#scoreLijstNavItem").css('background-color','#f4f4f4');

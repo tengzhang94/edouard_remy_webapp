@@ -300,7 +300,7 @@ class CaregiverController extends CI_Controller {
             $avgScore_last = array_sum($score_last)/count($a_last);
         }
         
-         $this->Residentpage_model->addResidentAvgScoreTotal($resident_id,$avgScore_last);
+        $this->Residentpage_model->addResidentAvgScoreTotal($resident_id,$avgScore_last);
         
         $a_second_last = array_filter($score_second_last);
         if(count($a_second_last)==0){
@@ -377,6 +377,14 @@ class CaregiverController extends CI_Controller {
         $resident['colorSubject11'] =  $colorSubject2[11] ;
         
         
+        //change sector
+        $this->load->model('Sector_model');
+        $sectors = $this->Sector_model->getAllSectorInfos();
+
+        $resident["sectors"] = $sectors;
+
+   //     $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
+    
         
                      
         $resident['title'] = 'Resident';
@@ -453,33 +461,9 @@ class CaregiverController extends CI_Controller {
         $urgProbs =  $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $nonUrgProbs = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
         
-        for($i = 0; $i < sizeof($urgProbs);$i ++){
-            $urgProbsLength = strlen(implode("|",$urgProbs[$i]));
-            if($urgProbsLength > 41){
-                $urgMarginTop = '0px';
-            }
-            else{
-                $urgMarginTop = '200px';
-            }    
-        }
-        
-         for($i = 0; $i < sizeof($nonUrgProbsLength);$i ++){
-            $nonUrgProbsLength = strlen(implode("|",$nonUrgProbsLength[$i]));
-            if($nonUrgProbsLength > 41){
-                $nonUrgMarginTop = '15px';
-            }
-            else{
-                $nonUrgMarginTop = '0px';
-            }    
-        }
-        
         $resident['urgProbs'] = $urgProbs;
         $resident['nonUrgProbs'] = $nonUrgProbs;
-        
-        $residnet['urgMarginTop'] = $urgMarginTop;
-        $residnet['nonUrgMarginTop'] = $nonUrgMarginTop;
-
-
+ 
         $resident['title'] = 'Resident';
         $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);

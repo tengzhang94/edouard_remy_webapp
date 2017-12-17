@@ -87,7 +87,7 @@
             <input type="hidden" name="resident_id" value="{idResident}">                                      
                 <button id="button1" class="btn btn-default residentButton" type="submit"> 
                     <img class="imgResOverviewCent img-circle" src="{photo}"/> 
-                    <img class="iconResOverviewRight" src="{faceImage}"/>{faceImage}
+                    <img class="iconResOverviewRight" src="{faceImage}"/>
                     <small class= "txtResOverviewBottom">{firstName} {lastName}</small>
                     <small class= "txtResOverviewBottom" name="resident_name">room {Sectors_idSector}.{roomNr}</small>
                 </button>

@@ -73,28 +73,56 @@ class Residentpage_model extends CI_Model {
     }
     
     public function addResidentUrgProblems($id,$text) {
+        
+         $urgProbsLength = strlen($text);
+            if($urgProbsLength > 37){
+                $urgMarginTop = 0;
+            }
+            else{
+                $urgMarginTop = 15;
+            }    
            $data = array(
             'Resident_idResident' => $id,
             'urgent' => 0,
-            'text' => $text,                 
+            'text' => $text,          
+            'marginTop' => $urgMarginTop
         ); 
         $this->db->insert('Problems', $data);
     }
     
     public function addResidentNotes($note,$resident_id){
+         $noteLength = strlen($note);
+            if($noteLength > 37){
+                $noteMarginTop = 0;
+            }
+            else{
+                $noteMarginTop = 15;
+            }  
        
         $data=array(
                 'Resident_idResident' => $resident_id,
                 'text' => $note,
+                'marginTopNote' => $noteMarginTop
             );
         $this->db->insert('Notes',$data);    
     }
   
     public function addResidentNonUrgProblems($id,$text) {
+      
+         $urgProbsLength = strlen($text);
+            if($urgProbsLength > 37){
+                $urgMarginTop = 0;
+            }
+            else{
+                $urgMarginTop = 15;
+            }    
+           
+        
            $data = array(
             'Resident_idResident' => $id,
             'urgent' => 1,
-            'text' => $text,                 
+            'text' => $text,   
+            'marginTop' =>  $urgMarginTop
         ); 
         $this->db->insert('Problems', $data);
     }
