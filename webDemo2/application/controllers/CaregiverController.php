@@ -111,9 +111,9 @@ class CaregiverController extends CI_Controller {
         $firstName = null;
         $lastName = null;
         $birthDate = null;
-        $idSector = null;
-        $roomNr = null;
-        $gender = 1;
+        $idSector = null;;
+        $roomNr = 0;
+        $gender = "Male";
         $married = 1;
         $children = 1;
         $photo =null;
@@ -198,9 +198,14 @@ class CaregiverController extends CI_Controller {
                 }
             }
         } elseif ($_REQUEST['return1']) {
-            //redirect('careGiverController/backToResident')
-            redirect('caregiverController/resident');
+            redirect('careGiverController/backToResident');
         }
+    }
+    
+    public function backToResident(){
+         $this->load->model('AddResident_model');
+         $this->AddResident_model->deleteNullResident();
+         redirect('caregiverController/resident');
     }
 
     public function resident() {
