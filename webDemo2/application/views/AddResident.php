@@ -13,7 +13,7 @@
         </div> 
         <form class="form-horizontal" method="post" action="addResidentConfirm">
             <div class="col-sm-6 col-xs-12">
-                <div class="form-group" style="margin-top: 70px;">
+                <div class="form-group" style="margin-top: 30px;">
                     <label class="control-label col-sm-4" for="firstname"><p class="residentInfoStyle">First name:</p></label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="firstname" placeholder="first name" name="firstName" value="{firstName}" required>
@@ -34,17 +34,17 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="sector"><p class="residentInfoStyle">Sector:</p></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="sector" placeholder="sector number "  name="sector" value="{sector}" required>
+                        <input type="text" class="form-control" id="sector" placeholder="sector number "  name="sector"  required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="room"><p class="residentInfoStyle">{room}:</p></label>
+                    <label class="control-label col-sm-4" for="room"><p class="residentInfoStyle">Room:</p></label>
                     <div class="col-sm-8">
                     <input type="text" class="form-control" id="room" placeholder="room number " name="room" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="gender"><p class="residentInfoStyle" >Gender{gender}:</p></label>
+                    <label class="control-label col-sm-4" for="gender"><p class="residentInfoStyle" >Gender:</p></label>
                     <div class="col-sm-8">
                     <div class="radio-inline">
                             <input type="radio"  name="gender" value="Male" {check_male}>{male}
@@ -77,11 +77,11 @@
                     </div>
                 </div>
                 <div class="row">
-             <div class="form-group"style="height:55px;">
-                <div class="col-sm-4 col-xs-12 ">
+             <div class="form-group"style="height:20px;margin-top: -30px;">
+                <div class="col-sm-5 col-xs-12 ">
                     <input type="submit" class="btn-confirm" name="submit1" value="Submit">
                 </div>
-                <div class="col-sm-4 col-sm-offset-1 col-xs-12">
+                <div class="col-sm-5 col-sm-offset-1 col-xs-12">
                     <input type="button" class="btn-confirm" name="return1" onclick="location='resident'" value="Return">
                 </div>
             </div>

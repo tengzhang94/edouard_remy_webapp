@@ -46,6 +46,13 @@ class AddResident_model extends CI_Model {
         $this->db->where('idResident', $id);
         $this->db->update('Resident', $data);
     }
+    
+    public function deleteNullResident(){
+        $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
+        $id = $last_row->idResident;
+        $this->db->where('idResident',$id);
+        $this->db->delete('Resident');
+    }
 
     public function insertCaregiver($firstName, $lastName, $email, $password) {
         $data = array(
