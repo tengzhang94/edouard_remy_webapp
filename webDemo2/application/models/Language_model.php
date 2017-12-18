@@ -173,9 +173,10 @@ class Language_model extends CI_Model {
             "greater"=> lang("residentMenu_greater"),
             "smaller"=> lang("residentMenu_smaller"),
             "sentence1"=> lang("residentMenu_sentence1"),
-            "sentence2"=> lang("residentMenu_sentence2"),
-            "sentence3"=> lang("residentMenu_sentence3"),
-            "sentence4"=> lang("residentMenu_sentence4"),
+            "messagesAvailable"=> lang("residentMenu_messagesAvailable"),
+            "noMessages" => lang("residentMenu_noMessages"),
+            "sentence3"=> lang("residentMenu_moreQuestions"),
+            "sentence4"=> lang("residentMenu_logout"),
             
         );
         

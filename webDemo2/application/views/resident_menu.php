@@ -19,7 +19,7 @@
                     <p class="text-right"><span class="float_right">{font_size}<button id="BG" class="btn btn-primary" type="button" style="margin-left:10px;">{greater} </button><button id="BS" class="btn btn-primary" type="button">{smaller} </button></span></p>
                 </div><span class="text-center">{sentence1}</span>
                 <form>
-                    <button class="btn btn-default menuButton" type="button" onclick="location='message'">{sentence2}</button>
+                    <button class="btn btn-default menuButton" type="button" onclick="location='message'" {messageDisabled}>{sentence2}</button>
                 </form>
                 <form>
                     <button class="btn btn-default menuButton" type="button" onclick="location='topics'">{sentence3}</button>
