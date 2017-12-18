@@ -402,6 +402,12 @@ class CaregiverController extends CI_Controller {
         //change sector
         $this->load->model('Sector_model');
         $sectors = $this->Sector_model->getAllSectorInfos();
+        
+        if (null != $this->input->get('sector')){
+            $sector = $this->input->get('sector');
+            $this->Residentpage_model->updateSector($resident_id,$sector);
+            redirect('caregiverController/residentProblems');
+        }
 
         $resident["sectors"] = $sectors;
 
@@ -479,6 +485,19 @@ class CaregiverController extends CI_Controller {
 
 //        $resident['urgProbs'] = $this->Residentpage_model->getResidentUrgProblems($resident_id);
 //        $resident['nonUrgProbs'] = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);
+        
+        //change sector
+        $this->load->model('Sector_model');
+        $sectors = $this->Sector_model->getAllSectorInfos();
+        
+        if (null != $this->input->get('sector')){
+            $sector = $this->input->get('sector');
+            $this->Residentpage_model->updateSector($resident_id,$sector);
+            redirect('caregiverController/residentProblems');
+        }
+
+        $resident["sectors"] = $sectors;
+
 
         $urgProbs =  $this->Residentpage_model->getResidentUrgProblems($resident_id);
         $nonUrgProbs = $this->Residentpage_model->getResidentNonUrgProblems($resident_id);

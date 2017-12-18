@@ -230,6 +230,15 @@ class Residentpage_model extends CI_Model {
  
     }
     
+    public function updateSector($resident_id,$sector){
+        
+           $data = array(
+            'Sectors_idSector' =>  $sector
+        ); 
+        $this->db->where('idResident', $resident_id);
+        $this->db->update('Resident', $data);
+    }
+    
     
 
 

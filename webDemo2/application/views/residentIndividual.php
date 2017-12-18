@@ -14,12 +14,11 @@
             <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
             <span id="children" class="infoTxt">{childrenString}: {children}</span>
             <span class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{sectorString}: {sector}
+                <button class="btn infoTxt" type="button" data-toggle="dropdown">Change Sector: {sector}
                     <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>{allSectors}</li>  
+                <ul class="dropdown-menu"> 
                     {sectors}
-                    <li>{name}</li>  
+                    <li><a href="<?php echo base_url() ?>index.php/CaregiverController/residentIndividual?sector={idSector}">{name}</li>  
                     {/sectors}
                 </ul>
             </span>
