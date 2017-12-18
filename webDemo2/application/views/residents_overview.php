@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div id="topRow" class="row residentOverviewRow">
     <form class="searchFormResOverview" action='searchResident' method="post">   
-        <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="Firstname or Lastname" />
+        <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="Zoek op voor- of achternaam" />
 
         <button  class="col-md-1 btn btn-default iconBtnResident " type="submit""  >
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
