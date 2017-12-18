@@ -13,7 +13,14 @@ class AddResident_model extends CI_Model {
     }
     
     public function addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector,$roomNr) {
+        $personData = array(
+            'idPerson' => 0 //value 0 makes it use its auto increment
+        );
+        $this->db->insert('Person', $personData);
+        $personId = $this->db->insert_id();
+        
         $data = array(
+            'idResident' => $personId,
             'firstName' => $firstName,
             'lastName' => $lastName,
             'birthDate' => $birthDate,
@@ -48,7 +55,14 @@ class AddResident_model extends CI_Model {
     }
 
     public function insertCaregiver($firstName, $lastName, $email, $password) {
+        $personData = array(
+            'idPerson' => 0 //value 0 makes it use its auto increment
+        );
+        $this->db->insert('Person');
+        $personId = $this->db->insert_id();
+        
         $data = array(
+            'idCaregiver' => $personId,
             'firstName' => $firstName,
             'lastName' => $lastName,
             'email' => $email,
