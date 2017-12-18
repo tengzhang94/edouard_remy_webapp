@@ -14,7 +14,7 @@
             <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
             <span id="children" class="infoTxt">{childrenString}: {children}</span>
             <span class="dropdown">
-                <button class="btn infoTxt" type="button" data-toggle="dropdown">Change Sector: {sector}
+                <button class="btn infoTxt" type="button" data-toggle="dropdown">{changeSector}: {sector}
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu"> 
                     {sectors}

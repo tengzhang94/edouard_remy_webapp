@@ -15,4 +15,6 @@ $lang['IndivRes_scores'] = "Scorebord vragenlijst";
 $lang['IndivRes_issues'] = "Problemen";
 $lang['IndivRes_shortTerm'] = "Korte termijn";
 $lang['IndivRes_longTerm'] = "Lange termijn";
+$lang['IndivRes_changeSector'] = "Verander sector";
+
 

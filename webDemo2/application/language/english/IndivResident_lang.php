@@ -15,4 +15,5 @@ $lang['IndivRes_scores'] = "Scoreboard questionnaire";
 $lang['IndivRes_issues'] = "Issues";
 $lang['IndivRes_shortTerm'] = "Short term";
 $lang['IndivRes_longTerm'] = "Long term";
+$lang['IndivRes_changeSector'] = "Change sector";
 

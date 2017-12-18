@@ -112,7 +112,8 @@ class Language_model extends CI_Model {
             "scores" => lang("IndivRes_scores"),
             "issues" => lang("IndivRes_issues"),
             "shortTerm" => lang("IndivRes_shortTerm"),
-            "longTerm" => lang("IndivRes_longTerm")
+            "longTerm" => lang("IndivRes_longTerm"),
+            "changeSector" => lang("IndivRes_changeSector")
         );
     }
 

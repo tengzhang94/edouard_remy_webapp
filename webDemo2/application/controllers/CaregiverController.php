@@ -119,7 +119,7 @@ class CaregiverController extends CI_Controller {
         $photo =null;
         $this->load->model('AddResident_model');
         $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr, $photo);
-        redirect('careGiverController/addResidentInfo');
+        redirect('caregiverController/addResidentInfo');
         
     }
     
