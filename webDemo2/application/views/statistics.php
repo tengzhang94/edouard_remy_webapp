@@ -66,7 +66,7 @@
             background-color: #f5f5f5;
             border-radius: 0px;
             font-family: Lato, sans-serif;
-            font-size: 24px;
+            font-size: 30px;
             color: #2c3d51;
             border-color: #2c3d51;
             margin-top: 10px;
@@ -107,18 +107,18 @@
             padding-top:10px;
             width: 100%;
         }
-        
+
         .questionLine {
             display: flex;
         }
-        
+
         .topicQuestionAvg {
             padding-left:5px;
             font-family:Lato,sans-serif;
             font-size:20px;
             padding-top:10px;                       
         }
-        
+
         .statsGraph {
             height:200px;
         }
@@ -130,7 +130,7 @@
         }
         span.titleStats {
             padding-left: 14px;
-            font-size: 24px;
+            font-size: 30px;
             font-family: Lato, sans-serif;
             color: #2c3d51;
         }
@@ -161,7 +161,7 @@
             padding-bottom: 0px;
             padding-top:20px;
             font-family:Lato,sans-serif;
-            font-size:24px;
+            font-size:20px;
             color: #2c3d51;
         }
         #chartdiv {
@@ -190,8 +190,8 @@
 
 <body>
     <span class="titleStats">{chooseSectors}:</span>
-
     <div class="form-group" >
+        
         <div class="col-md-6 col-sm-10 col-xs-12" style="display:block">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{current_sector}
@@ -204,7 +204,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-6" style="height: 60px"></div>
+        <div class="col-md-6" style="height: 70px"></div>
     </div>
     <span class="statsHeader col-md-10  col-sm-10 col-xs-10" {notHidden}>{no_data_msg}</span>
     <span class="col-md-6 col-sm-10 col-xs-12" {hidden}>
@@ -272,11 +272,6 @@
                     3: {color: '#ADD8E9'},
                     4: {color: '#2C79B3'},
                     5: {color: '#5c5555'}
-                    /*0: {color: '#c23b22'},
-                     1: {color: '#c2721d'},
-                     2: {color: '#888'},
-                     3: {color: '#06c07a'},
-                     4: {color: '#03c03c'}*/
                 }
             };
 
@@ -303,15 +298,11 @@
             data.addColumn('number', '{strongly_agree}');
             data.addColumn('number', '{no_answer}');
             data.addRows(arr);
-            //var data = new google.visualization.arrayToDataTable(jsonData);
-
-
 
             // Instantiate and draw our chart, passing in some options. 
             var chart = new google.visualization.BarChart(document.getElementById('chartdiv'));
             chart.draw(data, options);
-
         }
 
     </script> 
-</body></html>
+</body>
