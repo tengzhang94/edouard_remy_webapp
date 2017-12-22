@@ -12,7 +12,6 @@
 
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>GraceAge 2.0 - Caregiver</title>
         <meta charset="UTF-8">
@@ -33,7 +32,7 @@
         <div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-1 col-lg-push-0  col-md-1 col-md-push-0 col-md-offset-0 col-sm-2  col-sm-push-0 col-xs-6 col-xs-push-3">
+                <div class="col-lg-1 col-lg-push-0  col-md-1 col-md-push-0 col-md-offset-0 col-sm-2  col-sm-push-0 col-xs-6 col-xs-push-3">
                         {menu}
                         <li class="item {className}" id="{itemNr}">
                             <a href="{link}" class="{className2}"> 
