@@ -22,7 +22,7 @@ class Question_model extends CI_Model {
     }
     
     public function getQuestionIds($topicId) {
-        return $this->db->query("SELECT idQuestion FROM Questions WHERE Topics_idTopic = '$topicId'")->result_array();
+        return $this->db->query("SELECT idQuestion FROM Questions WHERE Topics_idTopic = ".$this->db->escape($topicId)."")->result_array();
     }
 
     public function getTopics() {
@@ -60,7 +60,7 @@ class Question_model extends CI_Model {
             $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
         } else {
             $residents = $this->db->query("SELECT idResident from Resident "
-                            . "WHERE Sectors_idSector = '$sector'")->result();   //select all residents from a sector
+                            . "WHERE Sectors_idSector = ".$this->db->escape($sector)."")->result();   //select all residents from a sector
         }
         if ($residents == null)
             return null;
@@ -93,7 +93,7 @@ class Question_model extends CI_Model {
             $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
         } else {
             $residents = $this->db->query("SELECT idResident from Resident "
-                            . "WHERE Sectors_idSector = '$sector'")->result();   //select all residents from a sector
+                            . "WHERE Sectors_idSector = ".$this->db->escape($sector)."")->result();   //select all residents from a sector
         }
         if ($residents == null)
             return null;

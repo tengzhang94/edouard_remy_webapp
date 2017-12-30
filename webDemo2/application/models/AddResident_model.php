@@ -6,7 +6,11 @@ class AddResident_model extends CI_Model {
     }
 
     public function checkExist($firstName, $lastName, $birthDate, $gender) {
-        $query = $this->db->query("SELECT * from Resident WHERE firstName='$firstName' AND lastName='$lastName' AND birthDate='$birthDate' AND gender='$gender'"); //Asks for result with these parameters
+        $query = $this->db->query("SELECT * from Resident "
+                . "WHERE firstName=".$this->db->escape($firstName)." "
+                . "AND lastName=".$this->db->escape($lastName)." "
+                . "AND birthDate=".$this->db->escape($birthDate)." "
+                . "AND gender=".$this->db->escape($gender).""); //Asks for result with these parameters
         $result = $query->result();
         if ($result != NULL) return true; //When there is a result (not NULL), this resident already exists in the database.
         return false;
@@ -44,8 +48,7 @@ class AddResident_model extends CI_Model {
             'married' => $married,
             'children' => $children,
             'Sectors_idSector'=> $idSector,
-            'roomNr' => $roomNr,
-            
+            'roomNr' => $roomNr            
         );
         $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
         $id = $last_row->idResident;
@@ -80,7 +83,7 @@ class AddResident_model extends CI_Model {
     }
     
         public function scan($scanResult) {
-        $query = $this->db->query("select * from Resident where idResident='$scanResult'");
+        $query = $this->db->query("select * from Resident where idResident=".$this->db->escape($scanResult)."");
         return $query->result();
     }
 

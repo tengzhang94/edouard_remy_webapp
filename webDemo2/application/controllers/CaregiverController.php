@@ -111,7 +111,7 @@ class CaregiverController extends CI_Controller {
         $firstName = null;
         $lastName = null;
         $birthDate = null;
-        $idSector = null;;
+        $idSector = null;
         $roomNr = 0;
         $gender = "Male";
         $married = 1;

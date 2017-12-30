@@ -15,12 +15,16 @@ class Residentpage_model extends CI_Model {
     }
     public function getResidentsBySearch($name)
     {
-         $query = $this->db->query("SELECT * FROM Resident WHERE firstName LIKE '%$name%' OR lastName LIKE '%$name%'");
+         $query = $this->db->query("SELECT * FROM Resident "
+                 . "WHERE firstName "
+                 . "LIKE '%".$this->db->escape_like_str($name)."%' ESCAPE '!' "
+                 . "OR lastName "
+                 . "LIKE '%".$this->db->escape_like_str($name)."%' ESCAPE '!'");
         return $query->result_array();
     }
     
     public function getResidentWithId($id) {
-        $query = $this->db->query("SELECT * FROM Resident WHERE idResident = $id");
+        $query = $this->db->query("SELECT * FROM Resident WHERE idResident = ".$this->db->escape($id)."");
         $resident = $query->row();
         $data['firstName'] = $resident->firstName;
         $data['lastName'] = $resident->lastName;
@@ -44,31 +48,31 @@ class Residentpage_model extends CI_Model {
     }
     
     public function getResidentNotes($id) {
-        $query = $this->db->query("SELECT * FROM Notes WHERE Resident_idResident = $id");
+        $query = $this->db->query("SELECT * FROM Notes WHERE Resident_idResident = ".$this->db->escape($id)."");
         return $query->result_array();
     }
     
     
     public function getResidentFromSector($sectorId){
-        $query = $this->db->query("SELECT * FROM Resident WHERE Sectors_idSector = $sectorId");
+        $query = $this->db->query("SELECT * FROM Resident WHERE Sectors_idSector = ".$this->db->escape($sectorId)."");
         return $query->result_array();
     }
     
     public function getSectorWithId($id) {
         if(isset($id)) {
-            $query = $this->db->query("SELECT * FROM Sectors WHERE idSector = $id");
+            $query = $this->db->query("SELECT * FROM Sectors WHERE idSector = ".$this->db->escape($id)."");
             return $query->row();
         }
         else return null;
     }
     
     public function getResidentUrgProblems($id) {
-        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = $id AND urgent = 1");
+        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = ".$this->db->escape($id)." AND urgent = 1");
         return $query->result_array();
     }
     
     public function getResidentNonUrgProblems($id) {
-        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = $id AND urgent = 0");
+        $query = $this->db->query("SELECT * FROM Problems WHERE Resident_idResident = ".$this->db->escape($id)." AND urgent = 0");
         return $query->result_array();
     }
     
@@ -147,11 +151,11 @@ class Residentpage_model extends CI_Model {
                                 (SELECT MAX(Timestamp) FROM Resident_fills_in_Topics
                                 INNER JOIN Answers
                                 where Resident_fills_in_Topics.id_fill_in = Answers.fill_in_id
-                                AND Resident_idResident = $resident_id
-                                AND Topics_idTopic = $topic_id)
+                                AND Resident_idResident = ".$this->db->escape($resident_id)."
+                                AND Topics_idTopic = ".$this->db->escape($topic_id).")
                                 AND Resident_fills_in_Topics.id_fill_in = Answers.fill_in_id
-                                AND Resident_idResident = $resident_id
-                                AND Topics_idTopic = $topic_id;" );
+                                AND Resident_idResident = ".$this->db->escape($resident_id)."
+                                AND Topics_idTopic = ".$this->db->escape($topic_id).";" );
         return $query->row();          
     }
     
@@ -162,16 +166,16 @@ class Residentpage_model extends CI_Model {
                                 (SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = $resident_id
-                                    AND Topics_idTopic = $topic_id
+                                    AND Resident_idResident = ".$this->db->escape($resident_id)."
+                                    AND Topics_idTopic = ".$this->db->escape($topic_id)."
                                     AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = $resident_id
-                                    AND Topics_idTopic =$topic_id))
+                                    AND Resident_idResident = ".$this->db->escape($resident_id)."
+                                    AND Topics_idTopic =".$this->db->escape($topic_id)."))
                                 AND a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                AND Resident_idResident  = $resident_id
-                                AND Topics_idTopic = $topic_id;" );
+                                AND Resident_idResident  = ".$this->db->escape($resident_id)."
+                                AND Topics_idTopic = ".$this->db->escape($topic_id).";" );
         return $query->row();          
     }
     
@@ -179,8 +183,8 @@ class Residentpage_model extends CI_Model {
         $query = $this->db->query("SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident = $resident_id
-                                    AND Topics_idTopic =$topic_id;"
+                                    AND Resident_idResident = ".$this->db->escape($resident_id)."
+                                    AND Topics_idTopic =".$this->db->escape($topic_id).";"
                 );
         return $query->row();
     }
@@ -189,13 +193,13 @@ class Residentpage_model extends CI_Model {
          $query = $this->db->query("SELECT MAX(Timestamp) as timeSecondLast FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident =$resident_id
-                                    AND Topics_idTopic = $topic_id
+                                    AND Resident_idResident =".$this->db->escape($resident_id)."
+                                    AND Topics_idTopic = ".$this->db->escape($topic_id)."
                                     AND Timestamp < (SELECT MAX(Timestamp) as lastTime FROM a17_webapps04.Resident_fills_in_Topics
                                     INNER JOIN a17_webapps04.Answers
                                     where a17_webapps04.Resident_fills_in_Topics.id_fill_in = a17_webapps04.Answers.fill_in_id
-                                    AND Resident_idResident =$resident_id
-                                    AND Topics_idTopic = $topic_id);"
+                                    AND Resident_idResident =".$this->db->escape($resident_id)."
+                                    AND Topics_idTopic = ".$this->db->escape($topic_id).");"
                 );
         return $query->row();
     }
