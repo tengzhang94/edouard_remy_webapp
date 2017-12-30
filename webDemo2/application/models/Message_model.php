@@ -44,7 +44,7 @@ class Message_model extends CI_Model {
             FROM 'Residents'
             INNER JOIN 'Family_knows_Residents' as 'FkR'
             ON 'FkR'.'idResident' = 'Residents'.'idResident'
-            WHERE 'FkR'.'idFamily' = '$idFamily'"
+            WHERE 'FkR'.'idFamily' = ".$this->db->escape($idFamily).""
         )->result_array();
     }
 }
