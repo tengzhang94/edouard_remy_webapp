@@ -48,7 +48,7 @@ class AjaxController extends CI_Controller {
               
                 $id=$id."idResident = '$idList[$i]' )";
                 
-                $query = $this->db->query("SELECT * FROM Notifications WHERE $id AND $type");
+                $query = $this->db->query("SELECT * FROM Notifications WHERE ".$this->db->escape($id)." AND ".$this->db->escape($type)."");
       
                if($result= $query->result()){
             return $this->output
@@ -71,7 +71,11 @@ class AjaxController extends CI_Controller {
          
 
         $name = $this->input->post('inputName');
-      $query = $this->db->query("SELECT * FROM Resident WHERE firstName LIKE '%$name%' OR lastName LIKE '%$name%'");
+      $query = $this->db->query("SELECT * FROM Resident "
+              . "WHERE firstName "
+              . "LIKE '%".$this->db->escape_like_str($name)."%' ESCAPE '!' "
+              . "OR lastName "
+              . "LIKE '%".$this->db->escape_like_str($name)."%' ESCAPE '!'");
          if($result= $query->result()){
             return $this->output
             ->set_content_type('application/json')
@@ -84,7 +88,10 @@ class AjaxController extends CI_Controller {
         $idSector = $this->input->post('idSector');
         $firstName = $this->input->post('firstName');
         $lastName = $this->input->post('lastName');
-        $result = $this->db->query("UPDATE Resident SET Sectors_idSector = '$idSector' WHERE (firstName = '$firstName' AND lastName = '$lastName')");
+        $result = $this->db->query("UPDATE Resident "
+                . "SET Sectors_idSector = ".$this->db->escape($idSector)." "
+                . "WHERE (firstName = ".$this->db->escape($firstName)." "
+                . "AND lastName = ".$this->db->escape($lastName).")");
         return $result;
     }
     
