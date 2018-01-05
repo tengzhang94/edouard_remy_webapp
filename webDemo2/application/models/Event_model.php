@@ -84,8 +84,9 @@ class Event_model extends CI_Model {
     }
     
     public function changeResidentPhoto($nameOfPhoto) {
+        
         $last_row=$this->db->select('idResident')->order_by('idResident',"desc")->limit(1)->get('Resident')->row();
-        $id = $last_row->idResident;
+        
         $original_photoPath = 'http://a17-webapps04.studev.groept.be/upload/';
         $photo =$original_photoPath . $nameOfPhoto;
        
@@ -97,7 +98,7 @@ class Event_model extends CI_Model {
             'photo' => $photo,
         );
 
-        $this->db->where('idResident', $id);
+        $this->db->where('idResident', $last_row->idResident);
         $this->db->update('Resident', $data);
     }
     

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6 col-xs-12" >
+ <!--       <div class="col-sm-6 col-xs-12" >
             <?php echo form_open_multipart('UploadController/resident_upload');?>
              <span id="label_span"></span>
              <label for="file" class="btn-photo" style="background-image:url({photo}); background-position: center; background-size: cover; font-size: 150%">
@@ -11,24 +11,25 @@
          </form>  
              
         </div> 
+ -->
         <form class="form-horizontal" method="post" action="addResidentConfirm">
-            <div class="col-sm-6 col-xs-12">
+            <div class="col-sm-12 col-xs-12">
                 <div class="form-group" style="margin-top: 30px;">
                     <label class="control-label col-sm-4" for="firstname"><p class="residentInfoStyle">First name:</p></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="firstname" placeholder="first name" name="firstName" value="{firstName}" required>
+                        <input type="text" class="form-control" id="firstname" placeholder="first name" name="firstName"  required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="lastname"><p class="residentInfoStyle">Last name:</p></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="lastname" placeholder="last name " name="lastName" value="{lastName}" required>
+                        <input type="text" class="form-control" id="lastname" placeholder="last name " name="lastName"  required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="birthdate"><p class="residentInfoStyle">Birth date:</p></label>
                     <div class="col-sm-8">
-                        <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" name="birthDate" value="birthDate" required >
+                        <input type="date" class="form-control" id="birthdate" placeholder="dd-mm-jj" name="birthDate"  required >
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,10 +48,10 @@
                     <label class="control-label col-sm-4" for="gender"><p class="residentInfoStyle" >Gender:</p></label>
                     <div class="col-sm-8">
                     <div class="radio-inline">
-                            <input type="radio"  name="gender" value="Male" {check_male}>{male}
+                        <input type="radio"  name="gender" value="Male" checked>Male
                     </div>
                     <div class="radio-inline">
-                            <input type="radio" name="gender" value="Female" {check_female}>{female}
+                            <input type="radio" name="gender" value="Female" >Female
                     </div>
                     </div>   
                 </div>
@@ -58,10 +59,10 @@
                     <label class="control-label col-sm-4" for="married"><p class="residentInfoStyle">Married:</p></label>
                     <div class="col-sm-8">
                         <div class="radio-inline">
-                        <input type="radio" name="married" value="1" {check_married}>{yes}
+                        <input type="radio" name="married" value="1" checked>Yes
                         </div>
                         <div class="radio-inline">
-                        <input type="radio" name="married" value="0"{check_single}>{no}
+                        <input type="radio" name="married" value="0">No
                         </div>
                     </div>
                 </div>
@@ -69,10 +70,10 @@
                     <label class="control-label col-sm-4" for="children"><p class="residentInfoStyle">Children:</p></label>
                     <div class="col-sm-8">
                     <div class="radio-inline">
-                    <input type="radio"name="children" value="1" {check_children}>{yes}
+                    <input type="radio"name="children" value="1" checked>Yes
                     </div>
                     <div class="radio-inline">
-                    <input type="radio"name="children" value="0" {check_nochildren}>{no}
+                    <input type="radio"name="children" value="0" >No
                     </div>
                     </div>
                 </div>

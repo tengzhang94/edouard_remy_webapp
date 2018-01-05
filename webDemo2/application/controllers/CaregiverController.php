@@ -105,61 +105,9 @@ class CaregiverController extends CI_Controller {
         $results['caregiver'] = $this->Event_model->insertCaregiver();
     }
 
-   
-    
-    public function addResident() {   // just to load the page addr\Resident
-        $firstName = null;
-        $lastName = null;
-        $birthDate = null;
-        $idSector = null;
-        $roomNr = 0;
-        $gender = "Male";
-        $married = 1;
-        $children = 1;
-        $photo =null;
-        $this->load->model('AddResident_model');
-        $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr, $photo);
-        redirect('caregiverController/addResidentInfo');
-        
-    }
     
     public function addResidentInfo(){
         $data = $this->Language_model->getAddResidentLanguage();
-        
-        $this->load->model('Event_model');
-
-        $result = $this->Event_model->getResidentInformation();
-        if ($result[0]['gender'] == 'M') {
-            $data['check_male'] = 'checked';
-            $data['check_female'] = '';
-        } else if ($result[0]['gender'] == 'f') {
-            $data['check_male'] = '';
-            $data['check_female'] = 'checked';
-        }
-        
-        if ($result[0]['married'] == '1') {
-            $data['check_married'] = 'checked';
-            $data['check_single'] = '';
-        } else if ($result[0]['married'] == '0') {
-            $data['check_married'] = '';
-            $data['check_single'] = 'checked';
-        }
-        
-        if ($result[0]['children'] == '1') {
-            $data['check_children'] = 'checked';
-            $data['check_nochildren'] = '';
-        } else if ($result[0]['children'] == '0') {
-            $data['check_children'] = '';
-            $data['check_nochldren'] = 'checked';
-        }
-
-        $data['firstName'] = $result[0]['firstName'];
-        $data['lastName'] = $result[0]['lastName'];
-        $data['birthDate'] = $result[0]['birthDate'];
-        $data['idSector'] = $result[0]['Sectors_idSector'];
-        $data['roomNr'] = $result[0]['roomNr'];
-        $data['photo'] = $result[0]['photo'];
-
         $data['title'] = 'AddResident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
@@ -187,8 +135,8 @@ class CaregiverController extends CI_Controller {
              else {
                 $this->load->model('AddResident_model');
                 if ($this->AddResident_model->checkExist($firstName, $lastName, $birthDate, $gender) == false) {
-                    $this->AddResident_model->updateInfoResident($firstName, $lastName, $birthDate, $gender, $married, $children, $idSector, $roomNr);
-                    redirect('caregiverController/resident');
+                    $this->AddResident_model->addInfoResident($firstName, $lastName, $birthDate, $idSector, $roomNr,$gender, $married, $children);
+                    redirect('caregiverController/uploadResidentPhoto');
                     //return to the resident page
                     //$data['success'] = "Success!";
                     //$this->parser->parse('navbar_topbar', $data);
@@ -198,16 +146,16 @@ class CaregiverController extends CI_Controller {
                 }
             }
         } elseif ($_REQUEST['return1']) {
-            redirect('careGiverController/backToResident');
+            redirect('careGiverController/resident');
         }
     }
     
-    public function backToResident(){
+  /*  public function backToResident(){
          $this->load->model('AddResident_model');
          $this->AddResident_model->deleteNullResident();
          redirect('caregiverController/resident');
     }
-
+*/
     public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
@@ -539,6 +487,25 @@ class CaregiverController extends CI_Controller {
         redirect('caregiverController/residentProblems');
     }
 
+    public function uploadResidentPhoto(){
+        $data['title'] = 'Upload photo';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $data['content'] = $this->parser->parse('uploadResidentPhoto', $data, true);
+        $this->parser->parse('navbar_topbar', $data);
+    }
+    
+    public function getResidentPhoto(){
+        $data = $this->Language_model->getIndivResLanguage();
+        $this->load->model('Event_model');
+        $result = $this->Event_model->getResidentInformation();
+        $data['photo']=$result[0]['photo'];
+        
+        $data['title'] = 'Upload photo';
+        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $data['content'] = $this->parser->parse('uploadResidentPhoto', $data, true);
+        $this->parser->parse('navbar_topbar', $data);
+        
+    }
     public function getPersonalInformation() {
         $data = $this->Language_model->getCaregiverInfoLanguage();
         $this->load->model('Event_model');
@@ -582,6 +549,16 @@ class CaregiverController extends CI_Controller {
         $this->parser->parse('navbar_topbar', $data); 
     }
 
+    public function uploadPhotoConfirm(){
+        if ($_REQUEST['submit2']) {
+            
+            redirect('caregiverController/resident');
+        } elseif ($_REQUEST{'cancel2'}) {
+            
+            redirect('caregiverController/resident');
+        }
+    }
+    
     public function changePersonalInformation() {
         if ($_REQUEST['submit1']) {
             $language = $this->input->post('language');

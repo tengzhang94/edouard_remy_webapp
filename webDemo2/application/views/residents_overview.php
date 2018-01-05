@@ -35,7 +35,7 @@
             </svg>
         </button>
    
-    <form method="post" action="addResident">
+    <form method="post" action="addResidentInfo">
         <button class="btn btn-default iconBtnResident" type="submit">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
