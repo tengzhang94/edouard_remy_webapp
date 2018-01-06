@@ -37,7 +37,7 @@ class UploadController extends CI_Controller {
                         chmod($filepath,0644);
                         $this->load->model('Event_model');
                         $this->Event_model->changeResidentPhoto($nameOfPhoto);
-                        redirect('caregiverController/getResidentPhoto');
+                        redirect('caregiverController/uploadResidentPhoto');
 
                        // $this->load->view('upload_success', $data);
                 }

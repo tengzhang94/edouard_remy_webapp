@@ -108,7 +108,7 @@ class CaregiverController extends CI_Controller {
     
     public function addResidentInfo(){
         $data = $this->Language_model->getAddResidentLanguage();
-        $data['title'] = 'AddResident';
+        $data['title'] = 'Add Resident';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('AddResident', $data, true);
         $this->parser->parse('navbar_topbar', $data);
@@ -149,13 +149,7 @@ class CaregiverController extends CI_Controller {
             redirect('careGiverController/resident');
         }
     }
-    
-  /*  public function backToResident(){
-         $this->load->model('AddResident_model');
-         $this->AddResident_model->deleteNullResident();
-         redirect('caregiverController/resident');
-    }
-*/
+
     public function resident() {
         $this->load->model('Residentpage_model');
         $data['residents'] = $this->Residentpage_model->getAllResidents();
@@ -488,24 +482,17 @@ class CaregiverController extends CI_Controller {
     }
 
     public function uploadResidentPhoto(){
-        $data['title'] = 'Upload photo';
-        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
-        $data['content'] = $this->parser->parse('uploadResidentPhoto', $data, true);
-        $this->parser->parse('navbar_topbar', $data);
-    }
-    
-    public function getResidentPhoto(){
         $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Event_model');
         $result = $this->Event_model->getResidentInformation();
         $data['photo']=$result[0]['photo'];
         
-        $data['title'] = 'Upload photo';
+        $data['title'] = 'Upload Photo';
         $data['menu'] = $this->Menu_model->get_menuitems('Resident');
         $data['content'] = $this->parser->parse('uploadResidentPhoto', $data, true);
         $this->parser->parse('navbar_topbar', $data);
-        
     }
+    
     public function getPersonalInformation() {
         $data = $this->Language_model->getCaregiverInfoLanguage();
         $this->load->model('Event_model');
