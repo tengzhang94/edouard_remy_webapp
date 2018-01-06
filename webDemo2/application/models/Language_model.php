@@ -162,7 +162,8 @@ class Language_model extends CI_Model {
         return array(
             "avgActivity" => lang("dashboard_avgActivity"),
             "avgScore" => lang("dashboard_avgScore"),
-            "selectAll" => lang("dashboard_selectAll")
+            "selectAll" => lang("dashboard_selectAll"),
+            "delete" =>lang("dashboard_delete")
         );
     }
     
@@ -179,9 +180,18 @@ class Language_model extends CI_Model {
             "sentence3"=> lang("residentMenu_moreQuestions"),
             "sentence4"=> lang("residentMenu_logout"),
             
-        );
-        
-        
+        );     
+    }
+    
+        public function getResOverviewLanguage()
+    {
+        $this->lang->load('ResidentOverview_lang',$this->session->language);
+        return array(
+            "title"=> lang("resOverview_title"),
+            "search"=> lang("resOverview_search"),
+            "room"=> lang("resOverview_room"),
+            "add"=> lang("resOverview_add"),
+        );     
     }
     
    

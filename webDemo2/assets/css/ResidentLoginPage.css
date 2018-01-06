@@ -107,3 +107,25 @@ div {
     left: 73px;
 }
 
+.btn.btn-primary.btn.pull-left {
+    height: 5%;
+    background-color: #f4f4f4;
+    background-image: 0px;
+    color: #2c3d51;
+    font-size: 18px;
+    border-color: #2c3d51;
+    min-height: 40px;
+    border-radius: 0px;
+    font-family: Lato, sans-serif;
+    top: 1%;
+    position: absolute;
+}
+
+#ENbtn{
+    left:70px;
+}
+
+#NLbtn{
+    left:1%;
+}
+
