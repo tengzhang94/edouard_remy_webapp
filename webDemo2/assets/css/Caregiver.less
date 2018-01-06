@@ -310,12 +310,14 @@ label {
 	margin-left: 15px;
 	margin-top: 15px;
 }
-.dashboardTop {
-	margin-top: 15px;
-}
 .line {
 	display: flex;
 	align-items: center;
+}
+
+.dashboard {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .filterLine {
@@ -825,7 +827,7 @@ body {
 
 .residentButton{
     width: 200px;
-    height: 220px;
+    height: 250px;
     background-color: #f5f5f5;
     border: 1px solid #2c3d51;
     padding: 0px;
@@ -946,10 +948,28 @@ body {
     background-color: transparent;
     border-color: transparent;
     padding: 3px;
+    margin-left: 10px;
+}
+
+.searchIconBtnResident {
+    height: 47px;
+    width: 47px;
+    background-color: transparent;
+    border-color: transparent;
+    padding: 3px;
+    margin-left: -50px;
+}
+
+#iconBtnResidentLabel {
+    font-family: Lato, sans-serif;
+    color: #2c3d51;
+    font-size: 24px;
+    margin-top: 5px;
 }
 
 .residentOverviewRow {
     margin-top: 20px;
+    max-height: calc(~"100vh - 150px");
 }
 
 #topRow {
@@ -960,7 +980,14 @@ body {
 .searchFormResOverview{
     display: flex;
     padding-right: 0px;
-    width: 88%
+    width: 60%;
+}
+
+#overviewButtonSpan {
+    float: right;
+    width: 35%;
+    display: flex;
+    margin-left: 20px;
 }
 
 /*.calendarDiv {

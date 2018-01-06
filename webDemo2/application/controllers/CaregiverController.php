@@ -158,6 +158,8 @@ class CaregiverController extends CI_Controller {
 */
     public function resident() {
         $this->load->model('Residentpage_model');
+        $data = $this->Language_model->getResOverviewLanguage();
+
         $data['residents'] = $this->Residentpage_model->getAllResidents();
         
         $this->load->model('Dashboard_model');

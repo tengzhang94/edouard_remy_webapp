@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div id="topRow" class="row residentOverviewRow">
     <form class="searchFormResOverview" action='searchResident' method="post">   
-        <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="Zoek op voor- of achternaam" />
+        <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="{search}" />
 
-        <button  class="col-md-1 btn btn-default iconBtnResident " type="submit""  >
+        <button  class="col-md-1 btn btn-default searchIconBtnResident " type="submit""  >
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M300 924 c-79 -28 -144 -87 -188 -169 -24 -45 -27 -60 -27 -155 0
@@ -21,6 +21,7 @@
             </svg>
         </button> 
     </form>
+    <span id="overviewButtonSpan">
     
         <button class="btn btn-default iconBtnResident" onclick="document.getElementById('id01').style.display='block'" type="button">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100">
@@ -34,6 +35,9 @@
                 </g>
             </svg>
         </button>
+    
+     <span id="iconBtnResidentLabel">Filter</span>
+
    
     <form method="post" action="addResidentInfo">
         <button class="btn btn-default iconBtnResident" type="submit">
@@ -50,6 +54,9 @@
             </svg>
         </button> 
     </form>
+     
+     <span id="iconBtnResidentLabel">{add}</span>
+    </span>
     
      <div id="id01" class="w3-modal">
     <div class="w3-modal-content">
@@ -81,7 +88,7 @@
 
 </div>
 
-<div class="row residentOverviewRow">
+<div class="pre-scrollable row residentOverviewRow">
     {residents}
     <form method="post" action="residentIndividual">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 residentItem" name="resident_element" id="resident_element_{idResident}">
@@ -90,7 +97,8 @@
                     <img class="imgResOverviewCent img-circle" src="{photo}"/> 
                     <img class="iconResOverviewRight" src="{faceImage}"/>
                     <small class= "txtResOverviewBottom">{firstName} {lastName}</small>
-                    <small class= "txtResOverviewBottom" name="resident_name">room {Sectors_idSector}.{roomNr}</small>
+                    <small class= "txtResOverviewBottom" name="resident_name"> {Sectors_idSector}</small>
+                    <small class= "txtResOverviewBottom" name="resident_name">{room} {roomNr}</small>
                 </button>
         </div>
     </form>
