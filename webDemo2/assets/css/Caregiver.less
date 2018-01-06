@@ -156,6 +156,7 @@ checkbox{
 
 #dashIconBar {
     width: 100%;
+    margin-top:5px;
 }
 
 
@@ -191,6 +192,9 @@ checkbox{
 
 // LAYOUT FOR DASHBOARD PAGE
 
+#allNotification{
+    max-height: calc(~"100vh - 320px")
+}
 .dashboardButton {
 	width: 20px;
 	height: 20px;
@@ -211,14 +215,10 @@ checkbox{
 .removeSVG {
 	width: 32px;
 	height: 32px;
-	margin-top: -2.2px;
-	margin-left: -3.5px;
 }
 .filterSVG {
 	width: 35px;
 	height: 35px;
-	margin-top: -3.5px;
-	margin-left: -3.5px;
 }
 .selectAllSVG {
 	width: 23px;
@@ -226,6 +226,30 @@ checkbox{
 	margin-top: -2.5px;
 	margin-left: -2.5px;
 }
+
+#selectAll{
+    font-family:Lato, sans-serif;
+    color:@color_1;
+    font-size:20px;
+    margin-top: 2.5px;
+}
+
+#deleteSpan{
+    font-family:Lato, sans-serif;
+    color:@color_1;
+    font-size:20px;
+    float:right;
+    margin-top: 2.5px;
+}
+
+#filterSpan{
+    font-family:Lato, sans-serif;
+    color:@color_1;
+    font-size:20px;
+    float: right;
+    margin-top: 2.5px;
+}
+
 label {
 	height: 60px;
 	display: block;
@@ -288,7 +312,6 @@ label {
 }
 .dashboardTop {
 	margin-top: 15px;
-	margin-bottom: 15px;
 }
 .line {
 	display: flex;
@@ -318,19 +341,19 @@ label {
 	width: 45%;
 }
 .filterButton {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	padding: 0px;
 	background: 0px;
 	float: right;
+                    margin-left: 20px;
 }
 .removeButton {
-	width: 28px;
-	height: 28p;
+	width: 35px;
+	height: 35p;
 	padding: 0px;
 	background: 0px;
 	float: right;
-	margin-right: 10px;
 }
 #dashIcon {
 	&:hover {
@@ -1010,11 +1033,6 @@ body {
    // background-color: transparent;
 }
 
-#selectAll{
-    font-family:Lato, sans-serif;
-    color:@color_1;
-    font-size:20px;
-}
 
 #probTextArea{
     width:100%; 

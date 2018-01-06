@@ -162,7 +162,8 @@ class Language_model extends CI_Model {
         return array(
             "avgActivity" => lang("dashboard_avgActivity"),
             "avgScore" => lang("dashboard_avgScore"),
-            "selectAll" => lang("dashboard_selectAll")
+            "selectAll" => lang("dashboard_selectAll"),
+            "delete" =>lang("dashboard_delete")
         );
     }
     
