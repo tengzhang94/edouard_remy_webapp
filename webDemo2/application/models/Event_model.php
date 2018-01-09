@@ -6,8 +6,8 @@ class Event_model extends CI_Model {
         parent::__construct();
     }
 
-    public function login($firstName, $password) {
-        $query = $this->db->query("select * from Caregiver where firstName=".$this->db->escape($firstName)."");
+    public function login($username, $password) {
+        $query = $this->db->query("select * from Caregiver where username=".$this->db->escape($username)."");
         $result = $query->result();
         if ($result != NULL) {
             if (password_verify($password, $result[0]->password))
