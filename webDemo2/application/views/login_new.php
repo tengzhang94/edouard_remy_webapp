@@ -14,8 +14,8 @@
 <body>
     <div class="login-dark">
         <button class="btn btn-primary btn pull-right" onclick="window.location.href='<?php echo base_url();?>index.php/ResidentController/login'">{goto_resident}</button>
-        <button id=ENbtn class="btn btn-primary btn pull-left" onclick="window.location.href='<?php echo base_url();?>index.php/ResidentController/login'">EN</button>
-        <button id= NLbtn class="btn btn-primary btn pull-left" onclick="window.location.href='<?php echo base_url();?>index.php/ResidentController/login'">NL</button>
+        <button id=ENbtn class="btn btn-primary btn pull-left" onclick="window.location.href='<?php echo base_url();?>index.php/caregiverController/login?lang=english'">EN</button>
+        <button id= NLbtn class="btn btn-primary btn pull-left" onclick="window.location.href='<?php echo base_url();?>index.php/caregiverController/login?lang=dutch'">NL</button>
 
         <h1 class="text-center">GraceAge 2.0</h1>
         <form method="post" action="login">

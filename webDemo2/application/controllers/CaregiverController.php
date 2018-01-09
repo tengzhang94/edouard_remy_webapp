@@ -13,7 +13,9 @@ class CaregiverController extends CI_Controller {
         $this->load->model('Language_model');
     }
 
-    public function login() {
+    public function login() {        
+        $this->input->get('lang') != null ? $lang = $this->input->get('lang') : $lang = 'dutch';
+        $this->session->set_userdata('language', $lang);
         $this->load->model('Event_model');
         $data = $this->Language_model->getCareLoginLanguage();
         $username = $this->input->post('user');

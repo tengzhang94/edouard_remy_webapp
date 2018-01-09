@@ -149,6 +149,8 @@ class ResidentController extends CI_Controller {
     }
     
     public function login(){
+        $this->input->get('lang') != null ? $lang = $this->input->get('lang') : $lang = 'dutch';
+        $this->session->set_userdata('language', $lang);
         if($this->input->server('REQUEST_METHOD') == 'POST'){
             $this->load->model('Event_model');
             $qrCode = filter_input(INPUT_POST, "qr");

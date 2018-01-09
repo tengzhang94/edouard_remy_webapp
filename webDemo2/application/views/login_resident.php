@@ -17,8 +17,8 @@
 
     <body>
         <div class="login-dark">
-            <button id=ENbtn class="btn btn-primary btn pull-left" onclick="window.location.href = '<?php echo base_url(); ?>index.php/ResidentController/login'">EN</button>
-            <button id= NLbtn class="btn btn-primary btn pull-left" onclick="window.location.href = '<?php echo base_url(); ?>index.php/ResidentController/login'">NL</button>
+            <button id=ENbtn class="btn btn-primary btn pull-left" onclick="window.location.href = '<?php echo base_url(); ?>index.php/ResidentController/login?lang=english'">EN</button>
+            <button id= NLbtn class="btn btn-primary btn pull-left" onclick="window.location.href = '<?php echo base_url(); ?>index.php/ResidentController/login?lang=dutch'">NL</button>
             <form method="get" action="<?php echo base_url(); ?>index.php/CaregiverController/login">
                 <button type="submit" class="btn btn-primary btn pull-right">{goto_caregiver}</button>
             </form>
