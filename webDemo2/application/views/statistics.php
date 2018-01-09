@@ -257,7 +257,9 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart(topicId = 1, topicName = 'Privacy') {
-            for(i = 0; i < 12; i++) {
+            firstTopicId = 1;
+            lastTopicId = 11;
+            for(i = firstTopicId; i < lastTopicId + 1; i++) {
                 btn = document.getElementById('btnStats' + i);
                 if(i === topicId) {
                     btn.className += ' btnActive';

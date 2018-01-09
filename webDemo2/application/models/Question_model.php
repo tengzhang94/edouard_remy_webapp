@@ -65,7 +65,7 @@ class Question_model extends CI_Model {
         if ($residents == null)
             return null;
         //loop over all topics
-        for ($topic = 0; $topic <= 11; $topic++) {            
+        for ($topic = 1; $topic <= 11; $topic++) {            
             $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
             //calculate the average per topic
             $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
@@ -98,7 +98,7 @@ class Question_model extends CI_Model {
         if ($residents == null)
             return null;
         //loop over all topics
-        for ($topic = 0; $topic <= 11; $topic++) {                   
+        for ($topic = 1; $topic <= 11; $topic++) {                   
             $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
             $this->getQuestions($topic);    //get the questions and set them in session variable
             //loop over all questions and count the answers

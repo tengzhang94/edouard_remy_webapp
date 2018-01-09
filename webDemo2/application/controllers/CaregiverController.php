@@ -620,7 +620,7 @@ class CaregiverController extends CI_Controller {
             $sector = '-1';
         $scores = $this->Question_model->getScores($sector);
         if (isset($scores)) {
-            for ($i = 0; $i <= 11; $i++) {
+            for ($i = 1; $i <= 11; $i++) {
                 $this->Question_model->getQuestions($i);
                 //prepare the inner {questions} loop array
                 $k = 0;
@@ -671,15 +671,7 @@ class CaregiverController extends CI_Controller {
         $startId = reset($qIds)['idQuestion'] - 1;
         $range = count($qIds);
         $scores = $this->Question_model->getChartScores($sector);
-
-        $array = array(            
-            array('test1', 2, 1, 1, 3, 1),
-            array('test2', 1, 3, 2, 2, 0),
-            array('test3', 4, 1, 1, 0, 0),
-            array('test4', 1, 2, 3, 1, 1),
-            array('test5', 1, 2, 0, 3, 5),
-        );
-
+        
         echo json_encode(array_slice($scores, $startId, $range));
     }
 
