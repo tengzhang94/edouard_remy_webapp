@@ -173,6 +173,7 @@ class CaregiverController extends CI_Controller {
         $i = 0;
         foreach($data['residents'] as $res) {
             $data['residents'][$i]['sectorName'] = $sectorNames[($res['Sectors_idSector'])];
+            $data['residents'][$i]['room'] = $data['room']; //quick-fix for parsing problem of {room} within  {residents} for-each
             $i++;
         }
         
