@@ -161,9 +161,20 @@ class CaregiverController extends CI_Controller {
     public function resident() {
         $this->checkIfLoggedIn();
         $this->load->model('Residentpage_model');
-        $data = $this->Language_model->getResOverviewLanguage();
-
+        $this->load->model('Sector_model');
+        $data = $this->Language_model->getResOverviewLanguage();        
+        $sectors = $this->Sector_model->getSectors();
+        $sectorNames = null;
+        foreach($sectors as $s) {
+            $sectorNames[$s->idSector] = $s->name;
+        }
+        
         $data['residents'] = $this->Residentpage_model->getAllResidents();
+        $i = 0;
+        foreach($data['residents'] as $res) {
+            $data['residents'][$i]['sectorName'] = $sectorNames[($res['Sectors_idSector'])];
+            $i++;
+        }
         
         $this->load->model('Dashboard_model');
         $result1 = $this->Dashboard_model->getsectors_caregiverhas();

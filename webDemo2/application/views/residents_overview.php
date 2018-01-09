@@ -97,7 +97,7 @@
                     <img class="imgResOverviewCent img-circle" src="{photo}"/> 
                     <img class="iconResOverviewRight" src="{faceImage}"/>
                     <small class= "txtResOverviewBottom">{firstName} {lastName}</small>
-                    <small class= "txtResOverviewBottom" name="resident_name"> {Sectors_idSector}</small>
+                    <small class= "txtResOverviewBottom" name="resident_name"> {sectorName}</small>
                     <small class= "txtResOverviewBottom" name="resident_name">{room} {roomNr}</small>
                 </button>
         </div>
