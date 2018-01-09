@@ -70,7 +70,8 @@ class CaregiverController extends CI_Controller {
         $data["sectors"] = $result1;
 
         $data['title'] = 'Homepage';    //Fill in title for the page
-        $data['menu'] = $this->Menu_model->get_menuitems('Homepage');   //Get all the menu items and set the right one as active        
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_homepage'));   //Get all the menu items and set the right one as active        
         $data['content'] = $this->parser->parse('dashDemo', $data, true);   //parse messages into dashboard page
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
     }
@@ -161,7 +162,8 @@ class CaregiverController extends CI_Controller {
         $data["sectors"] = $result1;
  
         $resident['title'] = 'Resident Overview';
-        $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $resident['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
@@ -360,7 +362,8 @@ class CaregiverController extends CI_Controller {
         
                      
         $resident['title'] = 'Resident';
-        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $resident['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
@@ -450,7 +453,8 @@ class CaregiverController extends CI_Controller {
         $resident['nonUrgProbs'] = $nonUrgProbs;
  
         $resident['title'] = 'Resident';
-        $resident['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $resident['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $resident['content'] = $this->parser->parse('residentIndividual', $resident, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
@@ -533,7 +537,8 @@ class CaregiverController extends CI_Controller {
         // $this->parser->parse('careGiverInfo', $data);
 
         $data['title'] = 'Caregiver';
-        $data['menu'] = $this->Menu_model->get_menuitems('CareGiverInfo');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_settings'));
         $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data); 
     }
@@ -572,7 +577,8 @@ class CaregiverController extends CI_Controller {
         $sectorData["sectors"] = $sectors;
 
         $data['title'] = 'Sectors';
-        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_settings'));
         $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
         $this->parser->parse('navbar_topbar', $data);
     }
@@ -627,7 +633,8 @@ class CaregiverController extends CI_Controller {
             $data['current_sector'] = $data['allSectors'];
         $data['current_sector_id'] = $sector;
         $data['title'] = 'Statistics';
-        $data['menu'] = $this->Menu_model->get_menuitems('Statistics');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_statistics'));
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
