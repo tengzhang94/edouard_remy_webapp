@@ -172,15 +172,18 @@
             position: fixed;
             margin-left: 46%;
         }
-        #btnStats {
+        .btnStats {
             border-bottom: 1px solid #2c3d51;
             /*border-left: 1px solid #2c3d51;
             border-top: 1px solid #2c3d51;
             border-right: 1px solid #2c3d51;*/
             width: 70px;
         }
-        #btnStats:hover {
+        .btnStats:hover {
             background-color: #f5f5f5; 
+        }
+        .btnActive {
+            background-color: #d4d4d4;
         }
 
     </style>
@@ -212,7 +215,7 @@
         {topics}
         <div class="col-md-12 topicHeader">
             <span class="topicTitle">{topicName}</span>
-            <button id="btnStats"class="btn btn-default" onclick="drawChart({topicId})">
+            <button id="btnStats{topicId}"class="btn btn-default btnStats" onclick="drawChart({topicId}, '{topicName}')">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
                     <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                         <path d="M857 953 c-4 -3 -7 -15 -7 -26 0 -19 -129 -211 -158 -234 -12 -10
@@ -251,11 +254,22 @@
         google.charts.load('current', {'packages': ['corechart']});
 
         // Set a callback to run when the Google Visualization API is loaded. 
-        //google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart(topicId) {
+        function drawChart(topicId = 1, topicName = 'Privacy') {
+            for(i = 0; i < 12; i++) {
+                btn = document.getElementById('btnStats' + i);
+                if(i === topicId) {
+                    btn.className += ' btnActive';
+                }
+                else if(btn.className.search(' btnActive') !== -1){
+                    console.log('entered else if');
+                    btn.className = btn.className.replace(' btnActive', '');
+                }
+            }
+            
             var options = {
-                title: '{chart_title}',
+                title: '{chart_title} (' + topicName + ')',
                 chartArea: {width: '50%', backgroundColor: '#F5F5F5'},
                 isStacked: 'percent',
                 hAxis: {
