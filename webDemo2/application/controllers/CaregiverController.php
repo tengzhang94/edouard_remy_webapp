@@ -51,6 +51,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function home() {
+        $this->checkIfLoggedIn();
         $this->load->model('Notification_model');
         $this->Notification_model->longtimeNot($this->session->userdata('idCaregiver'));
         $this->load->model('Dashboard_model');
@@ -84,6 +85,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function settings() {
+        $this->checkIfLoggedIn();
         $this->session->set_userdata('passwordCondition', 'begin');
         $data = $this->Language_model->getSettingsLanguage();
         $data['title'] = 'Settings';
@@ -108,15 +110,18 @@ class CaregiverController extends CI_Controller {
 
     
     public function addResidentInfo(){
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getAddResidentLanguage();
         $data['title'] = 'Add Resident';
-        $data['menu'] = $this->Menu_model->get_menuitems('Resident');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $data['content'] = $this->parser->parse('AddResident', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
    
 
     public function addResidentConfirm() {  //post the new resident info and return to resident overview page
+        $this->checkIfLoggedIn();
         if ($_REQUEST['submit1']) {
 
             $firstName = $this->input->post('firstName');
@@ -152,6 +157,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function resident() {
+        $this->checkIfLoggedIn();
         $this->load->model('Residentpage_model');
         $data = $this->Language_model->getResOverviewLanguage();
 
@@ -169,6 +175,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function searchResident() {
+        $this->checkIfLoggedIn();
         $this->load->model('Residentpage_model');
 
         $name = $this->input->post('inputName');
@@ -185,6 +192,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function residentIndividual() {
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Residentpage_model');
         if (null != $this->input->post("resident_id"))
@@ -369,6 +377,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function changePassword() {
+        $this->checkIfLoggedIn();
         $this->load->model('Event_model');
         $password_new = $this->input->post('password_new');
         $password_confirm = $this->input->post('password_confirm');
@@ -399,6 +408,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function residentProblems() {
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Residentpage_model');
         $resident_id = $this->session->resident_id;
@@ -460,6 +470,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function addNonUrgProbs() {
+        $this->checkIfLoggedIn();
         $text = $this->input->post('nonUrgProb');
 
         $this->load->model('Residentpage_model');
@@ -469,6 +480,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function addNewNote() {    //CANNOT SUCCESSFULLY INSERT
+        $this->checkIfLoggedIn();
         $newNote = $this->input->post('newNote');
         $this->load->model('Residentpage_model');
         $resident_id = $this->session->resident_id;
@@ -478,6 +490,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function addUrgProbs() {
+        $this->checkIfLoggedIn();
         $text = $this->input->post('urgProb');
 
         $this->load->model('Residentpage_model');
@@ -488,6 +501,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function uploadResidentPhoto(){
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Event_model');
         $result = $this->Event_model->getResidentInformation();
@@ -500,6 +514,7 @@ class CaregiverController extends CI_Controller {
     }
     
     public function getPersonalInformation() {
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getCaregiverInfoLanguage();
         $this->load->model('Event_model');
 
@@ -544,6 +559,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function uploadPhotoConfirm(){
+        $this->checkIfLoggedIn();
         if ($_REQUEST['submit2']) {
             
             redirect('caregiverController/resident');
@@ -554,6 +570,7 @@ class CaregiverController extends CI_Controller {
     }
     
     public function changePersonalInformation() {
+        $this->checkIfLoggedIn();
         if ($_REQUEST['submit1']) {
             $language = $this->input->post('language');
             $email = $this->input->post('email');
@@ -570,6 +587,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function sectorOverview() {
+        $this->checkIfLoggedIn();
         $sectorData = $this->Language_model->getSectorOverviewLanguage();
         $this->load->model('Sector_model');
         $sectors = $this->Sector_model->getAllSectorInfos();
@@ -584,6 +602,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function addSector() {
+        $this->checkIfLoggedIn();
         $this->load->model('Sector_model');
         $name = $this->input->post("sectorName");
         $this->Sector_model->addSector($name);
@@ -591,6 +610,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function statistics() {
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $this->load->model('Sector_model');
@@ -640,6 +660,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function getChartStats() {
+        $this->checkIfLoggedIn();
         $this->load->model('Question_model');
         if (null != $this->input->get('sector'))
             $sector = $this->input->get('sector');
@@ -663,6 +684,7 @@ class CaregiverController extends CI_Controller {
     }
 
     public function deleteProblems() {
+        $this->checkIfLoggedIn();
         $ids = $this->input->post('delete_problem');
         $this->load->model('Residentpage_model');
         $this->Residentpage_model->deleteProblems($ids);
@@ -670,10 +692,16 @@ class CaregiverController extends CI_Controller {
     }
 
     public function deleteNotes() {
+        $this->checkIfLoggedIn();
         $ids = $this->input->post('delete_notes');
         $this->load->model('Residentpage_model');
         $this->Residentpage_model->deleteNotes($ids);
         redirect('CaregiverController/residentIndividual');
     }
-
+    
+    public function checkIfLoggedIn() {       
+        if($this->session->logged_in != 'caregiver') {
+            redirect('CaregiverController/login');
+        }
+    }
 }
