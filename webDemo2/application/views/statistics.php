@@ -250,7 +250,7 @@
 
     <script type="text/javascript">
 
-        // Load the Visualization API and the piechart package. 
+        // Load the Visualization API and the chart package. 
         google.charts.load('current', {'packages': ['corechart']});
 
         // Set a callback to run when the Google Visualization API is loaded. 
