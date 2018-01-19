@@ -114,9 +114,22 @@ class CaregiverController extends CI_Controller {
     public function addResidentInfo(){
         $this->checkIfLoggedIn();
         $data = $this->Language_model->getAddResidentLanguage();
+        //sectors
+        $this->load->model('Sector_model');
+        $sectors = $this->Sector_model->getAllSectorInfos();
+        
+       // if (null != $this->input->get('sector')){
+         //   $sector = $this->input->get('sector');
+            //$this->Residentpage_model->updateSector($resident_id,$sector);
+            //redirect('caregiverController/residentProblems');
+        //}
+
+        $data["sectors"] = $sectors;
+        
         $data['title'] = 'Add Resident';
         $this->lang->load('CaregiverNav_lang', $this->session->language);
-        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents')); 
+        
         $data['content'] = $this->parser->parse('AddResident', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
@@ -125,19 +138,23 @@ class CaregiverController extends CI_Controller {
     public function addResidentConfirm() {  //post the new resident info and return to resident overview page
         $this->checkIfLoggedIn();
         if ($_REQUEST['submit1']) {
-
             $firstName = $this->input->post('firstName');
             $lastName = $this->input->post('lastName');
             $birthDate = $this->input->post('birthDate');
+            
             $idSector = $this->input->post('sector');
+            
             $roomNr = $this->input->post('room');
             $gender = $this->input->post('gender');
             $married = $this->input->post('married');
             $children = $this->input->post('children');
 
-            if ($this->input->post('firstName') == NULL || $this->input->post('lastName') == NULL || $this->input->post('birthDate') == NULL || $this->input->post('sector') == NULL || $this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+            if ($this->input->post('firstName') == NULL || $this->input->post('lastName') == NULL || $this->input->post('birthDate') == NULL || $this->input->post('room') == NULL) { //TODO: Must be replaced by form validation
+                // $this->input->post('sector') == NULL ||
+                
                 redirect('caregiverController/resident');
-                //$data['success'] = "";
+                
+                ////$data['success'] = "";
                 //$this->parser->parse('navbar_topbar', $data);        
             }
              else {
