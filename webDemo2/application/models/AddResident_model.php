@@ -16,8 +16,8 @@ class AddResident_model extends CI_Model {
         return false;
     }
     
-    public function addInfoResident($firstName, $lastName, $birthDate, $idSector, $roomNr,$gender, $married, $children) {
-                                      
+    public function addInfoResident($firstName, $lastName, $birthDate, $idSector, $roomNr,$gender, $married, $children, $language) {
+                                   
         $personData = array(
             'idPerson' => 0 //value 0 makes it use its auto increment
         );
@@ -34,6 +34,7 @@ class AddResident_model extends CI_Model {
             'children' => $children,
             'Sectors_idSector'=> $idSector,
             'roomNr' => $roomNr,
+            'lang' => $language,
             
         );
         

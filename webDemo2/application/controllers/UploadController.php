@@ -16,7 +16,7 @@ class UploadController extends CI_Controller {
         public function resident_upload()
         {   
                 $config['upload_path']          = './upload/';
-                $config['allowed_types']        = 'gif|jpg|png';
+                $config['allowed_types']        = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
                 $config['max_size']             = 0;
                 $config['max_width']            = 0;
                 $config['max_height']           = 0;
@@ -26,7 +26,6 @@ class UploadController extends CI_Controller {
                 if ( ! $this->upload->do_upload('userfile'))
                 {
                         $error = array('error' => $this->upload->display_errors());
-
                         $this->load->view('upload_form', $error);
                 }
                 else
