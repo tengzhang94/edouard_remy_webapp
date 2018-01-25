@@ -49,9 +49,9 @@ function filter(source)
 
 function selectResidents(source,idSector) {
     
+
    
- 
-  
+   
     var name_checkboxes='resident_check_'+idSector;
   checkboxes = document.getElementsByName(name_checkboxes);
 
@@ -170,9 +170,9 @@ if(o==0&&m==0)
 }
 
 
-  
 
   
+
    var notificationList = document.getElementById('allNotification');
     //Clear html before inserting new data
     while(notificationList.firstChild) {
@@ -181,73 +181,69 @@ if(o==0&&m==0)
 
 
 
- 
  jQuery.ajax({
         type: 'POST',
         url: base_url + "index.php/AjaxController/getSectorInfo1",
         data: {'typeList':typeList,
                 'idList':idList},
         dataType: 'json',
-        success: function(data){   
-             
+        success: function(data){             
             if(data){
-           
-                
-                
-               
                 for(i in data) {
-                    
-                 
-                    
-                     var div = document.createElement('div');
+                    var div = document.createElement('div');
                     div.classList.add("line");
-                    
-                  
-                         
-                   console.log('hi');
-                     
-               
-                     
-                     
+                    console.log('hi');
                     div.innerHTML= '<label>\n\
-<input type="checkbox" name="delete_list[]" id="check_'+data[i].idNotification+'" value="'+data[i].idNotification+'">\n\
-<span class="checkmark">\n\
-</span>\n\
-</label>\n\
-<div class="message" onclick="'+ data[i].redirectPath+'">'+data[i].messageText+'</div>';
-                    
-                    
+                                    <input type="checkbox" name="delete_list[]" id="check_'+data[i].idNotification+'" value="'+data[i].idNotification+'">\n\
+                                    <span class="checkmark">\n\
+                                    </span>\n\
+                                    </label>\n\
+                                    <div class="message" onclick="'+ data[i].redirectPath+'">'+data[i].messageText+'</div>';
                     notificationList.appendChild(div);
-                    
-                   
-                   
-               
-                   
-                     
-                       
-            
                 }
             }
-                       
+            avgScoreIds(idList);
         },   
         error: function(){
           console.log('error');
+          avgScoreIds(idList);
         }
-    });  
-
-
-    
-   
+    });
+}
+function avgScoreIds(idList) {
+var avgScore = document.getElementById('scoreDash');
+if(idList.length!==0) {
+    jQuery.ajax({
+        type: 'POST',
+        url: base_url + "index.php/AjaxController/avgScoreSelectedResidents",
+        data: {'idList': idList},
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            avgScore.innerHTML = data[0]['avgLastScore'].substring(0,4) + " ";
+        },   
+        error: function(data){
+          console.log(data);
+          avgScore.innerHTML = "- ";
+        }
+    });
+}
+else avgScore.innerHTML = "- ";
 }
 
 
 
-
 function selectAll(source) {
+  //Toggle master
+  master = document.getElementById('checkboxAll');
+  if(master!=source) {
+    if(master.checked) master.checked = false;
+    else master.checked = true;
+  }
+  //Set all checkboxes same as master
   checkboxes = document.getElementsByName('delete_list[]');
   for(var i=0, n=checkboxes.length; i<n; i++) {
-    checkboxes[i].checked = source.checked;
-   
+    checkboxes[i].checked = master.checked;   
   }
 }
 

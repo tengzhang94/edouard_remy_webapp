@@ -79,5 +79,26 @@ class Dashboard_model extends CI_Model {
             $this->db->delete('Notifications');
         }
     }
+    
+    function getNotificationByPriority(){
+         $query = $this->db->query("SELECT * FROM a17_webapps04.Notifications
+                                   ORDER BY priority desc, idNotification desc");
+        return $query->result_array();
+    }
+    
+    function getAvgScoreSectors() {
+        $ids = Dashboard_model::getCaregiverSectors();
+        
+        $results = array(); //Array to store all resident ids because $ids needs some parsing before it's useful
+        for ($x = 0; $x < count($ids); $x++) {
+            $results[] = $ids[$x]['idResident'];
+        }
+        
+        $this->db->where_in('idResident',$results);
+        $this->db->select_avg('avgLastScore');
+        $query = $this->db->get('Resident');
+        
+        return $query->result_array();
+    }
 }
 

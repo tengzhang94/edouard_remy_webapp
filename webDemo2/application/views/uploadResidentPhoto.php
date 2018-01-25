@@ -7,8 +7,6 @@
                  <!--<img src="{photo}" id="image"> -->
              </label>
              
-             <input id="upload_button" type="submit" style="display: none;" />
-             
         </form>  
          </div>
         </div>

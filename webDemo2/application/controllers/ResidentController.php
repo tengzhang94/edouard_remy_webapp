@@ -18,8 +18,11 @@ class ResidentController extends CI_Controller {
     }
     
     public function question($questionNr) {
+        $this->checkIfLoggedIn();
         $this->load->model('Question_model');
+        $this->load->model('Residentpage_model');
         
+        //if coming from post method, you come from the select topic page => reset everything
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $topicId = (int)array_keys(filter_input_array(INPUT_POST))[0];
             if(isset($topicId)){
@@ -29,26 +32,54 @@ class ResidentController extends CI_Controller {
                 $this->session->set_userdata('topicId', $topicId);
             }
         }
-        //$topicId = filter_input(INPUT_POST, 'idTopic');
         
-        
+        //get the questions from the topic if you haven't yet
         if(!isset($this->session->topicQuestions)){
             $this->Question_model->getQuestions($this->session->topicId);
         }
         
+        
         if (!empty($this->session->topicQuestions [$questionNr])) {
+            //if there is a next question
             $question = $this->session->topicQuestions[$questionNr]->questionString;
             $questionId = $this->session->topicQuestions[$questionNr]->idQuestion;
         } else {
+            //if there is no other question of this topic
             //store answers in database BEFORE unsetting session data!
-            $answers = $this->session->userdata('answers');
+            $answers = $this->session->userdata('answers'); //all saved answers from the topic
             $this->Question_model->storeAnswers($answers);
             $average = ResidentController::averageTopic($answers);
+            
+            $resident_id=$this->session->userdata('id');
+            $topicId = $this->session->userdata('topicId');
+            
+            for($i=1;$i<12;$i++){
+                $score_last[$i] =  $this->Residentpage_model->getTopicScore($resident_id,$i)->avg;
+                if($score_last[$i] == null){
+                    $score_last[$i] = 0;
+                }
+            }
+            
+            $score_last[$topicId] = $this->Residentpage_model->getTopicScore($resident_id,$topicId)->avg;
+          
+            $a_last = array_filter($score_last);
+            if(count($a_last) == 0){
+                 $avgScore_last = 0;
+            }else{
+                $avgScore_last = array_sum($score_last)/count($a_last);
+            }
+
+            $this->Residentpage_model->addResidentAvgScoreTotal($resident_id,$avgScore_last);
             //If average is 5 it means al questions where skipped
+           
             if($average < 5) {
                 $topicId = $this->session->userdata('topicId');
-                if($average < 2) {$this->Notification_model->lowAverageNot($this->session->userdata('id'), $topicId);}
-                else {$this->Notification_model->topicNot($this->session->userdata('id'), $topicId);}
+                if($average < 2) {
+                    $this->Notification_model->lowAverageNot($this->session->userdata('id'), $topicId);
+                }
+                else {
+                    $this->Notification_model->topicNot($this->session->userdata('id'), $topicId);
+                }
             }
             //redirect to 'end of topic' page
             $this->session->unset_userdata('topicQuestions');
@@ -63,7 +94,7 @@ class ResidentController extends CI_Controller {
         
         $nextQuestionNr = $questionNr + 1;
         
-        //workaround to create new input field in view which passes value to javascript file
+        //workaround to create new input fields in view to pass values to javascript
         $hiddenQuestionNr = array(
             "value" => $nextQuestionNr,
             "id" => "hiddenQuestionNr",
@@ -106,6 +137,8 @@ class ResidentController extends CI_Controller {
    
 
     public function topics(){
+        $this->checkIfLoggedIn();
+        $this->session->unset_userdata('answers');
         $this->Language_model->SetSessionLanguage();
         $this->load->model('Question_model');
         $topics = $this->Question_model->getTopics();
@@ -133,10 +166,12 @@ class ResidentController extends CI_Controller {
     
    
         public function test(){
+        $this->checkIfLoggedIn();
         $this->load->view('resident_topicpage');
     }
     
     public function end(){
+        $this->checkIfLoggedIn();
         $this->lang->load('ResidentQuestionEndpage_lang', $this->language);
         $data = array_merge($this->Language_model->getResQuestionEndLanguage(),
         $this->navLangArray);
@@ -145,6 +180,7 @@ class ResidentController extends CI_Controller {
     }
     
     public function home(){
+        $this->checkIfLoggedIn();
         $this->load->view('residentHome');
     }
     
@@ -171,6 +207,7 @@ class ResidentController extends CI_Controller {
    
     
     public function menu(){
+        $this->checkIfLoggedIn();
         $this->load->model('Message_model');
         $messages = $this->Message_model->getAllMessages($this->session->id);
         $this->session->set_userdata('messages', $messages);
@@ -187,6 +224,7 @@ class ResidentController extends CI_Controller {
     }
     
     public function message(){
+        $this->checkIfLoggedIn();
         $this->load->model('Message_model');
         $messages = $this->session->userdata('messages');
         $this->session->set_userdata('messageNr', 0);
@@ -208,6 +246,7 @@ class ResidentController extends CI_Controller {
     }
     
     public function sendMessage(){
+        $this->checkIfLoggedIn();
         $data = $this->Language_model->getSendMessageLanguage();
         $data['name']=$this->session->userdata('name');
          $this->load->model('Residentpage_model');
@@ -216,6 +255,12 @@ class ResidentController extends CI_Controller {
         
          
        
+    }
+    
+    public function checkIfLoggedIn() {       
+        if($this->session->logged_in != 'resident') {
+            redirect('ResidentController/login');
+        }
     }
     
 }

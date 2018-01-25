@@ -53,11 +53,11 @@ class Question_model extends CI_Model {
         }
     }
 
-    public function getScores($sector) {
+    public function getScores($sector, $from, $to) {
         $total = NULL;
         //get residents from a certain sector
         if ($sector == -1) {
-            $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents from a sector
+            $residents = $this->db->query("SELECT idResident from Resident")->result();   //select all residents
         } else {
             $residents = $this->db->query("SELECT idResident from Resident "
                             . "WHERE Sectors_idSector = ".$this->db->escape($sector)."")->result();   //select all residents from a sector
@@ -66,7 +66,7 @@ class Question_model extends CI_Model {
             return null;
         //loop over all topics
         for ($topic = 1; $topic <= 11; $topic++) {            
-            $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
+            $ids = $this->getFillInIds($residents, $topic, $from, $to); //get all fil_in_ids from selected residents
             //calculate the average per topic
             $topic_scores = $this->db->query("SELECT ROUND(AVG(Answer), 2) AS avg "
                             . "FROM Answers "
@@ -76,8 +76,7 @@ class Question_model extends CI_Model {
             $question_scores = $this->db->query("SELECT Questions_idQuestion AS qId, "
                             . "ROUND(AVG(NULLIF(Answer, 5)), 2) AS avg "
                             . "FROM Answers "
-                            . "WHERE fill_in_id IN ('$ids') "
-                            //. "AND Answer <> '5' "
+                            . "WHERE fill_in_id IN ('$ids') "                            
                             . "GROUP BY Questions_idQuestion")->result();
             //store topic and question averages in $total variable
             $total['topic_avg'][$topic] = $topic_scores->avg != null ? $topic_scores->avg : '/';            
@@ -86,7 +85,7 @@ class Question_model extends CI_Model {
         return $total;
     }
 
-    public function getChartScores($sector) {
+    public function getChartScores($sector, $from, $to) {
         $questions = null;
         //get residents from a certain sector
         if ($sector == -1) {
@@ -99,7 +98,7 @@ class Question_model extends CI_Model {
             return null;
         //loop over all topics
         for ($topic = 0; $topic <= 11; $topic++) {                   
-            $ids = $this->getFillInIds($residents, $topic); //get all fil_in_ids from selected residents
+            $ids = $this->getFillInIds($residents, $topic, $from, $to); //get all fil_in_ids from selected residents
             $this->getQuestions($topic);    //get the questions and set them in session variable
             //loop over all questions and count the answers
             foreach ($this->session->topicQuestions as $q) {
@@ -138,7 +137,7 @@ class Question_model extends CI_Model {
         return $qArray;
     }
     
-    public function getFillInIds($residents, $topic) {        
+    public function getFillInIds($residents, $topic, $from, $to) {        
             $i = 0;
             $all_residents = null; 
             //loop over all residents and store ids in array
@@ -153,11 +152,15 @@ class Question_model extends CI_Model {
                 $r = '';
             //get all fill_in_ids
             $fill_in_ids = $this->db->query("SELECT id_fill_in FROM Resident_fills_in_Topics "
-                            . "WHERE Timestamp IN (SELECT MAX(Timestamp) "
-                            . "FROM Resident_fills_in_Topics "
-                            . "WHERE Resident_idResident IN ('$r')"
-                            . "AND Topics_idTopic = '$topic' "
-                            . "GROUP BY Resident_idResident) "
+                            . "WHERE Timestamp >= ".$this->db->escape($from)." "
+                            . "AND Timestamp <= ".$this->db->escape($to)." "
+                            //. "IN (SELECT MAX(Timestamp) "
+                            //. "FROM Resident_fills_in_Topics "
+                            //. "WHERE Resident_idResident IN ('$r') "
+                            //. "AND Topics_idTopic = '$topic' "
+                            //. "AND Timestamp >= ".$this->db->escape($from)." "
+                            //. "AND Timestamp <= ".$this->db->escape($to)." "
+                            //. "GROUP BY Resident_idResident) "
                             . "AND Topics_idTopic = '$topic' "
                             . "AND Resident_idResident IN ('$r') ")->result();               
             $j = 0;

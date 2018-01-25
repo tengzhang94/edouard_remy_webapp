@@ -48,7 +48,7 @@ class AjaxController extends CI_Controller {
               
                 $id=$id."idResident = '$idList[$i]' )";
                 
-                $query = $this->db->query("SELECT * FROM Notifications WHERE ".$this->db->escape($id)." AND ".$this->db->escape($type)."");
+                $query = $this->db->query("SELECT * FROM Notifications WHERE $id AND $type");
       
                if($result= $query->result()){
             return $this->output
@@ -84,6 +84,32 @@ class AjaxController extends CI_Controller {
         
     }
     
+    public function sendMessage()
+    {
+        $receivers = $this->input->post('receiverIds');
+            $sender = $this->input->post('senderId');
+            $text=$this->input->post('text');
+            
+            $now=date('Y-m-d');
+            
+            for($i=0;$i<count($receivers);$i++)
+            {
+                  $data = array(
+            'idSender' => $sender,
+            'idReceiver' => $receivers[$i],
+            'messageText' => $text,
+            'messageDate' => $now
+            
+        );
+
+        $this->db->insert('Messages', $data);
+               
+                
+            }
+            
+           
+    }
+    
     public function addResident() {
         $idSector = $this->input->post('idSector');
         $firstName = $this->input->post('firstName');
@@ -96,9 +122,11 @@ class AjaxController extends CI_Controller {
     }
     
     public function saveScore(){
+        //temporarily save score until end of topic
         $question['questionId'] = $this->input->post('questionId');
         $score = $this->input->post('score');
         $question['score']= $score;
+        //get previous scores and add this one
         $data = $this->session->userdata('answers');
         $data[] = $question;
         $this->session->set_userdata('answers', $data);
@@ -122,5 +150,18 @@ class AjaxController extends CI_Controller {
            $returnedMessage['lastMessage'] = false;
         }
         return $this->output->set_content_type('application/json')->set_output(json_encode($returnedMessage));
+    }
+    
+    public function avgScoreSelectedResidents() {
+        $ids = $this->input->post('idList');
+        $this->db->where_in('idResident',$ids);
+        $this->db->select_avg('avgLastScore');
+        $query = $this->db->get('Resident');
+        
+        if($result= $query->result()){
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result,JSON_FORCE_OBJECT));
+        }
     }
 }

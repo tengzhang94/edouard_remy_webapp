@@ -4,13 +4,13 @@
     <div class="dashboardTop">
         <div class="line">
             <label>
-                <input type="checkbox" name="deleteAll" onclick="selectAll(this)">
+                <input type="checkbox" name="deleteAll" onclick="selectAll(this)" id="checkboxAll">
                 <span class="checkmark"></span>
             </label>
 
             <span id="dashIconBar">
-                <span id="selectAll">{selectAll}</span>
-                <span id="deleteSpan">Filter</span><button id="dashIcon" class="btn btn-default filterButton" onclick="document.getElementById('id01').style.display = 'block'" type="button">
+                <span id="selectAll" onclick="selectAll(this)" onmouseover="" style="cursor: pointer;">{selectAll}</span>
+                <span id="deleteSpan" onclick="document.getElementById('id01').style.display = 'block'" onmouseover="" style="cursor: pointer;">Filter</span><button id="dashIcon" class="btn btn-default filterButton" onclick="document.getElementById('id01').style.display = 'block'" type="button">
                     <svg class="filterSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
                     <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M57 953 c-4 -3 -7 -21 -7 -39 0 -37 27 -71 213 -267 l107 -114 0
@@ -23,7 +23,7 @@
                     </svg>
 
                 </button>
-                <span id="filterSpan">{delete}</span><button id="dashIcon" class="btn btn-default removeButton" onclick="confirmAndDelete()"><!--type="submit" form="deleteForm"-->
+                <span id="filterSpan" onclick="confirmAndDelete()" onmouseover="" style="cursor: pointer;">{delete}</span><button id="dashIcon" class="btn btn-default removeButton" onclick="confirmAndDelete()"><!--type="submit" form="deleteForm"-->
                     <svg class="removeSVG" version="1.0" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 100 100">
                     <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M366 978 c-9 -12 -16 -33 -16 -45 0 -22 -3 -23 -99 -23 -74 0 -102
@@ -81,7 +81,7 @@
 
 
                     {/sectors}
-                    <div class="sectorPerson">Filter op type  notificatie</div>
+                    <div class="sectorPerson">Filter op type notificatie</div>
 
                     <div class="filterLine">
                         <label>
@@ -116,17 +116,14 @@
                     <input type="checkbox" name="delete_list[]" id="check_{messageId}" value='{messageId}'>
                     <span class="checkmark"></span>
                 </label>
-                <div class="message" onclick="{
-                            redirectionPath
-                        }" style="cursor: pointer;">{messageText}</div>
+                <div class="message" onclick="{redirectionPath}" style="cursor: pointer;">{messageText}</div>
             </div>
             {/messages}
         </div>
     </form>
 
     <div class="row statsDash">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="colLeftDash"><span class="dashTitle">{avgActivity}</span><span class="dashTitle"><img src="http://a17-webapps04.studev.groept.be/assets/css/image/redClock.png" /></span><span class="dashTitle">&gt; 2 weeks</span></div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><span class="dashTitle">{avgScore}</span><span class="dashTitle"><small id="scoreDash">3 </small><img src="http://a17-webapps04.studev.groept.be/assets/css/image/blueArrow.png" id="arrowDash" /></span></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="dashTitle">{avgScore}</span><span class="dashTitle"><small id="scoreDash">{avg} </small><img src="http://a17-webapps04.studev.groept.be/assets/css/image/blueArrow.png" id="arrowDash" /></span></div>
     </div>
 
 </div>

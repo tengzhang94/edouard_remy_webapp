@@ -21,10 +21,41 @@ function initialNoticationList()
     }
 }
 
+function showAllResidents()
+{
+    $("div[name='resident_element']").each(function() {
+    $(this).removeAttr("style");
+    
+});
+    flag=1;
+}
+
 
 function selectResidents(idSector) {
+    var i=0;
     
     initialNoticationList();
+    
+    $("input[name='filter_list']").each(function() {
+           
+           var id= $(this).attr('id');
+           console.log(id);
+           
+           checkbox1 = document.getElementById(id);
+           
+        if(checkbox1.checked)
+        {
+            
+            i=1;
+        }  
+    });
+    
+    if(i==0)
+    {
+        showAllResidents();
+    }
+    else
+    {
     
     
     var id_checkbox='checkbox_'+idSector;
@@ -33,9 +64,8 @@ function selectResidents(idSector) {
   
     
     if(checkbox.checked)
-    {
-          console.log("598");
-        
+    {      
+         
    
         
            
@@ -106,7 +136,9 @@ function selectResidents(idSector) {
     });
      
     }
-  
+    }
 }
 
-
+function gotoAdd() {
+    window.location.href = base_url + "index.php/CaregiverController/addResidentInfo";
+}

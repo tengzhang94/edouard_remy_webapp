@@ -13,7 +13,11 @@
                 <span id="gender" class="infoTxt">{genderString}: {gender}</span>
                 <span id="isMarried" class="infoTxt">{marriedString}: {married}</span>
                 <span id="children" class="infoTxt">{childrenString}: {children}</span>
-                <span class="dropdown">
+            </span>
+
+            <span id="residentContent">
+                <span class="infoTitleTxt" >{changeInfo}</span>
+                <span class="dropup">
                     <button class="btn infoTxt" type="button" data-toggle="dropdown">{changeSector}: {sector}<span class="caret"></span></button>
                     <ul class="dropdown-menu"> 
                         {sectors}
@@ -21,53 +25,34 @@
                         {/sectors}
                     </ul>
                 </span>
-            </span>
-
-
-
-            <span id="residentNotes">
-                <span id="notesTitle">Notities
-
-                    <button class="btn btn-default removeBtn" type="submit" id="removeNote"  form="deleteNotes">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" />
-                    </button>
-                    <button class="btn btn-default addBtn" type="button" id="addBtn3">
-                        <img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" />
-                    </button>
+                <span>
+                    <div class="editGroup input-group number-spinner">
+                                <span class="formLabel input-group-btn">{getQR}</span>
+                                <span class="input-group-btn">
+                                    <button class="formBtn btn btn-default" data-dir="dwn"><a href="getPDFResident" download><span class="glyphicon glyphicon-download-alt"></a></span></button>
+                                </span>
+                            </div>
                 </span>
+                            <div class="editGroup input-group number-spinner">
+                                <span class="formLabel input-group-btn">{roomNumber}</span>
+                                <input type="number" min="0" class="form-control text-center" id="changeRoom" value="{roomNr}">
+                                <span class="input-group-btn">
+                                    <button class="formBtn btn btn-default" data-dir="dwn" onclick="location.href=
+                                                '<?php echo base_url() ?>index.php/CaregiverController/residentIndividual?room=' 
+                                                + document.getElementById('changeRoom').value;">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                </span>
+                            </div>
             </span>
-
-            <form  action="deleteNotes" method="post" id="deleteNotes">
-                {notes}
-                <div class="line">
-                    <label>
-                        <input type="checkbox" name="delete_notes[]" value='{noteId}' />
-                        <span class="checkmark"></span>
-                    </label>
-                    <div class="message messageProbs" id="noteArea"><textarea class="probTextArea"style="margin-top:{marginTopNote}px; width:100%; border-color: transparent;background-color: transparent;">{text}</textarea></div>
-                </div>
-                {/notes}
-            </form>
-
-            <form method="post" action="addNewNote" >
-                <div class="line">
-                    <label>
-                        <input type="checkbox" /><span class="checkmark" style="display:none"></span></label>
-                    <div class="message" id="inputMessage3" style="display:none">
-                        <textarea name="newNote" class = "text textProb" id="inputBlock3" style="display:none"></textarea>
-                        <button type="submit" id="nonUrgProb_submit" class="submitMessageBtn">
-                            <img class="submitMessageImg" src="<?php echo base_url() ?>assets/css/image/icons8-checkSubmit.png"/></button>
-                    </div>                        
-                </div>         
-            </form>
 
         </div>
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-6  residentInfoCol" id="rightInfoCol">
         <ul class="nav nav-tabs">
-            <li class="{scores_active}"><a id=scoreLijstNavItem href="residentIndividual" class="navItem">Scorebord vragenlijst</a></li>
-            <li class="{problems_active}"><a id="problemenNavItem" href="residentProblems" class="navItem">Problemen </a></li>
+            <li class="{scores_active}"><a id=scoreLijstNavItem href="residentIndividual" class="navItem">{scores}</a></li>
+            <li class="{problems_active}"><a id="problemenNavItem" href="residentProblems" class="navItem" >{issues}</a></li>
         </ul>
 
         <div class="row" id="personalStats" {scores_hidden}>
@@ -206,32 +191,12 @@
                 </div>
             </div>            
         </div>
-        <!--            
-                    
-                <div class="table-container" id="personalStats"{scores_hidden}>
-                    <table class="topicTable">
-                        <tbody>
-        <?php
-        $i = 0;
-        foreach ($information as $data) {
-            echo '
-                <tr><td><div class="statItem"><span class="subjectTitle">Privacy </span><span class="subjectInfo" style="font-size:40px;font-family:Lato, sans-serif;display:block;text-align:left;vertical-align:bottom; position:absolute;bottom:0;width:100%;">' . $data[""]["scoreTopic0"] . ' <img src=' . base_url() . $data["arrowImage"] . '" class="arrow"></span>
-                <span class = "subjectInfo2" style="  font-size:40px;font-family:Lato, sans-serif;display:block;text-align:right;vertical-align:bottom; position:absolute;bottom:0;width:100%; color:{colorSubject2}">' . $data["LastTime0"] . ' days</span></div>
-                </div></td></tr>';
-        }
-        ?>
-        
-        
-        
-                        </tbody>
-                    </table>
-                </div>-->
 
 
     </div>
 
     <div class="row" id="personalProblems" {problems_hidden}>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemLeftCol"><span class="problemTitle">Korte termijn 
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemLeftCol"><span class="problemTitle">{shortTerm}
 
                 <button class="btn btn-default removeBtn " type="submit" id="removeBtnNonUrg" form="deleteNonUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>
                 <button class="btn btn-default addBtn" type="submit" id="addBtn1"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
@@ -264,7 +229,7 @@
 
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="problemRightCol"><span class="problemTitle">
-                <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>Lange termijn
+                <button class="btn btn-default removeBtn" type="submit" id="removeBtnNonUrg"  form="deleteUrgPro"><img src="<?php echo base_url() ?>assets/css/image/icons8-trash-100.png" id="iconTrash" /></button>{longTerm}
                 <button class="btn btn-default addBtn" type="submit" id="addBtn2"><img src="<?php echo base_url() ?>assets/css/image/icons8-plus-100.png" id="iconAdd" /></button></span>
             <span
                 class="space"> </span>
@@ -366,10 +331,4 @@
 
 
     });
-
-
-
-
-
-
 </script>

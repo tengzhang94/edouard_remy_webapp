@@ -12,3 +12,5 @@ $lang['addRes_married'] = "Married";
 $lang['addRes_children'] = "Children";
 $lang['addRes_yes'] = "Yes";
 $lang['addRes_no'] = "No";
+$lang['addRes_submit'] = "Submit";
+$lang['addRes_cancel'] = "Cancel";

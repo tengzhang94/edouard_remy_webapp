@@ -29,27 +29,33 @@
 
 -->
 <div class="container-fluid">
-    <div class="row"></div>
-<div class="row">
+    <div class="row">
+    <div class="col-sm-9 col-sm-offset-3" style="height:200px;margin-top:10%;">
+        <div class="image_preview">
+        </div>
+    </div>
+    </div>
+    <div class="row">
 	<div class="col-sm-11 col-sm-offset-1 col-xs-12">
 			<?php echo form_open_multipart('home/upload', array('role'=>'form'));
 			if(isset($message)): 
 			echo "<div class='alert alert-success'>".$message."</div>";
 			endif; ?>	
 			<div class="form-group">
-                            <input  type="file" name="userfile" id="image" onchange="readURL(this)"required/>
+                            
+                            <input type="file" name="userfile" id="image" onchange="readURL(this)" style="height: 100px;" />
                         </div>
                         
                         <div class="row">
 			<div class=" col-sm-12 col-xs-12">
-				<div class="image_preview">
+			<!--	<div class="image_preview">
 				</div>
+                        -->
                                 <div class="form-group">
                                 <label class="control-label col-sm-3" for="profile"><p class="residentInfoStyle">Photo name:</p></label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" style="border-radius: 0px;" id="profile" placeholder="photo name " name="filename"  required>
                                 </div>
-                        
                                 </div>
 			</div>
 			</div>					
@@ -73,7 +79,7 @@
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			$('.image_preview').html('<img src="'+e.target.result+'" alt="'+reader.name+'" class="img-thumbnail" width="500" height="500"/>');
+			$('.image_preview').html('<img src="'+e.target.result+'" alt="'+reader.name+'" class="img-thumbnail" width="300px" height="300px"/>');
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
@@ -85,7 +91,3 @@
 	}
 	</script>
         
-<!--
-</body>
-</html>
--->

@@ -12,4 +12,7 @@ $lang['CareInfo_close'] = "Close";
 $lang['CareInfo_oldPassword'] = "Old password";
 $lang['CareInfo_newPassword'] = "New password";
 $lang['CareInfo_confirmPassword'] = "Confirm new password";
+$lang['CareInfo_passwordsDontMatch'] = "New passwords don't match";
+$lang['CareInfo_passwordAlertSuccess'] = "Password changed successfully!";
+$lang['CareInfo_passwordAlertFail'] = "Old password incorrect, password not changed!";
 

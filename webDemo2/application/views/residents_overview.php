@@ -3,7 +3,7 @@
     <form class="searchFormResOverview" action='searchResident' method="post">   
         <input class="col-md-11" id="searchBarResident" name='inputName' type="text" placeholder="{search}" />
 
-        <button  class="col-md-1 btn btn-default searchIconBtnResident " type="submit""  >
+        <button  class="col-md-1 btn btn-default searchIconBtnResident " type="submit">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                 <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
                     <path d="M300 924 c-79 -28 -144 -87 -188 -169 -24 -45 -27 -60 -27 -155 0
@@ -36,26 +36,24 @@
             </svg>
         </button>
     
-     <span id="iconBtnResidentLabel">Filter</span>
+     <span id="iconBtnResidentLabel" onclick="document.getElementById('id01').style.display='block'" onmouseover="" style="cursor: pointer;">Filter</span>
 
    
-    <form method="post" action="addResidentInfo">
-        <button class="btn btn-default iconBtnResident" type="submit">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
-                    <path d="M432 878 c-8 -8 -12 -57 -12 -155 l0 -143 -143 0 c-98 0 -147 -4
-                          -155 -12 -16 -16 -16 -120 0 -136 8 -8 57 -12 155
-                          -12 l143 0 0 -143 c0 -98 4
-                          -147 12 -155 16 -16 120 -16 136 0 8 8 12 57 12 155 l0 143 143 0 c98 0 147 4
-                          155 12 16 16 16 120
-                          0 136 -8 8 -57 12 -155 12 l-143 0 0 143 c0 98 -4 147
-                          -12 155 -7 7 -37 12 -68 12 -31 0 -61 -5 -68 -12z"/>
-                </g>
-            </svg>
-        </button> 
-    </form>
+     <button class="btn btn-default iconBtnResident" onclick="gotoAdd()">
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <g transform="translate(0.000000,100.000000) scale(0.100000,-0.100000)" fill="#2c3d51" stroke="none">
+                <path d="M432 878 c-8 -8 -12 -57 -12 -155 l0 -143 -143 0 c-98 0 -147 -4
+                      -155 -12 -16 -16 -16 -120 0 -136 8 -8 57 -12 155
+                      -12 l143 0 0 -143 c0 -98 4
+                      -147 12 -155 16 -16 120 -16 136 0 8 8 12 57 12 155 l0 143 143 0 c98 0 147 4
+                      155 12 16 16 16 120
+                      0 136 -8 8 -57 12 -155 12 l-143 0 0 143 c0 98 -4 147
+                      -12 155 -7 7 -37 12 -68 12 -31 0 -61 -5 -68 -12z"/>
+            </g>
+        </svg>
+    </button>
+    <span id="iconBtnResidentLabel" onclick="gotoAdd()" onmouseover="" style="cursor: pointer;">{add}</span>
      
-     <span id="iconBtnResidentLabel">{add}</span>
     </span>
     
      <div id="id01" class="w3-modal">

@@ -24,6 +24,7 @@ class Residentpage_model extends CI_Model {
     }
     
     public function getResidentWithId($id) {
+        $this->lang->load('IndivResident_lang', $this->session->language); //for language concerning profile
         $query = $this->db->query("SELECT * FROM Resident WHERE idResident = ".$this->db->escape($id)."");
         $resident = $query->row();
         $data['firstName'] = $resident->firstName;
@@ -32,16 +33,16 @@ class Residentpage_model extends CI_Model {
         if (isset($sector))
             $data['sector'] = $sector->name;
         else
-            $data['sector'] = "not set";
-        $data['gender'] = $resident->gender;
+            $data['sector'] = lang("not set");
+        $data['gender'] = lang("IndivRes_".$resident->gender);
         $data['photo'] = $resident->photo;        
         if (isset($resident->roomNr))
             $data['roomNr'] = $resident->roomNr;
         else
-            $data['roomNr'] = "not set";
+            $data['roomNr'] = lang("not set");
         $data['birthday'] = $resident->birthDate;
-        $data['language'] = $resident->lang;
-        $data['married'] = $resident->married ? "yes" : "no";
+        $data['language'] = lang("IndivRes_".$resident->lang);
+        $data['married'] = $resident->married ? lang("IndivRes_yes") : lang("IndivRes_no");
         $data['children'] = $resident->children;
         $data['notes'] = $this->Residentpage_model->getResidentNotes($this->session->resident_id);
         return $data;
@@ -212,10 +213,10 @@ class Residentpage_model extends CI_Model {
         
         
         if($avgScore_last >= 4){
-            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/icons8-lol-100.png';
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/happyhappy.png';
         }
         else if($avgScore_last >= 3){
-            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/happy.png';
+            $faceImage = 'http://a17-webapps04.studev.groept.be/upload/happy.png';  
         }else if($avgScore_last >= 2){
             $faceImage = 'http://a17-webapps04.studev.groept.be/upload/sadsadsad.png';
         }
@@ -243,11 +244,16 @@ class Residentpage_model extends CI_Model {
         $this->db->update('Resident', $data);
     }
     
+    public function updateRoom($resident_id, $room) {
+        $data = array(
+            'roomNr' =>  $room
+        ); 
+        $this->db->where('idResident', $resident_id);
+        $this->db->update('Resident', $data);
+    }
     
-
-
-
-   
-
-
+    public function getFamilyId($resident_id) {
+        $query = $this->db->query("SELECT * FROM Family_knows_Resident WHERE idResident = ".$resident_id."");
+        return $query->result_array();
+    }
 }

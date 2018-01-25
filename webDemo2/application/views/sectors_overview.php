@@ -1,5 +1,5 @@
 <div class="sectorCol col-lg-4 col-md-4 col-sm-4 col-xs-12" id="sectors">
-    <span class="sectorTitle">Kies een sector uit onderstaande lijst:</span>
+    <span class="sectorTitle">{chooseSector}:</span>
     {sectors}
     <div class="line">
         <button class="sectorButton btn btn-default" type="button" onclick="getSectorInfo({idSector},'{name}')"> 
@@ -31,7 +31,7 @@
     {/sectors}
     
     <div class="topButtons" id="addSectorBtn">
-        <button class="btn btn-default addSectorButton" type="button" onclick="makeSectorInput()">Add a sector</button>
+        <button class="btn btn-default addSectorButton" type="button" onclick="makeSectorInput()">{addSector}</button>
     </div>
 </div>
 
@@ -41,7 +41,7 @@
     <div class="residentList" id="residentList">
         <!-- insert residents through javascript, this is an example-->
         <div class="resident">
-            Kies een afdeling om leden te zien.
+            {seeResidents}
         </div>
     </div>
     

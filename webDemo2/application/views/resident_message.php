@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>GraceAge 2.0 - Family</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/ResidentMessage.css"/>
+        <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/ResidentMessage.less"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
         <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+             <script type="text/javascript" src="<?php echo base_url() ?>assets/javascript/changeFontsize.js"></script>
     </head>
 
     <body>
@@ -23,8 +24,8 @@
                                     <button class="returnBtn btn btn-primary" type="button" onclick="location.href='<?php echo base_url();?>index.php/ResidentController/menu'">< Keer terug naar het menu</button>
                                 </span>
                                 <span class="float_right">Lettergrootte:
-                                    <button class="btn btn-primary" type="button" style="margin-left:10px;">Groter</button>
-                                    <button class="btn btn-primary" type="button">Kleiner</button>
+                                    <button id="BG" class="btn btn-primary" type="button" style="margin-left:10px;">Groter</button>
+                                    <button id="BS" class="btn btn-primary" type="button">Kleiner</button>
                                 </span>
                             </p>
                         </div><span class="col-md-2"><img src="{senderPhoto}" class="personImg" id="senderPhoto"/></span><span id="personsays" class="messageText col-md-10">{senderName} zegt:</span><span id="message" class="messageText col-md-10 col-md-offset-2">{messageText}</span>

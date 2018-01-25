@@ -16,5 +16,14 @@ $lang['IndivRes_issues'] = "Problemen";
 $lang['IndivRes_shortTerm'] = "Korte termijn";
 $lang['IndivRes_longTerm'] = "Lange termijn";
 $lang['IndivRes_changeSector'] = "Verander sector";
-
-
+$lang['IndivRes_changeInfo'] = "Verander informatie";
+$lang['IndivRes_changeRoom'] = "Verander kamer:";
+$lang['IndivRes_getQRCodes'] = "Download de QR codes hier:";
+//usage of strings below depends on profile => used in residentpage_model
+$lang['IndivRes_dutch'] = "Nederlands";
+$lang['IndivRes_english'] = "Engels";
+$lang['IndivRes_Male'] = "Man";
+$lang['IndivRes_Female'] = "Vrouw";
+$lang['IndivRes_yes'] = "Ja";
+$lang['IndivRes_no'] = "Nee";
+$lang['IndivRes_notSet'] = "niet ingesteld";

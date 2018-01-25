@@ -9,15 +9,15 @@ function nextQuestion(){
     return false;
 }
 
-function saveScore(score){
-    saveScore = function(){}; //to prevent the function from executing multiple times before exiting the page
+function saveScore(result){
     jQuery.ajax({
         type: 'POST',
         url: base_url + "index.php/ajaxController/saveScore",
         data: {
             'questionId': questionId,
-            'score': score
+            'score': result
         }
     });
+    saveScore = function(){}; //to prevent the function from executing multiple times before exiting the page
 }
 

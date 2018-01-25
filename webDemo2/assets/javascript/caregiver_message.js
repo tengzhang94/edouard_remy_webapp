@@ -1,9 +1,10 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+const charLeft = document.getElementById('maxCharSpan');
+const messageField = document.getElementById('textArea');
 
+function charCounter(){
+    amountLeft = 250 - messageField.value.length;
+    charLeft.innerHTML = amountLeft.toString();
+}
 
 function selectAll(source) {
   checkboxes = document.getElementsByName('delete_list[]');
@@ -12,10 +13,6 @@ function selectAll(source) {
    
   }
 }
-
-
-
-
         
 function searchResidents()
 {
@@ -50,7 +47,7 @@ function searchResidents()
 </label>\n\
 <div class="resident">\n\
 <span class="normalPxFont">'+data[i].firstName+' '+data[i].lastName+'</span>\n\
-<span class="imgSpan"> <img src="'+base_url+'assets/css/image/happy.png" class="residentImg" />\n\
+<span class="imgSpan"> <img src="'+data[i].photo+'" width="58px" height="58px" />\n\
 </span>\n\
 </div>';
                     

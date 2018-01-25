@@ -71,26 +71,31 @@ class Language_model extends CI_Model {
             "married" => lang("addRes_married"),
             "children" => lang("addRes_children"),
             "yes" => lang("addRes_yes"),
-            "no" => lang("addRes_no")
+            "no" => lang("addRes_no"),
+            "submit" => lang("addRes_submit"),
+            "cancel" => lang("addRes_cancel")
         );
     }
 
     public function getCaregiverInfoLanguage() {
         $this->lang->load('CaregiverInfo_lang', $this->session->language);
         return array(
-            "firstName" => lang("CareInfo_firstName"),
-            "lastName" => lang("CareInfo_lastName"),
-            "email" => lang("CareInfo_email"),
+            "fN" => lang("CareInfo_firstName"),
+            "lN" => lang("CareInfo_lastName"),
+            "mail" => lang("CareInfo_email"),
             "language" => lang("CareInfo_language"),
-            "dutch" => lang("CareInfo_dutch"),
-            "english" => lang("CareInfo_english"),
+            "ndl" => lang("CareInfo_dutch"),
+            "eng" => lang("CareInfo_english"),
             "submit" => lang("CareInfo_submit"),
             "cancel" => lang("CareInfo_cancel"),
             "changePassword" => lang("CareInfo_changePassword"),
             "close" => lang("CareInfo_sluiten"),
             "oldPassword" => lang("CareInfo_oldPassword"),
             "newPassword" => lang("CareInfo_newPassword"),
-            "confirmPassword" => lang("CareInfo_confirmPassword")
+            "confirmPassword" => lang("CareInfo_confirmPassword"),
+            "passwords_dont_match" => lang("CareInfo_passwordsDontMatch"),
+            "password_alert_success" => lang("CareInfo_passwordAlertSuccess"),
+            "password_alert_fail" => lang("CareInfo_passwordAlertFail")
         );
     }
 
@@ -113,7 +118,10 @@ class Language_model extends CI_Model {
             "issues" => lang("IndivRes_issues"),
             "shortTerm" => lang("IndivRes_shortTerm"),
             "longTerm" => lang("IndivRes_longTerm"),
-            "changeSector" => lang("IndivRes_changeSector")
+            "changeSector" => lang("IndivRes_changeSector"),
+            "roomNumber" => lang("IndivRes_changeRoom"),
+            "getQR" => lang("IndivRes_getQRCodes"),
+            "changeInfo" => lang("IndivRes_changeInfo")
         );
     }
 
@@ -121,7 +129,9 @@ class Language_model extends CI_Model {
         $this->lang->load('SectorOverview_lang', $this->session->language);
         return array(
             "addSector" => lang("SectorOverview_addSector"),
-            "residentsString" => lang("SectorOverview_residents")
+            "residentsString" => lang("SectorOverview_residents"),
+            "chooseSector" => lang("SectorOverview_chooseSector"),
+            "seeResidents" => lang("SectorOverview_seeResidents")
         );
     }
 
@@ -153,7 +163,11 @@ class Language_model extends CI_Model {
             "show_chart_header" => lang('stats_showChart'),
             "average_header" => lang('stats_average'),
             "no_data_msg" => lang('stats_noData'),
-            "no_answer" => lang('stats_noAnswer')
+            "no_answer" => lang('stats_noAnswer'),
+            "from" => lang('stats_from'),
+            "till" => lang('stats_till'),
+            "chooseDate" => lang('stats_chooseDate'),
+            "dateError" => lang('stats_dateError')
         );
     }
 

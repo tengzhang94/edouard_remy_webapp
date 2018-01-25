@@ -42,7 +42,7 @@ class CaregiverController extends CI_Controller {
                 $this->session->set_userdata('logged_in', 'caregiver');
                 $this->session->set_userdata('language', $result[0]->lang);
                 $this->Language_model->setSessionLanguage();
-                $this->session->set_userdata('name', $result[0]->firstName);
+                $this->session->set_userdata('name', explode(".", $username, 2)[0]/*$username / $result[0]->firstName*/);
                 $this->session->set_userdata('idCaregiver', $result[0]->idCaregiver);
                 redirect('CaregiverController/home');
             } else {
@@ -63,17 +63,18 @@ class CaregiverController extends CI_Controller {
             $temp = array('messageText' => $result[$i]['messageText'], 'messageId' => $result[$i]['idNotification'], 'redirectionPath' => $result[$i]['redirectPath']);
             array_push($messages, $temp);
         }
-        
-          
+        //Get avg score for all sectors this caregiver controls
+        $score = $this->Dashboard_model->getAvgScoreSectors();          
 
         //Parse the html document
         $data = $this->Language_model->getDashboardLanguage();
         $data['messages'] = $messages;
+        $data['avg'] = substr($score[0]['avgLastScore'], 0, 4);
         $result1 = $this->Dashboard_model->getsectors_caregiverhas();
         $data["sectors"] = $result1;
-
-        $data['title'] = 'Homepage';    //Fill in title for the page
+        
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_homepage');    //Fill in title for the page        
         $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_homepage'));   //Get all the menu items and set the right one as active        
         $data['content'] = $this->parser->parse('dashDemo', $data, true);   //parse messages into dashboard page
         $this->parser->parse('navbar_topbar', $data);    //Parse everything and display
@@ -90,8 +91,9 @@ class CaregiverController extends CI_Controller {
         $this->checkIfLoggedIn();
         $this->session->set_userdata('passwordCondition', 'begin');
         $data = $this->Language_model->getSettingsLanguage();
-        $data['title'] = 'Settings';
-        $data['menu'] = $this->Menu_model->get_menuitems('Settings');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_settings');    //Fill in title for the page            
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_settings'));
         $data['content'] = $this->parser->parse('settings', $data, true);
         $this->parser->parse('navbar_topbar', $data);
     }
@@ -101,7 +103,19 @@ class CaregiverController extends CI_Controller {
     }
     
     public function addMessage(){
-        redirect('ResidentController/sendMessage');
+        $this->load->model('Residentpage_model');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data = $this->Language_model->getsendMessageLanguage();
+        $data['name'] = $this->session->name; //still needs family login
+        $data['title'] = lang('CaregiverNav_messages');    //Fill in title for the page        
+        $data['residents'] = $this->Residentpage_model->getAllResidents();
+        $data['idUser']=$this->session->userdata('idCaregiver');
+        $this->load->model('Event_model');
+        $result = $this->Event_model->getPersonalInformation();
+          $data['photo'] = $result[0]['photo'];
+        $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_messages'));   //Get all the menu items and set the right one as active        
+        $data['content'] = $this->parser->parse('sendMessage', $data, true);   //parse messages into dashboard page
+        $this->parser->parse('navbar_topbar', $data);    //Parse everything and display        
     }
 
     public function insert() {
@@ -126,8 +140,8 @@ class CaregiverController extends CI_Controller {
 
         $data["sectors"] = $sectors;
         
-        $data['title'] = 'Add Resident';
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_addResident');        
         $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents')); 
          
         $data['content'] = $this->parser->parse('AddResident', $data, true);
@@ -195,8 +209,8 @@ class CaregiverController extends CI_Controller {
         $result1 = $this->Dashboard_model->getsectors_caregiverhas();
         $data["sectors"] = $result1;
  
-        $resident['title'] = 'Resident Overview';
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $resident['title'] = lang('CaregiverNav_residentOverview');        
         $resident['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
@@ -205,16 +219,30 @@ class CaregiverController extends CI_Controller {
     public function searchResident() {
         $this->checkIfLoggedIn();
         $this->load->model('Residentpage_model');
+        $this->load->model('Sector_model');
+        $data = $this->Language_model->getResOverviewLanguage(); 
+        $sectors = $this->Sector_model->getSectors();
+        $sectorNames = null;
+        foreach($sectors as $s) {
+            $sectorNames[$s->idSector] = $s->name;
+        }
 
         $name = $this->input->post('inputName');
         $data['residents'] = $this->Residentpage_model->getResidentsBySearch($name);
+        $i = 0;
+        foreach($data['residents'] as $res) {
+            $data['residents'][$i]['sectorName'] = $sectorNames[($res['Sectors_idSector'])];
+            $data['residents'][$i]['room'] = $data['room']; //quick-fix for parsing problem of {room} within  {residents} for-each
+            $i++;
+        }
         
-         $this->load->model('Dashboard_model');
+        $this->load->model('Dashboard_model');
         $result1 = $this->Dashboard_model->getsectors_caregiverhas();
         $data["sectors"] = $result1;
 
-        $resident['title'] = 'Resident Overview';
-        $resident['menu'] = $this->Menu_model->get_menuitems('Residents');
+        $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $resident['title'] = lang('CaregiverNav_residentOverview');        
+        $resident['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_residents'));
         $resident['content'] = $this->parser->parse('residents_overview', $data, true);
         $this->parser->parse('navbar_topbar', $resident);
     }
@@ -223,10 +251,13 @@ class CaregiverController extends CI_Controller {
         $this->checkIfLoggedIn();
         $data = $this->Language_model->getIndivResLanguage();
         $this->load->model('Residentpage_model');
-        if (null != $this->input->post("resident_id"))
+        if (null != $this->input->post("resident_id")){
             $this->session->set_userdata('resident_id', $this->input->post("resident_id"));
+        }
         $resident_id = $this->session->resident_id;
         $resident = array_merge($data, $this->Residentpage_model->getResidentWithId($resident_id));
+        $this->session->set_userdata('resident_firstName', $resident['firstName']);
+        $this->session->set_userdata('resident_lastName', $resident['lastName']);
         $resident['scores_hidden'] = '';
         $resident['problems_hidden'] = 'hidden';
         $resident['scores_active'] = "active navBtn";
@@ -298,11 +329,12 @@ class CaregiverController extends CI_Controller {
         
         //determine happy face
         $a_last = array_filter($score_last);
-        if(count($a_last) == 0){
-             $avgScore_last = 0;
-        }else{
-            $avgScore_last = array_sum($score_last)/count($a_last);
-        }
+            if(count($a_last) == 0){
+                 $avgScore_last = 0;
+            }else{
+                $avgScore_last = array_sum($score_last)/count($a_last);
+            }
+
         
         $this->Residentpage_model->addResidentAvgScoreTotal($resident_id,$avgScore_last);
         
@@ -387,8 +419,14 @@ class CaregiverController extends CI_Controller {
         
         if (null != $this->input->get('sector')){
             $sector = $this->input->get('sector');
-            $this->Residentpage_model->updateSector($resident_id,$sector);
-            redirect('caregiverController/residentProblems');
+            $this->Residentpage_model->updateSector($resident_id, $sector);
+            redirect('caregiverController/residentIndividual');
+        }
+        
+        if (null != $this->input->get('room')){
+            $room = $this->input->get('room');
+            $this->Residentpage_model->updateRoom($resident_id, $room);
+            redirect('caregiverController/residentIndividual');
         }
 
         $resident["sectors"] = $sectors;
@@ -416,21 +454,12 @@ class CaregiverController extends CI_Controller {
         $result = $this->Event_model->login($username, $password_old);
 
         if ($result) {
-            if ($password_new == NULL || $password_confirm == NULL) {
-                $this->session->set_userdata('passwordCondition', 'fail1');
-                redirect('caregiverController/getPersonalInformation');
-            } else {
-                if ($password_new == $password_confirm) {
-                    $this->session->set_userdata('passwordCondition', 'success');
-                    $this->Event_model->changePassword($password_confirm);
-                    redirect('caregiverController/getPersonalInformation');
-                } else {
-                    $this->session->set_userdata('passwordCondition', 'fail');
-                    redirect('caregiverController/getPersonalInformation');
-                }
-            }
-        } else {
-            $this->session->set_userdata('passwordCondition', 'oldPassword_wrong');
+            $this->Event_model->changePassword($password_confirm);
+            $this->session->set_userdata('passwordCondition', 'success');
+            redirect('caregiverController/getPersonalInformation');
+        } 
+        else {
+            $this->session->set_userdata('passwordCondition', 'fail');
             redirect('caregiverController/getPersonalInformation');
         }
     }
@@ -578,22 +607,16 @@ class CaregiverController extends CI_Controller {
         $passwordCondition = $this->session->userdata('passwordCondition');
 
         if ($passwordCondition == 'success') {
-            $data['content'] = 'change password success';
+            $data['result'] = 1;
         } elseif ($passwordCondition == 'fail') {
-            $data['content'] = 'new and confirm password are not match';
-        } elseif ($passwordCondition == 'oldPassword_wrong') {
-            $data['content'] = 'old password is wrong';
-        } elseif ($passwordCondition == 'fail1') {
-            $data['content'] = 'new or confirm password is empty';
+            $data['result'] = 0;        
         } else {
-            $data['content'] = '';
+            $data['result'] = '';
         }
-
-
-        // $this->parser->parse('careGiverInfo', $data);
-
-        $data['title'] = 'Caregiver';
+        $this->session->unset_userdata('passwordCondition');
+        
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_personalSettings');        
         $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_settings'));
         $data['content'] = $this->parser->parse('careGiverInfo', $data, true);
         $this->parser->parse('navbar_topbar', $data); 
@@ -621,9 +644,9 @@ class CaregiverController extends CI_Controller {
             $this->load->model('Event_model');
             $this->Event_model->changePersonalInformation($language, $email, $firstName, $lastName);
             $this->session->set_userdata('language', $language);
-            redirect('caregiverController/settings');
+            redirect('CaregiverController/home');
         } elseif ($_REQUEST{'cancel1'}) {
-            redirect('caregiverController/settings');
+            redirect('CaregiverController/home');
         }
     }
 
@@ -634,9 +657,9 @@ class CaregiverController extends CI_Controller {
         $sectors = $this->Sector_model->getAllSectorInfos();
 
         $sectorData["sectors"] = $sectors;
-
-        $data['title'] = 'Sectors';
+        
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_sectors');        
         $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_settings'));
         $data["content"] = $this->parser->parse('sectors_overview', $sectorData, true);
         $this->parser->parse('navbar_topbar', $data);
@@ -652,6 +675,8 @@ class CaregiverController extends CI_Controller {
 
     public function statistics() {
         $this->checkIfLoggedIn();
+        $this->load->helper('date');
+        date_default_timezone_set('GMT');
         $data = $this->Language_model->getStatisticsLanguage();
         $this->load->model('Question_model');
         $this->load->model('Sector_model');
@@ -659,7 +684,21 @@ class CaregiverController extends CI_Controller {
             $sector = $this->input->get('sector');
         else
             $sector = '-1';
-        $scores = $this->Question_model->getScores($sector);
+        
+        if (null != $this->input->get('from') && null != $this->input->get('to')) {
+            $from = $this->input->get('from');
+            $to = $this->input->get('to');
+        }
+        else {
+            $from = '2017-01-01';
+            $datestring = '%Y-%m-%d';
+            $time = time();
+            $to = mdate($datestring, $time);             
+        }
+        $data['fromDate'] = $from;
+        $data['toDate'] = $to;
+        
+        $scores = $this->Question_model->getScores($sector, $from, $to);
         if (isset($scores)) {
             for ($i = 1; $i <= 11; $i++) {
                 $this->Question_model->getQuestions($i);
@@ -693,8 +732,8 @@ class CaregiverController extends CI_Controller {
         if ($sector == -1)
             $data['current_sector'] = $data['allSectors'];
         $data['current_sector_id'] = $sector;
-        $data['title'] = 'Statistics';
         $this->lang->load('CaregiverNav_lang', $this->session->language);
+        $data['title'] = lang('CaregiverNav_statistics');        
         $data['menu'] = $this->Menu_model->get_menuitems(lang('CaregiverNav_statistics'));
         $data['content'] = $this->parser->parse('statistics', $data, true);
         $this->parser->parse('navbar_topbar', $data);
@@ -702,16 +741,29 @@ class CaregiverController extends CI_Controller {
 
     public function getChartStats() {
         $this->checkIfLoggedIn();
+        $this->load->helper('date');
         $this->load->model('Question_model');
         if (null != $this->input->get('sector'))
             $sector = $this->input->get('sector');
         else
             $sector = '-1';
+        
+        if (null != $this->input->get('from') && null != $this->input->get('to')) {
+            $from = $this->input->get('from');
+            $to = $this->input->get('to');
+        }
+        else {
+            $from = '2017-01-01';
+            $datestring = '%Y-%m-%d';
+            $time = time();
+            $to = mdate($datestring, $time);             
+        }
+        
         $topic = $this->input->get('topic');
         $qIds = $this->Question_model->getQuestionIds($topic);
         $startId = reset($qIds)['idQuestion'] - 1;
         $range = count($qIds);
-        $scores = $this->Question_model->getChartScores($sector);
+        $scores = $this->Question_model->getChartScores($sector, $from, $to);
         
         echo json_encode(array_slice($scores, $startId, $range));
     }
@@ -737,5 +789,16 @@ class CaregiverController extends CI_Controller {
             redirect('CaregiverController/login');
         }
     }
-   
+    
+    public function getPDFResident() {
+        $id = $this->session->userdata('resident_id');
+        $firstName = $this->session->userdata('resident_firstName');
+        $lastName = $this->session->userdata('resident_lastName');
+        $this->load->model('residentpage_model');
+        $result = $this->residentpage_model->getFamilyId($id);
+        $familyId = -1;
+        if(!empty($result)) {$familyId = $result[0]['idFamily'];}
+        $this->load->library('pdf_util');
+        $this->pdf_util->getPDF($id, $firstName, $lastName, $familyId);
+    }
 }

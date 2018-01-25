@@ -1,25 +1,19 @@
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>GraceAge 2.0 - Family</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel ="stylesheet/less" type="text/css" href="<?php echo base_url(); ?>assets/css/sendMessage.css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <script src="<?php echo base_url(); ?>assets/javascript/jquery.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/javascript/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+         
     </head>
     
     <body>
-        <script> var base_url = "<?= base_url('') ?>";</script>
-        <p class="text-right" id="header"><span class="float_left">GraceAge 2.0 - <?php echo $title; ?> </span></p>
+        <script> var base_url = "<?= base_url('') ?>";</script>        
         <div>
             <div id="container">
                 <div id="row">
                     <div class="col-md-6 leftCol">
-                        <div class="col-md-3"><img src="<?php echo base_url(); ?>assets\css\image\giani.jpg" id="imgPerson" /></div>
-                        <div class="col-md-9 personInfo"><span class="normalPxFont personInfoLine">{welcome} {name}!</span>
+                        <div class="col-md-4"><img src={photo} id="imgPerson" name="{idUser}"/></div>
+                        <div class="col-md-8 personInfo"><span class="normalPxFont personInfoLine">{welcome} {name}!</span>
                             <button class="imgBtn" type="button">{changeImage}</button>
                         </div><span class="col-md-12 normalPxFont">{selectReceivers}</span>
                         <div class="col-md-12 buttonBar">
@@ -46,20 +40,38 @@
                             {residents}
                             <div class="line col-md-12">
                                 <label>
-                                    <input type="checkbox" name="delete_list[]" /><span class="checkmark"></span></label>
-                                <div class="resident"><span class="normalPxFont">{firstName} {lastName}</span><span class="imgSpan"> <img src="<?php echo base_url(); ?>assets\css\image\happy.png" class="residentImg" /></span></div>
+                                    <input id="{idResident}" type="checkbox" name="delete_list[]" /><span class="checkmark"></span></label>
+                                    <div class="resident"><span class="normalPxFont">{firstName} {lastName}</span><span class="imgSpan"> <img src="{photo}" width="58px" height="58px"/></span></div>
                             </div>
                             {/residents}                                   
                         </div>
                     </div>
                     <div class="col-md-6" id="rightcol"><span id="addImageHere" class="normalPxFont col-md-12">{makeMessage}</span>
-                        <button class="imgBtn" type="button">{addImage}</button><span id="imageSpan" class="col-md-12"><img src="IMG_8938.jpg" class="imgPlaceHolder" /></span><span id="maxCharSpan">{maxChar}</span>
-                        <textarea id="textArea" class="col-md-12" maxlength="250" placeholder="{messagePlaceholder}"></textarea>
-                        <button class= "imgBtn" type="button">{sendMessage}</button>
+                        <label for="file" class="imgBtn" type="button"><input id="file"  name="userfile" type="file" size="20" onchange="readURL(this);" style="display: none; " />{addImage}</label><span id="imageSpan" class="col-md-12"><img id="blah" alt="my image" src="#" class="imgPlaceHolder" /></span><span id="maxCharSpan">{maxChar}</span>
+                       
+                        <textarea id="textArea" class="col-md-12" maxlength="250" placeholder="{messagePlaceholder}" onkeyup="charCounter();"></textarea>
+                           <button class= "imgBtn" type="button" onclick="sendMessage(); document.getElementById('id01').style.display='block'" >{sendMessage}</button>
                     </div>
                 </div>
             </div>
         </div>
+         
+         <div id="id01" class="w3-modal" >
+    <div class="w3-modal-content" style="width: 450px; height: 200px; margin-top: 120px;">
+      <div class="w3-container">
+          <span>Would you want to send the message to others ?</span>
+      
+     
+        <button class="filter_submitButton" onclick="document.getElementById('id01').style.display='none'">Yes</button>
+        <form method="post" action="addMessage">
+            <button type="submit" class="filter_submitButton" >No</button>
+        </form>
+      </div>
+    </div>
+  </div>
+        
+        
+<script type="text/javascript" src="<?PHP echo base_url();?>assets/javascript/sendMessage.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/javascript/caregiver_message.js"></script>
     </body>
     <script>

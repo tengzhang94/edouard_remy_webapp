@@ -13,3 +13,7 @@ $lang['stats_chartY'] = "Questions";
 $lang['stats_showChart'] = "Tap the chart-icon to show chart";
 $lang['stats_average'] = "Average";
 $lang['stats_noData'] = "No data available for this sector";
+$lang['stats_chooseDate'] = "Choose your timeframe:";
+$lang['stats_from'] = "From:";
+$lang['stats_till'] = "To:";
+$lang['stats_dateError'] = "Date 'from' is later than date 'to'";
